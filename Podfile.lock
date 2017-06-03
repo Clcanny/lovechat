@@ -1,0 +1,19 @@
+PODS:
+  - IGListKit (3.0.0):
+    - IGListKit/Default (= 3.0.0)
+  - IGListKit/Default (3.0.0):
+    - IGListKit/Diffing
+  - IGListKit/Diffing (3.0.0)
+  - SnapKit (3.2.0)
+
+DEPENDENCIES:
+  - IGListKit (~> 3.0)
+  - SnapKit (~> 3.2.0)
+
+SPEC CHECKSUMS:
+  IGListKit: 9eab6856a15fa25ad72018ff9d9eb2178c240fff
+  SnapKit: 1ca44df72cfa543218d177cb8aab029d10d86ea7
+
+PODFILE CHECKSUM: 5b3c6e75660e1b81c36cd2f544e3e46a335a05b5
+
+COCOAPODS: 1.2.1
