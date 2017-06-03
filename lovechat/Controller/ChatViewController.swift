@@ -69,11 +69,11 @@ class ChatViewController: UIViewController {
 
 extension ChatViewController: ListAdapterDataSource {
     func objects(for listAdapter: ListAdapter) -> [ListDiffable] {
-        return ["Hello" as ListDiffable, "Hi" as ListDiffable, "Hi1" as ListDiffable, "Hi2" as ListDiffable, "Hi3" as ListDiffable, "Hi4" as ListDiffable, "Hi5" as ListDiffable, "Hi6" as ListDiffable, "Hi7" as ListDiffable, "Hi9" as ListDiffable, "Hi10" as ListDiffable, "Hi11" as ListDiffable, "Hi12" as ListDiffable, "Hi13" as ListDiffable, "Hi14" as ListDiffable, "Hi15" as ListDiffable, "Hi16" as ListDiffable, "Hi17" as ListDiffable, "Hi18" as ListDiffable, "Hi19" as ListDiffable, "Hi20" as ListDiffable, "Hi21" as ListDiffable, "Hi22" as ListDiffable, "Hi23" as ListDiffable, "Hi24" as ListDiffable, "Hi25" as ListDiffable, "Hi26" as ListDiffable]
+        return ["Hello" as ListDiffable, "Hi" as ListDiffable, "Hi1" as ListDiffable, "Hi2" as ListDiffable, "Hi3" as ListDiffable, "Hi4" as ListDiffable, "Hi5" as ListDiffable, "Hi6" as ListDiffable, "Hi7" as ListDiffable, "Hi9" as ListDiffable, "Hi10" as ListDiffable, "Hi11" as ListDiffable, "Hi12" as ListDiffable, "Hi13" as ListDiffable, "Hi14" as ListDiffable, "Hi15" as ListDiffable, "Hi16" as ListDiffable, "Hi17" as ListDiffable, "Hi18" as ListDiffable, "Hi19" as ListDiffable, "Hi20" as ListDiffable, "Hi21" as ListDiffable, "Hi22" as ListDiffable, "Hi23" as ListDiffable, "Hi24" as ListDiffable, "Hi25" as ListDiffable, "Hi26" as ListDiffable, "This is a very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very long message." as ListDiffable]
     }
     
     func listAdapter(_ listAdapter: ListAdapter, sectionControllerFor object: Any) -> ListSectionController {
-        return TextMessageSectionController()
+        return TextMessageSectionController(text: object as! String)
     }
     
     func emptyView(for listAdapter: ListAdapter) -> UIView? {

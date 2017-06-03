@@ -10,12 +10,20 @@ import UIKit
 
 class TextMessageCollectionViewCell: UICollectionViewCell {
     
-    private static let maxWidth: CGFloat = 100
+    public static let maxWidth: CGFloat = 100
     private static let radius: CGFloat = 15
     // Margin is on the outside of block elements while padding is on the inside.
     // Use margin to separate the block from things outside it.
     // Use padding to move the contents away from the edges of the block.
-    private static let padding: CGFloat = 5
+    public static let padding: CGFloat = 5
+    
+    private let avatar = { () -> UIImageView in
+        var imageView = UIImageView()
+        imageView.frame.size = CGSize(width: radius * 2, height: radius * 2)
+        imageView.contentMode = .scaleAspectFit
+        imageView.backgroundColor = robinEggColor
+        return imageView
+    }()
     
     private let textLabel = { () -> UILabel in
         let label = UILabel()
@@ -32,7 +40,6 @@ class TextMessageCollectionViewCell: UICollectionViewCell {
         
         set(newText) {
             textLabel.text = newText
-            sizeToFit()
         }
     }
     // A view's frame (CGRect) is the position of its rectangle in the superview's coordinate system.
@@ -56,20 +63,21 @@ class TextMessageCollectionViewCell: UICollectionViewCell {
     
     private let highlightLayer = { () -> CAShapeLayer in
         let layer = CAShapeLayer()
-        layer.fillColor = UIColor.green.cgColor
+        layer.strokeColor = UIColor.gray.cgColor
+        layer.lineWidth = 1
         return layer
     }()
     
     override func layoutSubviews() {
         super.layoutSubviews()
+        addSubview(avatar)
+        // The order is important.
         layer.addSublayer(highlightLayer)
         addSubview(textLabel)
     }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        backgroundColor = UIColor.red
-        keepLeft()
     }
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -78,6 +86,7 @@ class TextMessageCollectionViewCell: UICollectionViewCell {
     public func keepLeft() {
         let radius = TextMessageCollectionViewCell.radius
         let padding = TextMessageCollectionViewCell.padding
+        let borderWidth = padding * 2 + radius * 3 + textLabel.frame.size.width
         
         let path = UIBezierPath()
         path.move(to: CGPoint(x: radius * 2, y: radius))
@@ -88,8 +97,8 @@ class TextMessageCollectionViewCell: UICollectionViewCell {
             endAngle: 0,
             clockwise: false
         )
-        path.addLine(to: CGPoint(x: bounds.width, y: 0))
-        path.addLine(to: CGPoint(x: bounds.width, y: bounds.height))
+        path.addLine(to: CGPoint(x: borderWidth, y: 0))
+        path.addLine(to: CGPoint(x: borderWidth, y: bounds.height))
         path.addLine(to: CGPoint(x: radius * 3, y: bounds.height))
         path.addLine(to: CGPoint(x: radius * 3, y: radius * 2))
         path.addArc(
@@ -102,20 +111,20 @@ class TextMessageCollectionViewCell: UICollectionViewCell {
         path.close()
         
         highlightLayer.lineWidth = 1
-        highlightLayer.strokeColor = UIColor.gray.cgColor
-        highlightLayer.fillColor = UIColor.white.cgColor
+        
+        highlightLayer.fillColor = ivoryColor.cgColor
         highlightLayer.path = path.cgPath
         
+        avatar.frame.origin = .zero
         textLabel.frame.origin = CGPoint(x: padding + radius * 3, y: padding)
     }
     
-    private func keepRight() {
+    public func keepRight() {
         let radius = TextMessageCollectionViewCell.radius
         let padding = TextMessageCollectionViewCell.padding
+        let borderX = bounds.width - (padding * 2 + radius * 3 + textLabel.frame.size.width)
         
         let path = UIBezierPath()
-        path.move(to: CGPoint(x: 0, y: 0))
-        path.addLine(to: CGPoint(x: bounds.width - radius * 3, y: 0))
         path.addArc(
             withCenter: CGPoint(x: bounds.width - radius * 2, y: 0),
             radius: radius,
@@ -131,16 +140,16 @@ class TextMessageCollectionViewCell: UICollectionViewCell {
             clockwise: false
         )
         path.addLine(to: CGPoint(x: bounds.width - radius * 3, y: bounds.height))
-        path.addLine(to: CGPoint(x: 0, y: bounds.height))
-        path.addLine(to: CGPoint(x: 0, y: 0))
+        path.addLine(to: CGPoint(x: borderX, y: bounds.height))
+        path.addLine(to: CGPoint(x: borderX, y: 0))
+        path.addLine(to: CGPoint(x: bounds.width - radius * 3, y: 0))
         path.close()
         
-        highlightLayer.lineWidth = 1
-        highlightLayer.strokeColor = UIColor.gray.cgColor
-        highlightLayer.fillColor = UIColor.white.cgColor
+        highlightLayer.fillColor = pastelGreenColor.cgColor
         highlightLayer.path = path.cgPath
         
-        textLabel.frame.origin = CGPoint(x: padding, y: padding)
+        avatar.frame.origin = CGPoint(x: bounds.width - radius * 2, y: 0)
+        textLabel.frame.origin = CGPoint(x: borderX + padding, y: padding)
     }
     
 }
