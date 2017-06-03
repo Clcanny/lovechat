@@ -11,12 +11,12 @@ import IGListKit
 
 class TextMessageSectionController: ListSectionController {
     
-    private var text: String?
+    private var textMessageModel: TextMessageModel?
     
     private var tsize: CGSize?
     
-    init(text: String) {
-        self.text = text
+    init(textMessageModel: TextMessageModel) {
+        self.textMessageModel = textMessageModel
         super.init()
         inset = UIEdgeInsets(top: 0, left: 0, bottom: 5, right: 0)
     }
@@ -26,7 +26,7 @@ class TextMessageSectionController: ListSectionController {
     }
     
     override func sizeForItem(at index: Int) -> CGSize {
-        guard let context = collectionContext, let str = text else {
+        guard let context = collectionContext, let str = textMessageModel?.getMessage() else {
             return .zero
         }
         
@@ -48,9 +48,14 @@ class TextMessageSectionController: ListSectionController {
             of: TextMessageCollectionViewCell.self,
             for: self, at: index
         ) as! TextMessageCollectionViewCell
-        cell.text = text
+        cell.text = textMessageModel!.getMessage()
         cell.textSize = tsize!
-        cell.keepRight()
+        if (textMessageModel!.getLR()) {
+            cell.keepRight()
+        }
+        else {
+            cell.keepLeft()
+        }
         return cell
     }
     
