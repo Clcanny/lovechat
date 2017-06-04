@@ -14,6 +14,34 @@ class ChatViewController: UIViewController {
 
     @IBOutlet weak var messagesView: UIView!
     
+    @IBAction func beginRecord(_ sender: UIButton) {
+        print("begin")
+    }
+    
+    // UIControlEventTouchDragExit
+    // An event where a finger is dragged from within a control to outside its bounds.
+    @IBAction func readyToCancelRecord(_ sender: UIButton) {
+        print("leaving")
+    }
+    
+    // UIControlEventTouchDragEnter
+    // An event where a finger is dragged into the bounds of the control.
+    @IBAction func dontCancelRecord(_ sender: UIButton) {
+        print("enter")
+    }
+    
+    // UIControlEventTouchUpOutside
+    // A touch-up event in the control where the finger is outside the bounds of the control.
+    @IBAction func cancelRecord(_ sender: UIButton) {
+        print("leaved")
+    }
+    
+    // UIControlEventTouchUpInside
+    // A touch-up event in the control where the finger is inside the bounds of the control.
+    @IBAction func finishRecord(_ sender: UIButton) {
+        print("finish")
+    }
+    
     let collectionView = { () -> UICollectionView in
         let layout = UICollectionViewFlowLayout()
         let view = UICollectionView(frame: .zero, collectionViewLayout: layout)

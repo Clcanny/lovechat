@@ -22,10 +22,25 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3eN-iG-0zv" userLabel="MessagesView">
-                                <rect key="frame" x="16" y="72" width="343" height="538"/>
+                                <rect key="frame" x="16" y="72" width="343" height="480"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mjX-uZ-CIe">
+                                <rect key="frame" x="16" y="560" width="343" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <state key="normal" title="Hold to talk">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="beginRecord:" destination="BYZ-38-t0r" eventType="touchDown" id="hEq-39-avf"/>
+                                    <action selector="cancelRecord:" destination="BYZ-38-t0r" eventType="touchUpOutside" id="fpU-Cg-XIc"/>
+                                    <action selector="dontCancelRecord:" destination="BYZ-38-t0r" eventType="touchDragEnter" id="oMC-T4-BnQ"/>
+                                    <action selector="finishRecord:" destination="BYZ-38-t0r" eventType="touchUpInside" id="W6Z-sM-Nue"/>
+                                    <action selector="readyToCancelRecord:" destination="BYZ-38-t0r" eventType="touchDragExit" id="8M9-sh-WbJ"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
@@ -43,7 +58,6 @@
         <!--聊天-->
         <scene sceneID="Ik3-mq-sa3">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="R3n-Ib-gkt" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Nqv-h8-WvV" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="聊天" id="AnY-Ix-896"/>
                     <toolbarItems/>
@@ -56,13 +70,13 @@
                         <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="EWL-HO-C6D"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="R3n-Ib-gkt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="528.79999999999995" y="129.98500749625188"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="Yu4-7S-yFD">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="c9p-q7-Eke" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="tuU-8Z-4dJ" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="PdS-8s-aGk">
@@ -74,6 +88,7 @@
                         <segue destination="Nqv-h8-WvV" kind="relationship" relationship="viewControllers" id="PKq-Hy-hyM"/>
                     </connections>
                 </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="c9p-q7-Eke" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-410.39999999999998" y="129.98500749625188"/>
         </scene>
