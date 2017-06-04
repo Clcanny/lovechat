@@ -12,6 +12,7 @@
 		403B20551EE2BC8D00CBE09C /* TextMessageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 403B20541EE2BC8D00CBE09C /* TextMessageCollectionViewCell.swift */; };
 		403B20601EE31E7600CBE09C /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 403B205F1EE31E7600CBE09C /* Colors.swift */; };
 		403B20631EE3383600CBE09C /* TextMessageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 403B20621EE3383600CBE09C /* TextMessageModel.swift */; };
+		403E2BBB1EE4294A00EF961D /* RecordAnimationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 403E2BBA1EE4294A00EF961D /* RecordAnimationView.swift */; };
 		408B480E1EE276CC00EE9281 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 408B480D1EE276CC00EE9281 /* AppDelegate.swift */; };
 		408B48131EE276CC00EE9281 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 408B48111EE276CC00EE9281 /* Main.storyboard */; };
 		408B48151EE276CC00EE9281 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 408B48141EE276CC00EE9281 /* Assets.xcassets */; };
@@ -35,6 +36,7 @@
 		403B20541EE2BC8D00CBE09C /* TextMessageCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TextMessageCollectionViewCell.swift; path = Cell/TextMessageCollectionViewCell.swift; sourceTree = "<group>"; };
 		403B205F1EE31E7600CBE09C /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Colors.swift; path = Util/Colors.swift; sourceTree = "<group>"; };
 		403B20621EE3383600CBE09C /* TextMessageModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TextMessageModel.swift; path = Model/TextMessageModel.swift; sourceTree = "<group>"; };
+		403E2BBA1EE4294A00EF961D /* RecordAnimationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RecordAnimationView.swift; path = View/RecordAnimationView.swift; sourceTree = "<group>"; };
 		408B480A1EE276CC00EE9281 /* lovechat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = lovechat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		408B480D1EE276CC00EE9281 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		408B48121EE276CC00EE9281 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -108,6 +110,14 @@
 			name = Model;
 			sourceTree = "<group>";
 		};
+		403E2BB91EE4292300EF961D /* View */ = {
+			isa = PBXGroup;
+			children = (
+				403E2BBA1EE4294A00EF961D /* RecordAnimationView.swift */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
 		408B48011EE276CC00EE9281 = {
 			isa = PBXGroup;
 			children = (
@@ -129,6 +139,7 @@
 		408B480C1EE276CC00EE9281 /* lovechat */ = {
 			isa = PBXGroup;
 			children = (
+				403E2BB91EE4292300EF961D /* View */,
 				403B20611EE3381100CBE09C /* Model */,
 				403B20561EE3106F00CBE09C /* Util */,
 				403B20531EE2BC2400CBE09C /* Cell */,
@@ -296,6 +307,7 @@
 				409EC0CE1EE3E2B200365F7E /* PictureMessageSectionController.swift in Sources */,
 				409EC0D21EE3E50C00365F7E /* TextSize.swift in Sources */,
 				409EC0C61EE3CAF400365F7E /* TimeStampSectionController.swift in Sources */,
+				403E2BBB1EE4294A00EF961D /* RecordAnimationView.swift in Sources */,
 				403B20551EE2BC8D00CBE09C /* TextMessageCollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

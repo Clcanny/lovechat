@@ -16,43 +16,34 @@ class ChatViewController: UIViewController {
     
     @IBAction func beginRecord(_ sender: UIButton) {
         recordAnimationView.isHidden = false
-        print("begin")
+        recordAnimationView.recording()
     }
     
     // UIControlEventTouchDragExit
     // An event where a finger is dragged from within a control to outside its bounds.
     @IBAction func readyToCancelRecord(_ sender: UIButton) {
-        print("leaving")
+        recordAnimationView.readyToCancel()
     }
     
     // UIControlEventTouchDragEnter
     // An event where a finger is dragged into the bounds of the control.
     @IBAction func dontCancelRecord(_ sender: UIButton) {
-        print("enter")
+        recordAnimationView.recording()
     }
     
     // UIControlEventTouchUpOutside
     // A touch-up event in the control where the finger is outside the bounds of the control.
     @IBAction func cancelRecord(_ sender: UIButton) {
-        if (!recordAnimationView.isHidden) {
-            recordAnimationView.isHidden = true
-        }
-        print("leaved")
+        recordAnimationView.isHidden = true
     }
     
     // UIControlEventTouchUpInside
     // A touch-up event in the control where the finger is inside the bounds of the control.
     @IBAction func finishRecord(_ sender: UIButton) {
-        print("finish")
+        recordAnimationView.isHidden = true
     }
     
-    let recordAnimationView = { () -> UIView in
-        let view = UIView()
-        view.frame.size = CGSize(width: 50, height: 50)
-        view.isHidden = true
-        view.backgroundColor = UIColor.black
-        return view
-    }()
+    let recordAnimationView = RecordAnimationView()
     
     let collectionView = { () -> UICollectionView in
         let layout = UICollectionViewFlowLayout()
@@ -80,6 +71,8 @@ class ChatViewController: UIViewController {
             make.top.left.bottom.right.equalTo(messagesView)
         }
         messagesView.addSubview(recordAnimationView)
+        recordAnimationView.frame.origin.x = (messagesView.frame.size.width - RecordAnimationView.width) / 2
+        recordAnimationView.frame.origin.y = 150
     }
     
     override func viewDidLoad() {
