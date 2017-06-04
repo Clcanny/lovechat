@@ -24,6 +24,7 @@
 		409EC0CE1EE3E2B200365F7E /* PictureMessageSectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 409EC0CD1EE3E2B200365F7E /* PictureMessageSectionController.swift */; };
 		409EC0D11EE3E50C00365F7E /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 409EC0CF1EE3E50C00365F7E /* Fonts.swift */; };
 		409EC0D21EE3E50C00365F7E /* TextSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 409EC0D01EE3E50C00365F7E /* TextSize.swift */; };
+		40B1BF1B1EE3ED83000B335E /* ExtensionUIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40B1BF1A1EE3ED83000B335E /* ExtensionUIImage.swift */; };
 		BE6FF66E3EFF6386328AB22C /* Pods_lovechat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F36EF7366FA249FE7E866EBF /* Pods_lovechat.framework */; };
 /* End PBXBuildFile section */
 
@@ -48,6 +49,7 @@
 		409EC0CD1EE3E2B200365F7E /* PictureMessageSectionController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PictureMessageSectionController.swift; path = Controller/PictureMessageSectionController.swift; sourceTree = "<group>"; };
 		409EC0CF1EE3E50C00365F7E /* Fonts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Fonts.swift; path = Util/Fonts.swift; sourceTree = "<group>"; };
 		409EC0D01EE3E50C00365F7E /* TextSize.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TextSize.swift; path = Util/TextSize.swift; sourceTree = "<group>"; };
+		40B1BF1A1EE3ED83000B335E /* ExtensionUIImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ExtensionUIImage.swift; path = Util/ExtensionUIImage.swift; sourceTree = "<group>"; };
 		7EE5C32AD502F2563269A83A /* Pods-lovechat.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-lovechat.release.xcconfig"; path = "Pods/Target Support Files/Pods-lovechat/Pods-lovechat.release.xcconfig"; sourceTree = "<group>"; };
 		F36EF7366FA249FE7E866EBF /* Pods_lovechat.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_lovechat.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -92,6 +94,7 @@
 				409EC0D01EE3E50C00365F7E /* TextSize.swift */,
 				403B205F1EE31E7600CBE09C /* Colors.swift */,
 				409EC0C91EE3E06D00365F7E /* PictureSize.swift */,
+				40B1BF1A1EE3ED83000B335E /* ExtensionUIImage.swift */,
 			);
 			name = Util;
 			sourceTree = "<group>";
@@ -285,6 +288,7 @@
 				409EC0C41EE3C8B800365F7E /* TimeStampCollectionViewCell.swift in Sources */,
 				403B20521EE2BA8B00CBE09C /* TextMessageSectionController.swift in Sources */,
 				403B20601EE31E7600CBE09C /* Colors.swift in Sources */,
+				40B1BF1B1EE3ED83000B335E /* ExtensionUIImage.swift in Sources */,
 				409EC0C81EE3DA8600365F7E /* PictureMessageCollectionViewCell.swift in Sources */,
 				403B20631EE3383600CBE09C /* TextMessageModel.swift in Sources */,
 				409EC0CA1EE3E06D00365F7E /* PictureSize.swift in Sources */,

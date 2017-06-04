@@ -47,8 +47,9 @@ class PictureMessageSectionController: ListSectionController {
             of: PictureMessageCollectionViewCell.self,
             for: self, at: index
             ) as! PictureMessageCollectionViewCell
-        cell.picture = pictureMessageModel!.getMessage()
+        // The order is important.
         cell.pictureSize = psize!
+        cell.picture = pictureMessageModel!.getMessage()
         if (pictureMessageModel!.getLR()) {
             cell.keepRight()
         }

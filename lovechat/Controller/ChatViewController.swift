@@ -68,6 +68,7 @@ class ChatViewController: UIViewController {
 }
 
 extension ChatViewController: ListAdapterDataSource {
+    
     func objects(for listAdapter: ListAdapter) -> [ListDiffable] {
         return [
             "12:25 PM" as ListDiffable,
@@ -103,4 +104,5 @@ extension ChatViewController: ListAdapterDataSource {
     func emptyView(for listAdapter: ListAdapter) -> UIView? {
         return nil
     }
+    
 }
