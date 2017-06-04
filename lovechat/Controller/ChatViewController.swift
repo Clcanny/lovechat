@@ -71,8 +71,10 @@ class ChatViewController: UIViewController {
             make.top.left.bottom.right.equalTo(messagesView)
         }
         messagesView.addSubview(recordAnimationView)
-        recordAnimationView.frame.origin.x = (messagesView.frame.size.width - RecordAnimationView.width) / 2
-        recordAnimationView.frame.origin.y = 150
+        recordAnimationView.snp.makeConstraints {
+            (make) -> Void in
+            make.center.equalTo(messagesView)
+        }
     }
     
     override func viewDidLoad() {
