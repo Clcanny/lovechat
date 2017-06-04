@@ -40,9 +40,6 @@ class TimeStampCollectionViewCell: UICollectionViewCell {
     override func layoutSubviews() {
         super.layoutSubviews()
         addSubview(timeStampLabel)
-//        timeStampLabel.snp.makeConstraints { (make) -> Void in
-//            make.center.equalTo(contentView)
-//        }
         timeStampLabel.frame.origin = CGPoint(
             x: (bounds.width - timeStampSize.width) / 2,
             y: 0

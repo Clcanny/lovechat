@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import SnapKit
+import UIKit
 
 func textSize(maxWidth: CGFloat, text: String, font: UIFont = AppFont()) -> CGSize {
     let label = UILabel(frame: CGRect(x: 0, y: 0, width: maxWidth, height: 99999))

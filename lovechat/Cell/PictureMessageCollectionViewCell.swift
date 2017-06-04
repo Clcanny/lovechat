@@ -1,21 +1,17 @@
 //
-//  TextMessageCollectionViewCell.swift
+//  PictureMessageCollectionViewCell.swift
 //  lovechat
 //
-//  Created by Demons on 2017/6/3.
+//  Created by Demons on 2017/6/4.
 //  Copyright © 2017年 Demons. All rights reserved.
 //
 
 import UIKit
 
-class TextMessageCollectionViewCell: UICollectionViewCell {
+class PictureMessageCollectionViewCell: UICollectionViewCell {
     
     public static let maxWidth: CGFloat = 100
     private static let radius: CGFloat = 15
-    // Margin is on the outside of block elements while padding is on the inside.
-    // Use margin to separate the block from things outside it.
-    // Use padding to move the contents away from the edges of the block.
-    public static let padding: CGFloat = 5
     
     private let avatar = { () -> UIImageView in
         var imageView = UIImageView()
@@ -25,46 +21,38 @@ class TextMessageCollectionViewCell: UICollectionViewCell {
         return imageView
     }()
     
-    private let textLabel = { () -> UILabel in
-        let label = UILabel()
-        label.backgroundColor = UIColor.clear
-        label.font = textMessageFont
-        label.textColor = UIColor.black
-        label.numberOfLines = 0
-        return label
+    // UIImage contains the data for an image.
+    // UIImageView is a custom view meant to display the UIImage.
+    private let pictureView = { () -> UIImageView in
+        var imageView = UIImageView()
+        imageView.contentMode = .scaleAspectFit
+        imageView.backgroundColor = UIColor.clear
+        return imageView
     }()
-    public var text: String? {
+    var picture: UIImage? {
         get {
-            return textLabel.text
+            return pictureView.image
         }
         
-        set(newText) {
-            textLabel.text = newText
+        set(newPicture) {
+            pictureView.image = newPicture
         }
     }
-    // A view's frame (CGRect) is the position of its rectangle in the superview's coordinate system.
-    // By default it starts at the top left.
-    // A view's bounds (CGRect) expresses a view rectangle in its own coordinate system.
-    // A center is a CGPoint expressed in terms of the superview's coordinate system
-    // and it determines the position of the exact center point of the view.
-    // frame.origin = center - (bounds.size / 2.0)
-    // center = frame.origin + (bounds.size / 2.0)
-    // frame.size = bounds.size
-    // These relationships do not apply if views are rotated.
-    public var textSize: CGSize {
+    var pictureSize: CGSize {
         get {
-            return textLabel.frame.size
+            return pictureView.frame.size
         }
         
         set(newSize) {
-            textLabel.frame.size = newSize
+            pictureView.frame.size = newSize
         }
     }
     
     private let highlightLayer = { () -> CAShapeLayer in
         let layer = CAShapeLayer()
-        layer.strokeColor = UIColor.gray.cgColor
+        layer.strokeColor = UIColor.white.cgColor
         layer.lineWidth = 1
+        layer.fillColor = UIColor.white.cgColor
         return layer
     }()
     
@@ -73,7 +61,7 @@ class TextMessageCollectionViewCell: UICollectionViewCell {
         addSubview(avatar)
         // The order is important.
         layer.addSublayer(highlightLayer)
-        addSubview(textLabel)
+        addSubview(pictureView)
     }
     
     override init(frame: CGRect) {
@@ -84,9 +72,8 @@ class TextMessageCollectionViewCell: UICollectionViewCell {
     }
     
     public func keepLeft() {
-        let radius = TextMessageCollectionViewCell.radius
-        let padding = TextMessageCollectionViewCell.padding
-        let borderWidth = padding * 2 + radius * 3 + textLabel.frame.size.width
+        let radius = PictureMessageCollectionViewCell.radius
+        let borderWidth = radius * 3 + pictureView.frame.size.width
         
         let path = UIBezierPath()
         path.move(to: CGPoint(x: radius * 2, y: radius))
@@ -109,18 +96,16 @@ class TextMessageCollectionViewCell: UICollectionViewCell {
             clockwise: false
         )
         path.close()
-        
-        highlightLayer.fillColor = ivoryColor.cgColor
+
         highlightLayer.path = path.cgPath
         
         avatar.frame.origin = .zero
-        textLabel.frame.origin = CGPoint(x: padding + radius * 3, y: padding)
+        pictureView.frame.origin = CGPoint(x: radius * 3, y: 0)
     }
     
     public func keepRight() {
-        let radius = TextMessageCollectionViewCell.radius
-        let padding = TextMessageCollectionViewCell.padding
-        let borderX = bounds.width - (padding * 2 + radius * 3 + textLabel.frame.size.width)
+        let radius = PictureMessageCollectionViewCell.radius
+        let borderX = bounds.width - (radius * 3 + pictureView.frame.size.width)
         
         let path = UIBezierPath()
         path.addArc(
@@ -143,11 +128,10 @@ class TextMessageCollectionViewCell: UICollectionViewCell {
         path.addLine(to: CGPoint(x: bounds.width - radius * 3, y: 0))
         path.close()
         
-        highlightLayer.fillColor = pastelGreenColor.cgColor
         highlightLayer.path = path.cgPath
         
         avatar.frame.origin = CGPoint(x: bounds.width - radius * 2, y: 0)
-        textLabel.frame.origin = CGPoint(x: borderX + padding, y: padding)
+        pictureView.frame.origin = CGPoint(x: borderX, y: 0)
     }
     
 }
