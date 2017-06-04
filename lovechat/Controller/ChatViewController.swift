@@ -15,6 +15,7 @@ class ChatViewController: UIViewController {
     @IBOutlet weak var messagesView: UIView!
     
     @IBAction func beginRecord(_ sender: UIButton) {
+        recordAnimationView.isHidden = false
         print("begin")
     }
     
@@ -33,6 +34,9 @@ class ChatViewController: UIViewController {
     // UIControlEventTouchUpOutside
     // A touch-up event in the control where the finger is outside the bounds of the control.
     @IBAction func cancelRecord(_ sender: UIButton) {
+        if (!recordAnimationView.isHidden) {
+            recordAnimationView.isHidden = true
+        }
         print("leaved")
     }
     
@@ -41,6 +45,14 @@ class ChatViewController: UIViewController {
     @IBAction func finishRecord(_ sender: UIButton) {
         print("finish")
     }
+    
+    let recordAnimationView = { () -> UIView in
+        let view = UIView()
+        view.frame.size = CGSize(width: 50, height: 50)
+        view.isHidden = true
+        view.backgroundColor = UIColor.black
+        return view
+    }()
     
     let collectionView = { () -> UICollectionView in
         let layout = UICollectionViewFlowLayout()
@@ -67,6 +79,7 @@ class ChatViewController: UIViewController {
             (make) -> Void in
             make.top.left.bottom.right.equalTo(messagesView)
         }
+        messagesView.addSubview(recordAnimationView)
     }
     
     override func viewDidLoad() {
