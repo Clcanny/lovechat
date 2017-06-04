@@ -50,9 +50,9 @@ class PictureMessageCollectionViewCell: UICollectionViewCell {
     
     private let highlightLayer = { () -> CAShapeLayer in
         let layer = CAShapeLayer()
-        layer.strokeColor = UIColor.white.cgColor
+        layer.strokeColor = babyBlueColor.cgColor
         layer.lineWidth = 1
-        layer.fillColor = UIColor.white.cgColor
+        layer.fillColor = babyBlueColor.cgColor
         return layer
     }()
     

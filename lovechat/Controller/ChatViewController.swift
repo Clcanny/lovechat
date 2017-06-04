@@ -72,6 +72,7 @@ extension ChatViewController: ListAdapterDataSource {
         return [
             "12:25 PM" as ListDiffable,
             TextMessageModel(message: "This is a very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very long message.", true),
+            PictureMessageModel(message: #imageLiteral(resourceName: "defaultPictureOfMessage"), false),
             TextMessageModel(message: "This is also a very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very long message.", false),
             "12:26 PM" as ListDiffable,
             TextMessageModel(message: "A short message", true),
@@ -79,7 +80,8 @@ extension ChatViewController: ListAdapterDataSource {
             TextMessageModel(message: "A short message", false),
             "12:27 PM" as ListDiffable,
             TextMessageModel(message: "This is a very very very very long message", true),
-            TextMessageModel(message: "This is a very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very long message.", false)
+            TextMessageModel(message: "This is a very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very long message.", false),
+            PictureMessageModel(message: #imageLiteral(resourceName: "defaultPictureOfMessage"), true)
         ]
     }
     
@@ -89,6 +91,9 @@ extension ChatViewController: ListAdapterDataSource {
         }
         else if let timeStamp = object as? String {
             return TimeStampSectionController(timeStamp: timeStamp)
+        }
+        else if let pictureMessageModel = object as? PictureMessageModel {
+            return PictureMessageSectionController(pictureMessageModel: pictureMessageModel)
         }
         else {
             fatalError("unrecognizable object")
