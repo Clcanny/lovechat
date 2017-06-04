@@ -10,8 +10,6 @@
 		403B20501EE2B09700CBE09C /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 403B204F1EE2B09700CBE09C /* ChatViewController.swift */; };
 		403B20521EE2BA8B00CBE09C /* TextMessageSectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 403B20511EE2BA8B00CBE09C /* TextMessageSectionController.swift */; };
 		403B20551EE2BC8D00CBE09C /* TextMessageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 403B20541EE2BC8D00CBE09C /* TextMessageCollectionViewCell.swift */; };
-		403B205A1EE310A100CBE09C /* TextSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 403B20591EE310A100CBE09C /* TextSize.swift */; };
-		403B205C1EE3110E00CBE09C /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 403B205B1EE3110E00CBE09C /* Fonts.swift */; };
 		403B20601EE31E7600CBE09C /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 403B205F1EE31E7600CBE09C /* Colors.swift */; };
 		403B20631EE3383600CBE09C /* TextMessageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 403B20621EE3383600CBE09C /* TextMessageModel.swift */; };
 		408B480E1EE276CC00EE9281 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 408B480D1EE276CC00EE9281 /* AppDelegate.swift */; };
@@ -24,6 +22,8 @@
 		409EC0CA1EE3E06D00365F7E /* PictureSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 409EC0C91EE3E06D00365F7E /* PictureSize.swift */; };
 		409EC0CC1EE3E1C700365F7E /* PictureMessageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 409EC0CB1EE3E1C700365F7E /* PictureMessageModel.swift */; };
 		409EC0CE1EE3E2B200365F7E /* PictureMessageSectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 409EC0CD1EE3E2B200365F7E /* PictureMessageSectionController.swift */; };
+		409EC0D11EE3E50C00365F7E /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 409EC0CF1EE3E50C00365F7E /* Fonts.swift */; };
+		409EC0D21EE3E50C00365F7E /* TextSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 409EC0D01EE3E50C00365F7E /* TextSize.swift */; };
 		BE6FF66E3EFF6386328AB22C /* Pods_lovechat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F36EF7366FA249FE7E866EBF /* Pods_lovechat.framework */; };
 /* End PBXBuildFile section */
 
@@ -32,8 +32,6 @@
 		403B204F1EE2B09700CBE09C /* ChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ChatViewController.swift; path = Controller/ChatViewController.swift; sourceTree = "<group>"; };
 		403B20511EE2BA8B00CBE09C /* TextMessageSectionController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TextMessageSectionController.swift; path = Controller/TextMessageSectionController.swift; sourceTree = "<group>"; };
 		403B20541EE2BC8D00CBE09C /* TextMessageCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TextMessageCollectionViewCell.swift; path = Cell/TextMessageCollectionViewCell.swift; sourceTree = "<group>"; };
-		403B20591EE310A100CBE09C /* TextSize.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextSize.swift; sourceTree = "<group>"; };
-		403B205B1EE3110E00CBE09C /* Fonts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
 		403B205F1EE31E7600CBE09C /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Colors.swift; path = Util/Colors.swift; sourceTree = "<group>"; };
 		403B20621EE3383600CBE09C /* TextMessageModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TextMessageModel.swift; path = Model/TextMessageModel.swift; sourceTree = "<group>"; };
 		408B480A1EE276CC00EE9281 /* lovechat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = lovechat.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -48,6 +46,8 @@
 		409EC0C91EE3E06D00365F7E /* PictureSize.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PictureSize.swift; path = Util/PictureSize.swift; sourceTree = "<group>"; };
 		409EC0CB1EE3E1C700365F7E /* PictureMessageModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PictureMessageModel.swift; path = Model/PictureMessageModel.swift; sourceTree = "<group>"; };
 		409EC0CD1EE3E2B200365F7E /* PictureMessageSectionController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PictureMessageSectionController.swift; path = Controller/PictureMessageSectionController.swift; sourceTree = "<group>"; };
+		409EC0CF1EE3E50C00365F7E /* Fonts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Fonts.swift; path = Util/Fonts.swift; sourceTree = "<group>"; };
+		409EC0D01EE3E50C00365F7E /* TextSize.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TextSize.swift; path = Util/TextSize.swift; sourceTree = "<group>"; };
 		7EE5C32AD502F2563269A83A /* Pods-lovechat.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-lovechat.release.xcconfig"; path = "Pods/Target Support Files/Pods-lovechat/Pods-lovechat.release.xcconfig"; sourceTree = "<group>"; };
 		F36EF7366FA249FE7E866EBF /* Pods_lovechat.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_lovechat.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -88,8 +88,8 @@
 		403B20561EE3106F00CBE09C /* Util */ = {
 			isa = PBXGroup;
 			children = (
-				403B20591EE310A100CBE09C /* TextSize.swift */,
-				403B205B1EE3110E00CBE09C /* Fonts.swift */,
+				409EC0CF1EE3E50C00365F7E /* Fonts.swift */,
+				409EC0D01EE3E50C00365F7E /* TextSize.swift */,
 				403B205F1EE31E7600CBE09C /* Colors.swift */,
 				409EC0C91EE3E06D00365F7E /* PictureSize.swift */,
 			);
@@ -281,8 +281,8 @@
 			files = (
 				403B20501EE2B09700CBE09C /* ChatViewController.swift in Sources */,
 				409EC0CC1EE3E1C700365F7E /* PictureMessageModel.swift in Sources */,
+				409EC0D11EE3E50C00365F7E /* Fonts.swift in Sources */,
 				409EC0C41EE3C8B800365F7E /* TimeStampCollectionViewCell.swift in Sources */,
-				403B205A1EE310A100CBE09C /* TextSize.swift in Sources */,
 				403B20521EE2BA8B00CBE09C /* TextMessageSectionController.swift in Sources */,
 				403B20601EE31E7600CBE09C /* Colors.swift in Sources */,
 				409EC0C81EE3DA8600365F7E /* PictureMessageCollectionViewCell.swift in Sources */,
@@ -290,7 +290,7 @@
 				409EC0CA1EE3E06D00365F7E /* PictureSize.swift in Sources */,
 				408B480E1EE276CC00EE9281 /* AppDelegate.swift in Sources */,
 				409EC0CE1EE3E2B200365F7E /* PictureMessageSectionController.swift in Sources */,
-				403B205C1EE3110E00CBE09C /* Fonts.swift in Sources */,
+				409EC0D21EE3E50C00365F7E /* TextSize.swift in Sources */,
 				409EC0C61EE3CAF400365F7E /* TimeStampSectionController.swift in Sources */,
 				403B20551EE2BC8D00CBE09C /* TextMessageCollectionViewCell.swift in Sources */,
 			);
