@@ -16,3 +16,4 @@ func textColor(red: CGFloat, green: CGFloat, blue: CGFloat) -> UIColor {
 let pastelGreenColor = textColor(red: 130, green: 240, blue: 119)
 let robinEggColor = textColor(red: 144, green: 218, blue: 245)
 let ivoryColor = textColor(red: 255, green: 255, blue: 241)
+let icebergColor = textColor(red: 200, green: 213, blue: 219)

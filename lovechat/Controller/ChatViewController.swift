@@ -75,7 +75,8 @@ extension ChatViewController: ListAdapterDataSource {
             TextMessageModel(message: "A short message", true),
             TextMessageModel(message: "A short message", true),
             TextMessageModel(message: "A short message", false),
-            TextMessageModel(message: "This is a very very very very long message", true)
+            TextMessageModel(message: "This is a very very very very long message", true),
+            TextMessageModel(message: "This is a very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very long message.", false)
         ]
     }
     

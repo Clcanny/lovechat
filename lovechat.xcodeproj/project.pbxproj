@@ -18,6 +18,7 @@
 		408B48131EE276CC00EE9281 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 408B48111EE276CC00EE9281 /* Main.storyboard */; };
 		408B48151EE276CC00EE9281 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 408B48141EE276CC00EE9281 /* Assets.xcassets */; };
 		408B48181EE276CC00EE9281 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 408B48161EE276CC00EE9281 /* LaunchScreen.storyboard */; };
+		409EC0C41EE3C8B800365F7E /* TimeStampCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 409EC0C31EE3C8B800365F7E /* TimeStampCollectionViewCell.swift */; };
 		BE6FF66E3EFF6386328AB22C /* Pods_lovechat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F36EF7366FA249FE7E866EBF /* Pods_lovechat.framework */; };
 /* End PBXBuildFile section */
 
@@ -36,6 +37,7 @@
 		408B48141EE276CC00EE9281 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		408B48171EE276CC00EE9281 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		408B48191EE276CC00EE9281 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		409EC0C31EE3C8B800365F7E /* TimeStampCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TimeStampCollectionViewCell.swift; path = Cell/TimeStampCollectionViewCell.swift; sourceTree = "<group>"; };
 		7EE5C32AD502F2563269A83A /* Pods-lovechat.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-lovechat.release.xcconfig"; path = "Pods/Target Support Files/Pods-lovechat/Pods-lovechat.release.xcconfig"; sourceTree = "<group>"; };
 		F36EF7366FA249FE7E866EBF /* Pods_lovechat.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_lovechat.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -65,6 +67,7 @@
 			isa = PBXGroup;
 			children = (
 				403B20541EE2BC8D00CBE09C /* TextMessageCollectionViewCell.swift */,
+				409EC0C31EE3C8B800365F7E /* TimeStampCollectionViewCell.swift */,
 			);
 			name = Cell;
 			sourceTree = "<group>";
@@ -262,6 +265,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				403B20501EE2B09700CBE09C /* ChatViewController.swift in Sources */,
+				409EC0C41EE3C8B800365F7E /* TimeStampCollectionViewCell.swift in Sources */,
 				403B205A1EE310A100CBE09C /* TextSize.swift in Sources */,
 				403B20521EE2BA8B00CBE09C /* TextMessageSectionController.swift in Sources */,
 				403B20601EE31E7600CBE09C /* Colors.swift in Sources */,
