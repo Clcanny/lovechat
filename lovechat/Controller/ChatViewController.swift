@@ -7,16 +7,20 @@
 //
 
 import UIKit
+import AVFoundation
 import SnapKit
 import IGListKit
 
 class ChatViewController: UIViewController {
-
+    
     @IBOutlet weak var messagesView: UIView!
+    
+    var audioRecorder: AVAudioRecorder?
     
     @IBAction func beginRecord(_ sender: UIButton) {
         recordAnimationView.isHidden = false
         recordAnimationView.recording()
+        audioRecorder?.record()
     }
     
     // UIControlEventTouchDragExit
@@ -35,12 +39,14 @@ class ChatViewController: UIViewController {
     // A touch-up event in the control where the finger is outside the bounds of the control.
     @IBAction func cancelRecord(_ sender: UIButton) {
         recordAnimationView.isHidden = true
+        audioRecorder?.stop()
     }
     
     // UIControlEventTouchUpInside
     // A touch-up event in the control where the finger is inside the bounds of the control.
     @IBAction func finishRecord(_ sender: UIButton) {
         recordAnimationView.isHidden = true
+        audioRecorder?.stop()
     }
     
     let recordAnimationView = RecordAnimationView()
@@ -79,28 +85,54 @@ class ChatViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
         layoutSubviews()
         adapter.performUpdates(animated: false, completion: nil)
+        
+        let fileMgr = FileManager.default
+        let dirPaths = fileMgr.urls(for: .documentDirectory, in: .userDomainMask)
+        let soundFileURL = dirPaths[0].appendingPathComponent("sound.caf")
+        let recordSettings = [
+            AVEncoderAudioQualityKey: AVAudioQuality.min.rawValue,
+            AVEncoderBitRateKey: 16,
+            AVNumberOfChannelsKey: 2,
+            AVSampleRateKey: 44100.0
+            ] as [String : Any]
+        let audioSession = AVAudioSession.sharedInstance()
+        do {
+            try audioSession.setCategory(AVAudioSessionCategoryPlayAndRecord)
+        }
+        catch {
+            fatalError("audioSession error")
+        }
+        do {
+            try audioRecorder = AVAudioRecorder(
+                url: soundFileURL,
+                settings: recordSettings as [String : AnyObject]
+            )
+            audioRecorder?.prepareToRecord()
+        } catch {
+            fatalError("audioSession error")
+        }
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
-
+    
     /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destinationViewController.
+     // Pass the selected object to the new view controller.
+     }
+     */
+    
 }
 
 extension ChatViewController: ListAdapterDataSource {
