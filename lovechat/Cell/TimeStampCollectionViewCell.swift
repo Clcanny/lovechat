@@ -7,11 +7,10 @@
 //
 
 import UIKit
-import SnapKit
 
 class TimeStampCollectionViewCell: UICollectionViewCell {
     
-    let timeLable = { () -> UILabel in
+    private let timeStampLabel = { () -> UILabel in
         let label = UILabel()
         label.backgroundColor = icebergColor
         label.font = timeStampFont
@@ -19,13 +18,35 @@ class TimeStampCollectionViewCell: UICollectionViewCell {
         label.numberOfLines = 0
         return label
     }()
+    public var timeStamp: String? {
+        get {
+            return timeStampLabel.text
+        }
+        
+        set(newText) {
+            timeStampLabel.text = newText
+        }
+    }
+    public var timeStampSize: CGSize {
+        get {
+            return timeStampLabel.frame.size
+        }
+        
+        set(newSize) {
+            timeStampLabel.frame.size = newSize
+        }
+    }
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        contentView.addSubview(timeLable)
-        timeLable.snp.makeConstraints { (make) -> Void in
-            make.center.equalTo(contentView)
-        }
+        addSubview(timeStampLabel)
+//        timeStampLabel.snp.makeConstraints { (make) -> Void in
+//            make.center.equalTo(contentView)
+//        }
+        timeStampLabel.frame.origin = CGPoint(
+            x: (bounds.width - timeStampSize.width) / 2,
+            y: 0
+        )
     }
     
     override init(frame: CGRect) {

@@ -16,8 +16,8 @@ class TextMessageSectionController: ListSectionController {
     private var tsize: CGSize?
     
     init(textMessageModel: TextMessageModel) {
-        self.textMessageModel = textMessageModel
         super.init()
+        self.textMessageModel = textMessageModel
         inset = UIEdgeInsets(top: 0, left: 0, bottom: 5, right: 0)
     }
     

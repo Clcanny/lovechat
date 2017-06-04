@@ -70,18 +70,29 @@ class ChatViewController: UIViewController {
 extension ChatViewController: ListAdapterDataSource {
     func objects(for listAdapter: ListAdapter) -> [ListDiffable] {
         return [
+            "12:25 PM" as ListDiffable,
             TextMessageModel(message: "This is a very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very long message.", true),
             TextMessageModel(message: "This is also a very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very long message.", false),
+            "12:26 PM" as ListDiffable,
             TextMessageModel(message: "A short message", true),
             TextMessageModel(message: "A short message", true),
             TextMessageModel(message: "A short message", false),
+            "12:27 PM" as ListDiffable,
             TextMessageModel(message: "This is a very very very very long message", true),
             TextMessageModel(message: "This is a very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very long message.", false)
         ]
     }
     
     func listAdapter(_ listAdapter: ListAdapter, sectionControllerFor object: Any) -> ListSectionController {
-        return TextMessageSectionController(textMessageModel: object as! TextMessageModel)
+        if let textMessageModel = object as? TextMessageModel {
+            return TextMessageSectionController(textMessageModel: textMessageModel)
+        }
+        else if let timeStamp = object as? String {
+            return TimeStampSectionController(timeStamp: timeStamp)
+        }
+        else {
+            fatalError("unrecognizable object")
+        }
     }
     
     func emptyView(for listAdapter: ListAdapter) -> UIView? {
