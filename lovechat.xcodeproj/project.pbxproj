@@ -26,6 +26,7 @@
 		409EC0CE1EE3E2B200365F7E /* PictureMessageSectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 409EC0CD1EE3E2B200365F7E /* PictureMessageSectionController.swift */; };
 		409EC0D11EE3E50C00365F7E /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 409EC0CF1EE3E50C00365F7E /* Fonts.swift */; };
 		409EC0D21EE3E50C00365F7E /* TextSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 409EC0D01EE3E50C00365F7E /* TextSize.swift */; };
+		40A8454C1EE5489600837060 /* TimeOutProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A8454B1EE5489600837060 /* TimeOutProtocol.swift */; };
 		40B1BF1B1EE3ED83000B335E /* ExtensionUIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40B1BF1A1EE3ED83000B335E /* ExtensionUIImage.swift */; };
 		40BF9FBB1EE4F719002BEACB /* VoiceMessageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40BF9FBA1EE4F719002BEACB /* VoiceMessageCollectionViewCell.swift */; };
 		40BF9FBD1EE4F737002BEACB /* VoiceMessageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40BF9FBC1EE4F737002BEACB /* VoiceMessageModel.swift */; };
@@ -55,6 +56,7 @@
 		409EC0CD1EE3E2B200365F7E /* PictureMessageSectionController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PictureMessageSectionController.swift; path = Controller/PictureMessageSectionController.swift; sourceTree = "<group>"; };
 		409EC0CF1EE3E50C00365F7E /* Fonts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Fonts.swift; path = Util/Fonts.swift; sourceTree = "<group>"; };
 		409EC0D01EE3E50C00365F7E /* TextSize.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TextSize.swift; path = Util/TextSize.swift; sourceTree = "<group>"; };
+		40A8454B1EE5489600837060 /* TimeOutProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TimeOutProtocol.swift; path = Protocol/TimeOutProtocol.swift; sourceTree = "<group>"; };
 		40B1BF1A1EE3ED83000B335E /* ExtensionUIImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ExtensionUIImage.swift; path = Util/ExtensionUIImage.swift; sourceTree = "<group>"; };
 		40BF9FBA1EE4F719002BEACB /* VoiceMessageCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = VoiceMessageCollectionViewCell.swift; path = Cell/VoiceMessageCollectionViewCell.swift; sourceTree = "<group>"; };
 		40BF9FBC1EE4F737002BEACB /* VoiceMessageModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = VoiceMessageModel.swift; path = Model/VoiceMessageModel.swift; sourceTree = "<group>"; };
@@ -148,6 +150,7 @@
 		408B480C1EE276CC00EE9281 /* lovechat */ = {
 			isa = PBXGroup;
 			children = (
+				40A8454A1EE5486100837060 /* Protocol */,
 				403E2BB91EE4292300EF961D /* View */,
 				403B20611EE3381100CBE09C /* Model */,
 				403B20561EE3106F00CBE09C /* Util */,
@@ -160,6 +163,14 @@
 				408B48191EE276CC00EE9281 /* Info.plist */,
 			);
 			path = lovechat;
+			sourceTree = "<group>";
+		};
+		40A8454A1EE5486100837060 /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				40A8454B1EE5489600837060 /* TimeOutProtocol.swift */,
+			);
+			name = Protocol;
 			sourceTree = "<group>";
 		};
 		7742F9B96026650C66A43D5A /* Frameworks */ = {
@@ -315,6 +326,7 @@
 				403B20631EE3383600CBE09C /* TextMessageModel.swift in Sources */,
 				409EC0CA1EE3E06D00365F7E /* PictureSize.swift in Sources */,
 				408B480E1EE276CC00EE9281 /* AppDelegate.swift in Sources */,
+				40A8454C1EE5489600837060 /* TimeOutProtocol.swift in Sources */,
 				409EC0CE1EE3E2B200365F7E /* PictureMessageSectionController.swift in Sources */,
 				409EC0D21EE3E50C00365F7E /* TextSize.swift in Sources */,
 				40BF9FBB1EE4F719002BEACB /* VoiceMessageCollectionViewCell.swift in Sources */,

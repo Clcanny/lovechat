@@ -40,6 +40,8 @@ class RecordAnimationView: UIView {
                 / (newImage?.size.width)! * (newImage?.size.height)!
 
             imageView.image = newImage
+            
+            setNeedsLayout()
         }
     }
     
@@ -55,25 +57,55 @@ class RecordAnimationView: UIView {
         }
         
         set(newCountDown) {
-            if newCountDown == 60 {
+            if newCountDown == RecordAnimationView.recordTime {
                 let width = RecordAnimationView.width
                 let padding = RecordAnimationView.padding
                 
-                countDownLabel.text = String(newCountDown) + "seconds left"
+                countDownLabel.text = String(newCountDown) + " seconds left"
                 let tsize = textSize(maxWidth: width, text: countDownLabel.text!)
                 countDownLabel.frame.size.height = tsize.height + padding * 2
                 countDownLabel.frame.size.width = tsize.width + padding * 2
-            }
-            else if newCountDown == 9 {
                 
+                setNeedsLayout()
+            }
+            else if newCountDown > 1 {
+                countDownLabel.text = String(newCountDown) + " seconds left"
             }
             else if newCountDown == 1 {
-                
+                countDownLabel.text = String(newCountDown) + " second left"
             }
             else if newCountDown == 0 {
-                
+                countDownLabel.text = String(newCountDown) + " second left"
             }
         }
+    }
+    
+    private static let recordTime = 10
+    private var leftTime: Int?
+    
+    var timer: Timer?
+    var delegate: TimeOutProtocol?
+    public func beat() -> Void {
+        leftTime = leftTime! - 1
+        countDown = leftTime!
+        if (leftTime == 0) {
+            delegate!.stop(RecordAnimationView.recordTime)
+        }
+    }
+    public func startCountDown() -> Void {
+        leftTime = RecordAnimationView.recordTime
+        countDown = leftTime!
+        timer = Timer.scheduledTimer(
+            timeInterval: 1,
+            target: self,
+            selector: #selector(beat),
+            userInfo: nil,
+            repeats: true
+        )
+    }
+    public func stopCountDown() -> Int {
+        timer = nil
+        return RecordAnimationView.recordTime - leftTime!
     }
     
     private let promptLabel = { () -> UILabel in
@@ -96,6 +128,8 @@ class RecordAnimationView: UIView {
             promptLabel.frame.size.width = tsize.width + padding * 2
 
             promptLabel.text = newPrompt
+            
+            setNeedsLayout()
         }
     }
     
@@ -127,6 +161,7 @@ class RecordAnimationView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        delegate = nil
         backgroundColor = opaqueColor(red: 106, green: 106, blue: 106)
     }
     
@@ -137,8 +172,6 @@ class RecordAnimationView: UIView {
     public func recording() {
         image = #imageLiteral(resourceName: "recording")
         prompt = "Slide up to cancel"
-        countDown = 60
-        print(countDown)
         promptLabel.backgroundColor = UIColor.clear
     }
     

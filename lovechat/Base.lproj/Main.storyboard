@@ -49,6 +49,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="messagesView" destination="3eN-iG-0zv" id="sNa-MG-rpp"/>
+                        <outlet property="recordButton" destination="mjX-uZ-CIe" id="sQg-7d-dYZ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

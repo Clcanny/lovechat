@@ -18,10 +18,12 @@ class ChatViewController: UIViewController {
     private let audioSession = AVAudioSession.sharedInstance()
     private var audioRecorder: AVAudioRecorder?
     
+    @IBOutlet weak var recordButton: UIButton!
+    
     @IBAction func beginRecord(_ sender: UIButton) {
         recordAnimationView.isHidden = false
         recordAnimationView.recording()
-        recordAnimationView.setNeedsLayout()
+        recordAnimationView.startCountDown()
         
         audioRecorder?.prepareToRecord()
         audioRecorder?.record()
@@ -31,20 +33,19 @@ class ChatViewController: UIViewController {
     // An event where a finger is dragged from within a control to outside its bounds.
     @IBAction func readyToCancelRecord(_ sender: UIButton) {
         recordAnimationView.readyToCancel()
-        recordAnimationView.setNeedsLayout()
     }
     
     // UIControlEventTouchDragEnter
     // An event where a finger is dragged into the bounds of the control.
     @IBAction func dontCancelRecord(_ sender: UIButton) {
         recordAnimationView.recording()
-        recordAnimationView.setNeedsLayout()
     }
     
     // UIControlEventTouchUpOutside
     // A touch-up event in the control where the finger is outside the bounds of the control.
     @IBAction func cancelRecord(_ sender: UIButton) {
         recordAnimationView.isHidden = true
+        recordAnimationView.stopCountDown()
         audioRecorder?.stop()
         do {
             try audioSession.setActive(false)
@@ -58,6 +59,7 @@ class ChatViewController: UIViewController {
     // A touch-up event in the control where the finger is inside the bounds of the control.
     @IBAction func finishRecord(_ sender: UIButton) {
         recordAnimationView.isHidden = true
+        recordAnimationView.stopCountDown()
         audioRecorder?.stop()
     }
     
@@ -101,6 +103,8 @@ class ChatViewController: UIViewController {
         // Do any additional setup after loading the view.
         layoutSubviews()
         adapter.performUpdates(animated: false, completion: nil)
+        
+        recordAnimationView.delegate = self
         
         // audioSession
         do {
@@ -201,6 +205,14 @@ extension ChatViewController: ListAdapterDataSource {
 extension ChatViewController: AVAudioRecorderDelegate {
     
     func audioRecorderDidFinishRecording(_ recorder: AVAudioRecorder, successfully flag: Bool) {
+    }
+
+}
+
+extension ChatViewController: TimeOutProtocol {
+    
+    func stop(_: Int) {
+        recordButton.sendActions(for: .touchUpInside)
     }
     
 }
