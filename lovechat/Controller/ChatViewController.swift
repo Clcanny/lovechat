@@ -43,6 +43,12 @@ class ChatViewController: UIViewController {
     @IBAction func cancelRecord(_ sender: UIButton) {
         recordAnimationView.isHidden = true
         audioRecorder?.stop()
+        do {
+            try audioSession.setActive(false)
+        }
+        catch {
+            fatalError()
+        }
     }
     
     // UIControlEventTouchUpInside
@@ -124,9 +130,8 @@ class ChatViewController: UIViewController {
                 url: soundFileURL,
                 settings: recordSettings as [String : AnyObject]
             )
-//            audioRecorder?.delegate = self
+            audioRecorder?.delegate = self
             audioRecorder?.isMeteringEnabled = true
-            print(audioRecorder?.isRecording)
         } catch {
             fatalError("audioSession error")
         }
@@ -186,6 +191,14 @@ extension ChatViewController: ListAdapterDataSource {
     
     func emptyView(for listAdapter: ListAdapter) -> UIView? {
         return nil
+    }
+    
+}
+
+extension ChatViewController: AVAudioRecorderDelegate {
+    
+    func audioRecorderDidFinishRecording(_ recorder: AVAudioRecorder, successfully flag: Bool) {
+        print("finish")
     }
     
 }
