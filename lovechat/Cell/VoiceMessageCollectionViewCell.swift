@@ -13,6 +13,11 @@ class VoiceMessageCollectionViewCell: UICollectionViewCell {
     private static let baseWidth: CGFloat = 50
     public static let radius: CGFloat = 15
     
+    var gesture: UITapGestureRecognizer?
+    func click(gestureRecognizer: UIGestureRecognizer) {
+        print("click")
+    }
+    
     private let avatar = { () -> UIImageView in
         var imageView = UIImageView()
         imageView.frame.size = CGSize(width: radius * 2, height: radius * 2)
@@ -37,7 +42,14 @@ class VoiceMessageCollectionViewCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        
+        gesture = UITapGestureRecognizer(
+            target: self,
+            action: #selector(VoiceMessageCollectionViewCell.click(gestureRecognizer:))
+        )
+        addGestureRecognizer(gesture!)
     }
+    
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -102,4 +114,7 @@ class VoiceMessageCollectionViewCell: UICollectionViewCell {
         avatar.frame.origin = CGPoint(x: bounds.width - radius * 2, y: 0)
     }
     
+}
+
+extension VoiceMessageCollectionViewCell: UIGestureRecognizerDelegate {
 }
