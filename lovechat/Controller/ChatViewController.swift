@@ -167,6 +167,8 @@ extension ChatViewController: ListAdapterDataSource {
     func objects(for listAdapter: ListAdapter) -> [ListDiffable] {
         return [
             "12:25 PM" as ListDiffable,
+            VoiceMessageModel(time: 10, false),
+            VoiceMessageModel(time: 10, true),
             TextMessageModel(message: "This is a very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very long message.", true),
             PictureMessageModel(message: #imageLiteral(resourceName: "defaultPictureOfMessage"), false),
             TextMessageModel(message: "This is also a very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very long message.", false),
@@ -190,6 +192,9 @@ extension ChatViewController: ListAdapterDataSource {
         }
         else if let pictureMessageModel = object as? PictureMessageModel {
             return PictureMessageSectionController(pictureMessageModel: pictureMessageModel)
+        }
+        else if let voiceMessageModel = object as? VoiceMessageModel {
+            return VoiceMessageSectionController(voiceMessageModel: voiceMessageModel)
         }
         else {
             fatalError("unrecognizable object")

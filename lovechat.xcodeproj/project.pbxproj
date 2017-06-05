@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		401B71591EE5751B001BE55E /* VoiceMessageSectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 401B71581EE5751B001BE55E /* VoiceMessageSectionController.swift */; };
 		403B20501EE2B09700CBE09C /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 403B204F1EE2B09700CBE09C /* ChatViewController.swift */; };
 		403B20521EE2BA8B00CBE09C /* TextMessageSectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 403B20511EE2BA8B00CBE09C /* TextMessageSectionController.swift */; };
 		403B20551EE2BC8D00CBE09C /* TextMessageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 403B20541EE2BC8D00CBE09C /* TextMessageCollectionViewCell.swift */; };
@@ -35,6 +36,7 @@
 
 /* Begin PBXFileReference section */
 		24CC1578EBBAC6566656A6D9 /* Pods-lovechat.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-lovechat.debug.xcconfig"; path = "Pods/Target Support Files/Pods-lovechat/Pods-lovechat.debug.xcconfig"; sourceTree = "<group>"; };
+		401B71581EE5751B001BE55E /* VoiceMessageSectionController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = VoiceMessageSectionController.swift; path = Controller/VoiceMessageSectionController.swift; sourceTree = "<group>"; };
 		403B204F1EE2B09700CBE09C /* ChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ChatViewController.swift; path = Controller/ChatViewController.swift; sourceTree = "<group>"; };
 		403B20511EE2BA8B00CBE09C /* TextMessageSectionController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TextMessageSectionController.swift; path = Controller/TextMessageSectionController.swift; sourceTree = "<group>"; };
 		403B20541EE2BC8D00CBE09C /* TextMessageCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TextMessageCollectionViewCell.swift; path = Cell/TextMessageCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -83,6 +85,7 @@
 				403B20511EE2BA8B00CBE09C /* TextMessageSectionController.swift */,
 				409EC0C51EE3CAF400365F7E /* TimeStampSectionController.swift */,
 				409EC0CD1EE3E2B200365F7E /* PictureMessageSectionController.swift */,
+				401B71581EE5751B001BE55E /* VoiceMessageSectionController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -316,6 +319,7 @@
 			files = (
 				40BF9FBD1EE4F737002BEACB /* VoiceMessageModel.swift in Sources */,
 				403B20501EE2B09700CBE09C /* ChatViewController.swift in Sources */,
+				401B71591EE5751B001BE55E /* VoiceMessageSectionController.swift in Sources */,
 				409EC0CC1EE3E1C700365F7E /* PictureMessageModel.swift in Sources */,
 				409EC0D11EE3E50C00365F7E /* Fonts.swift in Sources */,
 				409EC0C41EE3C8B800365F7E /* TimeStampCollectionViewCell.swift in Sources */,
