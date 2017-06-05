@@ -10,6 +10,8 @@ import UIKit
 
 class PictureMessageDetailViewController: UIViewController {
     
+    @IBOutlet weak var scrollView: UIScrollView!
+    
     @IBOutlet weak var imageView: UIImageView!
     
     public var image: UIImage?
@@ -29,6 +31,8 @@ class PictureMessageDetailViewController: UIViewController {
         let newImage = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         imageView.image = newImage
+        
+        scrollView.contentSize = newImage!.size
     }
     
     override func didReceiveMemoryWarning() {

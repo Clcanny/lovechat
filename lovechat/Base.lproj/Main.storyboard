@@ -151,6 +151,7 @@
                     </view>
                     <connections>
                         <outlet property="imageView" destination="js7-Sn-KhV" id="lUE-8y-tVo"/>
+                        <outlet property="scrollView" destination="dO9-3T-E2r" id="zkK-oI-nzs"/>
                     </connections>
                 </viewController>
             </objects>
