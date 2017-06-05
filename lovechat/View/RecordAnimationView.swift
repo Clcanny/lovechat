@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SnapKit
 
 class RecordAnimationView: UIView {
     
@@ -37,15 +38,48 @@ class RecordAnimationView: UIView {
             imageView.frame.size.width = width / 2
             imageView.frame.size.height = imageView.frame.size.width
                 / (newImage?.size.width)! * (newImage?.size.height)!
-            imageView.frame.origin.x = width / 4
-            imageView.frame.origin.y = 0
+
             imageView.image = newImage
+        }
+    }
+    
+    private let countDownLabel = { () -> UILabel in
+        let label = UILabel()
+        label.textColor = UIColor.white
+        label.textAlignment = .center
+        return label
+    }()
+    private var countDown: Int {
+        get {
+            return Int(countDownLabel.text!.substring(with: 0..<2)) ?? -1
+        }
+        
+        set(newCountDown) {
+            if newCountDown == 60 {
+                let width = RecordAnimationView.width
+                let padding = RecordAnimationView.padding
+                
+                countDownLabel.text = String(newCountDown) + "seconds left"
+                let tsize = textSize(maxWidth: width, text: countDownLabel.text!)
+                countDownLabel.frame.size.height = tsize.height + padding * 2
+                countDownLabel.frame.size.width = tsize.width + padding * 2
+            }
+            else if newCountDown == 9 {
+                
+            }
+            else if newCountDown == 1 {
+                
+            }
+            else if newCountDown == 0 {
+                
+            }
         }
     }
     
     private let promptLabel = { () -> UILabel in
         let label = UILabel()
         label.textColor = UIColor.white
+        label.textAlignment = .center
         return label
     }()
     private var prompt: String? {
@@ -60,20 +94,35 @@ class RecordAnimationView: UIView {
             let tsize = textSize(maxWidth: width, text: newPrompt!)
             promptLabel.frame.size.height = tsize.height + padding * 2
             promptLabel.frame.size.width = tsize.width + padding * 2
-            promptLabel.frame.origin.x = (width - tsize.width) / 2
-            promptLabel.frame.origin.y = imageView.frame.size.height + padding
+
             promptLabel.text = newPrompt
-            promptLabel.textAlignment = .center
-            
-            bounds.size.width = width
-            bounds.size.height = imageView.frame.size.height
-                + promptLabel.frame.size.height + padding * 4
         }
     }
     
     override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        let width = RecordAnimationView.width
+        let padding = RecordAnimationView.padding
+        
+        bounds.size.width = width
+        bounds.size.height = imageView.frame.size.height
+            + countDownLabel.frame.size.height
+            + promptLabel.frame.size.height
+            + padding * 2
+        
         addSubview(imageView)
+        imageView.frame.origin.x = width / 4
+        imageView.frame.origin.y = padding
+        
+        addSubview(countDownLabel)
+        countDownLabel.frame.origin.x = (width - countDownLabel.frame.width) / 2
+        countDownLabel.frame.origin.y = imageView.frame.size.height + padding
+        
         addSubview(promptLabel)
+        promptLabel.frame.origin.x = (width - promptLabel.frame.size.width) / 2
+        promptLabel.frame.origin.y = imageView.frame.size.height
+            + countDownLabel.frame.size.height + padding
     }
     
     override init(frame: CGRect) {
@@ -88,6 +137,8 @@ class RecordAnimationView: UIView {
     public func recording() {
         image = #imageLiteral(resourceName: "recording")
         prompt = "Slide up to cancel"
+        countDown = 60
+        print(countDown)
         promptLabel.backgroundColor = UIColor.clear
     }
     

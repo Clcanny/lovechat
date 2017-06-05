@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 
 extension UIImage {
+
     func getPixelColor(pos: CGPoint) -> (CGFloat, CGFloat, CGFloat, CGFloat) {
         let pixelData = self.cgImage!.dataProvider!.data
         let data: UnsafePointer<UInt8> = CFDataGetBytePtr(pixelData)
@@ -22,4 +23,5 @@ extension UIImage {
         let a = CGFloat(data[pixelInfo + 3])
         return (r, g, b, a)
     }
+
 }

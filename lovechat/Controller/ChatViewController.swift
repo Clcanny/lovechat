@@ -21,6 +21,7 @@ class ChatViewController: UIViewController {
     @IBAction func beginRecord(_ sender: UIButton) {
         recordAnimationView.isHidden = false
         recordAnimationView.recording()
+        recordAnimationView.setNeedsLayout()
         
         audioRecorder?.prepareToRecord()
         audioRecorder?.record()
@@ -30,12 +31,14 @@ class ChatViewController: UIViewController {
     // An event where a finger is dragged from within a control to outside its bounds.
     @IBAction func readyToCancelRecord(_ sender: UIButton) {
         recordAnimationView.readyToCancel()
+        recordAnimationView.setNeedsLayout()
     }
     
     // UIControlEventTouchDragEnter
     // An event where a finger is dragged into the bounds of the control.
     @IBAction func dontCancelRecord(_ sender: UIButton) {
         recordAnimationView.recording()
+        recordAnimationView.setNeedsLayout()
     }
     
     // UIControlEventTouchUpOutside
@@ -198,7 +201,6 @@ extension ChatViewController: ListAdapterDataSource {
 extension ChatViewController: AVAudioRecorderDelegate {
     
     func audioRecorderDidFinishRecording(_ recorder: AVAudioRecorder, successfully flag: Bool) {
-        print("finish")
     }
     
 }
