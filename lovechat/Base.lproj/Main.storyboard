@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -21,14 +22,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3eN-iG-0zv" userLabel="MessagesView">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3eN-iG-0zv" userLabel="MessagesView">
                                 <rect key="frame" x="16" y="72" width="343" height="480"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mjX-uZ-CIe">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mjX-uZ-CIe">
                                 <rect key="frame" x="16" y="560" width="343" height="50"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                 <state key="normal" title="Hold to talk">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
@@ -43,6 +42,16 @@
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="3eN-iG-0zv" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="EV6-2H-Ieg"/>
+                            <constraint firstAttribute="bottom" secondItem="3eN-iG-0zv" secondAttribute="bottom" constant="115" id="Jdp-xb-F0a"/>
+                            <constraint firstItem="3eN-iG-0zv" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" symbolic="YES" id="JzI-3d-uJ8"/>
+                            <constraint firstItem="mjX-uZ-CIe" firstAttribute="top" secondItem="3eN-iG-0zv" secondAttribute="bottom" constant="8" symbolic="YES" id="bwV-aO-OcC"/>
+                            <constraint firstItem="mjX-uZ-CIe" firstAttribute="leading" secondItem="3eN-iG-0zv" secondAttribute="leading" id="eZX-aA-iPI"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="mjX-uZ-CIe" secondAttribute="bottom" constant="8" symbolic="YES" id="p3E-4I-A3i"/>
+                            <constraint firstItem="3eN-iG-0zv" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="rYx-wB-EWU"/>
+                            <constraint firstItem="mjX-uZ-CIe" firstAttribute="trailing" secondItem="3eN-iG-0zv" secondAttribute="trailing" id="xBh-E1-2es"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="v9Z-8E-hvk">
                         <barButtonItem key="leftBarButtonItem" title="返回" id="cNn-Fi-rPh"/>

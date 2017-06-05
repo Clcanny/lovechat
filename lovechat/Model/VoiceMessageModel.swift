@@ -12,15 +12,21 @@ import IGListKit
 class VoiceMessageModel: NSObject {
     
     private var message: URL?
+    private var time: Int?
     private var isReceiver: Bool?
     
-    init(message: URL, _ isReceiver: Bool) {
+    init(message: URL, time: Int, _ isReceiver: Bool) {
         self.message = message
+        self.time = time
         self.isReceiver = isReceiver
     }
     
     public func getMessage() -> URL {
         return message!
+    }
+    
+    public func getTime() -> Int {
+        return time!
     }
     
     public func getLR() -> Bool {
