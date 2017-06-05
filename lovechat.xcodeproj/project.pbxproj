@@ -31,6 +31,7 @@
 		40AF90241EE5A5E200F801A9 /* TextMessageDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40AF90231EE5A5E200F801A9 /* TextMessageDetailViewController.swift */; };
 		40AF90281EE5A8D400F801A9 /* SegueFromCellProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40AF90271EE5A8D400F801A9 /* SegueFromCellProtocol.swift */; };
 		40AF902A1EE5B4F300F801A9 /* VerticallyCenteredTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40AF90291EE5B4F300F801A9 /* VerticallyCenteredTextView.swift */; };
+		40AF902E1EE5BC1900F801A9 /* PictureMessageDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40AF902D1EE5BC1900F801A9 /* PictureMessageDetailViewController.swift */; };
 		40B1BF1B1EE3ED83000B335E /* ExtensionUIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40B1BF1A1EE3ED83000B335E /* ExtensionUIImage.swift */; };
 		40BF9FBB1EE4F719002BEACB /* VoiceMessageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40BF9FBA1EE4F719002BEACB /* VoiceMessageCollectionViewCell.swift */; };
 		40BF9FBD1EE4F737002BEACB /* VoiceMessageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40BF9FBC1EE4F737002BEACB /* VoiceMessageModel.swift */; };
@@ -65,6 +66,7 @@
 		40AF90231EE5A5E200F801A9 /* TextMessageDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TextMessageDetailViewController.swift; path = Controller/TextMessageDetailViewController.swift; sourceTree = "<group>"; };
 		40AF90271EE5A8D400F801A9 /* SegueFromCellProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SegueFromCellProtocol.swift; path = Protocol/SegueFromCellProtocol.swift; sourceTree = "<group>"; };
 		40AF90291EE5B4F300F801A9 /* VerticallyCenteredTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = VerticallyCenteredTextView.swift; path = View/VerticallyCenteredTextView.swift; sourceTree = "<group>"; };
+		40AF902D1EE5BC1900F801A9 /* PictureMessageDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PictureMessageDetailViewController.swift; path = Controller/PictureMessageDetailViewController.swift; sourceTree = "<group>"; };
 		40B1BF1A1EE3ED83000B335E /* ExtensionUIImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ExtensionUIImage.swift; path = Util/ExtensionUIImage.swift; sourceTree = "<group>"; };
 		40BF9FBA1EE4F719002BEACB /* VoiceMessageCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = VoiceMessageCollectionViewCell.swift; path = Cell/VoiceMessageCollectionViewCell.swift; sourceTree = "<group>"; };
 		40BF9FBC1EE4F737002BEACB /* VoiceMessageModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = VoiceMessageModel.swift; path = Model/VoiceMessageModel.swift; sourceTree = "<group>"; };
@@ -93,6 +95,7 @@
 				409EC0CD1EE3E2B200365F7E /* PictureMessageSectionController.swift */,
 				401B71581EE5751B001BE55E /* VoiceMessageSectionController.swift */,
 				40AF90231EE5A5E200F801A9 /* TextMessageDetailViewController.swift */,
+				40AF902D1EE5BC1900F801A9 /* PictureMessageDetailViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -329,6 +332,7 @@
 				40AF902A1EE5B4F300F801A9 /* VerticallyCenteredTextView.swift in Sources */,
 				40BF9FBD1EE4F737002BEACB /* VoiceMessageModel.swift in Sources */,
 				403B20501EE2B09700CBE09C /* ChatViewController.swift in Sources */,
+				40AF902E1EE5BC1900F801A9 /* PictureMessageDetailViewController.swift in Sources */,
 				401B71591EE5751B001BE55E /* VoiceMessageSectionController.swift in Sources */,
 				409EC0CC1EE3E1C700365F7E /* PictureMessageModel.swift in Sources */,
 				409EC0D11EE3E50C00365F7E /* Fonts.swift in Sources */,

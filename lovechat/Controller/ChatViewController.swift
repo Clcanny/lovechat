@@ -166,10 +166,11 @@ extension ChatViewController: ListAdapterDataSource {
     
     func objects(for listAdapter: ListAdapter) -> [ListDiffable] {
         return [
+            PictureMessageModel(message: #imageLiteral(resourceName: "longPictureOfMessage"), false),
             "12:25 PM" as ListDiffable,
             VoiceMessageModel(time: 10, false),
             VoiceMessageModel(time: 10, true),
-            TextMessageModel(message: "This is a very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very long message.", true),
+            TextMessageModel(message: "This is a very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very T--very very very very long message.", true),
             PictureMessageModel(message: #imageLiteral(resourceName: "defaultPictureOfMessage"), false),
             TextMessageModel(message: "This is also a very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very long message.", false),
             "12:26 PM" as ListDiffable,
@@ -193,7 +194,9 @@ extension ChatViewController: ListAdapterDataSource {
             return TimeStampSectionController(timeStamp: timeStamp)
         }
         else if let pictureMessageModel = object as? PictureMessageModel {
-            return PictureMessageSectionController(pictureMessageModel: pictureMessageModel)
+            let controller = PictureMessageSectionController(pictureMessageModel: pictureMessageModel)
+            controller.delegate = self
+            return controller
         }
         else if let voiceMessageModel = object as? VoiceMessageModel {
             return VoiceMessageSectionController(voiceMessageModel: voiceMessageModel)
@@ -227,13 +230,23 @@ extension ChatViewController: TimeOutProtocol {
 extension ChatViewController: SegueFromCellProtocol {
     
     func callSegueFromCell(data: Any?) {
-        performSegue(withIdentifier: "ShowTextMessageDetail", sender: data)
+        if let text = data as? String {
+            performSegue(withIdentifier: "ShowTextMessageDetail", sender: text)
+        }
+        else if let picture = data as? UIImage {
+            performSegue(withIdentifier: "ShowPictureMessageDetail", sender: picture)
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "ShowTextMessageDetail" {
             if let controller = segue.destination as? TextMessageDetailViewController {
                 controller.text = sender as? String
+            }
+        }
+        else if segue.identifier == "ShowPictureMessageDetail" {
+            if let controller = segue.destination as? PictureMessageDetailViewController {
+                controller.image = sender as? UIImage
             }
         }
     }

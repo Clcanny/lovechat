@@ -60,6 +60,7 @@
                         <outlet property="messagesView" destination="3eN-iG-0zv" id="sNa-MG-rpp"/>
                         <outlet property="recordButton" destination="mjX-uZ-CIe" id="sQg-7d-dYZ"/>
                         <segue destination="hyI-RM-fqq" kind="showDetail" identifier="ShowTextMessageDetail" id="xiJ-18-2ZG"/>
+                        <segue destination="eOn-Ac-dRS" kind="showDetail" identifier="ShowPictureMessageDetail" id="MD7-Kb-wnM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -109,6 +110,51 @@
                 </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="2396" y="129.98500749625188"/>
+        </scene>
+        <!--Picture Message Detail View Controller-->
+        <scene sceneID="imo-qZ-4Wq">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qax-Ep-zdz" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewController id="eOn-Ac-dRS" customClass="PictureMessageDetailViewController" customModule="lovechat" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="U88-jZ-zbg"/>
+                        <viewControllerLayoutGuide type="bottom" id="kWo-i1-tfq"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="ziR-u7-T6c">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dO9-3T-E2r">
+                                <rect key="frame" x="-4" y="0.0" width="383" height="667"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="js7-Sn-KhV">
+                                        <rect key="frame" x="20" y="20" width="343" height="627"/>
+                                    </imageView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="js7-Sn-KhV" secondAttribute="bottom" constant="20" id="1hT-cp-xZU"/>
+                                    <constraint firstItem="js7-Sn-KhV" firstAttribute="leading" secondItem="dO9-3T-E2r" secondAttribute="leading" constant="20" id="5vl-KQ-YmA"/>
+                                    <constraint firstItem="js7-Sn-KhV" firstAttribute="top" secondItem="dO9-3T-E2r" secondAttribute="top" constant="20" id="66E-a5-ny3"/>
+                                    <constraint firstItem="js7-Sn-KhV" firstAttribute="centerY" secondItem="dO9-3T-E2r" secondAttribute="centerY" id="FkJ-nb-aue"/>
+                                    <constraint firstAttribute="trailing" secondItem="js7-Sn-KhV" secondAttribute="trailing" constant="20" id="rAd-h0-QjW"/>
+                                    <constraint firstItem="js7-Sn-KhV" firstAttribute="centerX" secondItem="dO9-3T-E2r" secondAttribute="centerX" id="zCk-2i-Sds"/>
+                                </constraints>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="dO9-3T-E2r" firstAttribute="leading" secondItem="ziR-u7-T6c" secondAttribute="leadingMargin" constant="-20" id="7fc-Vm-bzS"/>
+                            <constraint firstItem="dO9-3T-E2r" firstAttribute="top" secondItem="ziR-u7-T6c" secondAttribute="top" id="Ojz-HM-NoN"/>
+                            <constraint firstItem="dO9-3T-E2r" firstAttribute="centerX" secondItem="ziR-u7-T6c" secondAttribute="centerX" id="atd-Wl-sb8"/>
+                            <constraint firstItem="dO9-3T-E2r" firstAttribute="bottom" secondItem="kWo-i1-tfq" secondAttribute="top" id="dud-3M-Biu"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="imageView" destination="js7-Sn-KhV" id="lUE-8y-tVo"/>
+                    </connections>
+                </viewController>
+            </objects>
+            <point key="canvasLocation" x="2316" y="888.30584707646187"/>
         </scene>
         <!--聊天-->
         <scene sceneID="Ik3-mq-sa3">

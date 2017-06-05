@@ -13,6 +13,12 @@ class PictureMessageCollectionViewCell: UICollectionViewCell {
     public static let maxWidth: CGFloat = 100
     private static let radius: CGFloat = 15
     
+    var delegate: SegueFromCellProtocol?
+    private var gesture: UITapGestureRecognizer?
+    func click(gestureRecognizer: UIGestureRecognizer) {
+        delegate?.callSegueFromCell(data: picture)
+    }
+    
     private let avatar = { () -> UIImageView in
         var imageView = UIImageView()
         imageView.frame.size = CGSize(width: radius * 2, height: radius * 2)
@@ -91,7 +97,15 @@ class PictureMessageCollectionViewCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        
+        gesture = UITapGestureRecognizer(
+            target: self,
+            action: #selector(PictureMessageCollectionViewCell.click(gestureRecognizer:))
+        )
+        gesture?.numberOfTapsRequired = 2
+        addGestureRecognizer(gesture!)
     }
+    
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }

@@ -14,6 +14,8 @@ class PictureMessageSectionController: ListSectionController {
     private var pictureMessageModel: PictureMessageModel?
     
     private var psize: CGSize?
+    
+    public var delegate: SegueFromCellProtocol?
 
     init(pictureMessageModel: PictureMessageModel) {
         super.init()
@@ -56,6 +58,7 @@ class PictureMessageSectionController: ListSectionController {
         else {
             cell.keepLeft()
         }
+        cell.delegate = delegate
         return cell
     }
 
