@@ -59,11 +59,56 @@
                     <connections>
                         <outlet property="messagesView" destination="3eN-iG-0zv" id="sNa-MG-rpp"/>
                         <outlet property="recordButton" destination="mjX-uZ-CIe" id="sQg-7d-dYZ"/>
+                        <segue destination="hyI-RM-fqq" kind="showDetail" identifier="ShowTextMessageDetail" id="xiJ-18-2ZG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1540" y="129.98500749625188"/>
+            <point key="canvasLocation" x="1564" y="130"/>
+        </scene>
+        <!--Text Message Detail View Controller-->
+        <scene sceneID="Aly-Aj-dUx">
+            <objects>
+                <viewController id="hyI-RM-fqq" customClass="TextMessageDetailViewController" customModule="lovechat" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="3Sw-Oh-pt9"/>
+                        <viewControllerLayoutGuide type="bottom" id="kJk-Fj-xO2"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Ccj-8E-RTQ">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="HcW-rm-zKs" userLabel="TextLabel">
+                                <rect key="frame" x="16" y="20" width="343" height="627"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <gestureRecognizers/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="mUQ-EB-kBG" appends="YES" id="WWB-dV-wMJ"/>
+                                </connections>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="HcW-rm-zKs" firstAttribute="trailing" secondItem="Ccj-8E-RTQ" secondAttribute="trailingMargin" id="7wX-5U-b8d"/>
+                            <constraint firstItem="HcW-rm-zKs" firstAttribute="top" secondItem="3Sw-Oh-pt9" secondAttribute="bottom" id="VeC-7W-cp7"/>
+                            <constraint firstItem="HcW-rm-zKs" firstAttribute="leading" secondItem="Ccj-8E-RTQ" secondAttribute="leadingMargin" id="YXy-tf-epo"/>
+                            <constraint firstAttribute="bottom" secondItem="HcW-rm-zKs" secondAttribute="bottom" constant="20" symbolic="YES" id="ewJ-Ab-ip3"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="textLabel" destination="HcW-rm-zKs" id="bHM-V0-8xt"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4wN-zw-0d2" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="mUQ-EB-kBG">
+                    <connections>
+                        <action selector="returnToChatViewController:" destination="hyI-RM-fqq" id="Dfv-ja-1bJ"/>
+                    </connections>
+                </tapGestureRecognizer>
+            </objects>
+            <point key="canvasLocation" x="2396" y="129.98500749625188"/>
         </scene>
         <!--聊天-->
         <scene sceneID="Ik3-mq-sa3">

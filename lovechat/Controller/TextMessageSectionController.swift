@@ -11,6 +11,8 @@ import IGListKit
 
 class TextMessageSectionController: ListSectionController {
     
+    public var delegate: SegueFromCellProtocol?
+    
     private var textMessageModel: TextMessageModel?
     
     private var tsize: CGSize?
@@ -56,6 +58,7 @@ class TextMessageSectionController: ListSectionController {
         else {
             cell.keepLeft()
         }
+        cell.delegate = delegate
         return cell
     }
     

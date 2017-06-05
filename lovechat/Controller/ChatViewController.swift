@@ -185,7 +185,9 @@ extension ChatViewController: ListAdapterDataSource {
     
     func listAdapter(_ listAdapter: ListAdapter, sectionControllerFor object: Any) -> ListSectionController {
         if let textMessageModel = object as? TextMessageModel {
-            return TextMessageSectionController(textMessageModel: textMessageModel)
+            let controller = TextMessageSectionController(textMessageModel: textMessageModel)
+            controller.delegate = self
+            return controller
         }
         else if let timeStamp = object as? String {
             return TimeStampSectionController(timeStamp: timeStamp)
@@ -218,6 +220,23 @@ extension ChatViewController: TimeOutProtocol {
     
     func stop(_: Int) {
         recordButton.sendActions(for: .touchUpInside)
+    }
+    
+}
+
+extension ChatViewController: SegueFromCellProtocol {
+    
+    func callSegueFromCell(data: Any?) {
+        performSegue(withIdentifier: "ShowTextMessageDetail", sender: data)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "ShowTextMessageDetail" {
+            if let controller = segue.destination as? TextMessageDetailViewController {
+                controller.text = "A long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long message"
+                controller.text = sender as? String
+            }
+        }
     }
     
 }

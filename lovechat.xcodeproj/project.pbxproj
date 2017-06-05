@@ -28,6 +28,8 @@
 		409EC0D11EE3E50C00365F7E /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 409EC0CF1EE3E50C00365F7E /* Fonts.swift */; };
 		409EC0D21EE3E50C00365F7E /* TextSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 409EC0D01EE3E50C00365F7E /* TextSize.swift */; };
 		40A8454C1EE5489600837060 /* TimeOutProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A8454B1EE5489600837060 /* TimeOutProtocol.swift */; };
+		40AF90241EE5A5E200F801A9 /* TextMessageDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40AF90231EE5A5E200F801A9 /* TextMessageDetailViewController.swift */; };
+		40AF90281EE5A8D400F801A9 /* SegueFromCellProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40AF90271EE5A8D400F801A9 /* SegueFromCellProtocol.swift */; };
 		40B1BF1B1EE3ED83000B335E /* ExtensionUIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40B1BF1A1EE3ED83000B335E /* ExtensionUIImage.swift */; };
 		40BF9FBB1EE4F719002BEACB /* VoiceMessageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40BF9FBA1EE4F719002BEACB /* VoiceMessageCollectionViewCell.swift */; };
 		40BF9FBD1EE4F737002BEACB /* VoiceMessageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40BF9FBC1EE4F737002BEACB /* VoiceMessageModel.swift */; };
@@ -59,6 +61,8 @@
 		409EC0CF1EE3E50C00365F7E /* Fonts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Fonts.swift; path = Util/Fonts.swift; sourceTree = "<group>"; };
 		409EC0D01EE3E50C00365F7E /* TextSize.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TextSize.swift; path = Util/TextSize.swift; sourceTree = "<group>"; };
 		40A8454B1EE5489600837060 /* TimeOutProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TimeOutProtocol.swift; path = Protocol/TimeOutProtocol.swift; sourceTree = "<group>"; };
+		40AF90231EE5A5E200F801A9 /* TextMessageDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TextMessageDetailViewController.swift; path = Controller/TextMessageDetailViewController.swift; sourceTree = "<group>"; };
+		40AF90271EE5A8D400F801A9 /* SegueFromCellProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SegueFromCellProtocol.swift; path = Protocol/SegueFromCellProtocol.swift; sourceTree = "<group>"; };
 		40B1BF1A1EE3ED83000B335E /* ExtensionUIImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ExtensionUIImage.swift; path = Util/ExtensionUIImage.swift; sourceTree = "<group>"; };
 		40BF9FBA1EE4F719002BEACB /* VoiceMessageCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = VoiceMessageCollectionViewCell.swift; path = Cell/VoiceMessageCollectionViewCell.swift; sourceTree = "<group>"; };
 		40BF9FBC1EE4F737002BEACB /* VoiceMessageModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = VoiceMessageModel.swift; path = Model/VoiceMessageModel.swift; sourceTree = "<group>"; };
@@ -86,6 +90,7 @@
 				409EC0C51EE3CAF400365F7E /* TimeStampSectionController.swift */,
 				409EC0CD1EE3E2B200365F7E /* PictureMessageSectionController.swift */,
 				401B71581EE5751B001BE55E /* VoiceMessageSectionController.swift */,
+				40AF90231EE5A5E200F801A9 /* TextMessageDetailViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -172,6 +177,7 @@
 			isa = PBXGroup;
 			children = (
 				40A8454B1EE5489600837060 /* TimeOutProtocol.swift */,
+				40AF90271EE5A8D400F801A9 /* SegueFromCellProtocol.swift */,
 			);
 			name = Protocol;
 			sourceTree = "<group>";
@@ -329,6 +335,8 @@
 				40B1BF1B1EE3ED83000B335E /* ExtensionUIImage.swift in Sources */,
 				409EC0C81EE3DA8600365F7E /* PictureMessageCollectionViewCell.swift in Sources */,
 				403B20631EE3383600CBE09C /* TextMessageModel.swift in Sources */,
+				40AF90241EE5A5E200F801A9 /* TextMessageDetailViewController.swift in Sources */,
+				40AF90281EE5A8D400F801A9 /* SegueFromCellProtocol.swift in Sources */,
 				409EC0CA1EE3E06D00365F7E /* PictureSize.swift in Sources */,
 				408B480E1EE276CC00EE9281 /* AppDelegate.swift in Sources */,
 				40A8454C1EE5489600837060 /* TimeOutProtocol.swift in Sources */,

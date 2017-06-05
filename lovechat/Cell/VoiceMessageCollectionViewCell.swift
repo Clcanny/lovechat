@@ -43,11 +43,11 @@ class VoiceMessageCollectionViewCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        gesture = UITapGestureRecognizer(
-            target: self,
-            action: #selector(VoiceMessageCollectionViewCell.click(gestureRecognizer:))
-        )
-        addGestureRecognizer(gesture!)
+//        gesture = UITapGestureRecognizer(
+//            target: self,
+//            action: #selector(VoiceMessageCollectionViewCell.click(gestureRecognizer:))
+//        )
+//        addGestureRecognizer(gesture!)
     }
     
     required init?(coder aDecoder: NSCoder) {
