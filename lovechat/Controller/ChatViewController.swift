@@ -15,11 +15,14 @@ class ChatViewController: UIViewController {
     
     @IBOutlet weak var messagesView: UIView!
     
-    var audioRecorder: AVAudioRecorder?
+    private let audioSession = AVAudioSession.sharedInstance()
+    private var audioRecorder: AVAudioRecorder?
     
     @IBAction func beginRecord(_ sender: UIButton) {
         recordAnimationView.isHidden = false
         recordAnimationView.recording()
+        
+        audioRecorder?.prepareToRecord()
         audioRecorder?.record()
     }
     
@@ -90,28 +93,40 @@ class ChatViewController: UIViewController {
         layoutSubviews()
         adapter.performUpdates(animated: false, completion: nil)
         
-        let fileMgr = FileManager.default
-        let dirPaths = fileMgr.urls(for: .documentDirectory, in: .userDomainMask)
-        let soundFileURL = dirPaths[0].appendingPathComponent("sound.caf")
-        let recordSettings = [
-            AVEncoderAudioQualityKey: AVAudioQuality.min.rawValue,
-            AVEncoderBitRateKey: 16,
-            AVNumberOfChannelsKey: 2,
-            AVSampleRateKey: 44100.0
-            ] as [String : Any]
-        let audioSession = AVAudioSession.sharedInstance()
+        // audioSession
         do {
             try audioSession.setCategory(AVAudioSessionCategoryPlayAndRecord)
         }
         catch {
             fatalError("audioSession error")
         }
+        
+        // audioRecorder settings
+        let fileMgr = FileManager.default
+        let dirPaths = fileMgr.urls(for: .documentDirectory, in: .userDomainMask)
+        let soundFileURL = dirPaths[0].appendingPathComponent("sound.caf")
+        let recordSettings = [
+            // 录音质量
+            AVEncoderAudioQualityKey: AVAudioQuality.min.rawValue,
+            // 音频格式
+            // AVFormatIDKey: kAudioFormatLinearPCM,
+            // 采样位数 8/16/24/32（默认为16）
+            AVEncoderBitRateKey: 16,
+            // 音频通道数 1/2
+            AVNumberOfChannelsKey: 1,
+            // 采样率 8000/11025/22050/44100/96000（影响音频的质量
+            AVSampleRateKey: 44100.0
+            ] as [String : Any]
+        
+        // audioRecorder
         do {
             try audioRecorder = AVAudioRecorder(
                 url: soundFileURL,
                 settings: recordSettings as [String : AnyObject]
             )
-            audioRecorder?.prepareToRecord()
+//            audioRecorder?.delegate = self
+            audioRecorder?.isMeteringEnabled = true
+            print(audioRecorder?.isRecording)
         } catch {
             fatalError("audioSession error")
         }
