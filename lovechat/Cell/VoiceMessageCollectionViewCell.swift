@@ -82,8 +82,13 @@ class VoiceMessageCollectionViewCell: UICollectionViewCell {
         super.layoutSubviews()
         addSubview(avatar)
         layer.addSublayer(highlightLayer)
-        processBar = UIProgressView(frame: CGRect(x: VoiceMessageCollectionViewCell.radius * 3, y: 0, width: VoiceMessageCollectionViewCell.baseWidth + addWidth!, height: bounds.size.height))
+        processBar = UIProgressView(frame: CGRect(x: VoiceMessageCollectionViewCell.radius * 3, y: 1  * VoiceMessageCollectionViewCell.radius - 1, width: VoiceMessageCollectionViewCell.baseWidth + addWidth! - 1, height: 1))
+//        processBar?.backgroundColor = UIColor.white
+        processBar?.trackTintColor = UIColor.white
+        processBar?.progressTintColor = babyBlueColor
+        processBar?.transform = CGAffineTransform(scaleX: 1.0, y: VoiceMessageCollectionViewCell.radius - 1)
         addSubview(processBar!)
+        processBar?.isHidden = true
     }
     
     override init(frame: CGRect) {

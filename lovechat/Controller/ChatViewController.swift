@@ -202,21 +202,22 @@ class ChatViewController: UIViewController {
      }
      */
     
-    var objects = [
-        PictureMessageModel(message: #imageLiteral(resourceName: "longPictureOfMessage"), false),
-        "12:25 PM" as ListDiffable,
-        TextMessageModel(message: "This is a very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very T--very very very very long message.", true),
-        PictureMessageModel(message: #imageLiteral(resourceName: "defaultPictureOfMessage"), false),
-        TextMessageModel(message: "This is also a very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very long message.", false),
-        "12:26 PM" as ListDiffable,
-        TextMessageModel(message: "A short message", true),
-        TextMessageModel(message: "A short message", true),
-        TextMessageModel(message: "A short message", false),
-        "12:27 PM" as ListDiffable,
-        TextMessageModel(message: "This is a very very very very long message", true),
-        TextMessageModel(message: "This is a very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very long message.", false),
-        PictureMessageModel(message: #imageLiteral(resourceName: "defaultPictureOfMessage"), true)
-    ]
+//    var objects = [
+//        PictureMessageModel(message: #imageLiteral(resourceName: "longPictureOfMessage"), false),
+//        "12:25 PM" as ListDiffable,
+//        TextMessageModel(message: "This is a very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very T--very very very very long message.", true),
+//        PictureMessageModel(message: #imageLiteral(resourceName: "defaultPictureOfMessage"), false),
+//        TextMessageModel(message: "This is also a very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very long message.", false),
+//        "12:26 PM" as ListDiffable,
+//        TextMessageModel(message: "A short message", true),
+//        TextMessageModel(message: "A short message", true),
+//        TextMessageModel(message: "A short message", false),
+//        "12:27 PM" as ListDiffable,
+//        TextMessageModel(message: "This is a very very very very long message", true),
+//        TextMessageModel(message: "This is a very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very long message.", false),
+//        PictureMessageModel(message: #imageLiteral(resourceName: "defaultPictureOfMessage"), true)
+//    ]
+    var objects: [ListDiffable] = []
     
 }
 
