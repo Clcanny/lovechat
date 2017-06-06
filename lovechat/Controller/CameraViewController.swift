@@ -62,9 +62,23 @@ class CameraViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    var videoFileOutput: AVCaptureMovieFileOutput!
     @IBAction func action(_ sender: UIButton) {
         print("test")
         captureSession.stopRunning()
+//        sessionOutput.capturePhoto(with: sessionOutputSetting, delegate: self)
+        videoFileOutput.stopRecording()
+    }
+    
+    @IBAction func startRecordVideo(_ sender: UIButton) {
+        videoFileOutput = AVCaptureMovieFileOutput()
+        captureSession.addOutput(videoFileOutput)
+
+        let dirPaths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+        let currentTime = Date().timeIntervalSince1970
+        let videoFileURL = dirPaths[0].appendingPathComponent(String(currentTime) + ".caf")
+        
+        videoFileOutput.startRecording(toOutputFileURL: videoFileURL, recordingDelegate: self)
     }
     
     /*
@@ -76,5 +90,30 @@ class CameraViewController: UIViewController {
      // Pass the selected object to the new view controller.
      }
      */
+    
+}
+
+extension CameraViewController: AVCapturePhotoCaptureDelegate {
+    
+    // Which delegate methods the photo output calls depends on the photo settings
+    // you initiate capture with. All methods in this protocol are optional at compile time,
+    // but at run time your delegate object must respond to certain methods depending on 
+    // your photo settings.
+    func capture(_ captureOutput: AVCapturePhotoOutput, didFinishProcessingPhotoSampleBuffer photoSampleBuffer: CMSampleBuffer?, previewPhotoSampleBuffer: CMSampleBuffer?, resolvedSettings: AVCaptureResolvedPhotoSettings, bracketSettings: AVCaptureBracketedStillImageSettings?, error: Error?) {
+        print("testing")
+        if let sampleBuffer = photoSampleBuffer, let previewBuffer = previewPhotoSampleBuffer, let dataImage = AVCapturePhotoOutput.jpegPhotoDataRepresentation(forJPEGSampleBuffer: sampleBuffer, previewPhotoSampleBuffer: previewBuffer) {
+            print(UIImage(data: dataImage)?.size)
+        }
+    }
+    
+}
+
+extension CameraViewController: AVCaptureFileOutputRecordingDelegate {
+    
+    func capture(_ captureOutput: AVCaptureFileOutput!, didFinishRecordingToOutputFileAt outputFileURL: URL!, fromConnections connections: [Any]!, error: Error!) {
+//        let player = AVPlayer(url: videoFileOutput.outputFileURL)
+//        player.play()
+        return
+    }
     
 }
