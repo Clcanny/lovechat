@@ -17,18 +17,20 @@ class VoiceMessageCollectionViewCell: UICollectionViewCell {
     public var addWidth: CGFloat?
     
     private var audioPlayer: AVAudioPlayer!
-//    private var updater: CADisplayLink!
+    fileprivate var updater: CADisplayLink!
     
     var gesture: UITapGestureRecognizer?
-//    func trackAudio() {
-//        var normalizedTime = Float(audioPlayer.currentTime * 100.0 / audioPlayer.duration)
-////        progressBar.value = normalizedTime
-//    }
+    var processBar: UIProgressView?
+    func trackAudio() {
+        let normalizedTime = Float(audioPlayer.currentTime * 1.0 / audioPlayer.duration)
+//        processBar?.progress = normalizedTime
+        processBar?.setProgress(normalizedTime, animated: false)
+    }
     var url: URL?
     func click(gestureRecognizer: UIGestureRecognizer) {
-        let fileMgr = FileManager.default
-        let dirPaths = fileMgr.urls(for: .documentDirectory, in: .userDomainMask)
-        let soundFileURL = dirPaths[0].appendingPathComponent("sound.caf")
+        //        let fileMgr = FileManager.default
+        //        let dirPaths = fileMgr.urls(for: .documentDirectory, in: .userDomainMask)
+        //        let soundFileURL = dirPaths[0].appendingPathComponent("sound.caf")
         let audioSession = AVAudioSession.sharedInstance()
         do {
             try audioSession.setCategory(AVAudioSessionCategoryPlayback)
@@ -38,11 +40,15 @@ class VoiceMessageCollectionViewCell: UICollectionViewCell {
             fatalError()
         }
         do {
-//            updater.add(to: <#T##RunLoop#>, forMode: <#T##RunLoopMode#>)
+            updater = CADisplayLink(target: self, selector: #selector(VoiceMessageCollectionViewCell.trackAudio))
+            updater.add(to: RunLoop.current, forMode: RunLoopMode.commonModes)
+            
             audioPlayer = try AVAudioPlayer(contentsOf: url!)
             audioPlayer.numberOfLoops = 0
-            print(audioPlayer.duration)
+            audioPlayer.delegate = self
+//            print(audioPlayer.duration)
             audioPlayer.prepareToPlay()
+            processBar?.isHidden = false
             audioPlayer.play()
         }
         catch {
@@ -76,6 +82,8 @@ class VoiceMessageCollectionViewCell: UICollectionViewCell {
         super.layoutSubviews()
         addSubview(avatar)
         layer.addSublayer(highlightLayer)
+        processBar = UIProgressView(frame: CGRect(x: VoiceMessageCollectionViewCell.radius * 3, y: 0, width: VoiceMessageCollectionViewCell.baseWidth + addWidth!, height: bounds.size.height))
+        addSubview(processBar!)
     }
     
     override init(frame: CGRect) {
@@ -155,4 +163,13 @@ class VoiceMessageCollectionViewCell: UICollectionViewCell {
 }
 
 extension VoiceMessageCollectionViewCell: UIGestureRecognizerDelegate {
+}
+
+extension VoiceMessageCollectionViewCell: AVAudioPlayerDelegate {
+    
+    func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
+        updater.invalidate()
+        processBar?.isHidden = true
+    }
+    
 }

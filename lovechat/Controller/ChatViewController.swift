@@ -27,6 +27,14 @@ class ChatViewController: UIViewController {
         recordAnimationView.recording()
         recordAnimationView.startCountDown()
         
+        // audioSession
+        do {
+            try audioSession.setCategory(AVAudioSessionCategoryPlayAndRecord)
+        }
+        catch {
+            fatalError("audioSession error")
+        }
+        
         // audioRecorder settings
         let dirPaths = fileMgr.urls(for: .documentDirectory, in: .userDomainMask)
         let currentTime = Date().timeIntervalSince1970
@@ -175,13 +183,7 @@ class ChatViewController: UIViewController {
         
         recordAnimationView.delegate = self
         
-        // audioSession
-        do {
-            try audioSession.setCategory(AVAudioSessionCategoryPlayAndRecord)
-        }
-        catch {
-            fatalError("audioSession error")
-        }
+        
     }
     
     override func didReceiveMemoryWarning() {
