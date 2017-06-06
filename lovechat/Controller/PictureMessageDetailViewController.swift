@@ -12,7 +12,7 @@ class PictureMessageDetailViewController: UIViewController {
     
     @IBOutlet weak var scrollView: UIScrollView!
     
-    @IBOutlet weak var imageView: UIImageView!
+    let imageView = UIImageView()
     
     public var image: UIImage?
     
@@ -20,19 +20,26 @@ class PictureMessageDetailViewController: UIViewController {
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
-        imageView.contentMode = .center
-        
-        let width = imageView.frame.size.width
+        let width = scrollView.frame.size.width
         let scaleFactor = width / image!.size.width
         let height = image!.size.height * scaleFactor
         
         UIGraphicsBeginImageContext(CGSize(width: width, height: height))
-        image?.draw(in: CGRect(x: 0, y: 0, width: width, height: height))
+        image!.draw(in: CGRect(x: 0, y: 0, width: width, height: height))
         let newImage = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
-        imageView.image = newImage
         
+        imageView.contentMode = .scaleAspectFit
+        imageView.image = newImage
+        imageView.sizeToFit()
+        
+        scrollView.addSubview(imageView)
         scrollView.contentSize = newImage!.size
+        
+        imageView.snp.makeConstraints {
+            (make) -> Void in
+            make.center.equalTo(scrollView)
+        }
     }
     
     override func didReceiveMemoryWarning() {
