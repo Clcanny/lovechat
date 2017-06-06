@@ -128,6 +128,7 @@
                                 <gestureRecognizers/>
                                 <connections>
                                     <outletCollection property="gestureRecognizers" destination="zOq-95-IzU" appends="YES" id="FiS-vY-jX8"/>
+                                    <outletCollection property="gestureRecognizers" destination="uxC-rf-8NL" appends="YES" id="rh9-KX-21q"/>
                                 </connections>
                             </scrollView>
                         </subviews>
@@ -149,6 +150,11 @@
                         <action selector="exit:" destination="eOn-Ac-dRS" id="MUc-oy-CPY"/>
                     </connections>
                 </tapGestureRecognizer>
+                <pinchGestureRecognizer id="uxC-rf-8NL">
+                    <connections>
+                        <action selector="scale:" destination="eOn-Ac-dRS" id="W4n-9A-EUk"/>
+                    </connections>
+                </pinchGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="2316" y="888.30584707646187"/>
         </scene>

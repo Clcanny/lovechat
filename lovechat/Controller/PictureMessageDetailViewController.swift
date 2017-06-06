@@ -20,6 +20,15 @@ class PictureMessageDetailViewController: UIViewController {
         dismiss(animated: false, completion: nil)
     }
     
+    @IBAction func scale(_ sender: UIPinchGestureRecognizer) {
+        let currentScale = scrollView.frame.size.width / scrollView.bounds.size.width
+        let newScale = currentScale * sender.scale
+        if sender.state == .ended || sender.state == .changed {
+            scrollView.transform = CGAffineTransform(scaleX: newScale, y: newScale);
+            sender.scale = 1
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
