@@ -10,8 +10,22 @@ import UIKit
 import AVFoundation
 import SnapKit
 import IGListKit
+import MobileCoreServices
 
 class ChatViewController: UIViewController {
+    
+    @IBOutlet weak var recordVideo: UIButton!
+    
+    
+    @IBAction func recordVideo_(_ sender: UIButton) {
+        let cameraController = UIImagePickerController()
+        cameraController.sourceType = .camera
+        cameraController.mediaTypes = [kUTTypeMovie as NSString as String]
+        cameraController.allowsEditing = false
+        cameraController.delegate = self
+        
+        present(cameraController, animated: true, completion: nil)
+    }
     
     @IBOutlet weak var messagesView: UIView!
     
@@ -171,7 +185,9 @@ class ChatViewController: UIViewController {
         
         recordAnimationView.delegate = self
         
-        
+        if UIImagePickerController.isSourceTypeAvailable(.camera) == false {
+            recordVideo.isEnabled = false
+        }
     }
     
     override func didReceiveMemoryWarning() {
@@ -282,4 +298,38 @@ extension ChatViewController: SegueFromCellProtocol {
         }
     }
     
+}
+
+extension ChatViewController: UIImagePickerControllerDelegate {
+    
+    func video(_ videoPath: NSString, didFinishSavingWithError error: NSError?, contextInfo info: AnyObject) {
+        var title = "Success"
+        var message = "Video was saved"
+        if let _ = error {
+            title = "Error"
+            message = "Video failed to save"
+        }
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.cancel, handler: nil))
+        present(alert, animated: true, completion: nil)
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        let mediaType = info[UIImagePickerControllerMediaType] as! NSString
+        dismiss(animated: true, completion: nil)
+        // Handle a movie capture
+        if mediaType == kUTTypeMovie {
+            let dirPaths = fileMgr.urls(for: .documentDirectory, in: .userDomainMask)
+            let currentTime = Date().timeIntervalSince1970
+            let videoFileURL = dirPaths[0].appendingPathComponent(String(currentTime) + ".video")
+//            guard let path = (info[UIImagePickerControllerMediaURL] as? URL)?.path else { return }
+            if UIVideoAtPathIsCompatibleWithSavedPhotosAlbum(videoFileURL.relativeString) {
+                UISaveVideoAtPathToSavedPhotosAlbum(videoFileURL.relativeString, self, #selector(ChatViewController.video(_:didFinishSavingWithError:contextInfo:)), nil)
+            }
+        }
+    }
+    
+}
+
+extension ChatViewController: UINavigationControllerDelegate {
 }

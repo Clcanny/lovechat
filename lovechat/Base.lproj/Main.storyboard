@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="tuU-8Z-4dJ">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="raK-8d-U8p">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -27,7 +27,10 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mjX-uZ-CIe">
-                                <rect key="frame" x="16" y="560" width="343" height="50"/>
+                                <rect key="frame" x="16" y="560" width="172" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="172" id="MC2-F8-br4"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                 <state key="normal" title="Hold to talk">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
@@ -40,17 +43,27 @@
                                     <action selector="readyToCancelRecord:" destination="BYZ-38-t0r" eventType="touchDragExit" id="8M9-sh-WbJ"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JtF-ur-Ml9">
+                                <rect key="frame" x="244" y="560" width="115" height="50"/>
+                                <state key="normal" title="record video"/>
+                                <connections>
+                                    <action selector="recordVideo_:" destination="BYZ-38-t0r" eventType="touchUpInside" id="aZo-hH-ahA"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="mjX-uZ-CIe" secondAttribute="bottom" constant="8" symbolic="YES" id="DyZ-gb-kYC"/>
                             <constraint firstItem="3eN-iG-0zv" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="EV6-2H-Ieg"/>
                             <constraint firstAttribute="bottom" secondItem="3eN-iG-0zv" secondAttribute="bottom" constant="115" id="Jdp-xb-F0a"/>
                             <constraint firstItem="3eN-iG-0zv" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" symbolic="YES" id="JzI-3d-uJ8"/>
-                            <constraint firstItem="mjX-uZ-CIe" firstAttribute="top" secondItem="3eN-iG-0zv" secondAttribute="bottom" constant="8" symbolic="YES" id="bwV-aO-OcC"/>
-                            <constraint firstItem="mjX-uZ-CIe" firstAttribute="leading" secondItem="3eN-iG-0zv" secondAttribute="leading" id="eZX-aA-iPI"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="mjX-uZ-CIe" secondAttribute="bottom" constant="8" symbolic="YES" id="p3E-4I-A3i"/>
+                            <constraint firstItem="JtF-ur-Ml9" firstAttribute="leading" secondItem="mjX-uZ-CIe" secondAttribute="trailing" constant="56" id="OWn-Bg-tco"/>
+                            <constraint firstItem="JtF-ur-Ml9" firstAttribute="top" secondItem="mjX-uZ-CIe" secondAttribute="top" id="RLw-Tv-s1x"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="JtF-ur-Ml9" secondAttribute="bottom" constant="8" symbolic="YES" id="XKc-z7-epC"/>
+                            <constraint firstItem="mjX-uZ-CIe" firstAttribute="top" secondItem="3eN-iG-0zv" secondAttribute="bottom" constant="8" symbolic="YES" id="bvf-R2-947"/>
+                            <constraint firstItem="mjX-uZ-CIe" firstAttribute="leading" secondItem="3eN-iG-0zv" secondAttribute="leading" id="hbY-yH-s3u"/>
                             <constraint firstItem="3eN-iG-0zv" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="rYx-wB-EWU"/>
-                            <constraint firstItem="mjX-uZ-CIe" firstAttribute="trailing" secondItem="3eN-iG-0zv" secondAttribute="trailing" id="xBh-E1-2es"/>
+                            <constraint firstItem="JtF-ur-Ml9" firstAttribute="trailing" secondItem="3eN-iG-0zv" secondAttribute="trailing" id="spI-XS-18L"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="v9Z-8E-hvk">
@@ -59,13 +72,14 @@
                     <connections>
                         <outlet property="messagesView" destination="3eN-iG-0zv" id="sNa-MG-rpp"/>
                         <outlet property="recordButton" destination="mjX-uZ-CIe" id="sQg-7d-dYZ"/>
+                        <outlet property="recordVideo" destination="JtF-ur-Ml9" id="2y1-yI-hCP"/>
                         <segue destination="hyI-RM-fqq" kind="showDetail" identifier="ShowTextMessageDetail" id="xiJ-18-2ZG"/>
                         <segue destination="eOn-Ac-dRS" kind="showDetail" identifier="ShowPictureMessageDetail" id="MD7-Kb-wnM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1564" y="130"/>
+            <point key="canvasLocation" x="1564" y="129.98500749625188"/>
         </scene>
         <!--Text Message Detail View Controller-->
         <scene sceneID="Aly-Aj-dUx">
@@ -110,6 +124,51 @@
                 </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="2396" y="129.98500749625188"/>
+        </scene>
+        <!--Camera View Controller-->
+        <scene sceneID="Cnj-qW-gFu">
+            <objects>
+                <viewController id="raK-8d-U8p" customClass="CameraViewController" customModule="lovechat" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Bes-X6-jat"/>
+                        <viewControllerLayoutGuide type="bottom" id="lmf-wB-T4e"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="cjO-uP-NCV">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ren-PA-Bwr">
+                                <rect key="frame" x="69" y="556" width="242" height="91"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="42"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="action:" destination="raK-8d-U8p" eventType="touchUpInside" id="Ko9-m5-TE6"/>
+                                </connections>
+                            </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XD4-1D-hOW">
+                                <rect key="frame" x="16" y="28" width="343" height="520"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="ren-PA-Bwr" secondAttribute="bottom" constant="20" symbolic="YES" id="5Ut-cb-7xa"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="ren-PA-Bwr" secondAttribute="trailing" constant="48" id="FK2-Gx-ohe"/>
+                            <constraint firstItem="ren-PA-Bwr" firstAttribute="top" secondItem="XD4-1D-hOW" secondAttribute="bottom" constant="8" symbolic="YES" id="Gdo-Dl-Zff"/>
+                            <constraint firstItem="XD4-1D-hOW" firstAttribute="trailing" secondItem="cjO-uP-NCV" secondAttribute="trailingMargin" id="JVV-q0-22K"/>
+                            <constraint firstAttribute="bottom" secondItem="XD4-1D-hOW" secondAttribute="bottom" constant="119" id="S9x-Zg-HHC"/>
+                            <constraint firstItem="XD4-1D-hOW" firstAttribute="leading" secondItem="cjO-uP-NCV" secondAttribute="leadingMargin" id="Z6d-Ax-Aqr"/>
+                            <constraint firstItem="XD4-1D-hOW" firstAttribute="top" secondItem="Bes-X6-jat" secondAttribute="bottom" constant="8" symbolic="YES" id="ZWG-0T-bc1"/>
+                            <constraint firstItem="ren-PA-Bwr" firstAttribute="leading" secondItem="cjO-uP-NCV" secondAttribute="leadingMargin" constant="53" id="aAj-dg-Xpz"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="cameraView" destination="XD4-1D-hOW" id="s9e-U7-1lf"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="giJ-xL-FqW" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="204" y="972.86356821589209"/>
         </scene>
         <!--Picture Message Detail View Controller-->
         <scene sceneID="imo-qZ-4Wq">
