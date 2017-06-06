@@ -23,18 +23,13 @@ class VoiceMessageCollectionViewCell: UICollectionViewCell {
     var processBar: UIProgressView?
     func trackAudio() {
         let normalizedTime = Float(audioPlayer.currentTime * 1.0 / audioPlayer.duration)
-//        processBar?.progress = normalizedTime
         processBar?.setProgress(normalizedTime, animated: false)
     }
     var url: URL?
     func click(gestureRecognizer: UIGestureRecognizer) {
-        //        let fileMgr = FileManager.default
-        //        let dirPaths = fileMgr.urls(for: .documentDirectory, in: .userDomainMask)
-        //        let soundFileURL = dirPaths[0].appendingPathComponent("sound.caf")
         let audioSession = AVAudioSession.sharedInstance()
         do {
             try audioSession.setCategory(AVAudioSessionCategoryPlayback)
-            // try audioSession.setActive(true)
         }
         catch {
             fatalError()
@@ -46,16 +41,9 @@ class VoiceMessageCollectionViewCell: UICollectionViewCell {
             audioPlayer = try AVAudioPlayer(contentsOf: url!)
             audioPlayer.numberOfLoops = 0
             audioPlayer.delegate = self
-//            print(audioPlayer.duration)
             audioPlayer.prepareToPlay()
             processBar?.isHidden = false
             audioPlayer.play()
-        }
-        catch {
-            fatalError()
-        }
-        do {
-            // try audioSession.setActive(false)
         }
         catch {
             fatalError()

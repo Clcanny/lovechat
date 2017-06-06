@@ -123,18 +123,6 @@ class ChatViewController: UIViewController {
         catch {
         }
         objects.append(VoiceMessageModel(message: audioRecorder!.url, time: recordTime, false))
-        print(recordTime)
-        do {
-            let audioPlayer = try AVAudioPlayer(contentsOf: audioRecorder!.url)
-            print(audioPlayer.url)
-            audioPlayer.numberOfLoops = 1
-            print(audioPlayer.duration)
-            audioPlayer.prepareToPlay()
-            audioPlayer.play()
-        }
-        catch {
-            fatalError()
-        }
         audioRecorder = nil
         
         adapter.performUpdates(animated: false, completion: nil)
