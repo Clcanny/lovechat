@@ -16,10 +16,18 @@ class PictureMessageDetailViewController: UIViewController {
     
     public var image: UIImage?
     
+    @IBAction func exit(_ sender: UITapGestureRecognizer) {
+        dismiss(animated: false, completion: nil)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
+        scrollView.minimumZoomScale = 0.8
+        scrollView.maximumZoomScale = 2
+        scrollView.zoomScale = 1
+        
         let width = scrollView.frame.size.width
         let scaleFactor = width / image!.size.width
         let height = image!.size.height * scaleFactor
@@ -57,5 +65,19 @@ class PictureMessageDetailViewController: UIViewController {
      // Pass the selected object to the new view controller.
      }
      */
+    
+}
+
+extension PictureMessageDetailViewController: UIScrollViewDelegate {
+    
+    func viewForZooming(in scrollView: UIScrollView) -> UIView? {
+        return imageView
+    }
+    
+    func scrollViewDidEndZooming(
+        _ scrollView: UIScrollView,
+        with view: UIView?,
+        atScale scale: CGFloat) {
+    }
     
 }
