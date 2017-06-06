@@ -16,13 +16,23 @@ class PictureMessageDetailViewController: UIViewController {
     
     public var image: UIImage?
     
+    private static let maxScale: CGFloat = 5
+    private static let minScale: CGFloat = 0.8
+    
     @IBAction func exit(_ sender: UITapGestureRecognizer) {
         dismiss(animated: false, completion: nil)
     }
     
     @IBAction func scale(_ sender: UIPinchGestureRecognizer) {
         let currentScale = scrollView.frame.size.width / scrollView.bounds.size.width
-        let newScale = currentScale * sender.scale
+        var newScale = currentScale * sender.scale
+        if newScale < PictureMessageDetailViewController.minScale {
+            newScale = PictureMessageDetailViewController.minScale
+        }
+        else if newScale > PictureMessageDetailViewController.maxScale {
+            newScale = PictureMessageDetailViewController.maxScale
+        }
+        
         if sender.state == .ended || sender.state == .changed {
             scrollView.transform = CGAffineTransform(scaleX: newScale, y: newScale);
             sender.scale = 1
@@ -33,10 +43,6 @@ class PictureMessageDetailViewController: UIViewController {
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
-        scrollView.minimumZoomScale = 0.8
-        scrollView.maximumZoomScale = 2
-        scrollView.zoomScale = 1
-        
         let width = scrollView.frame.size.width
         let scaleFactor = width / image!.size.width
         let height = image!.size.height * scaleFactor
@@ -46,9 +52,10 @@ class PictureMessageDetailViewController: UIViewController {
         let newImage = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         
-        imageView.contentMode = .scaleAspectFit
+        imageView.contentMode = .scaleToFill
         imageView.image = newImage
-        imageView.sizeToFit()
+        imageView.frame.size.width = width
+        imageView.frame.size.height = height
         
         scrollView.addSubview(imageView)
         scrollView.contentSize = newImage!.size

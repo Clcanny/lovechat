@@ -152,7 +152,7 @@
                 </tapGestureRecognizer>
                 <pinchGestureRecognizer id="uxC-rf-8NL">
                     <connections>
-                        <action selector="scale:" destination="eOn-Ac-dRS" id="W4n-9A-EUk"/>
+                        <action selector="scale:" destination="eOn-Ac-dRS" id="9sY-zE-R1G"/>
                     </connections>
                 </pinchGestureRecognizer>
             </objects>
