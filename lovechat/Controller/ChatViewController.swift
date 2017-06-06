@@ -20,13 +20,51 @@ class ChatViewController: UIViewController {
     
     @IBOutlet weak var recordButton: UIButton!
     
+    let fileMgr = FileManager.default
+    
     @IBAction func beginRecord(_ sender: UIButton) {
         recordAnimationView.isHidden = false
         recordAnimationView.recording()
         recordAnimationView.startCountDown()
         
-        audioRecorder?.prepareToRecord()
-        audioRecorder?.record()
+        // audioRecorder settings
+        let dirPaths = fileMgr.urls(for: .documentDirectory, in: .userDomainMask)
+        let currentTime = Date().timeIntervalSince1970
+        let soundFileURL = dirPaths[0].appendingPathComponent(String(currentTime) + ".caf")
+        let recordSettings = [
+            // 录音质量
+            AVEncoderAudioQualityKey: AVAudioQuality.min.rawValue,
+            // 音频格式
+            // AVFormatIDKey: kAudioFormatLinearPCM,
+            // 采样位数 8/16/24/32（默认为16）
+            AVEncoderBitRateKey: 16,
+            // 音频通道数 1/2
+            AVNumberOfChannelsKey: 1,
+            // 采样率 8000/11025/22050/44100/96000（影响音频的质量
+            AVSampleRateKey: 44100.0
+            ] as [String : Any]
+        
+        // audioRecorder
+        do {
+            try audioRecorder = AVAudioRecorder(
+                url: soundFileURL,
+                settings: recordSettings as [String : AnyObject]
+            )
+            audioRecorder?.delegate = self
+            audioRecorder?.isMeteringEnabled = true
+        }
+        catch {
+            fatalError("audioSession error")
+        }
+        
+        do {
+            try audioSession.setActive(true)
+            audioRecorder?.prepareToRecord()
+            audioRecorder?.record()
+        }
+        catch {
+            print("can't not record")
+        }
     }
     
     // UIControlEventTouchDragExit
@@ -45,7 +83,8 @@ class ChatViewController: UIViewController {
     // A touch-up event in the control where the finger is outside the bounds of the control.
     @IBAction func cancelRecord(_ sender: UIButton) {
         recordAnimationView.isHidden = true
-        recordAnimationView.stopCountDown()
+        let _ = recordAnimationView.stopCountDown()
+        
         audioRecorder?.stop()
         do {
             try audioSession.setActive(false)
@@ -53,14 +92,44 @@ class ChatViewController: UIViewController {
         catch {
             fatalError()
         }
+        
+        do {
+            try fileMgr.removeItem(at: audioRecorder!.url)
+        }
+        catch {
+            fatalError("delete voice-record file failed")
+        }
+        audioRecorder = nil
     }
     
     // UIControlEventTouchUpInside
     // A touch-up event in the control where the finger is inside the bounds of the control.
     @IBAction func finishRecord(_ sender: UIButton) {
         recordAnimationView.isHidden = true
-        recordAnimationView.stopCountDown()
+        let recordTime = recordAnimationView.stopCountDown()
+        
         audioRecorder?.stop()
+        do {
+            try audioSession.setActive(false)
+        }
+        catch {
+        }
+        objects.append(VoiceMessageModel(message: audioRecorder!.url, time: recordTime, false))
+        print(recordTime)
+        do {
+            let audioPlayer = try AVAudioPlayer(contentsOf: audioRecorder!.url)
+            print(audioPlayer.url)
+            audioPlayer.numberOfLoops = 1
+            print(audioPlayer.duration)
+            audioPlayer.prepareToPlay()
+            audioPlayer.play()
+        }
+        catch {
+            fatalError()
+        }
+        audioRecorder = nil
+        
+        adapter.performUpdates(animated: false, completion: nil)
     }
     
     let recordAnimationView = RecordAnimationView()
@@ -113,35 +182,6 @@ class ChatViewController: UIViewController {
         catch {
             fatalError("audioSession error")
         }
-        
-        // audioRecorder settings
-        let fileMgr = FileManager.default
-        let dirPaths = fileMgr.urls(for: .documentDirectory, in: .userDomainMask)
-        let soundFileURL = dirPaths[0].appendingPathComponent("sound.caf")
-        let recordSettings = [
-            // 录音质量
-            AVEncoderAudioQualityKey: AVAudioQuality.min.rawValue,
-            // 音频格式
-            // AVFormatIDKey: kAudioFormatLinearPCM,
-            // 采样位数 8/16/24/32（默认为16）
-            AVEncoderBitRateKey: 16,
-            // 音频通道数 1/2
-            AVNumberOfChannelsKey: 1,
-            // 采样率 8000/11025/22050/44100/96000（影响音频的质量
-            AVSampleRateKey: 44100.0
-            ] as [String : Any]
-        
-        // audioRecorder
-        do {
-            try audioRecorder = AVAudioRecorder(
-                url: soundFileURL,
-                settings: recordSettings as [String : AnyObject]
-            )
-            audioRecorder?.delegate = self
-            audioRecorder?.isMeteringEnabled = true
-        } catch {
-            fatalError("audioSession error")
-        }
     }
     
     override func didReceiveMemoryWarning() {
@@ -160,28 +200,28 @@ class ChatViewController: UIViewController {
      }
      */
     
+    var objects = [
+        PictureMessageModel(message: #imageLiteral(resourceName: "longPictureOfMessage"), false),
+        "12:25 PM" as ListDiffable,
+        TextMessageModel(message: "This is a very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very T--very very very very long message.", true),
+        PictureMessageModel(message: #imageLiteral(resourceName: "defaultPictureOfMessage"), false),
+        TextMessageModel(message: "This is also a very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very long message.", false),
+        "12:26 PM" as ListDiffable,
+        TextMessageModel(message: "A short message", true),
+        TextMessageModel(message: "A short message", true),
+        TextMessageModel(message: "A short message", false),
+        "12:27 PM" as ListDiffable,
+        TextMessageModel(message: "This is a very very very very long message", true),
+        TextMessageModel(message: "This is a very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very long message.", false),
+        PictureMessageModel(message: #imageLiteral(resourceName: "defaultPictureOfMessage"), true)
+    ]
+    
 }
 
 extension ChatViewController: ListAdapterDataSource {
     
     func objects(for listAdapter: ListAdapter) -> [ListDiffable] {
-        return [
-            PictureMessageModel(message: #imageLiteral(resourceName: "longPictureOfMessage"), false),
-            "12:25 PM" as ListDiffable,
-            VoiceMessageModel(time: 10, false),
-            VoiceMessageModel(time: 10, true),
-            TextMessageModel(message: "This is a very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very T--very very very very long message.", true),
-            PictureMessageModel(message: #imageLiteral(resourceName: "defaultPictureOfMessage"), false),
-            TextMessageModel(message: "This is also a very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very long message.", false),
-            "12:26 PM" as ListDiffable,
-            TextMessageModel(message: "A short message", true),
-            TextMessageModel(message: "A short message", true),
-            TextMessageModel(message: "A short message", false),
-            "12:27 PM" as ListDiffable,
-            TextMessageModel(message: "This is a very very very very long message", true),
-            TextMessageModel(message: "This is a very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very long message.", false),
-            PictureMessageModel(message: #imageLiteral(resourceName: "defaultPictureOfMessage"), true)
-        ]
+        return objects
     }
     
     func listAdapter(_ listAdapter: ListAdapter, sectionControllerFor object: Any) -> ListSectionController {
@@ -216,7 +256,7 @@ extension ChatViewController: AVAudioRecorderDelegate {
     
     func audioRecorderDidFinishRecording(_ recorder: AVAudioRecorder, successfully flag: Bool) {
     }
-
+    
 }
 
 extension ChatViewController: TimeOutProtocol {

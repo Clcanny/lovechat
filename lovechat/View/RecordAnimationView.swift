@@ -104,6 +104,7 @@ class RecordAnimationView: UIView {
         )
     }
     public func stopCountDown() -> Int {
+        timer?.invalidate()
         timer = nil
         return RecordAnimationView.recordTime - leftTime!
     }

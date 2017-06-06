@@ -15,7 +15,8 @@ class VoiceMessageModel: NSObject {
     private var time: Int?
     private var isReceiver: Bool?
     
-    init(time: Int, _ isReceiver: Bool) {
+    init(message: URL, time: Int, _ isReceiver: Bool) {
+        self.message = message
         self.time = time
         self.isReceiver = isReceiver
     }

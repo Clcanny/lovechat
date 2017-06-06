@@ -7,15 +7,44 @@
 //
 
 import UIKit
+import AVFoundation
 
 class VoiceMessageCollectionViewCell: UICollectionViewCell {
     
     private static let baseWidth: CGFloat = 50
     public static let radius: CGFloat = 15
     
+    public var addWidth: CGFloat?
+    
     var gesture: UITapGestureRecognizer?
     func click(gestureRecognizer: UIGestureRecognizer) {
-        print("click")
+        let fileMgr = FileManager.default
+        let dirPaths = fileMgr.urls(for: .documentDirectory, in: .userDomainMask)
+        let soundFileURL = dirPaths[0].appendingPathComponent("sound.caf")
+        let audioSession = AVAudioSession.sharedInstance()
+        do {
+            try audioSession.setCategory(AVAudioSessionCategoryPlayback)
+            // try audioSession.setActive(true)
+        }
+        catch {
+            fatalError()
+        }
+        do {
+            let audioPlayer = try AVAudioPlayer(contentsOf: soundFileURL)
+            audioPlayer.numberOfLoops = 1
+            print(audioPlayer.duration)
+            audioPlayer.prepareToPlay()
+            audioPlayer.play()
+        }
+        catch {
+            fatalError()
+        }
+        do {
+            // try audioSession.setActive(false)
+        }
+        catch {
+            fatalError()
+        }
     }
     
     private let avatar = { () -> UIImageView in
@@ -43,11 +72,11 @@ class VoiceMessageCollectionViewCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-//        gesture = UITapGestureRecognizer(
-//            target: self,
-//            action: #selector(VoiceMessageCollectionViewCell.click(gestureRecognizer:))
-//        )
-//        addGestureRecognizer(gesture!)
+        gesture = UITapGestureRecognizer(
+            target: self,
+            action: #selector(VoiceMessageCollectionViewCell.click(gestureRecognizer:))
+        )
+        addGestureRecognizer(gesture!)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -56,7 +85,7 @@ class VoiceMessageCollectionViewCell: UICollectionViewCell {
     
     public func keepLeft() {
         let radius = VoiceMessageCollectionViewCell.radius
-        let borderWidth = VoiceMessageCollectionViewCell.baseWidth + radius * 3
+        let borderWidth = VoiceMessageCollectionViewCell.baseWidth + radius * 3 + addWidth!
         
         let path = UIBezierPath()
         path.move(to: CGPoint(x: radius * 2, y: radius))
@@ -86,7 +115,7 @@ class VoiceMessageCollectionViewCell: UICollectionViewCell {
     
     public func keepRight() {
         let radius = VoiceMessageCollectionViewCell.radius
-        let borderX = bounds.width - (radius * 3 + VoiceMessageCollectionViewCell.baseWidth)
+        let borderX = bounds.width - (radius * 3 + VoiceMessageCollectionViewCell.baseWidth + addWidth!)
         
         let path = UIBezierPath()
         path.addArc(

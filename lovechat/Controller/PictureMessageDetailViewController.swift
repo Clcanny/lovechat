@@ -19,7 +19,7 @@ class PictureMessageDetailViewController: UIViewController {
     private static let maxScale: CGFloat = 5
     private static let minScale: CGFloat = 0.8
     
-    @IBAction func exit(_ sender: UITapGestureRecognizer) {
+    @IBAction func returnToChatViewController(_ sender: UITapGestureRecognizer) {
         dismiss(animated: false, completion: nil)
     }
     

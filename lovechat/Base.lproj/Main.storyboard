@@ -147,7 +147,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qax-Ep-zdz" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tapGestureRecognizer id="zOq-95-IzU">
                     <connections>
-                        <action selector="exit:" destination="eOn-Ac-dRS" id="MUc-oy-CPY"/>
+                        <action selector="returnToChatViewController:" destination="eOn-Ac-dRS" id="x7s-NE-EoK"/>
                     </connections>
                 </tapGestureRecognizer>
                 <pinchGestureRecognizer id="uxC-rf-8NL">
