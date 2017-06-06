@@ -16,7 +16,14 @@ class VoiceMessageCollectionViewCell: UICollectionViewCell {
     
     public var addWidth: CGFloat?
     
+    private var audioPlayer: AVAudioPlayer!
+//    private var updater: CADisplayLink!
+    
     var gesture: UITapGestureRecognizer?
+//    func trackAudio() {
+//        var normalizedTime = Float(audioPlayer.currentTime * 100.0 / audioPlayer.duration)
+////        progressBar.value = normalizedTime
+//    }
     func click(gestureRecognizer: UIGestureRecognizer) {
         let fileMgr = FileManager.default
         let dirPaths = fileMgr.urls(for: .documentDirectory, in: .userDomainMask)
@@ -30,7 +37,9 @@ class VoiceMessageCollectionViewCell: UICollectionViewCell {
             fatalError()
         }
         do {
-            let audioPlayer = try AVAudioPlayer(contentsOf: soundFileURL)
+//            updater.add(to: <#T##RunLoop#>, forMode: <#T##RunLoopMode#>)
+            
+            audioPlayer = try AVAudioPlayer(contentsOf: soundFileURL)
             audioPlayer.numberOfLoops = 1
             print(audioPlayer.duration)
             audioPlayer.prepareToPlay()
