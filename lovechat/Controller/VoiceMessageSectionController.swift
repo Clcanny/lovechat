@@ -35,6 +35,7 @@ class VoiceMessageSectionController: ListSectionController {
             of: VoiceMessageCollectionViewCell.self,
             for: self, at: index
             ) as! VoiceMessageCollectionViewCell
+        cell.url = voiceMessageModel?.getMessage()
         cell.addWidth = CGFloat(voiceMessageModel!.getTime()) * 2
         if (voiceMessageModel!.getLR()) {
             cell.keepRight()

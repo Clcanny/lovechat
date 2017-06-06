@@ -24,6 +24,7 @@ class VoiceMessageCollectionViewCell: UICollectionViewCell {
 //        var normalizedTime = Float(audioPlayer.currentTime * 100.0 / audioPlayer.duration)
 ////        progressBar.value = normalizedTime
 //    }
+    var url: URL?
     func click(gestureRecognizer: UIGestureRecognizer) {
         let fileMgr = FileManager.default
         let dirPaths = fileMgr.urls(for: .documentDirectory, in: .userDomainMask)
@@ -38,9 +39,8 @@ class VoiceMessageCollectionViewCell: UICollectionViewCell {
         }
         do {
 //            updater.add(to: <#T##RunLoop#>, forMode: <#T##RunLoopMode#>)
-            
-            audioPlayer = try AVAudioPlayer(contentsOf: soundFileURL)
-            audioPlayer.numberOfLoops = 1
+            audioPlayer = try AVAudioPlayer(contentsOf: url!)
+            audioPlayer.numberOfLoops = 0
             print(audioPlayer.duration)
             audioPlayer.prepareToPlay()
             audioPlayer.play()
