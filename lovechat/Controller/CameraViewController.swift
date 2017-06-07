@@ -27,7 +27,7 @@ class CameraViewController: UIViewController {
         return label
     }()
     
-    let videoButton = { () -> UIButton in
+    let button = { () -> UIButton in
         let button = UIButton()
         button.backgroundColor = UIColor.white
         button.frame.size = CGSize(width: 100, height: 100)
@@ -35,9 +35,9 @@ class CameraViewController: UIViewController {
         return button
     }()
     
-    let tapGesture = UITapGestureRecognizer()
+    let takePhotoGesture = UITapGestureRecognizer()
     
-    let longPressGesture = UILongPressGestureRecognizer()
+    let recordVideoGesture = UILongPressGestureRecognizer()
     
     func takePhoto() {
         if let videoConnection = sessionOutput.connection(withMediaType: AVMediaTypeVideo) {
@@ -50,8 +50,8 @@ class CameraViewController: UIViewController {
         if (captureSession.isRunning) {
             captureSession.stopRunning()
         }
-        if (videoButton.isEnabled == true) {
-            videoButton.isEnabled = false
+        if (button.isEnabled == true) {
+            button.isEnabled = false
         }
 
     }
@@ -90,8 +90,8 @@ class CameraViewController: UIViewController {
         if (progressBar.isAnimating()) {
             progressBar.pauseAnimation()
         }
-        if (videoButton.isEnabled == true) {
-            videoButton.isEnabled = false
+        if (button.isEnabled == true) {
+            button.isEnabled = false
         }
     }
     
@@ -137,9 +137,9 @@ class CameraViewController: UIViewController {
                             )
                             previewLayer.bounds = cameraView.frame
                             cameraView.layer.addSublayer(previewLayer)
-                            cameraView.addSubview(videoButton)
+                            cameraView.addSubview(button)
                             
-                            videoButton.frame.origin = .zero
+                            button.frame.origin = .zero
                         }
                         captureSession.startRunning()
                     }
@@ -150,19 +150,19 @@ class CameraViewController: UIViewController {
             }
         }
         
-        videoButton.addGestureRecognizer(tapGesture)
-        tapGesture.addTarget(self, action: #selector(CameraViewController.takePhoto))
-        videoButton.addGestureRecognizer(longPressGesture)
-        longPressGesture.addTarget(self, action: #selector(CameraViewController.recordVideo(_:)))
+        button.addGestureRecognizer(takePhotoGesture)
+        takePhotoGesture.addTarget(self, action: #selector(CameraViewController.takePhoto))
+        button.addGestureRecognizer(recordVideoGesture)
+        recordVideoGesture.addTarget(self, action: #selector(CameraViewController.recordVideo(_:)))
         
         promptLabel.frame.size = CGSize(width: cameraView.frame.size.width, height: 10)
         promptLabel.frame.origin = CGPoint(x: 0, y: cameraView.frame.size.height - 150)
         cameraView.addSubview(promptLabel)
         
         // The order is important.
-        videoButton.center = CGPoint(x: cameraView.center.x, y: cameraView.frame.size.height - 70)
-        cameraView.addSubview(videoButton)
-        progressBar.center = videoButton.center
+        button.center = CGPoint(x: cameraView.center.x, y: cameraView.frame.size.height - 70)
+        cameraView.addSubview(button)
+        progressBar.center = button.center
         cameraView.addSubview(progressBar)
     }
     
