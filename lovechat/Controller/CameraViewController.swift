@@ -20,7 +20,7 @@ class CameraViewController: UIViewController {
     let videoButton = { () -> UIButton in
         let button = UIButton()
         button.backgroundColor = UIColor.white
-        button.frame.size = CGSize(width: 60, height: 60)
+        button.frame.size = CGSize(width: 100, height: 100)
         button.layer.cornerRadius = button.frame.width / 2
         return button
     }()
@@ -34,22 +34,43 @@ class CameraViewController: UIViewController {
         let currentTime = Date().timeIntervalSince1970
         let fileUrl = paths[0].appendingPathComponent(String(currentTime) + ".mov")
         movieOutput.startRecording(toOutputFileURL: fileUrl, recordingDelegate: self)
+        progressBar.animate(toAngle: 360, duration: 5, completion: {
+            (flag) -> Void in
+            self.stopRecordVideo()
+        })
     }
     
     func stopRecordVideo() {
-        movieOutput.stopRecording()
-        captureSession.stopRunning()
+        if (movieOutput.isRecording) {
+            movieOutput.stopRecording()
+            captureSession.stopRunning()
+            videoButton.isEnabled = false
+        }
+        if (progressBar.isAnimating()) {
+            progressBar.pauseAnimation()
+        }
     }
+    
+    let progressBar = { () -> KDCircularProgress in
+        let progress = KDCircularProgress()
+        progress.frame.size = CGSize(width: 120, height: 120)
+        progress.startAngle = -90
+        progress.progressThickness = 0.2
+        progress.trackThickness = 0.2
+        progress.clockwise = true
+        progress.gradientRotateSpeed = 2
+        progress.roundedCorners = false
+        progress.glowMode = .forward
+        progress.glowAmount = 0.9
+        progress.set(colors: UIColor.cyan, UIColor.white, UIColor.magenta, UIColor.white, UIColor.orange)
+        return progress
+    }()
     
     @IBOutlet var cameraView: UIView!
     
     override func viewWillAppear(_ animated: Bool) {
         cameraView = view
 
-        
-        videoButton.addTarget(self, action: #selector(CameraViewController.startRecordVideo), for: .touchDown)
-        videoButton.addTarget(self, action: #selector(CameraViewController.stopRecordVideo), for: .touchUpInside)
-        
         let devices = AVCaptureDevice.devices(withMediaType: AVMediaTypeVideo)
         for device in devices! {
             if (device as AnyObject).position == AVCaptureDevicePosition.back {
@@ -76,7 +97,6 @@ class CameraViewController: UIViewController {
                             
                             videoButton.frame.origin = .zero
                         }
-                        
                         captureSession.startRunning()
                     }
                 }
@@ -86,19 +106,22 @@ class CameraViewController: UIViewController {
             }
         }
         
-        let progress = KDCircularProgress(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
-        progress.startAngle = -90
-        progress.progressThickness = 0.2
-        progress.trackThickness = 0.2
-        progress.clockwise = true
-        progress.gradientRotateSpeed = 2
-        progress.roundedCorners = false
-        progress.glowMode = .forward
-        progress.glowAmount = 0.9
-        progress.set(colors: UIColor.cyan, UIColor.white, UIColor.magenta, UIColor.white, UIColor.orange)
-//        progress.center = CGPoint(x: view.center.x, y: view.center.y + 25)
-        cameraView.addSubview(progress)
-        progress.animate(toAngle: 360, duration: 60, completion: nil)
+        videoButton.addTarget(
+            self,
+            action: #selector(CameraViewController.startRecordVideo),
+            for: .touchDown
+        )
+        videoButton.addTarget(
+            self,
+            action: #selector(CameraViewController.stopRecordVideo),
+            for: .touchUpInside
+        )
+        
+        // The order is important.
+        videoButton.center = CGPoint(x: cameraView.center.x, y: cameraView.frame.height - 70)
+        cameraView.addSubview(videoButton)
+        progressBar.center = videoButton.center
+        cameraView.addSubview(progressBar)
     }
     
 }
