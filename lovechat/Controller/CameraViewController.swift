@@ -37,8 +37,6 @@ class CameraViewController: UIViewController {
     
     let takePhotoGesture = UITapGestureRecognizer()
     
-    let recordVideoGesture = UILongPressGestureRecognizer()
-    
     func takePhoto() {
         if let videoConnection = sessionOutput.connection(withMediaType: AVMediaTypeVideo) {
             sessionOutput.captureStillImageAsynchronously(from: videoConnection) {
@@ -53,8 +51,13 @@ class CameraViewController: UIViewController {
         if (button.isEnabled == true) {
             button.isEnabled = false
         }
-
+        if (saveGesture.isEnabled == false) {
+            saveGesture.isEnabled = true
+        }
+        promptLabel.text = "Tap to save photo and hold to exit"
     }
+    
+    let recordVideoGesture = UILongPressGestureRecognizer()
     
     func recordVideo(_ sender: UILongPressGestureRecognizer) {
         if (sender.state == .began) {
@@ -93,6 +96,10 @@ class CameraViewController: UIViewController {
         if (button.isEnabled == true) {
             button.isEnabled = false
         }
+        if (saveGesture.isEnabled == false) {
+            saveGesture.isEnabled = true
+        }
+        promptLabel.text = "Tap to save video and hold to exit"
     }
     
     let progressBar = { () -> KDCircularProgress in
@@ -109,6 +116,20 @@ class CameraViewController: UIViewController {
         progress.set(colors: UIColor.cyan, UIColor.white, UIColor.magenta, UIColor.white, UIColor.orange)
         return progress
     }()
+    
+    let saveGesture = UITapGestureRecognizer()
+    
+    func save() {
+        print("save")
+        dismiss(animated: false, completion: nil)
+    }
+    
+    let exitGesture = UILongPressGestureRecognizer()
+    
+    func exit() {
+        print("exit")
+        dismiss(animated: false, completion: nil)
+    }
     
     var cameraView: UIView!
     
@@ -154,6 +175,12 @@ class CameraViewController: UIViewController {
         takePhotoGesture.addTarget(self, action: #selector(CameraViewController.takePhoto))
         button.addGestureRecognizer(recordVideoGesture)
         recordVideoGesture.addTarget(self, action: #selector(CameraViewController.recordVideo(_:)))
+        
+        cameraView.addGestureRecognizer(exitGesture)
+        exitGesture.addTarget(self, action: #selector(exit))
+        cameraView.addGestureRecognizer(saveGesture)
+        saveGesture.addTarget(self, action: #selector(save))
+        saveGesture.isEnabled = false
         
         promptLabel.frame.size = CGSize(width: cameraView.frame.size.width, height: 10)
         promptLabel.frame.origin = CGPoint(x: 0, y: cameraView.frame.size.height - 150)
