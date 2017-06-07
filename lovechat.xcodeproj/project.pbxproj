@@ -19,7 +19,6 @@
 		408B48131EE276CC00EE9281 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 408B48111EE276CC00EE9281 /* Main.storyboard */; };
 		408B48151EE276CC00EE9281 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 408B48141EE276CC00EE9281 /* Assets.xcassets */; };
 		408B48181EE276CC00EE9281 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 408B48161EE276CC00EE9281 /* LaunchScreen.storyboard */; };
-		4092DCF01EE82C0700B7130A /* CircleProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4092DCEF1EE82C0700B7130A /* CircleProgressView.swift */; };
 		409EC0C41EE3C8B800365F7E /* TimeStampCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 409EC0C31EE3C8B800365F7E /* TimeStampCollectionViewCell.swift */; };
 		409EC0C61EE3CAF400365F7E /* TimeStampSectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 409EC0C51EE3CAF400365F7E /* TimeStampSectionController.swift */; };
 		409EC0C81EE3DA8600365F7E /* PictureMessageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 409EC0C71EE3DA8600365F7E /* PictureMessageCollectionViewCell.swift */; };
@@ -56,7 +55,6 @@
 		408B48141EE276CC00EE9281 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		408B48171EE276CC00EE9281 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		408B48191EE276CC00EE9281 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		4092DCEF1EE82C0700B7130A /* CircleProgressView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CircleProgressView.swift; path = View/CircleProgressView.swift; sourceTree = "<group>"; };
 		409EC0C31EE3C8B800365F7E /* TimeStampCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TimeStampCollectionViewCell.swift; path = Cell/TimeStampCollectionViewCell.swift; sourceTree = "<group>"; };
 		409EC0C51EE3CAF400365F7E /* TimeStampSectionController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TimeStampSectionController.swift; path = Controller/TimeStampSectionController.swift; sourceTree = "<group>"; };
 		409EC0C71EE3DA8600365F7E /* PictureMessageCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PictureMessageCollectionViewCell.swift; path = Cell/PictureMessageCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -144,7 +142,6 @@
 			children = (
 				403E2BBA1EE4294A00EF961D /* RecordAnimationView.swift */,
 				40AF90291EE5B4F300F801A9 /* VerticallyCenteredTextView.swift */,
-				4092DCEF1EE82C0700B7130A /* CircleProgressView.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -337,7 +334,6 @@
 			files = (
 				40AF902A1EE5B4F300F801A9 /* VerticallyCenteredTextView.swift in Sources */,
 				40BF9FBD1EE4F737002BEACB /* VoiceMessageModel.swift in Sources */,
-				4092DCF01EE82C0700B7130A /* CircleProgressView.swift in Sources */,
 				403B20501EE2B09700CBE09C /* ChatViewController.swift in Sources */,
 				40AF902E1EE5BC1900F801A9 /* PictureMessageDetailViewController.swift in Sources */,
 				401B71591EE5751B001BE55E /* VoiceMessageSectionController.swift in Sources */,

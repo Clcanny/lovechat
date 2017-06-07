@@ -8,5 +8,6 @@ target 'lovechat' do
   # Pods for lovechat
   pod 'IGListKit', '~> 3.0'
   pod 'SnapKit', '~> 3.2.0'
+  pod 'KDCircularProgress'
 
 end

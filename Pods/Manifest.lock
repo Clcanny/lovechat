@@ -4,16 +4,19 @@ PODS:
   - IGListKit/Default (3.0.0):
     - IGListKit/Diffing
   - IGListKit/Diffing (3.0.0)
+  - KDCircularProgress (1.5.2)
   - SnapKit (3.2.0)
 
 DEPENDENCIES:
   - IGListKit (~> 3.0)
+  - KDCircularProgress
   - SnapKit (~> 3.2.0)
 
 SPEC CHECKSUMS:
   IGListKit: 9eab6856a15fa25ad72018ff9d9eb2178c240fff
+  KDCircularProgress: 12f677b2deb02409ab48c6cae1898d146b8ad549
   SnapKit: 1ca44df72cfa543218d177cb8aab029d10d86ea7
 
-PODFILE CHECKSUM: a07dc67797f73814f50fe03d7e8d682f9a2607e6
+PODFILE CHECKSUM: 4b1e9b725cfd4a77e4f70bdf108f4098125c496a
 
 COCOAPODS: 1.2.1
