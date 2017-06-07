@@ -51,9 +51,8 @@ class CameraViewController: UIViewController {
         if (button.isEnabled == true) {
             button.isEnabled = false
         }
-        if (saveGesture.isEnabled == false) {
-            saveGesture.isEnabled = true
-        }
+        saveGesture.removeTarget(self, action: #selector(changeCamera))
+        saveGesture.addTarget(self, action: #selector(save))
         promptLabel.text = "Tap to save photo and hold to exit"
     }
     
@@ -96,9 +95,8 @@ class CameraViewController: UIViewController {
         if (button.isEnabled == true) {
             button.isEnabled = false
         }
-        if (saveGesture.isEnabled == false) {
-            saveGesture.isEnabled = true
-        }
+        saveGesture.removeTarget(self, action: #selector(changeCamera))
+        saveGesture.addTarget(self, action: #selector(save))
         promptLabel.text = "Tap to save video and hold to exit"
     }
     
@@ -119,15 +117,22 @@ class CameraViewController: UIViewController {
     
     let saveGesture = UITapGestureRecognizer()
     
+    func changeCamera() {
+        print("change camera")
+        let currentCameraInput = captureSession.inputs[0]
+        captureSession.removeInput(currentCameraInput as! AVCaptureInput)
+        
+        var newCamera: AVCaptureDevice!
+//        newCamera = 
+    }
+    
     func save() {
-        print("save")
         dismiss(animated: false, completion: nil)
     }
     
     let exitGesture = UILongPressGestureRecognizer()
     
     func exit() {
-        print("exit")
         dismiss(animated: false, completion: nil)
     }
     
@@ -179,8 +184,7 @@ class CameraViewController: UIViewController {
         cameraView.addGestureRecognizer(exitGesture)
         exitGesture.addTarget(self, action: #selector(exit))
         cameraView.addGestureRecognizer(saveGesture)
-        saveGesture.addTarget(self, action: #selector(save))
-        saveGesture.isEnabled = false
+        saveGesture.addTarget(self, action: #selector(changeCamera))
         
         promptLabel.frame.size = CGSize(width: cameraView.frame.size.width, height: 10)
         promptLabel.frame.origin = CGPoint(x: 0, y: cameraView.frame.size.height - 150)
