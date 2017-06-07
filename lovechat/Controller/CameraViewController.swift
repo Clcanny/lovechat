@@ -25,6 +25,30 @@ class CameraViewController: UIViewController {
         return button
     }()
     
+    let tapGesture = UITapGestureRecognizer()
+    
+    let longPressGesture = UILongPressGestureRecognizer()
+    
+    func takePhoto() {
+        if let videoConnection = sessionOutput.connection(withMediaType: AVMediaTypeVideo) {
+            sessionOutput.captureStillImageAsynchronously(from: videoConnection) {
+                (imageDataSampleBuffer, error) -> Void in
+                let imageData = AVCaptureStillImageOutput.jpegStillImageNSDataRepresentation(imageDataSampleBuffer)
+                UIImageWriteToSavedPhotosAlbum(UIImage(data: imageData!)!, nil, nil, nil)
+            }
+        }
+        videoButton.isEnabled = false
+    }
+    
+    func recordVideo(_ sender: UILongPressGestureRecognizer) {
+        if (sender.state == .began) {
+            startRecordVideo()
+        }
+        else if (sender.state == .ended) {
+            stopRecordVideo()
+        }
+    }
+    
     func startRecordVideo() {
         captureSession.addOutput(movieOutput)
         let paths = FileManager.default.urls(
@@ -106,16 +130,10 @@ class CameraViewController: UIViewController {
             }
         }
         
-        videoButton.addTarget(
-            self,
-            action: #selector(CameraViewController.startRecordVideo),
-            for: .touchDown
-        )
-        videoButton.addTarget(
-            self,
-            action: #selector(CameraViewController.stopRecordVideo),
-            for: .touchUpInside
-        )
+        videoButton.addGestureRecognizer(tapGesture)
+        tapGesture.addTarget(self, action: #selector(CameraViewController.takePhoto))
+        videoButton.addGestureRecognizer(longPressGesture)
+        longPressGesture.addTarget(self, action: #selector(CameraViewController.recordVideo(_:)))
         
         // The order is important.
         videoButton.center = CGPoint(x: cameraView.center.x, y: cameraView.frame.height - 70)
