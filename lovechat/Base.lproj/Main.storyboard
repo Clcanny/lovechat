@@ -137,15 +137,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ren-PA-Bwr">
-                                <rect key="frame" x="69" y="556" width="242" height="91"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="42"/>
-                                <state key="normal" title="Button"/>
-                                <connections>
-                                    <action selector="action:" destination="raK-8d-U8p" eventType="touchUpInside" id="Ko9-m5-TE6"/>
-                                    <action selector="startRecordVideo:" destination="raK-8d-U8p" eventType="touchDown" id="cFn-ud-8lc"/>
-                                </connections>
-                            </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XD4-1D-hOW">
                                 <rect key="frame" x="16" y="28" width="343" height="520"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -153,14 +144,10 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="bottom" secondItem="ren-PA-Bwr" secondAttribute="bottom" constant="20" symbolic="YES" id="5Ut-cb-7xa"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="ren-PA-Bwr" secondAttribute="trailing" constant="48" id="FK2-Gx-ohe"/>
-                            <constraint firstItem="ren-PA-Bwr" firstAttribute="top" secondItem="XD4-1D-hOW" secondAttribute="bottom" constant="8" symbolic="YES" id="Gdo-Dl-Zff"/>
                             <constraint firstItem="XD4-1D-hOW" firstAttribute="trailing" secondItem="cjO-uP-NCV" secondAttribute="trailingMargin" id="JVV-q0-22K"/>
                             <constraint firstAttribute="bottom" secondItem="XD4-1D-hOW" secondAttribute="bottom" constant="119" id="S9x-Zg-HHC"/>
                             <constraint firstItem="XD4-1D-hOW" firstAttribute="leading" secondItem="cjO-uP-NCV" secondAttribute="leadingMargin" id="Z6d-Ax-Aqr"/>
                             <constraint firstItem="XD4-1D-hOW" firstAttribute="top" secondItem="Bes-X6-jat" secondAttribute="bottom" constant="8" symbolic="YES" id="ZWG-0T-bc1"/>
-                            <constraint firstItem="ren-PA-Bwr" firstAttribute="leading" secondItem="cjO-uP-NCV" secondAttribute="leadingMargin" constant="53" id="aAj-dg-Xpz"/>
                         </constraints>
                     </view>
                     <connections>
