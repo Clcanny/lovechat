@@ -164,7 +164,7 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="cameraView" destination="XD4-1D-hOW" id="s9e-U7-1lf"/>
+                        <outlet property="cameraView" destination="XD4-1D-hOW" id="HIB-cz-0bX"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="giJ-xL-FqW" userLabel="First Responder" sceneMemberID="firstResponder"/>
