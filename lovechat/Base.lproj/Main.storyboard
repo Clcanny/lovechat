@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="raK-8d-U8p">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="tuU-8Z-4dJ">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -47,7 +47,7 @@
                                 <rect key="frame" x="244" y="560" width="115" height="50"/>
                                 <state key="normal" title="record video"/>
                                 <connections>
-                                    <action selector="recordVideo_:" destination="BYZ-38-t0r" eventType="touchUpInside" id="aZo-hH-ahA"/>
+                                    <segue destination="raK-8d-U8p" kind="presentation" id="2c7-ZH-HP3"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -136,23 +136,8 @@
                     <view key="view" contentMode="scaleToFill" id="cjO-uP-NCV">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XD4-1D-hOW">
-                                <rect key="frame" x="16" y="28" width="343" height="520"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </view>
-                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="XD4-1D-hOW" firstAttribute="trailing" secondItem="cjO-uP-NCV" secondAttribute="trailingMargin" id="JVV-q0-22K"/>
-                            <constraint firstAttribute="bottom" secondItem="XD4-1D-hOW" secondAttribute="bottom" constant="119" id="S9x-Zg-HHC"/>
-                            <constraint firstItem="XD4-1D-hOW" firstAttribute="leading" secondItem="cjO-uP-NCV" secondAttribute="leadingMargin" id="Z6d-Ax-Aqr"/>
-                            <constraint firstItem="XD4-1D-hOW" firstAttribute="top" secondItem="Bes-X6-jat" secondAttribute="bottom" constant="8" symbolic="YES" id="ZWG-0T-bc1"/>
-                        </constraints>
                     </view>
-                    <connections>
-                        <outlet property="cameraView" destination="XD4-1D-hOW" id="HIB-cz-0bX"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="giJ-xL-FqW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

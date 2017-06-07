@@ -17,6 +17,16 @@ class CameraViewController: UIViewController {
     var movieOutput = AVCaptureMovieFileOutput()
     var previewLayer = AVCaptureVideoPreviewLayer()
     
+    let promptLabel = { () -> UILabel in
+        let label = UILabel()
+        label.backgroundColor = UIColor.clear
+        label.textAlignment = .center
+        label.font = AppFont(size: 10)
+        label.textColor = UIColor.white
+        label.text = "Tap to take photo and hold to record video"
+        return label
+    }()
+    
     let videoButton = { () -> UIButton in
         let button = UIButton()
         button.backgroundColor = UIColor.white
@@ -37,7 +47,13 @@ class CameraViewController: UIViewController {
                 UIImageWriteToSavedPhotosAlbum(UIImage(data: imageData!)!, nil, nil, nil)
             }
         }
-        videoButton.isEnabled = false
+        if (captureSession.isRunning) {
+            captureSession.stopRunning()
+        }
+        if (videoButton.isEnabled == true) {
+            videoButton.isEnabled = false
+        }
+
     }
     
     func recordVideo(_ sender: UILongPressGestureRecognizer) {
@@ -67,11 +83,15 @@ class CameraViewController: UIViewController {
     func stopRecordVideo() {
         if (movieOutput.isRecording) {
             movieOutput.stopRecording()
+        }
+        if (captureSession.isRunning) {
             captureSession.stopRunning()
-            videoButton.isEnabled = false
         }
         if (progressBar.isAnimating()) {
             progressBar.pauseAnimation()
+        }
+        if (videoButton.isEnabled == true) {
+            videoButton.isEnabled = false
         }
     }
     
@@ -90,7 +110,7 @@ class CameraViewController: UIViewController {
         return progress
     }()
     
-    @IBOutlet var cameraView: UIView!
+    var cameraView: UIView!
     
     override func viewWillAppear(_ animated: Bool) {
         cameraView = view
@@ -135,8 +155,12 @@ class CameraViewController: UIViewController {
         videoButton.addGestureRecognizer(longPressGesture)
         longPressGesture.addTarget(self, action: #selector(CameraViewController.recordVideo(_:)))
         
+        promptLabel.frame.size = CGSize(width: cameraView.frame.size.width, height: 10)
+        promptLabel.frame.origin = CGPoint(x: 0, y: cameraView.frame.size.height - 150)
+        cameraView.addSubview(promptLabel)
+        
         // The order is important.
-        videoButton.center = CGPoint(x: cameraView.center.x, y: cameraView.frame.height - 70)
+        videoButton.center = CGPoint(x: cameraView.center.x, y: cameraView.frame.size.height - 70)
         cameraView.addSubview(videoButton)
         progressBar.center = videoButton.center
         cameraView.addSubview(progressBar)
