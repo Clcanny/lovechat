@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		401B71591EE5751B001BE55E /* VoiceMessageSectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 401B71581EE5751B001BE55E /* VoiceMessageSectionController.swift */; };
+		40358A6C1EE928D200A8CEF4 /* ExtensionNSObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40358A6B1EE928D200A8CEF4 /* ExtensionNSObject.swift */; };
+		40358A6E1EE9293400A8CEF4 /* MessageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40358A6D1EE9293400A8CEF4 /* MessageModel.swift */; };
+		40358A701EE92B0200A8CEF4 /* DismissToChatViewControllerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40358A6F1EE92B0200A8CEF4 /* DismissToChatViewControllerProtocol.swift */; };
 		403B20501EE2B09700CBE09C /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 403B204F1EE2B09700CBE09C /* ChatViewController.swift */; };
 		403B20521EE2BA8B00CBE09C /* TextMessageSectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 403B20511EE2BA8B00CBE09C /* TextMessageSectionController.swift */; };
 		403B20551EE2BC8D00CBE09C /* TextMessageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 403B20541EE2BC8D00CBE09C /* TextMessageCollectionViewCell.swift */; };
@@ -42,6 +45,9 @@
 /* Begin PBXFileReference section */
 		24CC1578EBBAC6566656A6D9 /* Pods-lovechat.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-lovechat.debug.xcconfig"; path = "Pods/Target Support Files/Pods-lovechat/Pods-lovechat.debug.xcconfig"; sourceTree = "<group>"; };
 		401B71581EE5751B001BE55E /* VoiceMessageSectionController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = VoiceMessageSectionController.swift; path = Controller/VoiceMessageSectionController.swift; sourceTree = "<group>"; };
+		40358A6B1EE928D200A8CEF4 /* ExtensionNSObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ExtensionNSObject.swift; path = Util/ExtensionNSObject.swift; sourceTree = "<group>"; };
+		40358A6D1EE9293400A8CEF4 /* MessageModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MessageModel.swift; path = Model/MessageModel.swift; sourceTree = "<group>"; };
+		40358A6F1EE92B0200A8CEF4 /* DismissToChatViewControllerProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DismissToChatViewControllerProtocol.swift; path = Protocol/DismissToChatViewControllerProtocol.swift; sourceTree = "<group>"; };
 		403B204F1EE2B09700CBE09C /* ChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ChatViewController.swift; path = Controller/ChatViewController.swift; sourceTree = "<group>"; };
 		403B20511EE2BA8B00CBE09C /* TextMessageSectionController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TextMessageSectionController.swift; path = Controller/TextMessageSectionController.swift; sourceTree = "<group>"; };
 		403B20541EE2BC8D00CBE09C /* TextMessageCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TextMessageCollectionViewCell.swift; path = Cell/TextMessageCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -123,6 +129,7 @@
 				409EC0C91EE3E06D00365F7E /* PictureSize.swift */,
 				40B1BF1A1EE3ED83000B335E /* ExtensionUIImage.swift */,
 				40530DA51EE53BFE00F33C76 /* ExtensionString.swift */,
+				40358A6B1EE928D200A8CEF4 /* ExtensionNSObject.swift */,
 			);
 			name = Util;
 			sourceTree = "<group>";
@@ -133,6 +140,7 @@
 				403B20621EE3383600CBE09C /* TextMessageModel.swift */,
 				409EC0CB1EE3E1C700365F7E /* PictureMessageModel.swift */,
 				40BF9FBC1EE4F737002BEACB /* VoiceMessageModel.swift */,
+				40358A6D1EE9293400A8CEF4 /* MessageModel.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -187,6 +195,7 @@
 			children = (
 				40A8454B1EE5489600837060 /* TimeOutProtocol.swift */,
 				40AF90271EE5A8D400F801A9 /* SegueFromCellProtocol.swift */,
+				40358A6F1EE92B0200A8CEF4 /* DismissToChatViewControllerProtocol.swift */,
 			);
 			name = Protocol;
 			sourceTree = "<group>";
@@ -338,6 +347,7 @@
 				40AF902E1EE5BC1900F801A9 /* PictureMessageDetailViewController.swift in Sources */,
 				401B71591EE5751B001BE55E /* VoiceMessageSectionController.swift in Sources */,
 				409EC0CC1EE3E1C700365F7E /* PictureMessageModel.swift in Sources */,
+				40358A6C1EE928D200A8CEF4 /* ExtensionNSObject.swift in Sources */,
 				409EC0D11EE3E50C00365F7E /* Fonts.swift in Sources */,
 				409EC0C41EE3C8B800365F7E /* TimeStampCollectionViewCell.swift in Sources */,
 				403B20521EE2BA8B00CBE09C /* TextMessageSectionController.swift in Sources */,
@@ -354,9 +364,11 @@
 				40A8454C1EE5489600837060 /* TimeOutProtocol.swift in Sources */,
 				409EC0CE1EE3E2B200365F7E /* PictureMessageSectionController.swift in Sources */,
 				409EC0D21EE3E50C00365F7E /* TextSize.swift in Sources */,
+				40358A6E1EE9293400A8CEF4 /* MessageModel.swift in Sources */,
 				40BF9FBB1EE4F719002BEACB /* VoiceMessageCollectionViewCell.swift in Sources */,
 				409EC0C61EE3CAF400365F7E /* TimeStampSectionController.swift in Sources */,
 				403E2BBB1EE4294A00EF961D /* RecordAnimationView.swift in Sources */,
+				40358A701EE92B0200A8CEF4 /* DismissToChatViewControllerProtocol.swift in Sources */,
 				403B20551EE2BC8D00CBE09C /* TextMessageCollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

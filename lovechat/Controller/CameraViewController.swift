@@ -182,6 +182,10 @@ class CameraViewController: UIViewController {
         setCamera()
     }
     
+    var delegate: DismissToChatViewControllerProtocol!
+    
+    var savePhotoOrVideo: Bool?
+    
     func save() {
         dismiss(animated: false, completion: nil)
     }

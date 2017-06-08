@@ -333,3 +333,11 @@ extension ChatViewController: UIImagePickerControllerDelegate {
 
 extension ChatViewController: UINavigationControllerDelegate {
 }
+
+extension ChatViewController: DismissToChatViewControllerProtocol {
+    
+    func save(_ messageModel: MessageModel) {
+        objects.append(messageModel)
+    }
+    
+}

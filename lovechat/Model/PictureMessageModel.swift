@@ -7,24 +7,19 @@
 //
 
 import Foundation
-import IGListKit
+import UIKit
 
-class PictureMessageModel: NSObject {
+class PictureMessageModel: MessageModel {
     
     private var message: UIImage?
-    private var isReceiver: Bool?
     
     init(message: UIImage, _ isReceiver: Bool) {
+        super.init(isReceiver)
         self.message = message
-        self.isReceiver = isReceiver
     }
     
     public func getMessage() -> UIImage {
         return message!
-    }
-    
-    public func getLR() -> Bool {
-        return isReceiver!
     }
     
 }

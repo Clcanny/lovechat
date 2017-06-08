@@ -7,18 +7,17 @@
 //
 
 import Foundation
-import IGListKit
+import UIKit
 
-class VoiceMessageModel: NSObject {
+class VoiceMessageModel: MessageModel {
     
     private var message: URL?
     private var time: Int?
-    private var isReceiver: Bool?
     
     init(message: URL, time: Int, _ isReceiver: Bool) {
+        super.init(isReceiver)
         self.message = message
         self.time = time
-        self.isReceiver = isReceiver
     }
     
     public func getMessage() -> URL {
@@ -27,10 +26,6 @@ class VoiceMessageModel: NSObject {
     
     public func getTime() -> Int {
         return time!
-    }
-    
-    public func getLR() -> Bool {
-        return isReceiver!
     }
     
 }

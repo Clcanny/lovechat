@@ -7,36 +7,19 @@
 //
 
 import Foundation
-import IGListKit
+import UIKit
 
-class TextMessageModel: NSObject {
+class TextMessageModel: MessageModel {
     
     private var message: String?
-    private var isReceiver: Bool?
     
     init(message: String, _ isReceiver: Bool) {
+        super.init(isReceiver)
         self.message = message
-        self.isReceiver = isReceiver
     }
     
     public func getMessage() -> String {
         return message!
-    }
-    
-    public func getLR() -> Bool {
-        return isReceiver!
-    }
-    
-}
-
-extension NSObject: ListDiffable {
-    
-    public func diffIdentifier() -> NSObjectProtocol {
-        return self
-    }
-    
-    public func isEqual(toDiffableObject object: ListDiffable?) -> Bool {
-        return isEqual(object)
     }
     
 }
