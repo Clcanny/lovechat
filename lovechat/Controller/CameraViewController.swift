@@ -17,6 +17,46 @@ class CameraViewController: UIViewController {
     var movieOutput = AVCaptureMovieFileOutput()
     var previewLayer = AVCaptureVideoPreviewLayer()
     
+    let videoDevices = AVCaptureDevice.devices(withMediaType: AVMediaTypeVideo)
+    
+    var cameraPosition: AVCaptureDevicePosition!
+    
+    func setCamera() {
+        for device in videoDevices! {
+            if (device as AnyObject).position == cameraPosition {
+                do {
+                    let input = try AVCaptureDeviceInput(device: device as! AVCaptureDevice)
+                    if captureSession.canAddInput(input){
+                        captureSession.addInput(input)
+                        sessionOutput.outputSettings = [AVVideoCodecKey : AVVideoCodecJPEG]
+                        
+                        if captureSession.canAddOutput(sessionOutput){
+                            captureSession.addOutput(sessionOutput)
+                            
+                            previewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
+                            previewLayer.videoGravity = AVLayerVideoGravityResizeAspectFill
+                            previewLayer.connection.videoOrientation = AVCaptureVideoOrientation.portrait
+                            
+                            previewLayer.position = CGPoint(
+                                x: cameraView.frame.width / 2,
+                                y: cameraView.frame.height / 2
+                            )
+                            previewLayer.bounds = cameraView.frame
+                            cameraView.layer.addSublayer(previewLayer)
+                            cameraView.addSubview(button)
+                            
+                            button.frame.origin = .zero
+                        }
+                        captureSession.startRunning()
+                    }
+                }
+                catch {
+                    fatalError()
+                }
+            }
+        }
+    }
+    
     let promptLabel = { () -> UILabel in
         let label = UILabel()
         label.backgroundColor = UIColor.clear
@@ -118,12 +158,15 @@ class CameraViewController: UIViewController {
     let saveGesture = UITapGestureRecognizer()
     
     func changeCamera() {
-        print("change camera")
-        let currentCameraInput = captureSession.inputs[0]
-        captureSession.removeInput(currentCameraInput as! AVCaptureInput)
-        
-        var newCamera: AVCaptureDevice!
-//        newCamera = 
+        let currentCameraInput = captureSession.inputs[0] as! AVCaptureInput
+        captureSession.removeInput(currentCameraInput)
+        if cameraPosition == AVCaptureDevicePosition.back {
+            cameraPosition = AVCaptureDevicePosition.front
+        }
+        else {
+            cameraPosition = AVCaptureDevicePosition.back
+        }
+        setCamera()
     }
     
     func save() {
@@ -140,41 +183,9 @@ class CameraViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         cameraView = view
-
-        let devices = AVCaptureDevice.devices(withMediaType: AVMediaTypeVideo)
-        for device in devices! {
-            if (device as AnyObject).position == AVCaptureDevicePosition.back {
-                do {
-                    let input = try AVCaptureDeviceInput(device: device as! AVCaptureDevice)
-                    if captureSession.canAddInput(input){   
-                        captureSession.addInput(input)
-                        sessionOutput.outputSettings = [AVVideoCodecKey : AVVideoCodecJPEG]
-                        
-                        if captureSession.canAddOutput(sessionOutput){
-                            captureSession.addOutput(sessionOutput)
-                            
-                            previewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
-                            previewLayer.videoGravity = AVLayerVideoGravityResizeAspectFill
-                            previewLayer.connection.videoOrientation = AVCaptureVideoOrientation.portrait
-                            
-                            previewLayer.position = CGPoint(
-                                x: cameraView.frame.width / 2,
-                                y: cameraView.frame.height / 2
-                            )
-                            previewLayer.bounds = cameraView.frame
-                            cameraView.layer.addSublayer(previewLayer)
-                            cameraView.addSubview(button)
-                            
-                            button.frame.origin = .zero
-                        }
-                        captureSession.startRunning()
-                    }
-                }
-                catch {
-                    fatalError()
-                }
-            }
-        }
+        
+        cameraPosition = AVCaptureDevicePosition.back
+        setCamera()
         
         button.addGestureRecognizer(takePhotoGesture)
         takePhotoGesture.addTarget(self, action: #selector(CameraViewController.takePhoto))
