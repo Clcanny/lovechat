@@ -17,6 +17,18 @@ class CameraViewController: UIViewController {
     var movieOutput = AVCaptureMovieFileOutput()
     var previewLayer = AVCaptureVideoPreviewLayer()
     
+    let audioDevice = AVCaptureDevice.defaultDevice(withMediaType: AVMediaTypeAudio)
+    
+    func setAudioRecorder() {
+        do {
+            let input = try AVCaptureDeviceInput(device: audioDevice!)
+            captureSession.addInput(input)
+        }
+        catch {
+            fatalError()
+        }
+    }
+    
     let videoDevices = AVCaptureDevice.devices(withMediaType: AVMediaTypeVideo)
     
     var cameraPosition: AVCaptureDevicePosition!
@@ -108,6 +120,7 @@ class CameraViewController: UIViewController {
     }
     
     func startRecordVideo() {
+        setAudioRecorder()
         captureSession.addOutput(movieOutput)
         let paths = FileManager.default.urls(
             for: .documentDirectory,
