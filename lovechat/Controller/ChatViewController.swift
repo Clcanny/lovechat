@@ -296,6 +296,11 @@ extension ChatViewController: SegueFromCellProtocol {
                 controller.image = sender as? UIImage
             }
         }
+        else if segue.identifier == "PresentToCameraView" {
+            if let controller = segue.destination as? CameraViewController {
+                controller.delegate = self
+            }
+        }
     }
     
 }
@@ -338,6 +343,7 @@ extension ChatViewController: DismissToChatViewControllerProtocol {
     
     func save(_ messageModel: MessageModel) {
         objects.append(messageModel)
+        adapter.performUpdates(animated: false, completion: nil)
     }
     
 }

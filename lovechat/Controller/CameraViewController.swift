@@ -95,6 +95,7 @@ class CameraViewController: UIViewController {
                 (imageDataSampleBuffer, error) -> Void in
                 let imageData = AVCaptureStillImageOutput.jpegStillImageNSDataRepresentation(imageDataSampleBuffer)
                 UIImageWriteToSavedPhotosAlbum(UIImage(data: imageData!)!, nil, nil, nil)
+                self.delegate.save(PictureMessageModel(message: UIImage(data: imageData!)!, false))
             }
         }
         if (captureSession.isRunning) {

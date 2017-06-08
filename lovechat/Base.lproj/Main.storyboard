@@ -47,7 +47,7 @@
                                 <rect key="frame" x="244" y="560" width="115" height="50"/>
                                 <state key="normal" title="record video"/>
                                 <connections>
-                                    <segue destination="raK-8d-U8p" kind="presentation" id="2c7-ZH-HP3"/>
+                                    <segue destination="raK-8d-U8p" kind="presentation" identifier="PresentToCameraView" id="2c7-ZH-HP3"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -141,7 +141,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="giJ-xL-FqW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="204" y="972.86356821589209"/>
+            <point key="canvasLocation" x="330" y="961"/>
         </scene>
         <!--Picture Message Detail View Controller-->
         <scene sceneID="imo-qZ-4Wq">
