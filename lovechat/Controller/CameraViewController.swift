@@ -93,9 +93,20 @@ class CameraViewController: UIViewController {
         if let videoConnection = sessionOutput.connection(withMediaType: AVMediaTypeVideo) {
             sessionOutput.captureStillImageAsynchronously(from: videoConnection) {
                 (imageDataSampleBuffer, error) -> Void in
-                let imageData = AVCaptureStillImageOutput.jpegStillImageNSDataRepresentation(imageDataSampleBuffer)
-                UIImageWriteToSavedPhotosAlbum(UIImage(data: imageData!)!, nil, nil, nil)
-                self.delegate.save(PictureMessageModel(message: UIImage(data: imageData!)!, false))
+                if error != nil {
+                    print(error.debugDescription)
+                }
+                if let imageData = AVCaptureStillImageOutput.jpegStillImageNSDataRepresentation(imageDataSampleBuffer) {
+                    let url = FileManager.getUrlByCurrentTime(suffix: "jpeg")
+                    do {
+                        try imageData.write(to: url)
+                    }
+                    catch {
+                        fatalError("can't not save image")
+                    }
+                    //                UIImageWriteToSavedPhotosAlbum(UIImage(data: imageData!)!, nil, nil, nil)
+                    self.delegate.save(PictureMessageModel(message: url, false))
+                }
             }
         }
         if (captureSession.isRunning) {
@@ -123,12 +134,7 @@ class CameraViewController: UIViewController {
     func startRecordVideo() {
         setAudioRecorder()
         captureSession.addOutput(movieOutput)
-        let paths = FileManager.default.urls(
-            for: .documentDirectory,
-            in: .userDomainMask
-        )
-        let currentTime = Date().timeIntervalSince1970
-        let fileUrl = paths[0].appendingPathComponent(String(currentTime) + ".mov")
+        let fileUrl = FileManager.getUrlByCurrentTime(suffix: "mov")
         movieOutput.startRecording(toOutputFileURL: fileUrl, recordingDelegate: self)
         progressBar.animate(toAngle: 360, duration: 5, completion: {
             (flag) -> Void in
@@ -165,7 +171,10 @@ class CameraViewController: UIViewController {
         progress.roundedCorners = false
         progress.glowMode = .forward
         progress.glowAmount = 0.9
-        progress.set(colors: UIColor.cyan, UIColor.white, UIColor.magenta, UIColor.white, UIColor.orange)
+        progress.set(
+            colors: UIColor.cyan, UIColor.white,
+            UIColor.magenta, UIColor.white, UIColor.orange
+        )
         return progress
     }()
     

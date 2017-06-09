@@ -11,15 +11,25 @@ import UIKit
 
 class PictureMessageModel: MessageModel {
     
-    private var message: UIImage?
+    private var message: URL?
     
-    init(message: UIImage, _ isReceiver: Bool) {
+    private var image: UIImage?
+    
+    init(message: URL, _ isReceiver: Bool) {
         super.init(isReceiver)
         self.message = message
     }
     
-    public func getMessage() -> UIImage {
+    public func getMessage() -> URL {
         return message!
+    }
+    
+    public func setImage(image: UIImage) {
+        self.image = image
+    }
+    
+    public func getImage() -> UIImage {
+        return image!
     }
     
 }

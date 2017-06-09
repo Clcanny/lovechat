@@ -8,6 +8,7 @@
 
 import UIKit
 import IGListKit
+import Async
 
 class PictureMessageSectionController: ListSectionController {
     
@@ -16,11 +17,18 @@ class PictureMessageSectionController: ListSectionController {
     private var psize: CGSize?
     
     public var delegate: SegueFromCellProtocol?
-
+    
+    private let asyncGroup = AsyncGroup()
+    private var image: UIImage?
+    
     init(pictureMessageModel: PictureMessageModel) {
         super.init()
         self.pictureMessageModel = pictureMessageModel
         inset = UIEdgeInsets(top: 0, left: 0, bottom: 5, right: 0)
+        image = pictureMessageModel.getImage()
+//        asyncGroup.background {
+//            self.image = UIImage(contentsOfFile: pictureMessageModel.getMessage().path)!
+//            }
     }
     
     override func numberOfItems() -> Int {
@@ -28,13 +36,14 @@ class PictureMessageSectionController: ListSectionController {
     }
     
     override func sizeForItem(at index: Int) -> CGSize {
-        guard let context = collectionContext, let picture = pictureMessageModel?.getMessage() else {
+        guard let context = collectionContext else {
             return .zero
         }
         
+//        asyncGroup.wait()
         psize = pictureSize(
             maxWidth: TextMessageCollectionViewCell.maxWidth,
-            picture: picture
+            picture: image!
         )
         let pictureHeight = psize!.height
         
@@ -51,7 +60,8 @@ class PictureMessageSectionController: ListSectionController {
             ) as! PictureMessageCollectionViewCell
         // The order is important.
         cell.pictureSize = psize!
-        cell.picture = pictureMessageModel!.getMessage()
+//        asyncGroup.wait()
+        cell.picture = image!
         if (pictureMessageModel!.getLR()) {
             cell.keepRight()
         }

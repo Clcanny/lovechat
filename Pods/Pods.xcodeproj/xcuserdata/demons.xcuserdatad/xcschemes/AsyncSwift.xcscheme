@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "282152E79D7FDE8A7485EFA421E707E7"
-               BuildableName = "Pods_lovechat.framework"
-               BlueprintName = "Pods-lovechat"
+               BlueprintIdentifier = "7F45F2F21482C3777494ACE42307212D"
+               BuildableName = "Async.framework"
+               BlueprintName = "AsyncSwift"
                ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -45,9 +45,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "282152E79D7FDE8A7485EFA421E707E7"
-            BuildableName = "Pods_lovechat.framework"
-            BlueprintName = "Pods-lovechat"
+            BlueprintIdentifier = "7F45F2F21482C3777494ACE42307212D"
+            BuildableName = "Async.framework"
+            BlueprintName = "AsyncSwift"
             ReferencedContainer = "container:Pods.xcodeproj">
          </BuildableReference>
       </MacroExpansion>

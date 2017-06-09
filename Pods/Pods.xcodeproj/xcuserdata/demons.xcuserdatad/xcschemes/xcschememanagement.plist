@@ -4,6 +4,11 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>AsyncSwift.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>IGListKit.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -32,17 +37,22 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>282152E79D7FDE8A7485EFA421E707E7</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>2842E4E1544BE6F771AC67D1F62D372B</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>322428ECC8C5EC71F14C92233787C7AC</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>97619482FFE5A9D694AC60491FD09D47</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>D9636F38D88021929A0A442AF96C9FB4</key>
+		<key>7F45F2F21482C3777494ACE42307212D</key>
 		<dict>
 			<key>primary</key>
 			<true/>
