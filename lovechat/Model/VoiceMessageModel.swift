@@ -9,19 +9,13 @@
 import Foundation
 import UIKit
 
-class VoiceMessageModel: MessageModel {
+class VoiceMessageModel: UrlMessageModel {
     
-    private var message: URL?
     private var time: Int?
     
     init(message: URL, time: Int, _ isReceiver: Bool) {
-        super.init(isReceiver)
-        self.message = message
+        super.init(message: message, isReceiver)
         self.time = time
-    }
-    
-    public func getMessage() -> URL {
-        return message!
     }
     
     public func getTime() -> Int {

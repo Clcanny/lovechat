@@ -11,19 +11,13 @@ import UIKit
 import Async
 import AVFoundation
 
-class VideoMessageModel: MessageModel {
+class VideoMessageModel: UrlMessageModel {
     
-    private var message: URL?
     private var preview: UIImage?
     private let group = AsyncGroup()
     
-    init(message: URL, _ isReceiver: Bool) {
-        super.init(isReceiver)
-        self.message = message
-    }
-    
-    public func getMessage() -> URL {
-        return message!
+    override init(message: URL, _ isReceiver: Bool) {
+        super.init(message: message, isReceiver)
     }
     
     public func getPreview() -> UIImage {

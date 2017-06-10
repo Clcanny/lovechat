@@ -10,24 +10,17 @@ import Foundation
 import UIKit
 import Async
 
-class PictureMessageModel: MessageModel {
-    
-    private var message: URL?
+class PictureMessageModel: UrlMessageModel {
     
     private var image: UIImage?
     
     let group = AsyncGroup()
     
-    init(message: URL, _ isReceiver: Bool) {
-        super.init(isReceiver)
-        self.message = message
+    override init(message: URL, _ isReceiver: Bool) {
+        super.init(message: message, isReceiver)
         group.background {
             self.setImage(image: UIImage(contentsOfFile: self.getMessage().path)!)
         }
-    }
-    
-    public func getMessage() -> URL {
-        return message!
     }
     
     public func setImage(image: UIImage) {
