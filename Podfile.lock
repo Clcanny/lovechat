@@ -6,20 +6,25 @@ PODS:
     - IGListKit/Diffing
   - IGListKit/Diffing (3.0.0)
   - KDCircularProgress (1.5.2)
+  - SDWebImage (4.0.0):
+    - SDWebImage/Core (= 4.0.0)
+  - SDWebImage/Core (4.0.0)
   - SnapKit (3.2.0)
 
 DEPENDENCIES:
   - AsyncSwift
   - IGListKit (~> 3.0)
   - KDCircularProgress
+  - SDWebImage
   - SnapKit (~> 3.2.0)
 
 SPEC CHECKSUMS:
   AsyncSwift: 632138e42ead868b53c745fcde9bf733ce1527ad
   IGListKit: 9eab6856a15fa25ad72018ff9d9eb2178c240fff
   KDCircularProgress: 12f677b2deb02409ab48c6cae1898d146b8ad549
+  SDWebImage: 76a6348bdc74eb5a55dd08a091ef298e56b55e41
   SnapKit: 1ca44df72cfa543218d177cb8aab029d10d86ea7
 
-PODFILE CHECKSUM: 0170daf3f66a19db150b4d95f549713546de941d
+PODFILE CHECKSUM: 6f82a28b13bbd80b41c8d7e6738a4a3a8dc12bdd
 
 COCOAPODS: 1.2.1

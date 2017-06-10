@@ -30,7 +30,7 @@ class PictureMessageCollectionViewCell: UICollectionViewCell {
     
     // UIImage contains the data for an image.
     // UIImageView is a custom view meant to display the UIImage.
-    private let pictureView = { () -> UIImageView in
+    public let pictureView = { () -> UIImageView in
         var imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
         imageView.backgroundColor = UIColor.clear

@@ -9,6 +9,7 @@
 import UIKit
 import IGListKit
 import Async
+import SDWebImage
 
 class PictureMessageSectionController: ListSectionController {
     
@@ -86,10 +87,13 @@ class PictureMessageSectionController: ListSectionController {
 //                    print("finish")
 //                }, completion: nil)
 //        }
-        if image != nil {
+        if psize != nil {
             cell.pictureSize = psize!
-            cell.picture = image
         }
+//        if image != nil {
+//            cell.picture = image
+//        }
+        cell.pictureView.sd_setImage(with: pictureMessageModel!.getMessage(), placeholderImage: UIImage(named: "placeholder.png"))
         if (pictureMessageModel!.getLR()) {
             cell.keepRight()
         }
