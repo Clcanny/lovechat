@@ -45,7 +45,24 @@ class ChatViewController: UIViewController {
         view.isEditable = true
         view.isHidden = true
         view.font = inputFont
-        view.returnKeyType = UIReturnKeyType.done
+        
+        let keyboardToolbar = UIToolbar()
+        keyboardToolbar.sizeToFit()
+        let flexBarButton = UIBarButtonItem(
+            barButtonSystemItem: .flexibleSpace,
+            target: nil, action: nil
+        )
+        let cancelBarButton = UIBarButtonItem(
+            barButtonSystemItem: .cancel,
+            target: self, action: #selector(ChatViewController.cancelTextMessage)
+        )
+        let doneBarButton = UIBarButtonItem(
+            barButtonSystemItem: .done,
+            target: self, action: #selector(ChatViewController.sendTextMessage)
+        )
+        keyboardToolbar.items = [flexBarButton, cancelBarButton, doneBarButton]
+        view.inputAccessoryView = keyboardToolbar
+        
         return view
     }()
     
@@ -165,20 +182,23 @@ extension ChatViewController: ListAdapterDataSource {
 // text
 extension ChatViewController: UITextViewDelegate {
     
-    @IBAction func sendOrInput(_ sender: UIButton) {
+    @IBAction func inputText(_ sender: UIButton) {
         textView.isHidden = !textView.isHidden
     }
     
-    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
-        if(text == "\n") {
-            textView.resignFirstResponder()
-            return false
-        }
-        return true
+    func sendTextMessage() {
+        textView.resignFirstResponder()
+        textView.isHidden = true
+        let message = TextMessageModel(message: textView.text, false)
+        textView.text = ""
+        objects.append(message)
+        adapter.performUpdates(animated: false, completion: nil)
     }
     
-    func textViewDidEndEditing(_ textView: UITextView) {
-        print("end")
+    func cancelTextMessage() {
+        textView.resignFirstResponder()
+        textView.isHidden = true
+        textView.text = ""
     }
     
 }

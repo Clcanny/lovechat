@@ -54,7 +54,7 @@
                                 <rect key="frame" x="122" y="570" width="46" height="30"/>
                                 <state key="normal" title="Button"/>
                                 <connections>
-                                    <action selector="sendOrInput:" destination="BYZ-38-t0r" eventType="touchUpInside" id="AJJ-P0-MZa"/>
+                                    <action selector="inputText:" destination="BYZ-38-t0r" eventType="touchUpInside" id="AVF-v8-ncY"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dJ3-VB-wfB">
