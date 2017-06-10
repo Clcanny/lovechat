@@ -103,7 +103,6 @@ class TextMessageCollectionViewCell: UICollectionViewCell {
         let borderWidth = padding * 2 + radius * 3 + textLabel.frame.size.width
         
         let path = UIBezierPath()
-        path.move(to: CGPoint(x: radius * 2, y: radius))
         path.addArc(
             withCenter: CGPoint(x: radius * 2, y: 0),
             radius: radius,

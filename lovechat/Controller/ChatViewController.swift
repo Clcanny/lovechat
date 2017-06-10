@@ -17,17 +17,6 @@ class ChatViewController: UIViewController {
     
     @IBOutlet weak var recordVideo: UIButton!
     
-    
-//    @IBAction func recordVideo_(_ sender: UIButton) {
-//        let cameraController = UIImagePickerController()
-//        cameraController.sourceType = .camera
-//        cameraController.mediaTypes = [kUTTypeMovie as NSString as String]
-//        cameraController.allowsEditing = false
-//        cameraController.delegate = self
-//        
-//        present(cameraController, animated: true, completion: nil)
-//    }
-    
     @IBOutlet weak var messagesView: UIView!
     
     private let audioSession = AVAudioSession.sharedInstance()
