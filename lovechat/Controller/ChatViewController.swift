@@ -348,9 +348,11 @@ extension ChatViewController: DismissToChatViewControllerProtocol {
     
     func save(_ messageModel: MessageModel) {
         objects.append(messageModel)
-        adapter.performUpdates(animated: false, completion: nil)
-        AsyncGroup().background {
-//            self.adapter.performUpdates(animated: false, completion: nil)
+//        adapter.performUpdates(animated: false, completion: nil)
+        Async.background {
+            (messageModel as! PictureMessageModel).getImage()
+            }.main {_ in 
+                self.adapter.performUpdates(animated: false, completion: nil)
         }
     }
     

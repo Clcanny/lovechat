@@ -96,7 +96,7 @@ class CameraViewController: UIViewController {
                 if error != nil {
                     print(error.debugDescription)
                 }
-                if let imageData = AVCaptureStillImageOutput.jpegStillImageNSDataRepresentation(imageDataSampleBuffer) {
+                else if let imageData = AVCaptureStillImageOutput.jpegStillImageNSDataRepresentation(imageDataSampleBuffer) {
                     let url = FileManager.getUrlByCurrentTime(suffix: "jpeg")
                     do {
                         try imageData.write(to: url)
