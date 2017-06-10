@@ -244,6 +244,62 @@ extension ChatViewController {
     
 }
 
+// picture
+extension ChatViewController: UIImagePickerControllerDelegate {
+    
+    @IBAction func selectImageFromAlbum(_ sender: UIButton) {
+        let imagePickerController = UIImagePickerController()
+        imagePickerController.delegate = self
+        imagePickerController.sourceType = UIImagePickerControllerSourceType.savedPhotosAlbum
+        imagePickerController.allowsEditing = true
+        self.present(imagePickerController, animated: true, completion: nil)
+    }
+    
+    func imagePickerController(
+        _ picker: UIImagePickerController,
+        didFinishPickingMediaWithInfo info: [String : Any]) {
+        let mediaType = info[UIImagePickerControllerMediaType] as! NSString
+        dismiss(animated: true) {
+            // Handle a movie capture
+            if mediaType == kUTTypeMovie {
+                let url = FileManager.getUrlByCurrentTime(suffix: "video")
+                if UIVideoAtPathIsCompatibleWithSavedPhotosAlbum(url.relativeString) {
+                    // do something
+                }
+            }
+            else {
+                if let image = info[UIImagePickerControllerEditedImage] as? UIImage {
+                    let imageData = UIImageJPEGRepresentation(image, 1)
+                    let url = FileManager.getUrlByCurrentTime(suffix: "jpeg")
+                    do {
+                        try imageData?.write(to: url)
+                    }
+                    catch {
+                        fatalError()
+                    }
+                    self.objects.append(PictureMessageModel(message: url, false))
+                    self.adapter.performUpdates(animated: false, completion: nil)
+                }
+                else {
+                    fatalError()
+                }
+            }
+        }
+    }
+    
+    func imagePickerController(
+        _ picker: UIImagePickerController,
+        didFinishPickingImage image: UIImage,
+        editingInfo: [String : AnyObject]?) {
+        print("finished picking image")
+    }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        dismiss(animated: true, completion: nil)
+    }
+    
+}
+
 extension ChatViewController: TimeOutProtocol {
     
     func stop(_: Int) {
@@ -295,34 +351,6 @@ extension ChatViewController: DismissToChatViewControllerProtocol {
 extension ChatViewController: AVAudioRecorderDelegate {
     
     func audioRecorderDidFinishRecording(_ recorder: AVAudioRecorder, successfully flag: Bool) {
-    }
-    
-}
-
-extension ChatViewController: UIImagePickerControllerDelegate {
-    
-    func video(_ videoPath: NSString, didFinishSavingWithError error: NSError?, contextInfo info: AnyObject) {
-        var title = "Success"
-        var message = "Video was saved"
-        if let _ = error {
-            title = "Error"
-            message = "Video failed to save"
-        }
-        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.cancel, handler: nil))
-        present(alert, animated: true, completion: nil)
-    }
-    
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        let mediaType = info[UIImagePickerControllerMediaType] as! NSString
-        dismiss(animated: true, completion: nil)
-        // Handle a movie capture
-        if mediaType == kUTTypeMovie {
-            let url = FileManager.getUrlByCurrentTime(suffix: "video")
-            if UIVideoAtPathIsCompatibleWithSavedPhotosAlbum(url.relativeString) {
-                UISaveVideoAtPathToSavedPhotosAlbum(url.relativeString, self, #selector(ChatViewController.video(_:didFinishSavingWithError:contextInfo:)), nil)
-            }
-        }
     }
     
 }
