@@ -110,7 +110,7 @@ class CameraViewController: UIViewController {
             }
         }
         if (captureSession.isRunning) {
-            captureSession.stopRunning()
+//            captureSession.stopRunning()
         }
         if (button.isEnabled == true) {
             button.isEnabled = false
