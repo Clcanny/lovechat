@@ -12,7 +12,8 @@ import SnapKit
 import IGListKit
 import MobileCoreServices
 import Async
-import MediaPlayer
+import AVKit
+import AVFoundation
 
 class ChatViewController: UIViewController {
     
@@ -324,8 +325,12 @@ extension ChatViewController: SegueFromCellProtocol {
             performSegue(withIdentifier: "ShowPictureMessageDetail", sender: picture)
         }
         else if let url = data as? URL {
-            let moviePlayer = MPMoviePlayerViewController(contentURL: url)
-            presentMoviePlayerViewControllerAnimated(moviePlayer)
+            let player = AVPlayer(url: url)
+            let playerViewController = AVPlayerViewController()
+            playerViewController.player = player
+            present(playerViewController, animated: false) {
+                playerViewController.player!.play()
+            }
         }
     }
     
