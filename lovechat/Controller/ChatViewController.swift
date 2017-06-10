@@ -243,7 +243,7 @@ extension ChatViewController {
         }
         catch {
         }
-        objects.append(VoiceMessageModel(message: audioRecorder!.url, time: recordTime, false))
+        objects.append(VoiceMessageModel(message: audioRecorder!.url, time: recordTime, true))
         audioRecorder = nil
         
         adapter.performUpdates(animated: false, completion: nil)

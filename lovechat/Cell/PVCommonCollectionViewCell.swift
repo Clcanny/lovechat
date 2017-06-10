@@ -12,12 +12,6 @@ class PVCommonCollectionViewCell: MessageCollectionViewCell {
     
     public static let maxWidth: CGFloat = 100
     
-    override var contentSize: CGSize {
-        get {
-            return pictureSize
-        }
-    }
-    
     // UIImage contains the data for an image.
     // UIImageView is a custom view meant to display the UIImage.
     let pictureView = { () -> UIImageView in
@@ -76,6 +70,12 @@ class PVCommonCollectionViewCell: MessageCollectionViewCell {
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    override var contentSize: CGSize {
+        get {
+            return pictureSize
+        }
     }
     
     override func keepLeft() {
