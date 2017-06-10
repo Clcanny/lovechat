@@ -14,7 +14,7 @@ class PVCommonCollectionViewCell: UICollectionViewCell {
     private static let radius: CGFloat = 15
     
     var delegate: SegueFromCellProtocol?
-    private var gesture: UITapGestureRecognizer?
+    var gesture: UITapGestureRecognizer?
     func click(gestureRecognizer: UIGestureRecognizer) {
     }
     
@@ -28,7 +28,7 @@ class PVCommonCollectionViewCell: UICollectionViewCell {
     
     // UIImage contains the data for an image.
     // UIImageView is a custom view meant to display the UIImage.
-    private let pictureView = { () -> UIImageView in
+    let pictureView = { () -> UIImageView in
         var imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
         imageView.backgroundColor = UIColor.clear
