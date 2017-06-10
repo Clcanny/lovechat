@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Async
 
 class PictureMessageCollectionViewCell: UICollectionViewCell {
     
@@ -41,32 +42,37 @@ class PictureMessageCollectionViewCell: UICollectionViewCell {
         }
         
         set(newPicture) {
-            var count = 0
-            var red: CGFloat = 0
-            var green: CGFloat = 0
-            var blue: CGFloat = 0
-            let ys = Int(
-                PictureMessageCollectionViewCell.radius
-                    * 2.0 / bounds.height * (newPicture?.size.height)!
-            )
-            for x in 0..<3 {
-                for y in 0..<ys {
-                    count += 1
-                    let rgb = newPicture?.getPixelColor(
-                        pos: CGPoint(x: CGFloat(x), y: CGFloat(y))
-                    )
-                    red += (rgb?.0)!
-                    green += (rgb?.1)!
-                    blue += (rgb?.2)!
+            Async.background {
+                self.backgroundColor = UIColor.black
+                var count = 0
+                var red: CGFloat = 0
+                var green: CGFloat = 0
+                var blue: CGFloat = 0
+                let ys = Int(
+                    PictureMessageCollectionViewCell.radius
+                        * 2.0 / self.bounds.height * (newPicture?.size.height)!
+                )
+                for x in 0..<3 {
+                    for y in 0..<ys {
+                        count += 1
+                        let rgb = newPicture?.getPixelColor(
+                            pos: CGPoint(x: CGFloat(x), y: CGFloat(y))
+                        )
+                        red += (rgb?.0)!
+                        green += (rgb?.1)!
+                        blue += (rgb?.2)!
+                    }
                 }
+                self.backgroundColor = UIColor.green
+                red = red / CGFloat(count * 255)
+                green = green / CGFloat(count * 255)
+                blue = blue / CGFloat(count * 255)
+                self.highlightLayer.fillColor = UIColor(
+                    red: red, green: green,
+                    blue: blue, alpha: 1).cgColor
+                self.pictureView.image = newPicture
+                print("loaded image")
             }
-            red = red / CGFloat(count * 255)
-            green = green / CGFloat(count * 255)
-            blue = blue / CGFloat(count * 255)
-            highlightLayer.fillColor = UIColor(
-                red: red, green: green,
-                blue: blue, alpha: 1).cgColor
-            pictureView.image = newPicture
         }
     }
     var pictureSize: CGSize {

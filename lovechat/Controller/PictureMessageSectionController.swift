@@ -25,7 +25,7 @@ class PictureMessageSectionController: ListSectionController {
         super.init()
         self.pictureMessageModel = pictureMessageModel
         inset = UIEdgeInsets(top: 0, left: 0, bottom: 5, right: 0)
-        image = pictureMessageModel.getImage()
+//        image = pictureMessageModel.getImage()
 //        asyncGroup.background {
 //            self.image = UIImage(contentsOfFile: pictureMessageModel.getMessage().path)!
 //            }
@@ -41,16 +41,32 @@ class PictureMessageSectionController: ListSectionController {
         }
         
 //        asyncGroup.wait()
-        psize = pictureSize(
-            maxWidth: TextMessageCollectionViewCell.maxWidth,
-            picture: image!
-        )
-        let pictureHeight = psize!.height
-        
-        return CGSize(
-            width: context.containerSize.width,
-            height: pictureHeight
-        )
+        if image == nil {
+            let pictureHeight = TextMessageCollectionViewCell.maxWidth
+            Async.background {
+                self.image = self.pictureMessageModel?.getImage()
+                }.main {
+                    print("hello")
+                    self.collectionContext?.performBatch(animated: false, updates: { (batchContext) in
+                        batchContext.reload(self)
+                        print("finish")
+                    }, completion: nil)
+            }
+            return CGSize(
+                width: context.containerSize.width,
+                height: pictureHeight
+            )
+        }
+        else {
+            psize = pictureSize(
+                maxWidth: TextMessageCollectionViewCell.maxWidth,
+                picture: self.image!
+            )
+            return CGSize(
+                width: context.containerSize.width,
+                height: psize!.height
+            )
+        }
     }
     
     override func cellForItem(at index: Int) -> UICollectionViewCell {
@@ -59,9 +75,21 @@ class PictureMessageSectionController: ListSectionController {
             for: self, at: index
             ) as! PictureMessageCollectionViewCell
         // The order is important.
-        cell.pictureSize = psize!
+//        cell.pictureSize = psize!
 //        asyncGroup.wait()
-        cell.picture = image!
+//        Async.background {
+//            cell.picture = self.image!
+//            }.main{
+//                print("begin to reload")
+//                self.collectionContext?.performBatch(animated: false, updates: { (batchContext) in
+//                    batchContext.reload(self)
+//                    print("finish")
+//                }, completion: nil)
+//        }
+        if image != nil {
+            cell.pictureSize = psize!
+            cell.picture = image
+        }
         if (pictureMessageModel!.getLR()) {
             cell.keepRight()
         }
