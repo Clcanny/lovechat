@@ -43,6 +43,7 @@
 		40D1CAE51EEC10430030CBEF /* VideoMessageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40D1CAE41EEC10430030CBEF /* VideoMessageCollectionViewCell.swift */; };
 		40D1CAE71EEC11FA0030CBEF /* VideoMessageSctionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40D1CAE61EEC11FA0030CBEF /* VideoMessageSctionController.swift */; };
 		40D1CAE91EEC2A820030CBEF /* PVCommonCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40D1CAE81EEC2A820030CBEF /* PVCommonCollectionViewCell.swift */; };
+		40D1CAEB1EEC32410030CBEF /* MessageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40D1CAEA1EEC32410030CBEF /* MessageCollectionViewCell.swift */; };
 		40FB67DB1EE6DAEB00DD63F4 /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40FB67DA1EE6DAEB00DD63F4 /* CameraViewController.swift */; };
 		BE6FF66E3EFF6386328AB22C /* Pods_lovechat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F36EF7366FA249FE7E866EBF /* Pods_lovechat.framework */; };
 /* End PBXBuildFile section */
@@ -87,6 +88,7 @@
 		40D1CAE41EEC10430030CBEF /* VideoMessageCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = VideoMessageCollectionViewCell.swift; path = Cell/VideoMessageCollectionViewCell.swift; sourceTree = "<group>"; };
 		40D1CAE61EEC11FA0030CBEF /* VideoMessageSctionController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = VideoMessageSctionController.swift; path = Controller/VideoMessageSctionController.swift; sourceTree = "<group>"; };
 		40D1CAE81EEC2A820030CBEF /* PVCommonCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PVCommonCollectionViewCell.swift; path = Cell/PVCommonCollectionViewCell.swift; sourceTree = "<group>"; };
+		40D1CAEA1EEC32410030CBEF /* MessageCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MessageCollectionViewCell.swift; path = Cell/MessageCollectionViewCell.swift; sourceTree = "<group>"; };
 		40FB67DA1EE6DAEB00DD63F4 /* CameraViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CameraViewController.swift; path = Controller/CameraViewController.swift; sourceTree = "<group>"; };
 		7EE5C32AD502F2563269A83A /* Pods-lovechat.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-lovechat.release.xcconfig"; path = "Pods/Target Support Files/Pods-lovechat/Pods-lovechat.release.xcconfig"; sourceTree = "<group>"; };
 		F36EF7366FA249FE7E866EBF /* Pods_lovechat.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_lovechat.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -129,6 +131,7 @@
 				40BF9FBA1EE4F719002BEACB /* VoiceMessageCollectionViewCell.swift */,
 				40D1CAE41EEC10430030CBEF /* VideoMessageCollectionViewCell.swift */,
 				40D1CAE81EEC2A820030CBEF /* PVCommonCollectionViewCell.swift */,
+				40D1CAEA1EEC32410030CBEF /* MessageCollectionViewCell.swift */,
 			);
 			name = Cell;
 			sourceTree = "<group>";
@@ -377,6 +380,7 @@
 				40AF90241EE5A5E200F801A9 /* TextMessageDetailViewController.swift in Sources */,
 				40AF90281EE5A8D400F801A9 /* SegueFromCellProtocol.swift in Sources */,
 				40D1CAE71EEC11FA0030CBEF /* VideoMessageSctionController.swift in Sources */,
+				40D1CAEB1EEC32410030CBEF /* MessageCollectionViewCell.swift in Sources */,
 				409EC0CA1EE3E06D00365F7E /* PictureSize.swift in Sources */,
 				40FB67DB1EE6DAEB00DD63F4 /* CameraViewController.swift in Sources */,
 				408B480E1EE276CC00EE9281 /* AppDelegate.swift in Sources */,

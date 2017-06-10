@@ -210,7 +210,7 @@ extension CameraViewController {
                     catch {
                         fatalError()
                     }
-                    self.messageModel = PictureMessageModel(message: url, false)
+                    self.messageModel = PictureMessageModel(message: url, true)
                 }
                 
                 if (self.captureSession.isRunning) {
@@ -245,7 +245,7 @@ extension CameraViewController {
         setAudioRecorder()
         captureSession.addOutput(movieOutput)
         let url = FileManager.getUrlByCurrentTime(suffix: "mov")
-        messageModel = VideoMessageModel(message: url, false)
+        messageModel = VideoMessageModel(message: url, true)
         movieOutput.startRecording(toOutputFileURL: url, recordingDelegate: self)
         progressBar.animate(toAngle: 360, duration: 5, completion: {
             (flag) -> Void in
