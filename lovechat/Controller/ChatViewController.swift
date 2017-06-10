@@ -242,10 +242,10 @@ extension ChatViewController: ListAdapterDataSource {
             return TimeStampSectionController(timeStamp: timeStamp)
         }
         else if let pictureMessageModel = object as? PictureMessageModel {
-            let block = Async.background {
-                pictureMessageModel.setImage(image: UIImage(contentsOfFile: pictureMessageModel.getMessage().path)!)
-            }
-            block.wait()
+//            let block = Async.background {
+//                pictureMessageModel.setImage(image: UIImage(contentsOfFile: pictureMessageModel.getMessage().path)!)
+//            }
+//            block.wait()
             let controller = PictureMessageSectionController(pictureMessageModel: pictureMessageModel)
             controller.delegate = self
             return controller

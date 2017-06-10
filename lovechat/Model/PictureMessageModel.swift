@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import Async
 
 class PictureMessageModel: MessageModel {
     
@@ -15,9 +16,14 @@ class PictureMessageModel: MessageModel {
     
     private var image: UIImage?
     
+    let group = AsyncGroup()
+    
     init(message: URL, _ isReceiver: Bool) {
         super.init(isReceiver)
         self.message = message
+        group.background {
+            self.setImage(image: UIImage(contentsOfFile: self.getMessage().path)!)
+        }
     }
     
     public func getMessage() -> URL {
@@ -29,6 +35,7 @@ class PictureMessageModel: MessageModel {
     }
     
     public func getImage() -> UIImage {
+        group.wait()
         return image!
     }
     
