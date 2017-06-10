@@ -39,6 +39,16 @@ class ChatViewController: UIViewController {
         return adapter
     }()
     
+    let textView = { () -> UITextView in
+        let view = UITextView()
+        view.backgroundColor = ivoryColor
+        view.isEditable = true
+        view.isHidden = true
+        view.font = inputFont
+        view.returnKeyType = UIReturnKeyType.done
+        return view
+    }()
+    
     // Subclasses can override this method as needed to perform more precise layout of their subviews.
     // You should override this method only if the autoresizing and constraint-based behaviors
     // of the subviews do not offer the behavior you want.
@@ -47,6 +57,7 @@ class ChatViewController: UIViewController {
     func layoutSubviews() {
         adapter.collectionView = collectionView
         adapter.dataSource = self
+        
         messagesView.addSubview(collectionView)
         collectionView.snp.makeConstraints {
             (make) -> Void in
@@ -56,6 +67,14 @@ class ChatViewController: UIViewController {
         recordAnimationView.snp.makeConstraints {
             (make) -> Void in
             make.center.equalTo(messagesView)
+        }
+        
+        messagesView.addSubview(textView)
+        textView.snp.makeConstraints {
+            (make) -> Void in
+            make.left.right.equalTo(messagesView)
+            make.height.equalTo(messagesView.frame.size.height / 3)
+            make.top.equalTo(0)
         }
     }
     
@@ -67,6 +86,7 @@ class ChatViewController: UIViewController {
         adapter.performUpdates(animated: false, completion: nil)
         
         recordAnimationView.delegate = self
+        textView.delegate = self
         
         if UIImagePickerController.isSourceTypeAvailable(.camera) == false {
             recordVideo.isEnabled = false
@@ -138,6 +158,27 @@ extension ChatViewController: ListAdapterDataSource {
     
     func emptyView(for listAdapter: ListAdapter) -> UIView? {
         return nil
+    }
+    
+}
+
+// text
+extension ChatViewController: UITextViewDelegate {
+    
+    @IBAction func sendOrInput(_ sender: UIButton) {
+        textView.isHidden = !textView.isHidden
+    }
+    
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        if(text == "\n") {
+            textView.resignFirstResponder()
+            return false
+        }
+        return true
+    }
+    
+    func textViewDidEndEditing(_ textView: UITextView) {
+        print("end")
     }
     
 }

@@ -44,14 +44,21 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JtF-ur-Ml9">
-                                <rect key="frame" x="283" y="560" width="76" height="50"/>
+                                <rect key="frame" x="284" y="560" width="75" height="50"/>
                                 <state key="normal" title="record video"/>
                                 <connections>
                                     <segue destination="raK-8d-U8p" kind="presentation" identifier="PresentToCameraView" id="2c7-ZH-HP3"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CvR-aT-ZOS">
+                                <rect key="frame" x="122" y="570" width="46" height="30"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="sendOrInput:" destination="BYZ-38-t0r" eventType="touchUpInside" id="AJJ-P0-MZa"/>
+                                </connections>
+                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dJ3-VB-wfB">
-                                <rect key="frame" x="165" y="575" width="44" height="30"/>
+                                <rect key="frame" x="221" y="570" width="44" height="30"/>
                                 <state key="normal" title="Select"/>
                                 <connections>
                                     <action selector="selectImageFromAlbum:" destination="BYZ-38-t0r" eventType="touchUpInside" id="FQf-g3-ZxO"/>
@@ -62,17 +69,19 @@
                         <constraints>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="JtF-ur-Ml9" secondAttribute="bottom" constant="8" symbolic="YES" id="10B-Vv-ad5"/>
                             <constraint firstItem="3eN-iG-0zv" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="EV6-2H-Ieg"/>
+                            <constraint firstItem="CvR-aT-ZOS" firstAttribute="leading" secondItem="mjX-uZ-CIe" secondAttribute="trailing" constant="42" id="EcJ-bP-WOu"/>
                             <constraint firstAttribute="bottom" secondItem="3eN-iG-0zv" secondAttribute="bottom" constant="115" id="Jdp-xb-F0a"/>
                             <constraint firstItem="mjX-uZ-CIe" firstAttribute="top" secondItem="3eN-iG-0zv" secondAttribute="bottom" constant="8" symbolic="YES" id="Jyz-aK-gls"/>
                             <constraint firstItem="3eN-iG-0zv" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" symbolic="YES" id="JzI-3d-uJ8"/>
-                            <constraint firstItem="JtF-ur-Ml9" firstAttribute="leading" secondItem="dJ3-VB-wfB" secondAttribute="trailing" constant="74" id="Mk4-8H-Bev"/>
-                            <constraint firstItem="dJ3-VB-wfB" firstAttribute="centerX" secondItem="3eN-iG-0zv" secondAttribute="centerX" id="N0S-1J-9oa"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="mjX-uZ-CIe" secondAttribute="bottom" constant="8" symbolic="YES" id="Oun-1w-9z2"/>
-                            <constraint firstItem="dJ3-VB-wfB" firstAttribute="baseline" secondItem="mjX-uZ-CIe" secondAttribute="baseline" id="Qdq-hL-wWE"/>
+                            <constraint firstItem="CvR-aT-ZOS" firstAttribute="baseline" secondItem="dJ3-VB-wfB" secondAttribute="baseline" id="Yui-OE-49m"/>
                             <constraint firstItem="JtF-ur-Ml9" firstAttribute="top" secondItem="mjX-uZ-CIe" secondAttribute="top" id="bHL-aR-fvV"/>
+                            <constraint firstAttribute="trailing" secondItem="dJ3-VB-wfB" secondAttribute="trailing" constant="110" id="bI1-g0-PdX"/>
+                            <constraint firstItem="JtF-ur-Ml9" firstAttribute="leading" secondItem="dJ3-VB-wfB" secondAttribute="trailing" constant="19" id="cGm-el-kKE"/>
                             <constraint firstItem="mjX-uZ-CIe" firstAttribute="leading" secondItem="3eN-iG-0zv" secondAttribute="leading" id="cX9-gy-UyR"/>
                             <constraint firstItem="JtF-ur-Ml9" firstAttribute="trailing" secondItem="3eN-iG-0zv" secondAttribute="trailing" id="fry-c6-TNX"/>
                             <constraint firstItem="3eN-iG-0zv" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="rYx-wB-EWU"/>
+                            <constraint firstItem="dJ3-VB-wfB" firstAttribute="baseline" secondItem="JtF-ur-Ml9" secondAttribute="baseline" id="uyp-Hw-3Bh"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="v9Z-8E-hvk">
