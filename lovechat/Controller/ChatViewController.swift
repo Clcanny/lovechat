@@ -12,6 +12,7 @@ import SnapKit
 import IGListKit
 import MobileCoreServices
 import Async
+import MediaPlayer
 
 class ChatViewController: UIViewController {
     
@@ -123,6 +124,11 @@ extension ChatViewController: ListAdapterDataSource {
         }
         else if let voiceMessageModel = object as? VoiceMessageModel {
             return VoiceMessageSectionController(voiceMessageModel: voiceMessageModel)
+        }
+        else if let videoMessageModel = object as? VideoMessageModel {
+            let controller = VideoMessageSctionController(videoMessageModel: videoMessageModel)
+            controller.delegate = self
+            return controller
         }
         else {
             fatalError("unrecognizable object")
@@ -316,6 +322,10 @@ extension ChatViewController: SegueFromCellProtocol {
         }
         else if let picture = data as? UIImage {
             performSegue(withIdentifier: "ShowPictureMessageDetail", sender: picture)
+        }
+        else if let url = data as? URL {
+            let moviePlayer = MPMoviePlayerViewController(contentURL: url)
+            presentMoviePlayerViewControllerAnimated(moviePlayer)
         }
     }
     

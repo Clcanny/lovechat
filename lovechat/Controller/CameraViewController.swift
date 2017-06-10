@@ -244,8 +244,9 @@ extension CameraViewController {
     func startRecordVideo() {
         setAudioRecorder()
         captureSession.addOutput(movieOutput)
-        let fileUrl = FileManager.getUrlByCurrentTime(suffix: "mov")
-        movieOutput.startRecording(toOutputFileURL: fileUrl, recordingDelegate: self)
+        let url = FileManager.getUrlByCurrentTime(suffix: "mov")
+        messageModel = VideoMessageModel(message: url, false)
+        movieOutput.startRecording(toOutputFileURL: url, recordingDelegate: self)
         progressBar.animate(toAngle: 360, duration: 5, completion: {
             (flag) -> Void in
             self.stopRecordVideo()
