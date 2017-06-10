@@ -19,119 +19,10 @@ class ChatViewController: UIViewController {
     
     @IBOutlet weak var messagesView: UIView!
     
-    private let audioSession = AVAudioSession.sharedInstance()
-    private var audioRecorder: AVAudioRecorder?
+    fileprivate let audioSession = AVAudioSession.sharedInstance()
+    fileprivate var audioRecorder: AVAudioRecorder?
     
     @IBOutlet weak var recordButton: UIButton!
-    
-    let fileMgr = FileManager.default
-    
-    @IBAction func beginRecord(_ sender: UIButton) {
-        recordAnimationView.isHidden = false
-        recordAnimationView.recording()
-        recordAnimationView.startCountDown()
-        
-        // audioSession
-        do {
-            try audioSession.setCategory(AVAudioSessionCategoryPlayAndRecord)
-        }
-        catch {
-            fatalError("audioSession error")
-        }
-        
-        // audioRecorder settings
-        let dirPaths = fileMgr.urls(for: .documentDirectory, in: .userDomainMask)
-        let currentTime = Date().timeIntervalSince1970
-        let soundFileURL = dirPaths[0].appendingPathComponent(String(currentTime) + ".caf")
-        let recordSettings = [
-            // 录音质量
-            AVEncoderAudioQualityKey: AVAudioQuality.min.rawValue,
-            // 音频格式
-            // AVFormatIDKey: kAudioFormatLinearPCM,
-            // 采样位数 8/16/24/32（默认为16）
-            AVEncoderBitRateKey: 16,
-            // 音频通道数 1/2
-            AVNumberOfChannelsKey: 1,
-            // 采样率 8000/11025/22050/44100/96000（影响音频的质量
-            AVSampleRateKey: 44100.0
-            ] as [String : Any]
-        
-        // audioRecorder
-        do {
-            try audioRecorder = AVAudioRecorder(
-                url: soundFileURL,
-                settings: recordSettings as [String : AnyObject]
-            )
-            audioRecorder?.delegate = self
-            audioRecorder?.isMeteringEnabled = true
-        }
-        catch {
-            fatalError("audioSession error")
-        }
-        
-        do {
-            try audioSession.setActive(true)
-            audioRecorder?.prepareToRecord()
-            audioRecorder?.record()
-        }
-        catch {
-            print("can't not record")
-        }
-    }
-    
-    // UIControlEventTouchDragExit
-    // An event where a finger is dragged from within a control to outside its bounds.
-    @IBAction func readyToCancelRecord(_ sender: UIButton) {
-        recordAnimationView.readyToCancel()
-    }
-    
-    // UIControlEventTouchDragEnter
-    // An event where a finger is dragged into the bounds of the control.
-    @IBAction func dontCancelRecord(_ sender: UIButton) {
-        recordAnimationView.recording()
-    }
-    
-    // UIControlEventTouchUpOutside
-    // A touch-up event in the control where the finger is outside the bounds of the control.
-    @IBAction func cancelRecord(_ sender: UIButton) {
-        recordAnimationView.isHidden = true
-        let _ = recordAnimationView.stopCountDown()
-        
-        audioRecorder?.stop()
-        do {
-            try audioSession.setActive(false)
-        }
-        catch {
-            fatalError()
-        }
-        
-        do {
-            try fileMgr.removeItem(at: audioRecorder!.url)
-        }
-        catch {
-            fatalError("delete voice-record file failed")
-        }
-        audioRecorder = nil
-    }
-    
-    // UIControlEventTouchUpInside
-    // A touch-up event in the control where the finger is inside the bounds of the control.
-    @IBAction func finishRecord(_ sender: UIButton) {
-        recordAnimationView.isHidden = true
-        let recordTime = recordAnimationView.stopCountDown()
-        
-        audioRecorder?.stop()
-        do {
-            try audioSession.setActive(false)
-        }
-        catch {
-        }
-        objects.append(VoiceMessageModel(message: audioRecorder!.url, time: recordTime, false))
-        audioRecorder = nil
-        
-        adapter.performUpdates(animated: false, completion: nil)
-    }
-    
     let recordAnimationView = RecordAnimationView()
     
     let collectionView = { () -> UICollectionView in
@@ -185,7 +76,6 @@ class ChatViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    
     /*
      // MARK: - Navigation
      
@@ -207,7 +97,7 @@ class ChatViewController: UIViewController {
         "12:27 PM" as ListDiffable,
         TextMessageModel(message: "This is a very very very very long message", true),
         TextMessageModel(message: "This is a very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very long message.", false),
-    ]
+        ]
     
 }
 
@@ -245,9 +135,111 @@ extension ChatViewController: ListAdapterDataSource {
     
 }
 
-extension ChatViewController: AVAudioRecorderDelegate {
+// audio
+extension ChatViewController {
     
-    func audioRecorderDidFinishRecording(_ recorder: AVAudioRecorder, successfully flag: Bool) {
+    @IBAction func beginRecord(_ sender: UIButton) {
+        recordAnimationView.isHidden = false
+        recordAnimationView.recording()
+        recordAnimationView.startCountDown()
+        
+        // audioSession
+        do {
+            try audioSession.setCategory(AVAudioSessionCategoryPlayAndRecord)
+        }
+        catch {
+            fatalError()
+        }
+        
+        // audioRecorder settings
+        let url = FileManager.getUrlByCurrentTime(suffix: "caf")
+        let recordSettings = [
+            // 录音质量
+            AVEncoderAudioQualityKey: AVAudioQuality.min.rawValue,
+            // 音频格式
+            // AVFormatIDKey: kAudioFormatLinearPCM,
+            // 采样位数 8/16/24/32（默认为16）
+            AVEncoderBitRateKey: 16,
+            // 音频通道数 1/2
+            AVNumberOfChannelsKey: 1,
+            // 采样率 8000/11025/22050/44100/96000（影响音频的质量
+            AVSampleRateKey: 44100.0
+            ] as [String : Any]
+        
+        // audioRecorder
+        do {
+            try audioRecorder = AVAudioRecorder(
+                url: url,
+                settings: recordSettings as [String : AnyObject]
+            )
+            audioRecorder?.delegate = self
+            audioRecorder?.isMeteringEnabled = true
+        }
+        catch {
+            fatalError()
+        }
+        
+        do {
+            try audioSession.setActive(true)
+            audioRecorder?.prepareToRecord()
+            audioRecorder?.record()
+        }
+        catch {
+            fatalError()
+        }
+    }
+    
+    // UIControlEventTouchDragExit
+    // An event where a finger is dragged from within a control to outside its bounds.
+    @IBAction func readyToCancelRecord(_ sender: UIButton) {
+        recordAnimationView.readyToCancel()
+    }
+    
+    // UIControlEventTouchDragEnter
+    // An event where a finger is dragged into the bounds of the control.
+    @IBAction func dontCancelRecord(_ sender: UIButton) {
+        recordAnimationView.recording()
+    }
+    
+    // UIControlEventTouchUpOutside
+    // A touch-up event in the control where the finger is outside the bounds of the control.
+    @IBAction func cancelRecord(_ sender: UIButton) {
+        recordAnimationView.isHidden = true
+        let _ = recordAnimationView.stopCountDown()
+        
+        audioRecorder?.stop()
+        do {
+            try audioSession.setActive(false)
+        }
+        catch {
+            fatalError()
+        }
+        
+        do {
+            try FileManager.default.removeItem(at: audioRecorder!.url)
+        }
+        catch {
+            fatalError()
+        }
+        audioRecorder = nil
+    }
+    
+    // UIControlEventTouchUpInside
+    // A touch-up event in the control where the finger is inside the bounds of the control.
+    @IBAction func finishRecord(_ sender: UIButton) {
+        recordAnimationView.isHidden = true
+        let recordTime = recordAnimationView.stopCountDown()
+        
+        audioRecorder?.stop()
+        do {
+            try audioSession.setActive(false)
+        }
+        catch {
+        }
+        objects.append(VoiceMessageModel(message: audioRecorder!.url, time: recordTime, false))
+        audioRecorder = nil
+        
+        adapter.performUpdates(animated: false, completion: nil)
     }
     
 }
@@ -291,6 +283,22 @@ extension ChatViewController: SegueFromCellProtocol {
     
 }
 
+extension ChatViewController: DismissToChatViewControllerProtocol {
+    
+    func save(_ messageModel: MessageModel) {
+        objects.append(messageModel)
+        self.adapter.performUpdates(animated: false, completion: nil)
+    }
+    
+}
+
+extension ChatViewController: AVAudioRecorderDelegate {
+    
+    func audioRecorderDidFinishRecording(_ recorder: AVAudioRecorder, successfully flag: Bool) {
+    }
+    
+}
+
 extension ChatViewController: UIImagePickerControllerDelegate {
     
     func video(_ videoPath: NSString, didFinishSavingWithError error: NSError?, contextInfo info: AnyObject) {
@@ -310,12 +318,9 @@ extension ChatViewController: UIImagePickerControllerDelegate {
         dismiss(animated: true, completion: nil)
         // Handle a movie capture
         if mediaType == kUTTypeMovie {
-            let dirPaths = fileMgr.urls(for: .documentDirectory, in: .userDomainMask)
-            let currentTime = Date().timeIntervalSince1970
-            let videoFileURL = dirPaths[0].appendingPathComponent(String(currentTime) + ".video")
-//            guard let path = (info[UIImagePickerControllerMediaURL] as? URL)?.path else { return }
-            if UIVideoAtPathIsCompatibleWithSavedPhotosAlbum(videoFileURL.relativeString) {
-                UISaveVideoAtPathToSavedPhotosAlbum(videoFileURL.relativeString, self, #selector(ChatViewController.video(_:didFinishSavingWithError:contextInfo:)), nil)
+            let url = FileManager.getUrlByCurrentTime(suffix: "video")
+            if UIVideoAtPathIsCompatibleWithSavedPhotosAlbum(url.relativeString) {
+                UISaveVideoAtPathToSavedPhotosAlbum(url.relativeString, self, #selector(ChatViewController.video(_:didFinishSavingWithError:contextInfo:)), nil)
             }
         }
     }
@@ -325,11 +330,4 @@ extension ChatViewController: UIImagePickerControllerDelegate {
 extension ChatViewController: UINavigationControllerDelegate {
 }
 
-extension ChatViewController: DismissToChatViewControllerProtocol {
-    
-    func save(_ messageModel: MessageModel) {
-        objects.append(messageModel)
-        self.adapter.performUpdates(animated: false, completion: nil)
-    }
-    
-}
+
