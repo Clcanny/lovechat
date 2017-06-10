@@ -197,10 +197,8 @@ class ChatViewController: UIViewController {
      */
     
     var objects = [
-//        PictureMessageModel(message: #imageLiteral(resourceName: "longPictureOfMessage"), false),
         "12:25 PM" as ListDiffable,
         TextMessageModel(message: "This is a very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very T--very very very very long message.", true),
-//        PictureMessageModel(message: #imageLiteral(resourceName: "defaultPictureOfMessage"), false),
         TextMessageModel(message: "This is also a very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very long message.", false),
         "12:26 PM" as ListDiffable,
         TextMessageModel(message: "A short message", true),
@@ -209,9 +207,7 @@ class ChatViewController: UIViewController {
         "12:27 PM" as ListDiffable,
         TextMessageModel(message: "This is a very very very very long message", true),
         TextMessageModel(message: "This is a very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very long message.", false),
-//        PictureMessageModel(message: #imageLiteral(resourceName: "defaultPictureOfMessage"), true)
     ]
-//    var objects: [ListDiffable] = []
     
 }
 
@@ -231,10 +227,6 @@ extension ChatViewController: ListAdapterDataSource {
             return TimeStampSectionController(timeStamp: timeStamp)
         }
         else if let pictureMessageModel = object as? PictureMessageModel {
-//            let block = Async.background {
-//                pictureMessageModel.setImage(image: UIImage(contentsOfFile: pictureMessageModel.getMessage().path)!)
-//            }
-//            block.wait()
             let controller = PictureMessageSectionController(pictureMessageModel: pictureMessageModel)
             controller.delegate = self
             return controller
@@ -337,12 +329,7 @@ extension ChatViewController: DismissToChatViewControllerProtocol {
     
     func save(_ messageModel: MessageModel) {
         objects.append(messageModel)
-//        adapter.performUpdates(animated: false, completion: nil)
-        Async.background {
-            (messageModel as! PictureMessageModel).getImage()
-            }.main {_ in 
-                self.adapter.performUpdates(animated: false, completion: nil)
-        }
+        self.adapter.performUpdates(animated: false, completion: nil)
     }
     
 }

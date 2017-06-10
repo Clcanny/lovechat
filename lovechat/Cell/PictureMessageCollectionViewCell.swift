@@ -39,7 +39,7 @@ class PictureMessageCollectionViewCell: UICollectionViewCell {
         imageView.backgroundColor = UIColor.clear
         return imageView
     }()
-    public func setpicture(url: URL) {
+    public func setPicture(url: URL) {
         pictureView.sd_setImage(with: url, completed: { (image, error, cacheType, imageURL) in
             var count = 0
             var red: CGFloat = 0

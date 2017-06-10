@@ -73,7 +73,7 @@ class PictureMessageSectionController: ListSectionController {
             cell.pictureSize = psize!
         }
         if image != nil {
-            cell.setpicture(url: pictureMessageModel!.getMessage())
+            cell.setPicture(url: pictureMessageModel!.getMessage())
         }
         if (pictureMessageModel!.getLR()) {
             cell.keepRight()
