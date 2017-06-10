@@ -8,6 +8,7 @@
 
 import UIKit
 import Async
+import SDWebImage
 
 class PictureMessageCollectionViewCell: UICollectionViewCell {
     
@@ -17,7 +18,9 @@ class PictureMessageCollectionViewCell: UICollectionViewCell {
     var delegate: SegueFromCellProtocol?
     private var gesture: UITapGestureRecognizer?
     func click(gestureRecognizer: UIGestureRecognizer) {
-        delegate?.callSegueFromCell(data: picture)
+        if let picture = pictureView.image {
+            delegate?.callSegueFromCell(data: picture)
+        }
     }
     
     private let avatar = { () -> UIImageView in
@@ -30,52 +33,42 @@ class PictureMessageCollectionViewCell: UICollectionViewCell {
     
     // UIImage contains the data for an image.
     // UIImageView is a custom view meant to display the UIImage.
-    public let pictureView = { () -> UIImageView in
+    private let pictureView = { () -> UIImageView in
         var imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
         imageView.backgroundColor = UIColor.clear
         return imageView
     }()
-    var picture: UIImage? {
-        get {
-            return pictureView.image
-        }
-        
-        set(newPicture) {
-            Async.background {
-                self.backgroundColor = UIColor.black
-                var count = 0
-                var red: CGFloat = 0
-                var green: CGFloat = 0
-                var blue: CGFloat = 0
-                let ys = Int(
-                    PictureMessageCollectionViewCell.radius
-                        * 2.0 / self.bounds.height * (newPicture?.size.height)!
-                )
-                for x in 0..<3 {
-                    for y in 0..<ys {
-                        count += 1
-                        let rgb = newPicture?.getPixelColor(
-                            pos: CGPoint(x: CGFloat(x), y: CGFloat(y))
-                        )
-                        red += (rgb?.0)!
-                        green += (rgb?.1)!
-                        blue += (rgb?.2)!
-                    }
+    public func setpicture(url: URL) {
+        pictureView.sd_setImage(with: url, completed: { (image, error, cacheType, imageURL) in
+            var count = 0
+            var red: CGFloat = 0
+            var green: CGFloat = 0
+            var blue: CGFloat = 0
+            let ys = Int(
+                PictureMessageCollectionViewCell.radius
+                    * 2.0 / self.bounds.height * image!.size.height
+            )
+            for x in 0..<3 {
+                for y in 0..<ys {
+                    count += 1
+                    let rgb = image?.getPixelColor(
+                        pos: CGPoint(x: CGFloat(x), y: CGFloat(y))
+                    )
+                    red += (rgb?.0)!
+                    green += (rgb?.1)!
+                    blue += (rgb?.2)!
                 }
-                self.backgroundColor = UIColor.green
-                red = red / CGFloat(count * 255)
-                green = green / CGFloat(count * 255)
-                blue = blue / CGFloat(count * 255)
-                self.highlightLayer.fillColor = UIColor(
-                    red: red, green: green,
-                    blue: blue, alpha: 1).cgColor
-                self.pictureView.image = newPicture
-                print("loaded image")
             }
-        }
+            red = red / CGFloat(count * 255)
+            green = green / CGFloat(count * 255)
+            blue = blue / CGFloat(count * 255)
+            self.highlightLayer.fillColor = UIColor(
+                red: red, green: green,
+                blue: blue, alpha: 1).cgColor
+        })
     }
-    var pictureSize: CGSize {
+    public var pictureSize: CGSize {
         get {
             return pictureView.frame.size
         }
@@ -121,7 +114,6 @@ class PictureMessageCollectionViewCell: UICollectionViewCell {
         let borderWidth = radius * 3 + pictureView.frame.size.width
         
         let path = UIBezierPath()
-        path.move(to: CGPoint(x: radius * 2, y: radius))
         path.addArc(
             withCenter: CGPoint(x: radius * 2, y: 0),
             radius: radius,
@@ -141,7 +133,7 @@ class PictureMessageCollectionViewCell: UICollectionViewCell {
             clockwise: false
         )
         path.close()
-
+        
         highlightLayer.path = path.cgPath
         
         avatar.frame.origin = .zero

@@ -9,7 +9,6 @@
 import UIKit
 import IGListKit
 import Async
-import SDWebImage
 
 class PictureMessageSectionController: ListSectionController {
     
@@ -26,10 +25,6 @@ class PictureMessageSectionController: ListSectionController {
         super.init()
         self.pictureMessageModel = pictureMessageModel
         inset = UIEdgeInsets(top: 0, left: 0, bottom: 5, right: 0)
-//        image = pictureMessageModel.getImage()
-//        asyncGroup.background {
-//            self.image = UIImage(contentsOfFile: pictureMessageModel.getMessage().path)!
-//            }
     }
     
     override func numberOfItems() -> Int {
@@ -41,16 +36,13 @@ class PictureMessageSectionController: ListSectionController {
             return .zero
         }
         
-//        asyncGroup.wait()
         if image == nil {
             let pictureHeight = TextMessageCollectionViewCell.maxWidth
             Async.background {
                 self.image = self.pictureMessageModel?.getImage()
                 }.main {
-                    print("hello")
                     self.collectionContext?.performBatch(animated: false, updates: { (batchContext) in
                         batchContext.reload(self)
-                        print("finish")
                     }, completion: nil)
             }
             return CGSize(
@@ -75,25 +67,14 @@ class PictureMessageSectionController: ListSectionController {
             of: PictureMessageCollectionViewCell.self,
             for: self, at: index
             ) as! PictureMessageCollectionViewCell
+        
         // The order is important.
-//        cell.pictureSize = psize!
-//        asyncGroup.wait()
-//        Async.background {
-//            cell.picture = self.image!
-//            }.main{
-//                print("begin to reload")
-//                self.collectionContext?.performBatch(animated: false, updates: { (batchContext) in
-//                    batchContext.reload(self)
-//                    print("finish")
-//                }, completion: nil)
-//        }
         if psize != nil {
             cell.pictureSize = psize!
         }
-//        if image != nil {
-//            cell.picture = image
-//        }
-        cell.pictureView.sd_setImage(with: pictureMessageModel!.getMessage(), placeholderImage: UIImage(named: "placeholder.png"))
+        if image != nil {
+            cell.setpicture(url: pictureMessageModel!.getMessage())
+        }
         if (pictureMessageModel!.getLR()) {
             cell.keepRight()
         }
@@ -103,5 +84,5 @@ class PictureMessageSectionController: ListSectionController {
         cell.delegate = delegate
         return cell
     }
-
+    
 }
