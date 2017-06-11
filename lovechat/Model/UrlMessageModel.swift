@@ -13,6 +13,11 @@ class UrlMessageModel: MessageModel {
     
     internal var message: URL?
     
+    // abstract method
+    func afterDownload(url: URL?, localUrl: URL, error: Any?) {
+        fatalError()
+    }
+    
     init(message: URL, _ isReceiver: Bool) {
         super.init(isReceiver)
         self.message = message

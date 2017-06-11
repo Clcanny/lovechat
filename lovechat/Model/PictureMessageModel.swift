@@ -19,7 +19,7 @@ class PictureMessageModel: UrlMessageModel {
     let mutex = Mutex()
     let storage = Storage.storage()
     
-    func afterDownload(url: URL?, localUrl: URL, error: Any?) {
+    override func afterDownload(url: URL?, localUrl: URL, error: Any?) {
         if let err = error {
             print(err)
         }
