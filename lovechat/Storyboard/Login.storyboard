@@ -41,16 +41,8 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="loginSuccess" translatesAutoresizingMaskIntoConstraints="NO" id="1yk-z6-TwO">
                                 <rect key="frame" x="112" y="28" width="150" height="116"/>
                             </imageView>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="JMg-ud-viM" userLabel="Register Complete">
-                                <rect key="frame" x="165" y="152" width="45" height="45"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="45" id="4nk-Cp-Znl"/>
-                                    <constraint firstAttribute="height" constant="45" id="NoC-um-DHE"/>
-                                </constraints>
-                                <color key="color" red="0.70980392160000005" green="0.4549019608" blue="0.96078431369999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            </activityIndicatorView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="gUF-Yg-ZFS" customClass="AnimatableStackView" customModule="lovechat" customModuleProvider="target">
-                                <rect key="frame" x="16" y="243" width="343" height="180"/>
+                                <rect key="frame" x="16" y="314" width="343" height="180"/>
                                 <subviews>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="62d-qL-R8l" customClass="AnimatableTextField" customModule="lovechat" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="343" height="60"/>
@@ -117,10 +109,6 @@
                                         </state>
                                     </button>
                                 </subviews>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="180" id="UcJ-BG-EGx"/>
-                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="180" id="ca4-B6-Li8"/>
-                                </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="string" keyPath="animationType" value="Shake"/>
                                     <userDefinedRuntimeAttribute type="number" keyPath="duration">
@@ -128,16 +116,6 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </stackView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fCR-gh-Jqg">
-                                <rect key="frame" x="248" y="628" width="111" height="19"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="111" id="osM-dy-W7d"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                <state key="normal" title="Forgot Password ?">
-                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </state>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iIW-Qw-mzN">
                                 <rect key="frame" x="16" y="628" width="93" height="19"/>
                                 <constraints>
@@ -149,24 +127,42 @@
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fCR-gh-Jqg">
+                                <rect key="frame" x="248" y="628" width="111" height="19"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="111" id="osM-dy-W7d"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <state key="normal" title="Forgot Password ?">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                            </button>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="JMg-ud-viM" userLabel="Register Complete">
+                                <rect key="frame" x="165" y="185" width="45" height="45"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="45" id="4zM-SQ-8XI"/>
+                                    <constraint firstAttribute="width" constant="45" id="INB-Mz-GD0"/>
+                                </constraints>
+                                <color key="color" red="0.70980392160000005" green="0.4549019608" blue="0.96078431369999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="fCR-gh-Jqg" firstAttribute="top" secondItem="iIW-Qw-mzN" secondAttribute="top" id="1iS-a7-HrZ"/>
-                            <constraint firstItem="JMg-ud-viM" firstAttribute="top" secondItem="1yk-z6-TwO" secondAttribute="bottom" constant="8" symbolic="YES" id="65y-Bc-Izg"/>
-                            <constraint firstItem="tzw-HP-kGw" firstAttribute="centerX" secondItem="gUF-Yg-ZFS" secondAttribute="centerX" id="GQJ-ya-EVu"/>
+                            <constraint firstItem="gUF-Yg-ZFS" firstAttribute="leading" secondItem="iIW-Qw-mzN" secondAttribute="leading" id="9xW-6w-9NE"/>
                             <constraint firstItem="1yk-z6-TwO" firstAttribute="top" secondItem="WV1-GQ-RWK" secondAttribute="bottom" constant="8" symbolic="YES" id="HSa-YG-PXY"/>
-                            <constraint firstItem="iIW-Qw-mzN" firstAttribute="leading" secondItem="gUF-Yg-ZFS" secondAttribute="leading" id="QA2-Nn-aV4"/>
-                            <constraint firstItem="JMg-ud-viM" firstAttribute="centerX" secondItem="gUF-Yg-ZFS" secondAttribute="centerX" id="R9N-9H-dVI"/>
+                            <constraint firstItem="gUF-Yg-ZFS" firstAttribute="trailing" secondItem="T49-uk-96s" secondAttribute="trailingMargin" id="Lng-oi-Y3c"/>
+                            <constraint firstItem="gUF-Yg-ZFS" firstAttribute="centerX" secondItem="tzw-HP-kGw" secondAttribute="centerX" id="R96-LZ-scc"/>
                             <constraint firstItem="fCR-gh-Jqg" firstAttribute="firstBaseline" secondItem="iIW-Qw-mzN" secondAttribute="baseline" id="RFD-gw-gHw"/>
-                            <constraint firstItem="fCR-gh-Jqg" firstAttribute="trailing" secondItem="gUF-Yg-ZFS" secondAttribute="trailing" id="RcJ-o7-x77"/>
-                            <constraint firstItem="JMg-ud-viM" firstAttribute="centerX" secondItem="1yk-z6-TwO" secondAttribute="centerX" id="Tdj-LK-AQl"/>
+                            <constraint firstItem="JMg-ud-viM" firstAttribute="top" secondItem="1yk-z6-TwO" secondAttribute="bottom" constant="41" id="T7S-Md-1RS"/>
                             <constraint firstAttribute="bottom" secondItem="iIW-Qw-mzN" secondAttribute="bottom" constant="20" symbolic="YES" id="Vto-QA-WOC"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="gUF-Yg-ZFS" secondAttribute="trailing" id="lSf-pc-yvj"/>
+                            <constraint firstItem="JMg-ud-viM" firstAttribute="centerX" secondItem="1yk-z6-TwO" secondAttribute="centerX" id="e9i-g9-zzC"/>
                             <constraint firstItem="fCR-gh-Jqg" firstAttribute="baseline" secondItem="iIW-Qw-mzN" secondAttribute="firstBaseline" id="lYb-Jr-UqN"/>
-                            <constraint firstItem="gUF-Yg-ZFS" firstAttribute="leading" secondItem="T49-uk-96s" secondAttribute="leadingMargin" id="mxA-XL-jZg"/>
+                            <constraint firstItem="JMg-ud-viM" firstAttribute="centerX" secondItem="gUF-Yg-ZFS" secondAttribute="centerX" id="o89-8x-JsZ"/>
+                            <constraint firstItem="gUF-Yg-ZFS" firstAttribute="trailing" secondItem="fCR-gh-Jqg" secondAttribute="trailing" id="oez-5X-8xQ"/>
+                            <constraint firstItem="gUF-Yg-ZFS" firstAttribute="leading" secondItem="T49-uk-96s" secondAttribute="leadingMargin" id="tLn-6L-Fu7"/>
                             <constraint firstItem="tzw-HP-kGw" firstAttribute="bottom" secondItem="1fq-qZ-FzC" secondAttribute="top" id="tUB-bS-gQk"/>
-                            <constraint firstItem="tzw-HP-kGw" firstAttribute="centerY" secondItem="gUF-Yg-ZFS" secondAttribute="centerY" id="yiX-hr-EHe"/>
+                            <constraint firstItem="gUF-Yg-ZFS" firstAttribute="top" secondItem="T49-uk-96s" secondAttribute="top" constant="314" id="zlI-Qt-hVJ"/>
                         </constraints>
                     </view>
                     <connections>
