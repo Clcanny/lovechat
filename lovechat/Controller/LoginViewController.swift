@@ -26,6 +26,8 @@ class LoginViewController: UIViewController {
         if Auth.auth().currentUser?.uid != nil {
             print("User already logged in!")
 //            self.performSegue(withIdentifier: "toChatViewController", sender: nil)
+            userField.text = "a837940593@gmail.com"
+            passField.text = "wyszjdx"
         }
     }
     
