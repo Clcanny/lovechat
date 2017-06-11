@@ -27,8 +27,8 @@ class LoginViewController: UIViewController {
     }
     
     override func viewDidDisappear(_ animated: Bool) {
-        userField.text = nil
-        passField.text = nil
+//        userField.text = nil
+//        passField.text = nil
         registerComplete.isHidden = true
     }
     
