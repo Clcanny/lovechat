@@ -28,8 +28,10 @@ class ChatViewController: UIViewController {
     @IBOutlet weak var recordButton: UIButton!
     let recordAnimationView = RecordAnimationView()
     
-    var companionId: String?
+    let uid = Auth.auth().currentUser!.uid
+    var companionId: String!
     let database = Database.database().reference()
+    let storage = Storage.storage()
     
     let collectionView = { () -> UICollectionView in
         let layout = UICollectionViewFlowLayout()
@@ -114,6 +116,12 @@ class ChatViewController: UIViewController {
         if UIImagePickerController.isSourceTypeAvailable(.camera) == false {
             recordVideo.isEnabled = false
         }
+        
+        database.child("users/\(uid)/companionId").observeSingleEvent(
+            of: DataEventType.value, with: { (snapshot) -> Void in
+                let value = snapshot.value
+                self.companionId = value as! String
+        })
         
         observeDataChange()
     }
@@ -202,9 +210,91 @@ extension ChatViewController {
                             value.object(forKey: "isReceive") as! Bool
                         ))
                     }
+                    else if (value.object(forKey: "type") as! String) == "audio" {
+                        self.objects.append(VoiceMessageModel(
+                            message: URL(string: value.object(forKey: "url") as! String)!,
+                            time: value.object(forKey: "time") as! Int,
+                            value.object(forKey: "isReceive") as! Bool
+                        ))
+                    }
+                    else if (value.object(forKey: "type") as! String) == "picture" {
+//                        self.objects.append(PictureMessageModel(
+//                            message: URL(string: value.object(forKey: "url") as! String)!,
+//                            value.object(forKey: "isReceive") as! Bool
+//                        ))
+                    }
                     self.adapter.performUpdates(animated: false, completion: nil)
                 }
         })
+    }
+    
+    func pushMessage(
+        _ sendMsg: [String : Any],
+        _ receiveMsg: [String : Any]) {
+        if companionId == nil {
+            database.child("users/\(uid)/companionId").observeSingleEvent(
+                of: DataEventType.value, with: { (snapshot) -> Void in
+                    let value = snapshot.value
+                    let companionId = value as! String
+                    self.companionId = companionId
+            })
+        }
+        
+        let key = database.child("users/\(uid)").childByAutoId().key
+        let childUpdates = [
+            "users/\(uid)/\(key)": sendMsg,
+            "users/\(companionId!)/\(key)": receiveMsg
+        ]
+        database.updateChildValues(childUpdates)
+    }
+    
+    func uploadTextMessage(message: String) {
+        let sendMsg = ["message": message, "isReceive": false, "type": "text"] as [String : Any]
+        let receiveMsg = ["message": message, "isReceive": true, "type": "text"] as [String : Any]
+        Async.background {
+            self.pushMessage(sendMsg, receiveMsg)
+        }
+    }
+    
+    func uploadUrlMessage(fileUrl: URL, type: String, recordTime: Int?) {
+        let url = "gs://lovechat-2dc1b.appspot.com/" + uid + "/" + fileUrl.lastPathComponent
+        
+        Async.background {
+            let reference = self.storage.reference(forURL: url)
+            _ = reference.putFile(from: fileUrl, metadata: nil) { metadata, error in
+                if (error != nil) {
+                    // Uh-oh, an error occurred!
+                }
+                else {
+                    // Metadata contains file metadata such as size, content-type, and download URL.
+                    if let downloadURL = metadata!.downloadURL() {
+                        var sendMsg: [String : Any]!
+                        var receiveMsg: [String : Any]!
+                        if type == "audio" {
+                            sendMsg = [
+                                "url": downloadURL.absoluteString,
+                                "time": recordTime!, "isReceive": false, "type": "audio"
+                                ] as [String : Any]
+                            receiveMsg = [
+                                "url": downloadURL.absoluteString,
+                                "time": recordTime!, "isReceive": true, "type": "audio"
+                                ] as [String : Any]
+                                                    }
+                        else {
+                            sendMsg = [
+                                "url": downloadURL.absoluteString,
+                                "isReceive": false, "type": type
+                                ] as [String : Any]
+                            receiveMsg = [
+                                "url": downloadURL.absoluteString,
+                                "isReceive": true, "type": type
+                            ] as [String : Any]
+                        }
+                        self.pushMessage(sendMsg, receiveMsg)
+                    }
+                }
+            }
+        }
     }
     
 }
@@ -222,28 +312,7 @@ extension ChatViewController: UITextViewDelegate {
         let message = textView.text!
         textView.text = ""
         
-        let uid = Auth.auth().currentUser!.uid
-        
-        func pushMessage(companionId: String) {
-            let key = self.database.child("users/\(uid)").childByAutoId().key
-            let sendMsg = ["message": message, "isReceive": false, "type": "text"] as [String : Any]
-            let receiveMsg = ["message": message, "isReceive": true, "type": "text"] as [String : Any]
-            let childUpdates = ["users/\(uid)/\(key)": sendMsg, "users/\(companionId)/\(key)": receiveMsg]
-            self.database.updateChildValues(childUpdates)
-        }
-        
-        if companionId == nil {
-            self.database.child("users/\(uid)/companionId").observeSingleEvent(
-                of: DataEventType.value, with: { (snapshot) -> Void in
-                    let value = snapshot.value
-                    let companionId = value as! String
-                    self.companionId = companionId
-                    pushMessage(companionId: companionId)
-            })
-        }
-        else {
-            pushMessage(companionId: companionId!)
-        }
+        uploadTextMessage(message: message)
     }
     
     func cancelTextMessage() {
@@ -359,10 +428,11 @@ extension ChatViewController {
         }
         catch {
         }
-        objects.append(VoiceMessageModel(message: audioRecorder!.url, time: recordTime, true))
+        
+        let audioUrl = audioRecorder!.url
         audioRecorder = nil
         
-        adapter.performUpdates(animated: false, completion: nil)
+        uploadUrlMessage(fileUrl: audioUrl, type: "audio", recordTime: recordTime)
     }
     
 }
@@ -400,8 +470,7 @@ extension ChatViewController: UIImagePickerControllerDelegate {
                     catch {
                         fatalError()
                     }
-                    self.objects.append(PictureMessageModel(message: url, false))
-                    self.adapter.performUpdates(animated: false, completion: nil)
+                    self.uploadUrlMessage(fileUrl: url, type: "picture", recordTime: nil)
                 }
                 else {
                     fatalError()
@@ -414,7 +483,6 @@ extension ChatViewController: UIImagePickerControllerDelegate {
         _ picker: UIImagePickerController,
         didFinishPickingImage image: UIImage,
         editingInfo: [String : AnyObject]?) {
-        print("finished picking image")
     }
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {

@@ -9,17 +9,28 @@
 import Foundation
 import UIKit
 import Async
+import Firebase
 
 class PictureMessageModel: UrlMessageModel {
     
     private var image: UIImage?
     
     let group = AsyncGroup()
+    let storage = Storage.storage()
     
     override init(message: URL, _ isReceiver: Bool) {
         super.init(message: message, isReceiver)
         group.background {
-            self.setImage(image: UIImage(contentsOfFile: self.getMessage().path)!)
+            let reference = self.storage.reference(forURL: message.absoluteString)
+            reference.getData(maxSize: 10 * 1024 * 1024) { (data, error) -> Void in
+                if error != nil {
+                    // Uh-oh, an error occurred!
+                    print("fuck")
+                    print(error)
+                } else {
+                    self.setImage(image: UIImage(data: data!)!)
+                }
+            }
         }
     }
     
