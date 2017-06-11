@@ -14,7 +14,6 @@ import AVFoundation
 class VideoMessageModel: UrlMessageModel {
     
     private var preview: UIImage?
-    private let group = AsyncGroup()
     
     override init(message: URL, _ isReceiver: Bool) {
         super.init(message: message, isReceiver)

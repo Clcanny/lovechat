@@ -13,6 +13,9 @@ class VoiceMessageModel: UrlMessageModel {
     
     private var time: Int?
     
+    override func afterDownload(url: URL?, localUrl: URL, error: Any?) {
+    }
+    
     init(message: URL, time: Int, _ isReceiver: Bool) {
         super.init(message: message, isReceiver)
         self.time = time
