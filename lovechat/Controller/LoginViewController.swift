@@ -11,7 +11,10 @@ import Firebase
 import FirebaseDatabase
 
 class LoginViewController: UIViewController {
+    
     let databse = Database.database().reference()
+    
+    var isFieldEditing: Bool = false
     
     @IBOutlet weak var registerComplete: UIActivityIndicatorView!
     @IBOutlet weak var userField: AnimatableTextField!
@@ -27,15 +30,31 @@ class LoginViewController: UIViewController {
     }
     
     override func viewDidDisappear(_ animated: Bool) {
-//        userField.text = nil
-//        passField.text = nil
+        userField.text = nil
+        passField.text = nil
         registerComplete.isHidden = true
+        
+        NotificationCenter.default.removeObserver(self)
+        NotificationCenter.default.removeObserver(self)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         registerComplete.isHidden = true
+        userField.delegate = self
+        passField.delegate = self
+        
+        NotificationCenter.default.addObserver(
+            self, selector: #selector(LoginViewController.keyboardWillShow(notification:)),
+            name: Notification.Name.UIKeyboardWillShow,
+            object: view.window
+        )
+        NotificationCenter.default.addObserver(
+            self, selector: #selector(LoginViewController.keyboardWillHide(notification:)),
+            name: Notification.Name.UIKeyboardWillHide,
+            object: view.window
+        )
     }
     
     override func didReceiveMemoryWarning() {
@@ -96,9 +115,11 @@ class LoginViewController: UIViewController {
             }
         })
     }
+    
 }
 
 extension LoginViewController: UITextFieldDelegate {
+    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         self.view.endEditing(true)
         
@@ -113,4 +134,40 @@ extension LoginViewController: UITextFieldDelegate {
         
         return true
     }
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        if textField.tag == 1 {
+            isFieldEditing = true
+        }
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        if textField.tag == 1 {
+            isFieldEditing = false
+        }
+    }
+    
+}
+
+// keyboard
+extension LoginViewController {
+    
+    func keyboardWillShow(notification: Notification) {
+        if isFieldEditing {
+            return
+        }
+        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+            view.bounds.origin.y = keyboardSize.height
+        }
+        else {
+            fatalError()
+        }
+    }
+    
+    func keyboardWillHide(notification: Notification) {
+        if isFieldEditing {
+            view.bounds.origin.y = 0
+        }
+    }
+    
 }

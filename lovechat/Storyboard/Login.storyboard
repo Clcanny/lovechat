@@ -166,7 +166,9 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="registerComplete" destination="JMg-ud-viM" id="zRW-CC-Rax"/>
+                        <outlet property="passField" destination="WlV-ZA-imc" id="mNc-SU-2KG"/>
+                        <outlet property="registerComplete" destination="JMg-ud-viM" id="UiT-GU-ODK"/>
+                        <outlet property="userField" destination="62d-qL-R8l" id="gFK-cx-5e3"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="amH-OE-Yyu" sceneMemberID="firstResponder"/>
