@@ -21,8 +21,10 @@
 		406511A01EEB180400EF6614 /* ExtensionFileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4065119F1EEB180400EF6614 /* ExtensionFileManager.swift */; };
 		40888A661EECFB15008E5E12 /* AutoHeightTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40888A651EECFB15008E5E12 /* AutoHeightTextView.swift */; };
 		40888A681EED10E1008E5E12 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 40888A671EED10E1008E5E12 /* GoogleService-Info.plist */; };
+		40888A6D1EED13C3008E5E12 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 40888A6C1EED13C3008E5E12 /* Login.storyboard */; };
+		40888A6F1EED16DC008E5E12 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40888A6E1EED16DC008E5E12 /* LoginViewController.swift */; };
 		408B480E1EE276CC00EE9281 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 408B480D1EE276CC00EE9281 /* AppDelegate.swift */; };
-		408B48131EE276CC00EE9281 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 408B48111EE276CC00EE9281 /* Main.storyboard */; };
+		408B48131EE276CC00EE9281 /* Chat.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 408B48111EE276CC00EE9281 /* Chat.storyboard */; };
 		408B48151EE276CC00EE9281 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 408B48141EE276CC00EE9281 /* Assets.xcassets */; };
 		408B48181EE276CC00EE9281 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 408B48161EE276CC00EE9281 /* LaunchScreen.storyboard */; };
 		409EC0C41EE3C8B800365F7E /* TimeStampCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 409EC0C31EE3C8B800365F7E /* TimeStampCollectionViewCell.swift */; };
@@ -67,9 +69,11 @@
 		4065119F1EEB180400EF6614 /* ExtensionFileManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ExtensionFileManager.swift; path = Util/ExtensionFileManager.swift; sourceTree = "<group>"; };
 		40888A651EECFB15008E5E12 /* AutoHeightTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AutoHeightTextView.swift; path = View/AutoHeightTextView.swift; sourceTree = "<group>"; };
 		40888A671EED10E1008E5E12 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../GoogleService-Info.plist"; sourceTree = "<group>"; };
+		40888A6C1EED13C3008E5E12 /* Login.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Login.storyboard; path = Storyboard/Login.storyboard; sourceTree = "<group>"; };
+		40888A6E1EED16DC008E5E12 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginViewController.swift; path = Controller/LoginViewController.swift; sourceTree = "<group>"; };
 		408B480A1EE276CC00EE9281 /* lovechat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = lovechat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		408B480D1EE276CC00EE9281 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		408B48121EE276CC00EE9281 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		408B48121EE276CC00EE9281 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Chat.storyboard; sourceTree = "<group>"; };
 		408B48141EE276CC00EE9281 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		408B48171EE276CC00EE9281 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		408B48191EE276CC00EE9281 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -124,6 +128,7 @@
 				40AF902D1EE5BC1900F801A9 /* PictureMessageDetailViewController.swift */,
 				40FB67DA1EE6DAEB00DD63F4 /* CameraViewController.swift */,
 				40D1CAE61EEC11FA0030CBEF /* VideoMessageSctionController.swift */,
+				40888A6E1EED16DC008E5E12 /* LoginViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -180,6 +185,15 @@
 			name = View;
 			sourceTree = "<group>";
 		};
+		40888A691EED135A008E5E12 /* Storyboard */ = {
+			isa = PBXGroup;
+			children = (
+				408B48111EE276CC00EE9281 /* Chat.storyboard */,
+				40888A6C1EED13C3008E5E12 /* Login.storyboard */,
+			);
+			name = Storyboard;
+			sourceTree = "<group>";
+		};
 		408B48011EE276CC00EE9281 = {
 			isa = PBXGroup;
 			children = (
@@ -201,6 +215,7 @@
 		408B480C1EE276CC00EE9281 /* lovechat */ = {
 			isa = PBXGroup;
 			children = (
+				40888A691EED135A008E5E12 /* Storyboard */,
 				40A8454A1EE5486100837060 /* Protocol */,
 				403E2BB91EE4292300EF961D /* View */,
 				403B20611EE3381100CBE09C /* Model */,
@@ -208,7 +223,6 @@
 				403B20531EE2BC2400CBE09C /* Cell */,
 				403B204E1EE2AFFA00CBE09C /* Controller */,
 				408B480D1EE276CC00EE9281 /* AppDelegate.swift */,
-				408B48111EE276CC00EE9281 /* Main.storyboard */,
 				408B48141EE276CC00EE9281 /* Assets.xcassets */,
 				408B48161EE276CC00EE9281 /* LaunchScreen.storyboard */,
 				408B48191EE276CC00EE9281 /* Info.plist */,
@@ -310,7 +324,8 @@
 				408B48181EE276CC00EE9281 /* LaunchScreen.storyboard in Resources */,
 				40888A681EED10E1008E5E12 /* GoogleService-Info.plist in Resources */,
 				408B48151EE276CC00EE9281 /* Assets.xcassets in Resources */,
-				408B48131EE276CC00EE9281 /* Main.storyboard in Resources */,
+				40888A6D1EED13C3008E5E12 /* Login.storyboard in Resources */,
+				408B48131EE276CC00EE9281 /* Chat.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -373,6 +388,7 @@
 				40BF9FBD1EE4F737002BEACB /* VoiceMessageModel.swift in Sources */,
 				40D1CAE51EEC10430030CBEF /* VideoMessageCollectionViewCell.swift in Sources */,
 				403B20501EE2B09700CBE09C /* ChatViewController.swift in Sources */,
+				40888A6F1EED16DC008E5E12 /* LoginViewController.swift in Sources */,
 				40AF902E1EE5BC1900F801A9 /* PictureMessageDetailViewController.swift in Sources */,
 				401B71591EE5751B001BE55E /* VoiceMessageSectionController.swift in Sources */,
 				409EC0CC1EE3E1C700365F7E /* PictureMessageModel.swift in Sources */,
@@ -412,12 +428,12 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		408B48111EE276CC00EE9281 /* Main.storyboard */ = {
+		408B48111EE276CC00EE9281 /* Chat.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				408B48121EE276CC00EE9281 /* Base */,
 			);
-			name = Main.storyboard;
+			name = Chat.storyboard;
 			sourceTree = "<group>";
 		};
 		408B48161EE276CC00EE9281 /* LaunchScreen.storyboard */ = {

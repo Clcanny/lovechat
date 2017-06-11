@@ -51,6 +51,7 @@ PODS:
     - SDWebImage/Core (= 4.0.0)
   - SDWebImage/Core (4.0.0)
   - SnapKit (3.2.0)
+  - TextFieldEffects (1.3.3)
 
 DEPENDENCIES:
   - AsyncSwift
@@ -62,6 +63,7 @@ DEPENDENCIES:
   - KDCircularProgress
   - SDWebImage
   - SnapKit (~> 3.2.0)
+  - TextFieldEffects
 
 SPEC CHECKSUMS:
   AsyncSwift: 632138e42ead868b53c745fcde9bf733ce1527ad
@@ -78,7 +80,8 @@ SPEC CHECKSUMS:
   KDCircularProgress: 12f677b2deb02409ab48c6cae1898d146b8ad549
   SDWebImage: 76a6348bdc74eb5a55dd08a091ef298e56b55e41
   SnapKit: 1ca44df72cfa543218d177cb8aab029d10d86ea7
+  TextFieldEffects: 8706f53525f1ce51c8921b7af32237caab50c467
 
-PODFILE CHECKSUM: 38a7f4bdb71a02e8acf37066ae9bdf476f17a357
+PODFILE CHECKSUM: 63923abc8a3eccf51838164dd871c182fb1a0932
 
 COCOAPODS: 1.2.1

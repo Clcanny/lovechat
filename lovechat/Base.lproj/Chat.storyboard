@@ -208,11 +208,11 @@
             </objects>
             <point key="canvasLocation" x="2316" y="888.30584707646187"/>
         </scene>
-        <!--聊天-->
+        <!--Chat-->
         <scene sceneID="Ik3-mq-sa3">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Nqv-h8-WvV" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="聊天" id="AnY-Ix-896"/>
+                    <tabBarItem key="tabBarItem" title="Chat" id="AnY-Ix-896"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="3Bw-wt-nx3">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>

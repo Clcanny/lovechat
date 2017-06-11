@@ -11,6 +11,7 @@ target 'lovechat' do
   pod 'KDCircularProgress'
   pod 'AsyncSwift'
   pod 'SDWebImage'
+  pod "TextFieldEffects"
   pod 'Firebase/Core'
   pod 'Firebase/Auth'
   pod 'Firebase/Database'
