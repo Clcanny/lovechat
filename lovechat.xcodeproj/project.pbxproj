@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		401B71591EE5751B001BE55E /* VoiceMessageSectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 401B71581EE5751B001BE55E /* VoiceMessageSectionController.swift */; };
 		401BBA811EEDEF1C0000587E /* Mutex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 401BBA801EEDEF1C0000587E /* Mutex.swift */; };
+		401BBA831EEE02420000587E /* Lock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 401BBA821EEE02420000587E /* Lock.swift */; };
 		40358A6C1EE928D200A8CEF4 /* ExtensionNSObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40358A6B1EE928D200A8CEF4 /* ExtensionNSObject.swift */; };
 		40358A6E1EE9293400A8CEF4 /* MessageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40358A6D1EE9293400A8CEF4 /* MessageModel.swift */; };
 		40358A701EE92B0200A8CEF4 /* DismissToChatViewControllerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40358A6F1EE92B0200A8CEF4 /* DismissToChatViewControllerProtocol.swift */; };
@@ -84,6 +85,7 @@
 		24CC1578EBBAC6566656A6D9 /* Pods-lovechat.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-lovechat.debug.xcconfig"; path = "Pods/Target Support Files/Pods-lovechat/Pods-lovechat.debug.xcconfig"; sourceTree = "<group>"; };
 		401B71581EE5751B001BE55E /* VoiceMessageSectionController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = VoiceMessageSectionController.swift; path = Controller/VoiceMessageSectionController.swift; sourceTree = "<group>"; };
 		401BBA801EEDEF1C0000587E /* Mutex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Mutex.swift; path = Util/Mutex.swift; sourceTree = "<group>"; };
+		401BBA821EEE02420000587E /* Lock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Lock.swift; path = Util/Lock.swift; sourceTree = "<group>"; };
 		40358A6B1EE928D200A8CEF4 /* ExtensionNSObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ExtensionNSObject.swift; path = Util/ExtensionNSObject.swift; sourceTree = "<group>"; };
 		40358A6D1EE9293400A8CEF4 /* MessageModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MessageModel.swift; path = Model/MessageModel.swift; sourceTree = "<group>"; };
 		40358A6F1EE92B0200A8CEF4 /* DismissToChatViewControllerProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DismissToChatViewControllerProtocol.swift; path = Protocol/DismissToChatViewControllerProtocol.swift; sourceTree = "<group>"; };
@@ -215,6 +217,7 @@
 				407193A01EED6A60003C7E9C /* ExtensionCALayer.swift */,
 				407193A21EED6A84003C7E9C /* ExtensionUIColor.swift */,
 				401BBA801EEDEF1C0000587E /* Mutex.swift */,
+				401BBA821EEE02420000587E /* Lock.swift */,
 			);
 			name = Util;
 			sourceTree = "<group>";
@@ -517,6 +520,7 @@
 				40530DA61EE53BFE00F33C76 /* ExtensionString.swift in Sources */,
 				40B1BF1B1EE3ED83000B335E /* ExtensionUIImage.swift in Sources */,
 				409EC0C81EE3DA8600365F7E /* PictureMessageCollectionViewCell.swift in Sources */,
+				401BBA831EEE02420000587E /* Lock.swift in Sources */,
 				403B20631EE3383600CBE09C /* TextMessageModel.swift in Sources */,
 				40AF90241EE5A5E200F801A9 /* TextMessageDetailViewController.swift in Sources */,
 				40AF90281EE5A8D400F801A9 /* SegueFromCellProtocol.swift in Sources */,

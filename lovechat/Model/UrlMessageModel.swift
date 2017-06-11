@@ -22,6 +22,7 @@ class UrlMessageModel: MessageModel {
     
     let group = AsyncGroup()
     let mutex = Mutex()
+    let semaphore = DispatchSemaphore.init(value: 1)
     let storage = Storage.storage()
     
     init(message: URL, _ isReceiver: Bool) {
@@ -37,11 +38,13 @@ class UrlMessageModel: MessageModel {
                 self.afterDownload(url: nil, localUrl: localUrl, error: nil)
             }
             else {
+//                self.semaphore.wait()
                 _ = self.mutex.lock()
                 _ = reference.write(toFile: localUrl) { (URL, error) -> Void in
                     self.group.background {
                         self.afterDownload(url: URL, localUrl: localUrl, error: error)
                         _ = self.mutex.unlock()
+//                        self.semaphore.signal()
                     }
                 }
             }
@@ -49,10 +52,12 @@ class UrlMessageModel: MessageModel {
     }
     
     public func getMessage() -> URL {
-//        _ = mutex.lock()
-//        group.wait()
+//        semaphore.wait()
+        _ = mutex.tryLock()
+        group.wait()
         return message!
-//        _ = mutex.unlock()
+        _ = mutex.unlock()
+//        semaphore.signal()
     }
     
 }

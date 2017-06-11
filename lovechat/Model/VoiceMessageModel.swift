@@ -31,11 +31,4 @@ class VoiceMessageModel: UrlMessageModel {
         return time!
     }
     
-    override func getMessage() -> URL {
-//        mutex.lock()
-        group.wait()
-//        mutex.unlock()
-        return message!
-    }
-    
 }
