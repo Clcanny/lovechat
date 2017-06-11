@@ -14,6 +14,7 @@ import MobileCoreServices
 import Async
 import AVKit
 import AVFoundation
+import Firebase
 
 class ChatViewController: UIViewController {
     
@@ -26,6 +27,9 @@ class ChatViewController: UIViewController {
     
     @IBOutlet weak var recordButton: UIButton!
     let recordAnimationView = RecordAnimationView()
+    
+    var companionId: String?
+    let database = Database.database().reference()
     
     let collectionView = { () -> UICollectionView in
         let layout = UICollectionViewFlowLayout()
@@ -110,6 +114,8 @@ class ChatViewController: UIViewController {
         if UIImagePickerController.isSourceTypeAvailable(.camera) == false {
             recordVideo.isEnabled = false
         }
+        
+        observeDataChange()
     }
     
     override func didReceiveMemoryWarning() {
@@ -127,18 +133,19 @@ class ChatViewController: UIViewController {
      }
      */
     
-    var objects = [
-        "12:25 PM" as ListDiffable,
-        TextMessageModel(message: "This is a very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very T--very very very very long message.", true),
-        TextMessageModel(message: "This is also a very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very long message.", false),
-        "12:26 PM" as ListDiffable,
-        TextMessageModel(message: "A short message", true),
-        TextMessageModel(message: "A short message", true),
-        TextMessageModel(message: "A short message", false),
-        "12:27 PM" as ListDiffable,
-        TextMessageModel(message: "This is a very very very very long message", true),
-        TextMessageModel(message: "This is a very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very long message.", false),
-        ]
+    //    var objects = [
+    //        "12:25 PM" as ListDiffable,
+    //        TextMessageModel(message: "This is a very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very T--very very very very long message.", true),
+    //        TextMessageModel(message: "This is also a very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very long message.", false),
+    //        "12:26 PM" as ListDiffable,
+    //        TextMessageModel(message: "A short message", true),
+    //        TextMessageModel(message: "A short message", true),
+    //        TextMessageModel(message: "A short message", false),
+    //        "12:27 PM" as ListDiffable,
+    //        TextMessageModel(message: "This is a very very very very long message", true),
+    //        TextMessageModel(message: "This is a very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very long message.", false),
+    //        ]
+    var objects: [ListDiffable] = []
     
 }
 
@@ -181,6 +188,27 @@ extension ChatViewController: ListAdapterDataSource {
     
 }
 
+// Firebase
+extension ChatViewController {
+    
+    func observeDataChange() {
+        let uid = Auth.auth().currentUser!.uid
+        self.database.child("users/\(uid)").observe(
+            DataEventType.childAdded, with: { (snapshot) -> Void in
+                if let value = snapshot.value as? NSDictionary {
+                    if (value.object(forKey: "type") as! String) == "text" {
+                        self.objects.append(TextMessageModel(
+                            message: value.object(forKey: "message") as! String,
+                            value.object(forKey: "isReceive") as! Bool
+                        ))
+                    }
+                    self.adapter.performUpdates(animated: false, completion: nil)
+                }
+        })
+    }
+    
+}
+
 // text
 extension ChatViewController: UITextViewDelegate {
     
@@ -191,10 +219,31 @@ extension ChatViewController: UITextViewDelegate {
     func sendTextMessage() {
         textView.resignFirstResponder()
         textView.isHidden = true
-        let message = TextMessageModel(message: textView.text, false)
+        let message = textView.text!
         textView.text = ""
-        objects.append(message)
-        adapter.performUpdates(animated: false, completion: nil)
+        
+        let uid = Auth.auth().currentUser!.uid
+        
+        func pushMessage(companionId: String) {
+            let key = self.database.child("users/\(uid)").childByAutoId().key
+            let sendMsg = ["message": message, "isReceive": false, "type": "text"] as [String : Any]
+            let receiveMsg = ["message": message, "isReceive": true, "type": "text"] as [String : Any]
+            let childUpdates = ["users/\(uid)/\(key)": sendMsg, "users/\(companionId)/\(key)": receiveMsg]
+            self.database.updateChildValues(childUpdates)
+        }
+        
+        if companionId == nil {
+            self.database.child("users/\(uid)/companionId").observeSingleEvent(
+                of: DataEventType.value, with: { (snapshot) -> Void in
+                    let value = snapshot.value
+                    let companionId = value as! String
+                    self.companionId = companionId
+                    pushMessage(companionId: companionId)
+            })
+        }
+        else {
+            pushMessage(companionId: companionId!)
+        }
     }
     
     func cancelTextMessage() {
@@ -204,7 +253,6 @@ extension ChatViewController: UITextViewDelegate {
     }
     
     func textViewDidChange(_ textView: UITextView) {
-        print("change")
         self.textView.sizeToFit()
     }
     
