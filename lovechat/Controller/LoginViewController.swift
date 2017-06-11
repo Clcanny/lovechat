@@ -25,7 +25,7 @@ class LoginViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         if Auth.auth().currentUser?.uid != nil {
             print("User already logged in!")
-//            self.performSegue(withIdentifier: "toChatViewController", sender: nil)
+            self.performSegue(withIdentifier: "toChatViewController", sender: nil)
         }
     }
     

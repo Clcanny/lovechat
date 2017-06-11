@@ -16,6 +16,7 @@ class PictureMessageModel: UrlMessageModel {
     private var image: UIImage?
     
     let group = AsyncGroup()
+    let mutex = Mutex()
     let storage = Storage.storage()
     
     override init(message: URL, _ isReceiver: Bool) {
@@ -31,16 +32,20 @@ class PictureMessageModel: UrlMessageModel {
                 print("image have been download.")
             }
             else {
+                print("begin to download image.")
+                _ = self.mutex.lock()
                 _ = reference.write(toFile: localUrl) { (URL, error) -> Void in
-                    print("begin to download image.")
-                    if let err = error {
-                        print(err)
+                    self.group.background {
+                        if let err = error {
+                            print(err)
+                        }
+                        else {
+                            let data = try? Data(contentsOf: localUrl)
+                            self.image = UIImage(data: data!)
+                        }
+                        _ = self.mutex.unlock()
+                        print("downloaded image complete.")
                     }
-                    else {
-                        let data = try? Data(contentsOf: localUrl)
-                        self.image = UIImage(data: data!)
-                    }
-                    print("downloaded image complete.")
                 }
             }
         }
@@ -51,7 +56,9 @@ class PictureMessageModel: UrlMessageModel {
     }
     
     public func getImage() -> UIImage {
+        _ = mutex.lock()
         group.wait()
+        _ = mutex.unlock()
         return image!
     }
     

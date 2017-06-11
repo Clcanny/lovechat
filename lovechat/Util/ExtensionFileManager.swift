@@ -32,7 +32,6 @@ extension FileManager {
         else {
             fileUrl = paths[0].appendingPathComponent("sender").appendingPathComponent(filename)
         }
-        fileUrl = paths[0].appendingPathComponent(filename)
         print(fileUrl)
         return fileUrl
     }
@@ -49,7 +48,6 @@ extension FileManager {
         else {
             fileUrl = paths[0].appendingPathComponent("sender").appendingPathComponent(filename)
         }
-        fileUrl = paths[0].appendingPathComponent(filename)
         let fileExists = FileManager.default.fileExists(atPath: fileUrl.path)
         return fileExists
     }
