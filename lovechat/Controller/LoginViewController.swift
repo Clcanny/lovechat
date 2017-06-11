@@ -7,10 +7,17 @@
 //
 
 import UIKit
+import TextFieldEffects
 
 class LoginViewController: UIViewController {
-
-    @IBOutlet weak var scrollView: UIScrollView!
+    
+    let usernameTextField = { () -> HoshiTextField in
+        let textField = HoshiTextField()
+        textField.placeholderColor = .darkGray
+        textField.font = usernameInputFont
+        textField.borderStyle = .roundedRect
+        return textField
+    }()
     
     var keyboardIsShown = false
     
@@ -27,9 +34,11 @@ class LoginViewController: UIViewController {
             selector: #selector(LoginViewController.keyboardWillHide(notification:)),
             name: NSNotification.Name.UIKeyboardWillHide, object: view.window)
         
-
-        // make scrollView scrollable
-        scrollView.contentSize = scrollView.frame.size
+        view.addSubview(usernameTextField)
+        usernameTextField.snp.makeConstraints {
+            (make) -> Void in
+            make.left.bottom.right.equalTo(view)
+        }
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -72,6 +81,17 @@ extension LoginViewController: UITextFieldDelegate {
         return true
     }
     
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        textField.resignFirstResponder()
+    }
+    
+}
+
+extension LoginViewController: UIScrollViewDelegate {
+    
 }
 
 // keyboard
@@ -82,17 +102,18 @@ extension LoginViewController {
             return
         }
         if let keyboardSize = notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? CGRect {
-            scrollView.frame.origin.y -= keyboardSize.height
-            scrollView.frame.size.height -= keyboardSize.height
+            usernameTextField.snp.remakeConstraints {
+                (make) -> Void in
+                make.left.right.equalTo(view)
+                make.top.equalTo(view.frame.height -
+                    keyboardSize.height - usernameTextField.frame.size.height - CGFloat(50)
+                )
+            }
         }
         keyboardIsShown = true
     }
     
     func keyboardWillHide(notification: Notification) {
-        if let keyboardSize = notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? CGRect {
-            scrollView.frame.size.height += keyboardSize.height
-        }
-        keyboardIsShown = false
     }
     
 }

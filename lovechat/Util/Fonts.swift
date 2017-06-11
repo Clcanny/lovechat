@@ -15,4 +15,5 @@ func AppFont(size: CGFloat = 18) -> UIFont {
 
 let textMessageFont = AppFont()
 let inputFont = AppFont()
+let usernameInputFont = AppFont()
 let timeStampFont = AppFont(size: 8)
