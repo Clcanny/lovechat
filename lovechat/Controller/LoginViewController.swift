@@ -135,6 +135,7 @@ extension LoginViewController: UITextFieldDelegate {
         return true
     }
     
+    // textFieldDidBeginEditing -> keyboardWillShow -> keyBoardWillHide -> textFieldDidEndEditing
     func textFieldDidBeginEditing(_ textField: UITextField) {
         if textField.tag == 1 {
             isFieldEditing = true
