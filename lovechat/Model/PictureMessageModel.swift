@@ -19,6 +19,17 @@ class PictureMessageModel: UrlMessageModel {
     let mutex = Mutex()
     let storage = Storage.storage()
     
+    func afterDownload(url: URL?, localUrl: URL, error: Any?) {
+        if let err = error {
+            print(err)
+        }
+        else {
+            let data = try? Data(contentsOf: localUrl)
+            self.image = UIImage(data: data!)
+        }
+        print("downloaded image complete.")
+    }
+    
     override init(message: URL, _ isReceiver: Bool) {
         super.init(message: message, isReceiver)
         group.background {
@@ -35,17 +46,8 @@ class PictureMessageModel: UrlMessageModel {
                 print("begin to download image.")
                 _ = self.mutex.lock()
                 _ = reference.write(toFile: localUrl) { (URL, error) -> Void in
-                    self.group.background {
-                        if let err = error {
-                            print(err)
-                        }
-                        else {
-                            let data = try? Data(contentsOf: localUrl)
-                            self.image = UIImage(data: data!)
-                        }
-                        _ = self.mutex.unlock()
-                        print("downloaded image complete.")
-                    }
+                    self.afterDownload(url: URL, localUrl: localUrl, error: error)
+                    _ = self.mutex.unlock()
                 }
             }
         }

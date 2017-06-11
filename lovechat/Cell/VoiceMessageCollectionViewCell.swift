@@ -34,7 +34,10 @@ class VoiceMessageCollectionViewCell: MessageCollectionViewCell {
             fatalError()
         }
         do {
-            updater = CADisplayLink(target: self, selector: #selector(VoiceMessageCollectionViewCell.trackAudio))
+            updater = CADisplayLink(
+                target: self,
+                selector: #selector(VoiceMessageCollectionViewCell.trackAudio)
+            )
             updater.add(to: RunLoop.current, forMode: RunLoopMode.commonModes)
             
             audioPlayer = try AVAudioPlayer(contentsOf: url!)
