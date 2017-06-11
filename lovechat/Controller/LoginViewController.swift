@@ -7,43 +7,35 @@
 //
 
 import UIKit
-import TextFieldEffects
+import Firebase
+import FirebaseDatabase
 
 class LoginViewController: UIViewController {
+    let databse = Database.database().reference()
     
-    let usernameTextField = { () -> HoshiTextField in
-        let textField = HoshiTextField()
-        textField.placeholderColor = .darkGray
-        textField.font = usernameInputFont
-        textField.borderStyle = .roundedRect
-        return textField
-    }()
+    @IBOutlet weak var registerComplete: UIActivityIndicatorView!
+    @IBOutlet weak var userField: AnimatableTextField!
+    @IBOutlet weak var passField: AnimatableTextField!
     
-    var keyboardIsShown = false
+    let database = Database.database().reference()
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-        NotificationCenter.default.addObserver(
-            self,
-            selector: #selector(LoginViewController.keyboardWillShow(notification:)),
-            name: NSNotification.Name.UIKeyboardWillShow, object: view.window)
-        NotificationCenter.default.addObserver(
-            self,
-            selector: #selector(LoginViewController.keyboardWillHide(notification:)),
-            name: NSNotification.Name.UIKeyboardWillHide, object: view.window)
-        
-        view.addSubview(usernameTextField)
-        usernameTextField.snp.makeConstraints {
-            (make) -> Void in
-            make.left.bottom.right.equalTo(view)
+    override func viewDidAppear(_ animated: Bool) {
+        if Auth.auth().currentUser?.uid != nil {
+            print("User already logged in!")
+            // self.performSegue(withIdentifier: "toChat", sender: nil)
         }
     }
     
     override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-        NotificationCenter.default.removeObserver(self)
+        userField.text = nil
+        passField.text = nil
+        registerComplete.isHidden = true
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        // Do any additional setup after loading the view, typically from a nib.
+        registerComplete.isHidden = true
     }
     
     override func didReceiveMemoryWarning() {
@@ -51,21 +43,62 @@ class LoginViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    
+    @IBAction func signInPressed(_ sender: UIButton) {
+        registerComplete.isHidden = false
+        registerComplete.startAnimating()
+        view.isUserInteractionEnabled = false
+        
+        guard let email = userField.text, let pass = passField.text else {
+            return
+        }
+        
+        Auth.auth().signIn(withEmail: email, password: pass, completion: {
+            (user, error) in
+            if error != nil {
+                print(error!)
+                self.registerComplete.isHidden = true
+                self.registerComplete.stopAnimating()
+                self.view.isUserInteractionEnabled = true
+            } else {
+                print("First Login Complete!")
+                print(user!.uid)
+                
+                self.database.child("email2uid").observeSingleEvent(of: DataEventType.value, with: { (snapshot) -> Void in
+                    var hasFound = false
+                    let value = snapshot.value as? NSDictionary
+                    let email = user!.email!.replacingOccurrences(of: ".", with: "-")
+                    let uid = value?[email] as? String
+                    if (uid == user?.uid) {
+                        hasFound = true
+                        print("We found user's email in database.")
+                    }
+                    if (!hasFound) {
+                        print("We can't find user's email in database.")
+                        let email = user!.email!.replacingOccurrences(of: ".", with: "-")
+                        self.database.child("email2uid").updateChildValues([email : user!.uid])
+                    }
+                })
+                
+                self.database.child("uid2email").observeSingleEvent(of: DataEventType.value, with: { (snapshot) -> Void in
+                    let value = snapshot.value as? NSDictionary
+                    let uid = user!.uid
+                    let email = value?[uid] as? String
+                    if (email == user?.email) {
+                        print("We found user's id in database.")
+                    } else {
+                        print("We can't find user's id in database.")
+                        self.database.child("uid2email").updateChildValues([user!.uid : user!.email!])
+                    }
+                })
+                
+                self.performSegue(withIdentifier: "toChat", sender: nil)
+            }
+        })
     }
-    */
-
 }
 
 extension LoginViewController: UITextFieldDelegate {
-    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         self.view.endEditing(true)
         
@@ -80,40 +113,4 @@ extension LoginViewController: UITextFieldDelegate {
         
         return true
     }
-    
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-    }
-    
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        textField.resignFirstResponder()
-    }
-    
-}
-
-extension LoginViewController: UIScrollViewDelegate {
-    
-}
-
-// keyboard
-extension LoginViewController {
-    
-    func keyboardWillShow(notification: Notification) {
-        if (keyboardIsShown) {
-            return
-        }
-        if let keyboardSize = notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? CGRect {
-            usernameTextField.snp.remakeConstraints {
-                (make) -> Void in
-                make.left.right.equalTo(view)
-                make.top.equalTo(view.frame.height -
-                    keyboardSize.height - usernameTextField.frame.size.height - CGFloat(50)
-                )
-            }
-        }
-        keyboardIsShown = true
-    }
-    
-    func keyboardWillHide(notification: Notification) {
-    }
-    
 }

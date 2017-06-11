@@ -1,50 +1,184 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="9bL-fB-Mz3">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="QAn-cb-baW">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
+        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--LOGIN-->
-        <scene sceneID="4cf-Ql-Xjn">
+        <!--Login View Controller-->
+        <scene sceneID="qur-cZ-F25">
             <objects>
-                <viewController id="O4B-MF-ZYd" customClass="LoginViewController" customModule="lovechat" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="QAn-cb-baW" customClass="LoginViewController" customModule="lovechat" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="eH2-fC-uoj"/>
-                        <viewControllerLayoutGuide type="bottom" id="Liy-hU-V6w"/>
+                        <viewControllerLayoutGuide type="top" id="WV1-GQ-RWK"/>
+                        <viewControllerLayoutGuide type="bottom" id="1fq-qZ-FzC"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="kLE-Fx-Cls">
+                    <view key="view" contentMode="scaleToFill" id="T49-uk-96s">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="loginBackground" translatesAutoresizingMaskIntoConstraints="NO" id="rZ5-n9-rNQ" customClass="AnimatableImageView" customModule="lovechat" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="shadeOpacity">
+                                        <real key="value" value="0.5"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="toneColor">
+                                        <color key="value" red="0.70980392160000005" green="0.4549019608" blue="0.96078431369999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="toneOpacity">
+                                        <real key="value" value="0.20000000000000001"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </imageView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="L6X-np-VqR" customClass="AnimatableStackView" customModule="lovechat" customModuleProvider="target">
+                                <rect key="frame" x="16" y="387" width="343" height="180"/>
+                                <subviews>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="tBV-F8-ePY" customClass="AnimatableTextField" customModule="lovechat" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="343" height="60"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="next"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="fillColor">
+                                                <color key="value" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="image" keyPath="leftImage" value="username"/>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="leftImageLeftPadding">
+                                                <real key="value" value="18"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                <real key="value" value="1"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                <color key="value" red="0.1137254902" green="0.1137254902" blue="0.14901960780000001" alpha="0.050000000000000003" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="borderSide" value="Bottom"/>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="leftImageRightPadding">
+                                                <real key="value" value="15"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </textField>
+                                    <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="R8u-aa-Ned" customClass="AnimatableTextField" customModule="lovechat" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="60" width="343" height="60"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="done" secureTextEntry="YES"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="fillColor">
+                                                <color key="value" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="image" keyPath="leftImage" value="password"/>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="leftImageLeftPadding">
+                                                <real key="value" value="18"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                <real key="value" value="1"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                <color key="value" red="0.1137254902" green="0.1137254902" blue="0.14901960780000001" alpha="0.050000000000000003" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="borderSide" value="Bottom"/>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="leftImageRightPadding">
+                                                <real key="value" value="15"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eqH-D4-6Xd">
+                                        <rect key="frame" x="0.0" y="120" width="343" height="60"/>
+                                        <color key="backgroundColor" red="0.70980392160000005" green="0.4549019608" blue="0.96078431369999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <state key="normal" title="Sign In">
+                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="signInPressed:" destination="QAn-cb-baW" eventType="touchUpInside" id="uv4-gE-7jg"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="180" id="WCT-6j-Op1"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="animationType" value="Shake"/>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="duration">
+                                        <real key="value" value="0.80000000000000004"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YRM-Ng-Vms">
+                                <rect key="frame" x="16" y="617" width="93" height="19"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="19" id="05g-2M-dPo"/>
+                                    <constraint firstAttribute="width" constant="93" id="MfP-XV-FTF"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <state key="normal" title="Create Account">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                            </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="loginSuccess" translatesAutoresizingMaskIntoConstraints="NO" id="cqr-1c-yNV">
+                                <rect key="frame" x="112" y="181" width="150" height="116"/>
+                            </imageView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="H5d-kE-aHS" userLabel="Register Complete">
+                                <rect key="frame" x="165" y="311" width="45" height="45"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="45" id="Ehy-UX-lhQ"/>
+                                    <constraint firstAttribute="width" constant="45" id="M5M-hd-zex"/>
+                                </constraints>
+                                <color key="color" red="0.52998573230000001" green="1" blue="0.55352518070000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </activityIndicatorView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eQF-H4-8TC">
+                                <rect key="frame" x="248" y="617" width="111" height="19"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="111" id="2uT-vG-0BN"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <state key="normal" title="Forgot Password ?">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="1fq-qZ-FzC" firstAttribute="top" secondItem="YRM-Ng-Vms" secondAttribute="bottom" constant="31" id="1sz-BK-fMa"/>
+                            <constraint firstItem="H5d-kE-aHS" firstAttribute="top" secondItem="cqr-1c-yNV" secondAttribute="bottom" constant="14" id="3Hd-lt-2CE"/>
+                            <constraint firstItem="H5d-kE-aHS" firstAttribute="centerX" secondItem="T49-uk-96s" secondAttribute="centerX" id="AIu-hq-dNg"/>
+                            <constraint firstItem="L6X-np-VqR" firstAttribute="leading" secondItem="T49-uk-96s" secondAttribute="leadingMargin" id="CCB-te-EY6"/>
+                            <constraint firstItem="cqr-1c-yNV" firstAttribute="centerX" secondItem="H5d-kE-aHS" secondAttribute="centerX" id="F3f-Yk-ueD"/>
+                            <constraint firstItem="eQF-H4-8TC" firstAttribute="trailing" secondItem="L6X-np-VqR" secondAttribute="trailing" id="IbG-1d-gfL"/>
+                            <constraint firstItem="H5d-kE-aHS" firstAttribute="centerY" secondItem="T49-uk-96s" secondAttribute="centerY" id="PNf-Q8-4lK"/>
+                            <constraint firstItem="eQF-H4-8TC" firstAttribute="baseline" secondItem="YRM-Ng-Vms" secondAttribute="firstBaseline" id="QMp-tW-PXB"/>
+                            <constraint firstItem="L6X-np-VqR" firstAttribute="top" secondItem="H5d-kE-aHS" secondAttribute="bottom" constant="31" id="Rlt-24-IqS"/>
+                            <constraint firstItem="rZ5-n9-rNQ" firstAttribute="leading" secondItem="T49-uk-96s" secondAttribute="leading" id="ca7-hw-Spb"/>
+                            <constraint firstItem="YRM-Ng-Vms" firstAttribute="leading" secondItem="L6X-np-VqR" secondAttribute="leading" id="e4L-cS-DJB"/>
+                            <constraint firstItem="eQF-H4-8TC" firstAttribute="top" secondItem="YRM-Ng-Vms" secondAttribute="top" id="kLs-BO-BPU"/>
+                            <constraint firstAttribute="trailing" secondItem="rZ5-n9-rNQ" secondAttribute="trailing" id="kyh-wM-YS4"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="L6X-np-VqR" secondAttribute="trailing" id="mvV-E3-aFa"/>
+                            <constraint firstItem="eQF-H4-8TC" firstAttribute="firstBaseline" secondItem="YRM-Ng-Vms" secondAttribute="baseline" id="qkM-kk-jNT"/>
+                            <constraint firstItem="YRM-Ng-Vms" firstAttribute="top" secondItem="L6X-np-VqR" secondAttribute="bottom" constant="50" id="tUS-Fc-PBB"/>
+                            <constraint firstItem="rZ5-n9-rNQ" firstAttribute="top" secondItem="T49-uk-96s" secondAttribute="top" id="ttz-b0-LwW"/>
+                        </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="LOGIN" id="lwk-kd-UG8"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="von-TV-V7H" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="797.60000000000002" y="41.829085457271368"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="riE-p9-tXt">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="9bL-fB-Mz3" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="CP7-hz-aad">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="O4B-MF-ZYd" kind="relationship" relationship="rootViewController" id="XOd-Fi-IfW"/>
+                        <outlet property="passField" destination="R8u-aa-Ned" id="R95-pa-9pr"/>
+                        <outlet property="registerComplete" destination="H5d-kE-aHS" id="VT0-2W-hII"/>
+                        <outlet property="userField" destination="tBV-F8-ePY" id="OXd-un-yBG"/>
                     </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="abY-TQ-3Jg" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="amH-OE-Yyu" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-141.59999999999999" y="41.829085457271368"/>
+            <point key="canvasLocation" x="-260" y="492"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="loginBackground" width="375" height="667"/>
+        <image name="loginSuccess" width="150" height="116"/>
+        <image name="password" width="20" height="22"/>
+        <image name="username" width="20" height="19"/>
+    </resources>
 </document>

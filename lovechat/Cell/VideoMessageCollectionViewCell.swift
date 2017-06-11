@@ -33,7 +33,7 @@ class VideoMessageCollectionViewCell: PVCommonCollectionViewCell {
     }
     
     override func click(gestureRecognizer: UIGestureRecognizer) {
-        if let picture = pictureView.image {
+        if pictureView.image != nil {
             delegate?.callSegueFromCell(data: url)
         }
     }
