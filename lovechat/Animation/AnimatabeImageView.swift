@@ -163,4 +163,5 @@ import UIKit
         configBorder()
         configGradient()
     }
+    
 }

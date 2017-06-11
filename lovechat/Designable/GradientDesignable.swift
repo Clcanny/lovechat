@@ -359,6 +359,7 @@ public extension GradientDesignable where Self: UIView {
             return (UIColor(hexString: "#4B79A1"), UIColor(hexString: "#283E51"))
         }
     }
+    
 }
 
 private class GradientView: UIView {

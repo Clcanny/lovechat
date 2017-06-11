@@ -24,7 +24,6 @@ public protocol BorderDesignable {
      */
     var borderSide: String? { get set }
     
-    
 }
 
 struct BorderSides: OptionSet {

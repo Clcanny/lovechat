@@ -56,9 +56,11 @@ public protocol Animatable: class {
      y position for MoveTo animation
      */
     var y: CGFloat { get set }
+    
 }
 
 public extension Animatable where Self: UIView {
+    
     public func configAnimatableProperties() {
         // Apply default values
         if duration.isNaN {
@@ -744,10 +746,13 @@ public extension Animatable where Self: UIView {
     fileprivate var screenSize: CGSize {
         return self.window?.screen.bounds.size ?? CGSize.zero
     }
+    
 }
 
 public extension Animatable where Self: UIBarItem {
+    
     // TODO: animations for `UIBarItem`
     public func animate(_ completion: AnimatableCompletion? = nil) {
     }
+    
 }
