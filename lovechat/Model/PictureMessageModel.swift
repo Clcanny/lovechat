@@ -23,14 +23,16 @@ class PictureMessageModel: UrlMessageModel {
         group.background {
             let reference = self.storage.reference(forURL: message.absoluteString)
             let filename = message.lastPathComponent
-            let localUrl = FileManager.getUrl(filename: filename)
+            let localUrl = FileManager.getUrl(filename: filename, isReceiver)
             super.message = localUrl
-            if FileManager.isFileExist(filename: filename) {
+            if FileManager.isFileExist(filename: filename, isReceiver) {
                 let data = try? Data(contentsOf: localUrl)
                 self.image = UIImage(data: data!)
+                print("image have been download.")
             }
             else {
                 _ = reference.write(toFile: localUrl) { (URL, error) -> Void in
+                    print("begin to download image.")
                     if let err = error {
                         print(err)
                     }
@@ -38,6 +40,7 @@ class PictureMessageModel: UrlMessageModel {
                         let data = try? Data(contentsOf: localUrl)
                         self.image = UIImage(data: data!)
                     }
+                    print("downloaded image complete.")
                 }
             }
         }
