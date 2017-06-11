@@ -49,13 +49,26 @@ class PictureMessageModel: UrlMessageModel {
                     self.group.background {
                         self.afterDownload(url: URL, localUrl: localUrl, error: error)
                         _ = self.mutex.unlock()
-                        print("downloaded image complete.")
+                        //                        print("downloaded image complete.")
                     }
                 }
+                //                print("begin to download image.")
+                //                _ = self.mutex.lock()
+                //                _ = reference.write(toFile: localUrl) { (URL, error) -> Void in
+                //                    self.group.background {
+                //                        if let err = error {
+                //                            print(err)
+                //                        }
+                //                        else {
+                //                            let data = try? Data(contentsOf: localUrl)
+                //                            self.image = UIImage(data: data!)
+                //                        }
+                ////                        print("downloaded image complete.")
+                //                        _ = self.mutex.unlock()
+                //                    }
             }
         }
     }
-    
     
     public func setImage(image: UIImage) {
         self.image = image
