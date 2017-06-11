@@ -218,10 +218,10 @@ extension ChatViewController {
                         ))
                     }
                     else if (value.object(forKey: "type") as! String) == "picture" {
-//                        self.objects.append(PictureMessageModel(
-//                            message: URL(string: value.object(forKey: "url") as! String)!,
-//                            value.object(forKey: "isReceive") as! Bool
-//                        ))
+                        self.objects.append(PictureMessageModel(
+                            message: URL(string: value.object(forKey: "url") as! String)!,
+                            value.object(forKey: "isReceive") as! Bool
+                        ))
                     }
                     self.adapter.performUpdates(animated: false, completion: nil)
                 }

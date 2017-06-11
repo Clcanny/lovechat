@@ -22,13 +22,22 @@ class PictureMessageModel: UrlMessageModel {
         super.init(message: message, isReceiver)
         group.background {
             let reference = self.storage.reference(forURL: message.absoluteString)
-            reference.getData(maxSize: 10 * 1024 * 1024) { (data, error) -> Void in
-                if error != nil {
-                    // Uh-oh, an error occurred!
-                    print("fuck")
-                    print(error)
-                } else {
-                    self.setImage(image: UIImage(data: data!)!)
+            let filename = message.lastPathComponent
+            let localUrl = FileManager.getUrl(filename: filename)
+            super.message = localUrl
+            if FileManager.isFileExist(filename: filename) {
+                let data = try? Data(contentsOf: localUrl)
+                self.image = UIImage(data: data!)
+            }
+            else {
+                _ = reference.write(toFile: localUrl) { (URL, error) -> Void in
+                    if let err = error {
+                        print(err)
+                    }
+                    else {
+                        let data = try? Data(contentsOf: localUrl)
+                        self.image = UIImage(data: data!)
+                    }
                 }
             }
         }

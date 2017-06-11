@@ -20,4 +20,23 @@ extension FileManager {
         return fileUrl
     }
     
+    static func getUrl(filename: String) -> URL {
+        let paths = FileManager.default.urls(
+            for: .documentDirectory,
+            in: .userDomainMask
+        )
+        let fileUrl = paths[0].appendingPathComponent(filename)
+        return fileUrl
+    }
+    
+    static func isFileExist(filename: String) -> Bool {
+        let paths = FileManager.default.urls(
+            for: .documentDirectory,
+            in: .userDomainMask
+        )
+        let fileUrl = paths[0].appendingPathComponent(filename)
+        let fileExists = FileManager.default.fileExists(atPath: fileUrl.path)
+        return fileExists
+    }
+    
 }
