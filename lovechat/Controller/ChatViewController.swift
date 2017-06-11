@@ -39,8 +39,8 @@ class ChatViewController: UIViewController {
         return adapter
     }()
     
-    let textView = { () -> UITextView in
-        let view = UITextView()
+    let textView = { () -> AutoHeightTextView in
+        let view = AutoHeightTextView()
         view.backgroundColor = ivoryColor
         view.isEditable = true
         view.isHidden = true
@@ -87,10 +87,12 @@ class ChatViewController: UIViewController {
         }
         
         messagesView.addSubview(textView)
+        textView.minHeight = messagesView.frame.size.height / 6
+        textView.maxHeight = messagesView.frame.size.height / 3
         textView.snp.makeConstraints {
             (make) -> Void in
             make.left.right.equalTo(messagesView)
-            make.height.equalTo(messagesView.frame.size.height / 3)
+            make.height.equalTo(textView.minHeight)
             make.top.equalTo(0)
         }
     }
@@ -199,6 +201,11 @@ extension ChatViewController: UITextViewDelegate {
         textView.resignFirstResponder()
         textView.isHidden = true
         textView.text = ""
+    }
+    
+    func textViewDidChange(_ textView: UITextView) {
+        print("change")
+        self.textView.sizeToFit()
     }
     
 }

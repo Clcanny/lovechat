@@ -19,6 +19,7 @@
 		403E2BBB1EE4294A00EF961D /* RecordAnimationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 403E2BBA1EE4294A00EF961D /* RecordAnimationView.swift */; };
 		40530DA61EE53BFE00F33C76 /* ExtensionString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40530DA51EE53BFE00F33C76 /* ExtensionString.swift */; };
 		406511A01EEB180400EF6614 /* ExtensionFileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4065119F1EEB180400EF6614 /* ExtensionFileManager.swift */; };
+		40888A661EECFB15008E5E12 /* AutoHeightTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40888A651EECFB15008E5E12 /* AutoHeightTextView.swift */; };
 		408B480E1EE276CC00EE9281 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 408B480D1EE276CC00EE9281 /* AppDelegate.swift */; };
 		408B48131EE276CC00EE9281 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 408B48111EE276CC00EE9281 /* Main.storyboard */; };
 		408B48151EE276CC00EE9281 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 408B48141EE276CC00EE9281 /* Assets.xcassets */; };
@@ -63,6 +64,7 @@
 		403E2BBA1EE4294A00EF961D /* RecordAnimationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RecordAnimationView.swift; path = View/RecordAnimationView.swift; sourceTree = "<group>"; };
 		40530DA51EE53BFE00F33C76 /* ExtensionString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ExtensionString.swift; path = Util/ExtensionString.swift; sourceTree = "<group>"; };
 		4065119F1EEB180400EF6614 /* ExtensionFileManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ExtensionFileManager.swift; path = Util/ExtensionFileManager.swift; sourceTree = "<group>"; };
+		40888A651EECFB15008E5E12 /* AutoHeightTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AutoHeightTextView.swift; path = View/AutoHeightTextView.swift; sourceTree = "<group>"; };
 		408B480A1EE276CC00EE9281 /* lovechat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = lovechat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		408B480D1EE276CC00EE9281 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		408B48121EE276CC00EE9281 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -171,6 +173,7 @@
 			children = (
 				403E2BBA1EE4294A00EF961D /* RecordAnimationView.swift */,
 				40AF90291EE5B4F300F801A9 /* VerticallyCenteredTextView.swift */,
+				40888A651EECFB15008E5E12 /* AutoHeightTextView.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -385,6 +388,7 @@
 				40D1CAE71EEC11FA0030CBEF /* VideoMessageSctionController.swift in Sources */,
 				40D1CAEB1EEC32410030CBEF /* MessageCollectionViewCell.swift in Sources */,
 				409EC0CA1EE3E06D00365F7E /* PictureSize.swift in Sources */,
+				40888A661EECFB15008E5E12 /* AutoHeightTextView.swift in Sources */,
 				40FB67DB1EE6DAEB00DD63F4 /* CameraViewController.swift in Sources */,
 				408B480E1EE276CC00EE9281 /* AppDelegate.swift in Sources */,
 				40A8454C1EE5489600837060 /* TimeOutProtocol.swift in Sources */,
