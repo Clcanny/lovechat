@@ -39,7 +39,7 @@ class UrlMessageModel: MessageModel {
             }
             else {
 //                self.semaphore.wait()
-                _ = self.mutex.lock()
+                _ = self.mutex.tryLock()
                 _ = reference.write(toFile: localUrl) { (URL, error) -> Void in
                     self.group.background {
                         self.afterDownload(url: URL, localUrl: localUrl, error: error)
