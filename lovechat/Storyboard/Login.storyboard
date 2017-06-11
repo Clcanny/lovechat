@@ -107,6 +107,9 @@
                                         <state key="normal" title="Sign In">
                                             <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
+                                        <connections>
+                                            <action selector="signInPressed:" destination="QAn-cb-baW" eventType="touchUpInside" id="W8d-9u-T2P"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <userDefinedRuntimeAttributes>
@@ -169,11 +172,20 @@
                         <outlet property="passField" destination="WlV-ZA-imc" id="mNc-SU-2KG"/>
                         <outlet property="registerComplete" destination="JMg-ud-viM" id="UiT-GU-ODK"/>
                         <outlet property="userField" destination="62d-qL-R8l" id="gFK-cx-5e3"/>
+                        <segue destination="UMt-3C-OiL" kind="show" identifier="toChatViewController" id="IIc-dE-fhn"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="amH-OE-Yyu" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-260" y="491.60419790104953"/>
+            <point key="canvasLocation" x="-279" y="555"/>
+        </scene>
+        <!--Chat-->
+        <scene sceneID="csp-c9-xfl">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Chat" id="UMt-3C-OiL" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2nI-Lg-IGn" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="516" y="554"/>
         </scene>
     </scenes>
     <resources>

@@ -76,42 +76,42 @@ class LoginViewController: UIViewController {
             (user, error) in
             if error != nil {
                 print(error!)
-                self.registerComplete.isHidden = true
                 self.registerComplete.stopAnimating()
+                self.registerComplete.isHidden = true
                 self.view.isUserInteractionEnabled = true
             } else {
                 print("First Login Complete!")
                 print(user!.uid)
                 
-                self.database.child("email2uid").observeSingleEvent(of: DataEventType.value, with: { (snapshot) -> Void in
-                    var hasFound = false
-                    let value = snapshot.value as? NSDictionary
-                    let email = user!.email!.replacingOccurrences(of: ".", with: "-")
-                    let uid = value?[email] as? String
-                    if (uid == user?.uid) {
-                        hasFound = true
-                        print("We found user's email in database.")
-                    }
-                    if (!hasFound) {
-                        print("We can't find user's email in database.")
-                        let email = user!.email!.replacingOccurrences(of: ".", with: "-")
-                        self.database.child("email2uid").updateChildValues([email : user!.uid])
-                    }
-                })
-                
-                self.database.child("uid2email").observeSingleEvent(of: DataEventType.value, with: { (snapshot) -> Void in
-                    let value = snapshot.value as? NSDictionary
-                    let uid = user!.uid
-                    let email = value?[uid] as? String
-                    if (email == user?.email) {
-                        print("We found user's id in database.")
-                    } else {
-                        print("We can't find user's id in database.")
-                        self.database.child("uid2email").updateChildValues([user!.uid : user!.email!])
-                    }
-                })
-                
-                self.performSegue(withIdentifier: "toChat", sender: nil)
+//                self.database.child("email2uid").observeSingleEvent(of: DataEventType.value, with: { (snapshot) -> Void in
+//                    var hasFound = false
+//                    let value = snapshot.value as? NSDictionary
+//                    let email = user!.email!.replacingOccurrences(of: ".", with: "-")
+//                    let uid = value?[email] as? String
+//                    if (uid == user?.uid) {
+//                        hasFound = true
+//                        print("We found user's email in database.")
+//                    }
+//                    if (!hasFound) {
+//                        print("We can't find user's email in database.")
+//                        let email = user!.email!.replacingOccurrences(of: ".", with: "-")
+//                        self.database.child("email2uid").updateChildValues([email : user!.uid])
+//                    }
+//                })
+//                
+//                self.database.child("uid2email").observeSingleEvent(of: DataEventType.value, with: { (snapshot) -> Void in
+//                    let value = snapshot.value as? NSDictionary
+//                    let uid = user!.uid
+//                    let email = value?[uid] as? String
+//                    if (email == user?.email) {
+//                        print("We found user's id in database.")
+//                    } else {
+//                        print("We can't find user's id in database.")
+//                        self.database.child("uid2email").updateChildValues([user!.uid : user!.email!])
+//                    }
+//                })
+//                
+                self.performSegue(withIdentifier: "toChatViewController", sender: nil)
             }
         })
     }
