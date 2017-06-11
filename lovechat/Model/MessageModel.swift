@@ -17,7 +17,7 @@ class MessageModel: NSObject {
     }
     
     public func getLR() -> Bool {
-        return isReceiver!
+        return !isReceiver!
     }
     
 }
