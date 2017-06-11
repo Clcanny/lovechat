@@ -49,7 +49,10 @@ class UrlMessageModel: MessageModel {
     }
     
     public func getMessage() -> URL {
+//        _ = mutex.lock()
+//        group.wait()
         return message!
+//        _ = mutex.unlock()
     }
     
 }

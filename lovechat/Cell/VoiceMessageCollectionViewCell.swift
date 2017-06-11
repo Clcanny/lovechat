@@ -40,6 +40,7 @@ class VoiceMessageCollectionViewCell: MessageCollectionViewCell {
             )
             updater.add(to: RunLoop.current, forMode: RunLoopMode.commonModes)
             
+            print(url)
             audioPlayer = try AVAudioPlayer(contentsOf: url!)
             audioPlayer.numberOfLoops = 0
             audioPlayer.delegate = self

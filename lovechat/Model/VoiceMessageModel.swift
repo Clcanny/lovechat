@@ -14,6 +14,12 @@ class VoiceMessageModel: UrlMessageModel {
     private var time: Int?
     
     override func afterDownload(url: URL?, localUrl: URL, error: Any?) {
+        if let err = error {
+            print(err)
+        }
+        else {
+            message = url
+        }
     }
     
     init(message: URL, time: Int, _ isReceiver: Bool) {
@@ -23,6 +29,13 @@ class VoiceMessageModel: UrlMessageModel {
     
     public func getTime() -> Int {
         return time!
+    }
+    
+    override func getMessage() -> URL {
+//        mutex.lock()
+        group.wait()
+//        mutex.unlock()
+        return message!
     }
     
 }
