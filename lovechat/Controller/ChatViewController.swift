@@ -344,7 +344,7 @@ extension ChatViewController {
         }
         
         // audioRecorder settings
-        let url = FileManager.getUrlByCurrentTime(suffix: "caf")
+        let url = FileManager.getUrlByCurrentTime(suffix: "caf", false)
         let recordSettings = [
             // 录音质量
             AVEncoderAudioQualityKey: AVAudioQuality.min.rawValue,
@@ -455,7 +455,7 @@ extension ChatViewController: UIImagePickerControllerDelegate {
         dismiss(animated: true) {
             // Handle a movie capture
             if mediaType == kUTTypeMovie {
-                let url = FileManager.getUrlByCurrentTime(suffix: "video")
+                let url = FileManager.getUrlByCurrentTime(suffix: "video", false)
                 if UIVideoAtPathIsCompatibleWithSavedPhotosAlbum(url.relativeString) {
                     // do something
                 }
@@ -463,7 +463,7 @@ extension ChatViewController: UIImagePickerControllerDelegate {
             else {
                 if let image = info[UIImagePickerControllerEditedImage] as? UIImage {
                     let imageData = UIImageJPEGRepresentation(image, 1)
-                    let url = FileManager.getUrlByCurrentTime(suffix: "jpeg")
+                    let url = FileManager.getUrlByCurrentTime(suffix: "jpeg", false)
                     do {
                         try imageData?.write(to: url)
                     }

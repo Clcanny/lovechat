@@ -203,7 +203,7 @@ extension CameraViewController {
                     self.present(alert, animated: true, completion: nil)
                 }
                 else if let imageData = AVCaptureStillImageOutput.jpegStillImageNSDataRepresentation(imageDataSampleBuffer) {
-                    let url = FileManager.getUrlByCurrentTime(suffix: "jpeg")
+                    let url = FileManager.getUrlByCurrentTime(suffix: "jpeg", false)
                     do {
                         try imageData.write(to: url)
                     }
@@ -244,7 +244,7 @@ extension CameraViewController {
     func startRecordVideo() {
         setAudioRecorder()
         captureSession.addOutput(movieOutput)
-        let url = FileManager.getUrlByCurrentTime(suffix: "mov")
+        let url = FileManager.getUrlByCurrentTime(suffix: "mov", false)
         messageModel = VideoMessageModel(message: url, true)
         movieOutput.startRecording(toOutputFileURL: url, recordingDelegate: self)
         progressBar.animate(toAngle: 360, duration: 5, completion: {

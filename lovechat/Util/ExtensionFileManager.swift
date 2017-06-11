@@ -10,13 +10,21 @@ import Foundation
 
 extension FileManager {
     
-    static func getUrlByCurrentTime(suffix: String) -> URL {
+    static func getUrlByCurrentTime(suffix: String, _ isReceiver: Bool) -> URL {
         let paths = FileManager.default.urls(
             for: .documentDirectory,
             in: .userDomainMask
         )
         let currentTime = Date().timeIntervalSince1970
-        let fileUrl = paths[0].appendingPathComponent(String(currentTime) + "." + suffix)
+        var fileUrl: URL!
+        if isReceiver {
+            fileUrl = paths[0].appendingPathComponent("receiver")
+        }
+        else {
+            fileUrl = paths[0].appendingPathComponent("sender")
+        }
+        fileUrl = fileUrl.appendingPathComponent(String(currentTime) + "." + suffix)
+        print(fileUrl)
         return fileUrl
     }
     
@@ -32,7 +40,6 @@ extension FileManager {
         else {
             fileUrl = paths[0].appendingPathComponent("sender").appendingPathComponent(filename)
         }
-        print(fileUrl)
         return fileUrl
     }
     
