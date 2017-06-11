@@ -223,6 +223,12 @@ extension ChatViewController {
                             value.object(forKey: "isReceive") as! Bool
                         ))
                     }
+//                    else if (value.object(forKey: "type") as! String) == "video" {
+//                        self.objects.append(PictureMessageModel(
+//                            message: URL(string: value.object(forKey: "url") as! String)!,
+//                            value.object(forKey: "isReceive") as! Bool
+//                        ))
+//                    }
                     self.adapter.performUpdates(animated: false, completion: nil)
                 }
         })
@@ -540,9 +546,8 @@ extension ChatViewController: SegueFromCellProtocol {
 
 extension ChatViewController: DismissToChatViewControllerProtocol {
     
-    func save(_ messageModel: MessageModel) {
-        objects.append(messageModel)
-        self.adapter.performUpdates(animated: false, completion: nil)
+    func saveUrlMessage(url: URL, type: String) {
+        uploadUrlMessage(fileUrl: url, type: type, recordTime: nil)
     }
     
 }

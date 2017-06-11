@@ -69,7 +69,8 @@ class CameraViewController: UIViewController {
     let takePhotoGesture = UITapGestureRecognizer()
     let recordVideoGesture = UILongPressGestureRecognizer()
     
-    var messageModel: MessageModel?
+    var url: URL?
+    var type: String?
     let saveGesture = UITapGestureRecognizer()
     let exitGesture = UILongPressGestureRecognizer()
     
@@ -203,14 +204,15 @@ extension CameraViewController {
                     self.present(alert, animated: true, completion: nil)
                 }
                 else if let imageData = AVCaptureStillImageOutput.jpegStillImageNSDataRepresentation(imageDataSampleBuffer) {
-                    let url = FileManager.getUrlByCurrentTime(suffix: "jpeg", false)
+                    let fileUrl = FileManager.getUrlByCurrentTime(suffix: "jpeg", false)
                     do {
-                        try imageData.write(to: url)
+                        try imageData.write(to: fileUrl)
                     }
                     catch {
                         fatalError()
                     }
-                    self.messageModel = PictureMessageModel(message: url, true)
+                    self.url = fileUrl
+                    self.type = "picture"
                 }
                 
                 if (self.captureSession.isRunning) {
@@ -244,8 +246,9 @@ extension CameraViewController {
     func startRecordVideo() {
         setAudioRecorder()
         captureSession.addOutput(movieOutput)
-        let url = FileManager.getUrlByCurrentTime(suffix: "mov", false)
-        messageModel = VideoMessageModel(message: url, true)
+        let fileUrl = FileManager.getUrlByCurrentTime(suffix: "mov", false)
+        url = fileUrl
+        type = "video"
         movieOutput.startRecording(toOutputFileURL: url, recordingDelegate: self)
         progressBar.animate(toAngle: 360, duration: 5, completion: {
             (flag) -> Void in
@@ -277,16 +280,16 @@ extension CameraViewController {
 extension CameraViewController {
     
     func save() {
-        if let model = messageModel {
-            delegate.save(model)
+        if url != nil {
+            delegate.saveUrlMessage(url: url!, type: type!)
         }
         dismiss(animated: false, completion: nil)
     }
     
     func exit() {
-        if let pictureMessageModel = messageModel as? PictureMessageModel {
+        if let fileUrl = url {
             do {
-                try FileManager.default.removeItem(at: pictureMessageModel.getMessage())
+                try FileManager.default.removeItem(at: fileUrl)
             }
             catch {
                 // fatalError()

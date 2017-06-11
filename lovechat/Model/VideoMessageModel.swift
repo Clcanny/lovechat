@@ -15,6 +15,15 @@ class VideoMessageModel: UrlMessageModel {
     
     private var preview: UIImage?
     
+    override func afterDownload(url: URL?, localUrl: URL, error: Any?) {
+        if let err = error {
+            print(err)
+        }
+        else {
+            message = localUrl
+        }
+    }
+    
     override init(message: URL, _ isReceiver: Bool) {
         super.init(message: message, isReceiver)
     }

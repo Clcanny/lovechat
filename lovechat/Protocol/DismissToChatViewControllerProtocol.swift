@@ -10,6 +10,6 @@ import Foundation
 
 protocol DismissToChatViewControllerProtocol {
     
-    func save(_ messageModel: MessageModel)
+    func saveUrlMessage(url: URL, type: String)
     
 }
