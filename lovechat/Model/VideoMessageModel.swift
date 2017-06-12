@@ -21,15 +21,6 @@ class VideoMessageModel: UrlMessageModel {
         }
         else {
             message = localUrl
-        }
-    }
-    
-    override init(message: URL, _ isReceiver: Bool) {
-        super.init(message: message, isReceiver)
-    }
-    
-    public func getPreview() -> UIImage {
-        group.background {
             let asset = AVURLAsset(url: self.message!)
             let generator = AVAssetImageGenerator(asset: asset)
             generator.appliesPreferredTrackTransform = true
@@ -42,8 +33,31 @@ class VideoMessageModel: UrlMessageModel {
                 fatalError()
             }
         }
-        group.wait()
-        return preview!
+    }
+    
+    override init(message: URL, _ isReceiver: Bool) {
+        super.init(message: message, isReceiver)
+    }
+    
+    public func getPreview() -> UIImage {
+        mutex.tryLock()
+//        group.background {
+//            let asset = AVURLAsset(url: self.message!)
+//            let generator = AVAssetImageGenerator(asset: asset)
+//            generator.appliesPreferredTrackTransform = true
+//            let timestamp = CMTime(seconds: 2, preferredTimescale: 60)
+//            do {
+//                let imageRef = try generator.copyCGImage(at: timestamp, actualTime: nil)
+//                self.preview = UIImage(cgImage: imageRef)
+//            }
+//            catch {
+//                fatalError()
+//            }
+////        }
+//        group.wait()
+        let p = preview!
+        mutex.unlock()
+        return p
     }
     
 }

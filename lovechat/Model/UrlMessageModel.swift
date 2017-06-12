@@ -55,8 +55,8 @@ class UrlMessageModel: MessageModel {
 //        semaphore.wait()
         _ = mutex.tryLock()
         group.wait()
-        return message!
         _ = mutex.unlock()
+        return message!
 //        semaphore.signal()
     }
     
