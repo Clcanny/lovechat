@@ -18,6 +18,9 @@ import Firebase
 
 class ChatViewController: UIViewController {
     
+    @IBOutlet weak var VoiceButton: UIButton!
+    @IBOutlet weak var Textbutton: UIButton!
+    @IBOutlet weak var AlbumButton: UIButton!
     @IBOutlet weak var recordVideo: UIButton!
     
     @IBOutlet weak var messagesView: UIView!
