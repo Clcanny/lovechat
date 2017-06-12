@@ -1,3 +1,11 @@
+//
+//  Mutex.swift
+//  lovechat
+//
+//  Created by Demons on 2017/6/12.
+//  Copyright © 2017年 Demons. All rights reserved.
+//
+
 import Foundation
 
 /// Protocol for NSLocking objects that also provide try()

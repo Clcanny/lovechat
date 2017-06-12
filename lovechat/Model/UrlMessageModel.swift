@@ -13,7 +13,8 @@ import Firebase
 
 class UrlMessageModel: MessageModel {
     
-    internal var message: URL?
+    internal var message: URL!
+    internal var localUrl: URL!
     
     let NO_DATA = 1
     let GOT_DATA = 2
@@ -24,34 +25,39 @@ class UrlMessageModel: MessageModel {
         fatalError()
     }
     
-    let storage = Storage.storage()
-    
-    init(message: URL, _ isReceiver: Bool) {
-        super.init(isReceiver)
-        self.message = message
-        
-        clock = NSConditionLock(condition: NO_DATA)
+    func loadData(completion: @escaping (UrlMessageModel) -> ()) {
         Async.background {
-            let reference = self.storage.reference(forURL: message.absoluteString)
-            let filename = message.lastPathComponent
-            let localUrl = FileManager.getUrl(filename: filename, isReceiver)
-            self.message = localUrl
-            if FileManager.isFileExist(filename: filename, isReceiver) {
+            let reference = self.storage.reference(forURL: self.message.absoluteString)
+            let filename = self.message.lastPathComponent
+            let localUrl = FileManager.getUrl(filename: filename, self.isReceiver)
+//            self.message = localUrl
+            self.localUrl = localUrl
+            if FileManager.isFileExist(filename: filename, self.isReceiver) {
                 self.afterDownload(url: nil, localUrl: localUrl, error: nil)
+                Async.main {
+                    completion(self)
+                }
             }
             else {
                 _ = reference.write(toFile: localUrl) { (URL, error) -> Void in
                     Async.background {
                         self.afterDownload(url: URL, localUrl: localUrl, error: error)
-                        self.clock.unlock(withCondition: self.GOT_DATA)
+                        }.main {
+                            completion(self)
                     }
                 }
             }
         }
     }
     
+    let storage = Storage.storage()
+    
+    init(message: URL, _ isReceiver: Bool) {
+        super.init(isReceiver)
+        self.message = message
+    }
+    
     public func getMessage() -> URL {
-        clock.tryLock(whenCondition: NO_DATA)
         return message!
     }
     

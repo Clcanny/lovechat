@@ -37,14 +37,26 @@ class PictureMessageSectionController: ListSectionController {
         }
         
         if image == nil {
-            let pictureHeight = TextMessageCollectionViewCell.maxWidth
-            Async.background {
-                self.image = self.pictureMessageModel?.getImage()
-                }.main {
-                    self.collectionContext?.performBatch(animated: false, updates: { (batchContext) in
-                        batchContext.reload(self)
-                    }, completion: nil)
-            }
+            let pictureHeight = PictureMessageCollectionViewCell.maxWidth
+            //            Async.background {
+            //                self.image = self.pictureMessageModel?.getImage()
+            //                }.main {
+            //                    self.collectionContext?.performBatch(animated: false, updates: { (batchContext) in
+            //                        batchContext.reload(self)
+            //                    }, completion: nil)
+            //            }
+            pictureMessageModel?.loadData(completion: {
+                (model) -> Void in
+                let pictureMessageModel = model as! PictureMessageModel
+                self.image = pictureMessageModel.getImage()
+                self.collectionContext?.performBatch(
+                    animated: false,
+                    updates: {
+                        (batchContext) -> Void in
+                        batchContext.reload(self) },
+                    completion: nil
+                )
+            })
             return CGSize(
                 width: context.containerSize.width,
                 height: pictureHeight
@@ -73,7 +85,7 @@ class PictureMessageSectionController: ListSectionController {
             cell.pictureSize = psize!
         }
         if image != nil {
-            cell.setPicture(url: pictureMessageModel!.getMessage())
+            cell.setPicture(url: pictureMessageModel!.localUrl)
         }
         if (pictureMessageModel!.getLR()) {
             cell.keepRight()

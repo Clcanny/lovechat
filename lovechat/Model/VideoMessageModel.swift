@@ -40,7 +40,6 @@ class VideoMessageModel: UrlMessageModel {
     }
     
     public func getPreview() -> UIImage {
-        clock.tryLock(whenCondition: NO_DATA)
         return preview!
     }
     

@@ -32,7 +32,6 @@ class PictureMessageModel: UrlMessageModel {
     }
     
     public func getImage() -> UIImage {
-        clock.tryLock(whenCondition: NO_DATA)
         return image!
     }
     

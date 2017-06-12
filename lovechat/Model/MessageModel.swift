@@ -10,7 +10,7 @@ import Foundation
 
 class MessageModel: NSObject {
     
-    private var isReceiver: Bool?
+    internal var isReceiver: Bool!
     
     public init(_ isReceiver: Bool) {
         self.isReceiver = isReceiver
