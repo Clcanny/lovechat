@@ -223,12 +223,12 @@ extension ChatViewController {
                             value.object(forKey: "isReceive") as! Bool
                         ))
                     }
-                    else if (value.object(forKey: "type") as! String) == "video" {
-                        self.objects.append(VideoMessageModel(
-                            message: URL(string: value.object(forKey: "url") as! String)!,
-                            value.object(forKey: "isReceive") as! Bool
-                        ))
-                    }
+//                    else if (value.object(forKey: "type") as! String) == "video" {
+//                        self.objects.append(VideoMessageModel(
+//                            message: URL(string: value.object(forKey: "url") as! String)!,
+//                            value.object(forKey: "isReceive") as! Bool
+//                        ))
+//                    }
                     self.adapter.performUpdates(animated: false, completion: nil)
                 }
         })

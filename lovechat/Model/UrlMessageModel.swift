@@ -22,7 +22,8 @@ class UrlMessageModel: MessageModel {
     
     let group = AsyncGroup()
     let mutex = Mutex()
-    let semaphore = DispatchSemaphore.init(value: 1)
+
+//    let semaphore = DispatchSemaphore.init(value: 1)
     let storage = Storage.storage()
     
     init(message: URL, _ isReceiver: Bool) {
@@ -38,6 +39,7 @@ class UrlMessageModel: MessageModel {
                 self.afterDownload(url: nil, localUrl: localUrl, error: nil)
             }
             else {
+                print("begin")
 //                self.semaphore.wait()
                 _ = self.mutex.tryLock()
                 _ = reference.write(toFile: localUrl) { (URL, error) -> Void in

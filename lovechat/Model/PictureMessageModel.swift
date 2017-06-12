@@ -20,6 +20,7 @@ class PictureMessageModel: UrlMessageModel {
         else {
             let data = try? Data(contentsOf: localUrl)
             self.image = UIImage(data: data!)
+            print("testPicture")
         }
     }
     
