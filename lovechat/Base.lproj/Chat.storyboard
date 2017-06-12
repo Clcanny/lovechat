@@ -31,9 +31,6 @@
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mjX-uZ-CIe">
                                         <rect key="frame" x="0.0" y="0.0" width="78" height="35"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="64" id="0Ep-bG-FEr"/>
-                                        </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                         <state key="normal" title="Voice">
                                             <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -75,13 +72,13 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstAttribute="bottom" secondItem="3eN-iG-0zv" secondAttribute="bottom" constant="115" id="6ty-C4-oVq"/>
-                            <constraint firstItem="yZN-7Z-87t" firstAttribute="top" secondItem="3eN-iG-0zv" secondAttribute="bottom" constant="8" symbolic="YES" id="Hbc-Sx-oUa"/>
-                            <constraint firstItem="3eN-iG-0zv" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="LNe-P7-xea"/>
-                            <constraint firstItem="yZN-7Z-87t" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="1" id="jXi-um-lIr"/>
-                            <constraint firstItem="3eN-iG-0zv" firstAttribute="centerX" secondItem="yZN-7Z-87t" secondAttribute="centerX" id="l8R-Fs-jli"/>
-                            <constraint firstItem="3eN-iG-0zv" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="pdy-NQ-D3S"/>
-                            <constraint firstItem="3eN-iG-0zv" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" symbolic="YES" id="wKn-1P-ih1"/>
+                            <constraint firstItem="yZN-7Z-87t" firstAttribute="top" secondItem="3eN-iG-0zv" secondAttribute="bottom" constant="8" symbolic="YES" id="7sP-Wu-ngG"/>
+                            <constraint firstItem="3eN-iG-0zv" firstAttribute="centerX" secondItem="yZN-7Z-87t" secondAttribute="centerX" id="9up-UF-yjL"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="yZN-7Z-87t" secondAttribute="trailing" constant="1" id="BzE-2K-afc"/>
+                            <constraint firstItem="3eN-iG-0zv" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" symbolic="YES" id="EGC-Hh-ruX"/>
+                            <constraint firstItem="3eN-iG-0zv" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="fNe-s8-1ce"/>
+                            <constraint firstAttribute="bottom" secondItem="3eN-iG-0zv" secondAttribute="bottom" constant="115" id="fZD-Cr-3az"/>
+                            <constraint firstItem="yZN-7Z-87t" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="1" id="u1x-aQ-fYr"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="v9Z-8E-hvk">
@@ -162,7 +159,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="giJ-xL-FqW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="330" y="961"/>
+            <point key="canvasLocation" x="849" y="962"/>
         </scene>
         <!--Picture Message Detail View Controller-->
         <scene sceneID="imo-qZ-4Wq">
@@ -209,7 +206,7 @@
                     </connections>
                 </pinchGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="2316" y="888.30584707646187"/>
+            <point key="canvasLocation" x="2041" y="961"/>
         </scene>
         <!--Chat-->
         <scene sceneID="Ik3-mq-sa3">

@@ -171,6 +171,7 @@
                     <connections>
                         <outlet property="passField" destination="WlV-ZA-imc" id="mNc-SU-2KG"/>
                         <outlet property="registerComplete" destination="JMg-ud-viM" id="UiT-GU-ODK"/>
+                        <outlet property="signInButton" destination="KOU-IS-rl7" id="MZW-yW-p2N"/>
                         <outlet property="userField" destination="62d-qL-R8l" id="gFK-cx-5e3"/>
                         <segue destination="UMt-3C-OiL" kind="show" identifier="toChatViewController" id="IIc-dE-fhn"/>
                     </connections>

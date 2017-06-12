@@ -38,13 +38,6 @@ class PictureMessageSectionController: ListSectionController {
         
         if image == nil {
             let pictureHeight = PictureMessageCollectionViewCell.maxWidth
-            //            Async.background {
-            //                self.image = self.pictureMessageModel?.getImage()
-            //                }.main {
-            //                    self.collectionContext?.performBatch(animated: false, updates: { (batchContext) in
-            //                        batchContext.reload(self)
-            //                    }, completion: nil)
-            //            }
             pictureMessageModel?.loadData(completion: {
                 (model) -> Void in
                 let pictureMessageModel = model as! PictureMessageModel
