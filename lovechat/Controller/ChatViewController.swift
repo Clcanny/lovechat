@@ -123,6 +123,7 @@ class ChatViewController: UIViewController {
                 self.companionId = value as! String
         })
         
+        database.keepSynced(true)
         observeDataChange()
     }
     
@@ -141,18 +142,6 @@ class ChatViewController: UIViewController {
      }
      */
     
-    //    var objects = [
-    //        "12:25 PM" as ListDiffable,
-    //        TextMessageModel(message: "This is a very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very T--very very very very long message.", true),
-    //        TextMessageModel(message: "This is also a very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very long message.", false),
-    //        "12:26 PM" as ListDiffable,
-    //        TextMessageModel(message: "A short message", true),
-    //        TextMessageModel(message: "A short message", true),
-    //        TextMessageModel(message: "A short message", false),
-    //        "12:27 PM" as ListDiffable,
-    //        TextMessageModel(message: "This is a very very very very long message", true),
-    //        TextMessageModel(message: "This is a very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very long message.", false),
-    //        ]
     var objects: [ListDiffable] = []
     
 }
@@ -204,30 +193,31 @@ extension ChatViewController {
         self.database.child("users/\(uid)").observe(
             DataEventType.childAdded, with: { (snapshot) -> Void in
                 if let value = snapshot.value as? NSDictionary {
-                    if (value.object(forKey: "type") as! String) == "text" {
+                    let type = value.object(forKey: "type") as! String
+                    switch type {
+                    case "text":
                         self.objects.append(TextMessageModel(
                             message: value.object(forKey: "message") as! String,
                             value.object(forKey: "isReceive") as! Bool
                         ))
-                    }
-                    else if (value.object(forKey: "type") as! String) == "audio" {
+                    case "audio":
                         self.objects.append(VoiceMessageModel(
                             message: URL(string: value.object(forKey: "url") as! String)!,
                             time: value.object(forKey: "time") as! Int,
                             value.object(forKey: "isReceive") as! Bool
                         ))
-                    }
-                    else if (value.object(forKey: "type") as! String) == "picture" {
+                    case "picture":
                         self.objects.append(PictureMessageModel(
                             message: URL(string: value.object(forKey: "url") as! String)!,
                             value.object(forKey: "isReceive") as! Bool
                         ))
-                    }
-                    else if (value.object(forKey: "type") as! String) == "video" {
+                    case "video":
                         self.objects.append(VideoMessageModel(
                             message: URL(string: value.object(forKey: "url") as! String)!,
                             value.object(forKey: "isReceive") as! Bool
                         ))
+                    default:
+                        fatalError()
                     }
                     self.adapter.performUpdates(animated: false, completion: nil)
                 }
@@ -285,7 +275,7 @@ extension ChatViewController {
                                 "url": downloadURL.absoluteString,
                                 "time": recordTime!, "isReceive": true, "type": "audio"
                                 ] as [String : Any]
-                                                    }
+                        }
                         else {
                             sendMsg = [
                                 "url": downloadURL.absoluteString,
@@ -294,7 +284,7 @@ extension ChatViewController {
                             receiveMsg = [
                                 "url": downloadURL.absoluteString,
                                 "isReceive": true, "type": type
-                            ] as [String : Any]
+                                ] as [String : Any]
                         }
                         self.pushMessage(sendMsg, receiveMsg)
                     }
