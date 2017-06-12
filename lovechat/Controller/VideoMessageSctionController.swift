@@ -8,6 +8,7 @@
 
 import UIKit
 import IGListKit
+import Async
 
 class VideoMessageSctionController: ListSectionController {
     
@@ -34,15 +35,39 @@ class VideoMessageSctionController: ListSectionController {
             return .zero
         }
         
-        image = videoMessageModel?.getPreview()
-        psize = pictureSize(
-            maxWidth: TextMessageCollectionViewCell.maxWidth,
-            picture: self.image!
-        )
-        return CGSize(
-            width: context.containerSize.width,
-            height: psize!.height
-        )
+        if image == nil {
+            let pictureHeight = VideoMessageCollectionViewCell.maxWidth
+            Async.background {
+                self.image = self.videoMessageModel?.getPreview()
+                }.main {
+                    self.collectionContext?.performBatch(animated: false, updates: { (batchContext) in
+                        batchContext.reload(self)
+                    }, completion: nil)
+            }
+            return CGSize(
+                width: context.containerSize.width,
+                height: pictureHeight
+            )
+        }
+        else {
+            psize = pictureSize(
+                maxWidth: VideoMessageCollectionViewCell.maxWidth,
+                picture: self.image!
+            )
+            return CGSize(
+                width: context.containerSize.width,
+                height: psize!.height
+            )
+        }
+//        image = videoMessageModel?.getPreview()
+//        psize = pictureSize(
+//            maxWidth: TextMessageCollectionViewCell.maxWidth,
+//            picture: self.image!
+//        )
+//        return CGSize(
+//            width: context.containerSize.width,
+//            height: psize!.height
+//        )
     }
     
     override func cellForItem(at index: Int) -> UICollectionViewCell {
@@ -52,8 +77,14 @@ class VideoMessageSctionController: ListSectionController {
             ) as! VideoMessageCollectionViewCell
         
         // The order is important.
-        cell.pictureSize = psize!
-        cell.image = image
+        if psize != nil {
+            cell.pictureSize = psize!
+        }
+        if image != nil {
+            cell.image = image!
+        }
+//        cell.pictureSize = psize!
+//        cell.image = image
         if (videoMessageModel!.getLR()) {
             cell.keepRight()
         }
