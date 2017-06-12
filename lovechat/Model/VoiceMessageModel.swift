@@ -18,7 +18,7 @@ class VoiceMessageModel: UrlMessageModel {
             print(err)
         }
         else {
-            message = localUrl
+            super.localUrl = localUrl
         }
     }
     

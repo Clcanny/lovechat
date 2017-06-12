@@ -20,8 +20,8 @@ class VideoMessageModel: UrlMessageModel {
             print(err)
         }
         else {
-            message = localUrl
-            let asset = AVURLAsset(url: self.message!)
+            super.localUrl = localUrl
+            let asset = AVURLAsset(url: localUrl)
             let generator = AVAssetImageGenerator(asset: asset)
             generator.appliesPreferredTrackTransform = true
             let timestamp = CMTime(seconds: 2, preferredTimescale: 60)
@@ -30,6 +30,7 @@ class VideoMessageModel: UrlMessageModel {
                 self.preview = UIImage(cgImage: imageRef)
             }
             catch {
+                print(error)
                 fatalError()
             }
         }

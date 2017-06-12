@@ -210,25 +210,25 @@ extension ChatViewController {
                             value.object(forKey: "isReceive") as! Bool
                         ))
                     }
-//                    else if (value.object(forKey: "type") as! String) == "audio" {
-//                        self.objects.append(VoiceMessageModel(
-//                            message: URL(string: value.object(forKey: "url") as! String)!,
-//                            time: value.object(forKey: "time") as! Int,
-//                            value.object(forKey: "isReceive") as! Bool
-//                        ))
-//                    }
+                    else if (value.object(forKey: "type") as! String) == "audio" {
+                        self.objects.append(VoiceMessageModel(
+                            message: URL(string: value.object(forKey: "url") as! String)!,
+                            time: value.object(forKey: "time") as! Int,
+                            value.object(forKey: "isReceive") as! Bool
+                        ))
+                    }
                     else if (value.object(forKey: "type") as! String) == "picture" {
                         self.objects.append(PictureMessageModel(
                             message: URL(string: value.object(forKey: "url") as! String)!,
                             value.object(forKey: "isReceive") as! Bool
                         ))
                     }
-//                    else if (value.object(forKey: "type") as! String) == "video" {
-//                        self.objects.append(VideoMessageModel(
-//                            message: URL(string: value.object(forKey: "url") as! String)!,
-//                            value.object(forKey: "isReceive") as! Bool
-//                        ))
-//                    }
+                    else if (value.object(forKey: "type") as! String) == "video" {
+                        self.objects.append(VideoMessageModel(
+                            message: URL(string: value.object(forKey: "url") as! String)!,
+                            value.object(forKey: "isReceive") as! Bool
+                        ))
+                    }
                     self.adapter.performUpdates(animated: false, completion: nil)
                 }
         })

@@ -37,13 +37,18 @@ class VideoMessageSctionController: ListSectionController {
         
         if image == nil {
             let pictureHeight = VideoMessageCollectionViewCell.maxWidth
-            Async.background {
-                self.image = self.videoMessageModel?.getPreview()
-                }.main {
-                    self.collectionContext?.performBatch(animated: false, updates: { (batchContext) in
-                        batchContext.reload(self)
-                    }, completion: nil)
-            }
+            videoMessageModel?.loadData(completion: {
+                (model) -> Void in
+                let videoMessageModel = model as! VideoMessageModel
+                self.image = videoMessageModel.getPreview()
+                self.collectionContext?.performBatch(
+                    animated: false,
+                    updates: {
+                        (batchContext) -> Void in
+                        batchContext.reload(self) },
+                    completion: nil
+                )
+            })
             return CGSize(
                 width: context.containerSize.width,
                 height: pictureHeight
@@ -59,15 +64,6 @@ class VideoMessageSctionController: ListSectionController {
                 height: psize!.height
             )
         }
-//        image = videoMessageModel?.getPreview()
-//        psize = pictureSize(
-//            maxWidth: TextMessageCollectionViewCell.maxWidth,
-//            picture: self.image!
-//        )
-//        return CGSize(
-//            width: context.containerSize.width,
-//            height: psize!.height
-//        )
     }
     
     override func cellForItem(at index: Int) -> UICollectionViewCell {
@@ -91,7 +87,7 @@ class VideoMessageSctionController: ListSectionController {
         else {
             cell.keepLeft()
         }
-        cell.url = videoMessageModel?.getMessage()
+        cell.url = videoMessageModel?.localUrl
         cell.delegate = delegate
         return cell
     }
