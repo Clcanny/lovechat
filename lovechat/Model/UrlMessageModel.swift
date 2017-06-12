@@ -15,22 +15,23 @@ class UrlMessageModel: MessageModel {
     
     internal var message: URL?
     
+    let NO_DATA = 1
+    let GOT_DATA = 2
+    var clock: NSConditionLock!
+    
     // abstract method
     func afterDownload(url: URL?, localUrl: URL, error: Any?) {
         fatalError()
     }
     
-    let group = AsyncGroup()
-    let mutex = Mutex()
-
-//    let semaphore = DispatchSemaphore.init(value: 1)
     let storage = Storage.storage()
     
     init(message: URL, _ isReceiver: Bool) {
         super.init(isReceiver)
         self.message = message
         
-        group.background {
+        clock = NSConditionLock(condition: NO_DATA)
+        Async.background {
             let reference = self.storage.reference(forURL: message.absoluteString)
             let filename = message.lastPathComponent
             let localUrl = FileManager.getUrl(filename: filename, isReceiver)
@@ -39,14 +40,10 @@ class UrlMessageModel: MessageModel {
                 self.afterDownload(url: nil, localUrl: localUrl, error: nil)
             }
             else {
-                print("begin")
-//                self.semaphore.wait()
-                _ = self.mutex.tryLock()
                 _ = reference.write(toFile: localUrl) { (URL, error) -> Void in
-                    self.group.background {
+                    Async.background {
                         self.afterDownload(url: URL, localUrl: localUrl, error: error)
-                        _ = self.mutex.unlock()
-//                        self.semaphore.signal()
+                        self.clock.unlock(withCondition: self.GOT_DATA)
                     }
                 }
             }
@@ -54,12 +51,8 @@ class UrlMessageModel: MessageModel {
     }
     
     public func getMessage() -> URL {
-//        semaphore.wait()
-        _ = mutex.tryLock()
-        group.wait()
-        _ = mutex.unlock()
+        clock.tryLock(whenCondition: NO_DATA)
         return message!
-//        semaphore.signal()
     }
     
 }

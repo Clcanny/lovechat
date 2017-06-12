@@ -20,7 +20,6 @@ class PictureMessageModel: UrlMessageModel {
         else {
             let data = try? Data(contentsOf: localUrl)
             self.image = UIImage(data: data!)
-            print("testPicture")
         }
     }
     
@@ -33,9 +32,7 @@ class PictureMessageModel: UrlMessageModel {
     }
     
     public func getImage() -> UIImage {
-        _ = mutex.lock()
-        group.wait()
-        _ = mutex.unlock()
+        clock.tryLock(whenCondition: NO_DATA)
         return image!
     }
     

@@ -15,14 +15,11 @@ class VideoMessageModel: UrlMessageModel {
     
     private var preview: UIImage?
     
-//    let semaphore = DispatchSemaphore(value: 1)
-    
     override func afterDownload(url: URL?, localUrl: URL, error: Any?) {
         if let err = error {
             print(err)
         }
         else {
-            print("testVideo")
             message = localUrl
             let asset = AVURLAsset(url: self.message!)
             let generator = AVAssetImageGenerator(asset: asset)
@@ -39,18 +36,11 @@ class VideoMessageModel: UrlMessageModel {
     }
     
     override init(message: URL, _ isReceiver: Bool) {
-//        semaphore.wait()
         super.init(message: message, isReceiver)
-        print("lock")
-//        semaphore.signal()
     }
     
     public func getPreview() -> UIImage {
-        mutex.tryLock()
-        group.wait()
-        mutex.unlock()
-        while preview == nil {
-        }
+        clock.tryLock(whenCondition: NO_DATA)
         return preview!
     }
     
