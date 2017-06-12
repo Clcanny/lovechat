@@ -302,14 +302,21 @@ extension ChatViewController {
 extension ChatViewController: UITextViewDelegate {
     
     @IBAction func inputText(_ sender: UIButton) {
-        textView.isHidden = !textView.isHidden
+        if textView.isHidden {
+            textView.isHidden = false
+            textView.becomeFirstResponder()
+            self.tabBarController?.tabBar.isHidden = true
+        }
+        else {
+            textView.isHidden = true
+            textView.resignFirstResponder()
+            self.tabBarController?.tabBar.isHidden = false
+        }
     }
     
     func sendTextMessage() {
-        textView.resignFirstResponder()
-        textView.isHidden = true
         let message = textView.text!
-        textView.text = ""
+        cancelTextMessage()
         
         uploadTextMessage(message: message)
     }
@@ -318,6 +325,7 @@ extension ChatViewController: UITextViewDelegate {
         textView.resignFirstResponder()
         textView.isHidden = true
         textView.text = ""
+        self.tabBarController?.tabBar.isHidden = false
     }
     
     func textViewDidChange(_ textView: UITextView) {
