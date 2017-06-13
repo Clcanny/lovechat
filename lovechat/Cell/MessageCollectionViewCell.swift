@@ -57,13 +57,7 @@ class MessageCollectionViewCell: UICollectionViewCell {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-    // abstract method
-    // call thid method when data is not prepared
-    func drawByDefault() {
-        fatalError()
-    }
-    
+
     // abstract method
     var contentSize: CGSize {
         get {

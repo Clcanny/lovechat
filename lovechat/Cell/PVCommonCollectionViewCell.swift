@@ -61,6 +61,7 @@ class PVCommonCollectionViewCell: MessageCollectionViewCell {
     
     override func layoutSubviews() {
         super.layoutSubviews()
+        highlightLayer.fillColor = babyBlueColor.cgColor
         addSubview(pictureView)
     }
     

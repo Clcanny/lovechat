@@ -1,8 +1,8 @@
 //
-//  VideoMessageSctionController.swift
+//  PictureMessageSectionController.swift
 //  lovechat
 //
-//  Created by Demons on 2017/6/10.
+//  Created by Demons on 2017/6/4.
 //  Copyright © 2017年 Demons. All rights reserved.
 //
 
@@ -10,19 +10,19 @@ import UIKit
 import IGListKit
 import Async
 
-class VideoMessageSctionController: ListSectionController {
+class PictureMessageSectionController: ListSectionController {
     
-    private var videoMessageModel: VideoMessageModel?
+    private var pictureMessageModel: PictureMessageModel?
     
     private var psize: CGSize?
     
-    private var image: UIImage?
-    
     public var delegate: SegueFromCellProtocol?
     
-    init(videoMessageModel: VideoMessageModel) {
+    private var image: UIImage?
+    
+    init(pictureMessageModel: PictureMessageModel) {
         super.init()
-        self.videoMessageModel = videoMessageModel
+        self.pictureMessageModel = pictureMessageModel
         inset = UIEdgeInsets(top: 0, left: 0, bottom: 5, right: 0)
     }
     
@@ -36,11 +36,11 @@ class VideoMessageSctionController: ListSectionController {
         }
         
         if image == nil {
-            let pictureHeight = VideoMessageCollectionViewCell.maxWidth
-            videoMessageModel?.loadData(completion: {
+            let pictureHeight = PictureMessageCollectionViewCell.maxWidth
+            pictureMessageModel?.loadData(completion: {
                 (model) -> Void in
-                let videoMessageModel = model as! VideoMessageModel
-                self.image = videoMessageModel.getPreview()
+                let pictureMessageModel = model as! PictureMessageModel
+                self.image = pictureMessageModel.getImage()
                 self.collectionContext?.performBatch(
                     animated: false,
                     updates: {
@@ -56,7 +56,7 @@ class VideoMessageSctionController: ListSectionController {
         }
         else {
             psize = pictureSize(
-                maxWidth: VideoMessageCollectionViewCell.maxWidth,
+                maxWidth: TextMessageCollectionViewCell.maxWidth,
                 picture: self.image!
             )
             return CGSize(
@@ -68,26 +68,21 @@ class VideoMessageSctionController: ListSectionController {
     
     override func cellForItem(at index: Int) -> UICollectionViewCell {
         let cell = collectionContext!.dequeueReusableCell(
-            of: VideoMessageCollectionViewCell.self,
+            of: PictureMessageCollectionViewCell.self,
             for: self, at: index
-            ) as! VideoMessageCollectionViewCell
+            ) as! PictureMessageCollectionViewCell
         
         // The order is important.
         if psize != nil {
             cell.pictureSize = psize!
-            cell.image = image!
+            cell.setPicture(url: pictureMessageModel!.localUrl)
         }
-        else {
-            cell.drawByDefault()
-        }
-        
-        if (videoMessageModel!.getLR()) {
+        if (pictureMessageModel!.getLR()) {
             cell.keepRight()
         }
         else {
             cell.keepLeft()
         }
-        cell.url = videoMessageModel?.localUrl
         cell.delegate = delegate
         return cell
     }
