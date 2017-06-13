@@ -73,6 +73,8 @@
 		40B1BF1B1EE3ED83000B335E /* ExtensionUIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40B1BF1A1EE3ED83000B335E /* ExtensionUIImage.swift */; };
 		40BF9FBB1EE4F719002BEACB /* VoiceMessageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40BF9FBA1EE4F719002BEACB /* VoiceMessageCollectionViewCell.swift */; };
 		40BF9FBD1EE4F737002BEACB /* VoiceMessageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40BF9FBC1EE4F737002BEACB /* VoiceMessageModel.swift */; };
+		40C391F61EEFB32800726097 /* TestKeyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 40C391F51EEFB32800726097 /* TestKeyboard.storyboard */; };
+		40C391F81EEFB36900726097 /* TextKeyboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40C391F71EEFB36900726097 /* TextKeyboardViewController.swift */; };
 		40D1CAE31EEC0E500030CBEF /* VideoMessageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40D1CAE21EEC0E500030CBEF /* VideoMessageModel.swift */; };
 		40D1CAE51EEC10430030CBEF /* VideoMessageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40D1CAE41EEC10430030CBEF /* VideoMessageCollectionViewCell.swift */; };
 		40D1CAE91EEC2A820030CBEF /* PVCommonCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40D1CAE81EEC2A820030CBEF /* PVCommonCollectionViewCell.swift */; };
@@ -152,6 +154,8 @@
 		40B1BF1A1EE3ED83000B335E /* ExtensionUIImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ExtensionUIImage.swift; path = Util/ExtensionUIImage.swift; sourceTree = "<group>"; };
 		40BF9FBA1EE4F719002BEACB /* VoiceMessageCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = VoiceMessageCollectionViewCell.swift; path = Cell/VoiceMessageCollectionViewCell.swift; sourceTree = "<group>"; };
 		40BF9FBC1EE4F737002BEACB /* VoiceMessageModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = VoiceMessageModel.swift; path = Model/VoiceMessageModel.swift; sourceTree = "<group>"; };
+		40C391F51EEFB32800726097 /* TestKeyboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = TestKeyboard.storyboard; path = Storyboard/TestKeyboard.storyboard; sourceTree = "<group>"; };
+		40C391F71EEFB36900726097 /* TextKeyboardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TextKeyboardViewController.swift; path = Controller/TextKeyboardViewController.swift; sourceTree = "<group>"; };
 		40D1CAE21EEC0E500030CBEF /* VideoMessageModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = VideoMessageModel.swift; path = Model/VideoMessageModel.swift; sourceTree = "<group>"; };
 		40D1CAE41EEC10430030CBEF /* VideoMessageCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = VideoMessageCollectionViewCell.swift; path = Cell/VideoMessageCollectionViewCell.swift; sourceTree = "<group>"; };
 		40D1CAE81EEC2A820030CBEF /* PVCommonCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PVCommonCollectionViewCell.swift; path = Cell/PVCommonCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -196,6 +200,7 @@
 				40AF902D1EE5BC1900F801A9 /* PictureMessageDetailViewController.swift */,
 				40FB67DA1EE6DAEB00DD63F4 /* CameraViewController.swift */,
 				40888A6E1EED16DC008E5E12 /* LoginViewController.swift */,
+				40C391F71EEFB36900726097 /* TextKeyboardViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -307,6 +312,7 @@
 			children = (
 				408B48111EE276CC00EE9281 /* Chat.storyboard */,
 				40888A6C1EED13C3008E5E12 /* Login.storyboard */,
+				40C391F51EEFB32800726097 /* TestKeyboard.storyboard */,
 			);
 			name = Storyboard;
 			sourceTree = "<group>";
@@ -445,6 +451,7 @@
 				408B48151EE276CC00EE9281 /* Assets.xcassets in Resources */,
 				40888A6D1EED13C3008E5E12 /* Login.storyboard in Resources */,
 				408B48131EE276CC00EE9281 /* Chat.storyboard in Resources */,
+				40C391F61EEFB32800726097 /* TestKeyboard.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -507,6 +514,7 @@
 				4071938A1EED65DC003C7E9C /* ShadowDesignable.swift in Sources */,
 				40BF9FBD1EE4F737002BEACB /* VoiceMessageModel.swift in Sources */,
 				40D1CAE51EEC10430030CBEF /* VideoMessageCollectionViewCell.swift in Sources */,
+				40C391F81EEFB36900726097 /* TextKeyboardViewController.swift in Sources */,
 				403B20501EE2B09700CBE09C /* ChatViewController.swift in Sources */,
 				407193841EED65DC003C7E9C /* CornerDesignable.swift in Sources */,
 				407193771EED65C8003C7E9C /* BlurDesignable.swift in Sources */,
