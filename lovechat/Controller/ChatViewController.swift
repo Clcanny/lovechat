@@ -124,9 +124,10 @@ class ChatViewController: UIViewController {
             of: DataEventType.value, with: { (snapshot) -> Void in
                 let value = snapshot.value
                 self.companionId = value as! String
+                print(self.companionId)
         })
         
-        database.keepSynced(true)
+        // database.keepSynced(true)
         observeDataChange()
     }
     
@@ -228,6 +229,7 @@ extension ChatViewController {
     }
     
     func loadCompanionId(completion: @escaping () -> ()) {
+        print(companionId)
         if companionId == nil {
             database.child("users/\(uid)/companionId").observeSingleEvent(
                 of: DataEventType.value, with: { (snapshot) -> Void in
