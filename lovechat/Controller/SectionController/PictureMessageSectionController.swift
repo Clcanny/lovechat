@@ -47,8 +47,6 @@ class PictureMessageSectionController: PVCommonSectionController {
             cell.keepLeft()
         }
         
-
-        
         cell.delegate = delegate
         return cell
     }

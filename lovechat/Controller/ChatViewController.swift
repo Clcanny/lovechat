@@ -122,8 +122,10 @@ class ChatViewController: UIViewController {
         
         database.child("users/\(uid)/companionId").observeSingleEvent(
             of: DataEventType.value, with: { (snapshot) -> Void in
+                print(self.uid)
                 let value = snapshot.value
-                self.companionId = value as! String
+//                self.companionId = value as! String
+                self.companionId = "gQCOUY1uKlaDtD6U2VNaLW6NH1J3"
         })
         
         database.keepSynced(true)

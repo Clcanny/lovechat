@@ -135,19 +135,29 @@ class PVCommonCollectionViewCell: MessageCollectionViewCell {
             loadingView.center = center
         }
         else {
+            if loadingView.isAnimating() {
+                loadingView.stopAnimation()
+            }
+            loadingView.isHidden = true
         }
     }
     
     override func keepLeft() {
         super.keepLeft()
         pictureView.frame.origin = CGPoint(x: MessageCollectionViewCell.radius * 3, y: 0)
-        keepHelper(center: CGPoint(x: MessageCollectionViewCell.radius * 3 + PVCommonCollectionViewCell.maxWidth / 2, y: PVCommonCollectionViewCell.maxWidth / 2))
+        keepHelper(center: CGPoint(
+            x: MessageCollectionViewCell.radius * 3 + PVCommonCollectionViewCell.maxWidth / 2,
+            y: PVCommonCollectionViewCell.maxWidth / 2
+        ))
     }
     
     override func keepRight() {
         super.keepRight()
         pictureView.frame.origin = CGPoint(x: bounds.size.width - pictureSize.width - MessageCollectionViewCell.radius * 3, y: 0)
-        keepHelper(center: CGPoint(x: bounds.width - MessageCollectionViewCell.radius * 3 - PVCommonCollectionViewCell.maxWidth / 2, y: PVCommonCollectionViewCell.maxWidth / 2))
+        keepHelper(center: CGPoint(
+            x: bounds.width - MessageCollectionViewCell.radius * 3 - PVCommonCollectionViewCell.maxWidth / 2,
+            y: PVCommonCollectionViewCell.maxWidth / 2
+        ))
     }
     
 }
