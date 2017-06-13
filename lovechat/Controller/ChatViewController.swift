@@ -227,9 +227,7 @@ extension ChatViewController {
         })
     }
     
-    func pushMessage(
-        _ sendMsg: [String : Any],
-        _ receiveMsg: [String : Any]) {
+    func loadCompanionId() {
         if companionId == nil {
             database.child("users/\(uid)/companionId").observeSingleEvent(
                 of: DataEventType.value, with: { (snapshot) -> Void in
@@ -238,8 +236,31 @@ extension ChatViewController {
                     self.companionId = companionId
             })
         }
+    }
+    
+    func pushMessage(_ sendMsg: [String : Any], _ receiveMsg: [String : Any]) {
+        loadCompanionId()
         
         let key = database.child("users/\(uid)").childByAutoId().key
+        let childUpdates = [
+            "users/\(uid)/\(key)": sendMsg,
+            "users/\(companionId!)/\(key)": receiveMsg
+        ]
+        database.updateChildValues(childUpdates)
+    }
+    
+    func pushMessage(_ sendMsg: [String : Any]) -> String {
+        loadCompanionId()
+        
+        let key = database.child("users/\(uid)").childByAutoId().key
+        let childUpdates = [
+            "users/\(uid)/\(key)": sendMsg,
+            ]
+        database.updateChildValues(childUpdates)
+        return key
+    }
+    
+    func pushMessage(_ sendMsg: [String : Any], _ receiveMsg: [String : Any], key: String) {
         let childUpdates = [
             "users/\(uid)/\(key)": sendMsg,
             "users/\(companionId!)/\(key)": receiveMsg
@@ -258,10 +279,25 @@ extension ChatViewController {
     func uploadUrlMessage(fileUrl: URL, type: String, recordTime: Int?) {
         let url = "gs://lovechat-2dc1b.appspot.com/" + uid + "/" + fileUrl.lastPathComponent
         
+        var sendMsg: [String : Any]!
+        if type == "audio" {
+            sendMsg = [
+                "url": url,
+                "time": recordTime!, "isReceive": false, "type": "audio"
+                ] as [String : Any]
+        }
+        else {
+            sendMsg = [
+                "url": url,
+                "isReceive": false, "type": type
+                ] as [String : Any]
+        }
+        let key = pushMessage(sendMsg)
+        
         Async.background {
             let reference = self.storage.reference(forURL: url)
             _ = reference.putFile(from: fileUrl, metadata: nil) { metadata, error in
-                if (error != nil) {
+                if error != nil {
                     // Uh-oh, an error occurred!
                 }
                 else {
@@ -289,7 +325,7 @@ extension ChatViewController {
                                 "isReceive": true, "type": type
                                 ] as [String : Any]
                         }
-                        self.pushMessage(sendMsg, receiveMsg)
+                        self.pushMessage(sendMsg, receiveMsg, key: key)
                     }
                 }
             }

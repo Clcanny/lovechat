@@ -59,4 +59,28 @@ extension FileManager {
         return fileExists
     }
     
+    static func createMessageDir() {
+        let paths = FileManager.default.urls(
+            for: .documentDirectory,
+            in: .userDomainMask
+        )
+        let dirs = [
+            paths[0].appendingPathComponent("receiver", isDirectory: true),
+            paths[0].appendingPathComponent("sender", isDirectory: true)
+        ]
+        for dir in dirs {
+            if !FileManager.default.fileExists(atPath: dir.path) {
+                do {
+                    try FileManager.default.createDirectory(
+                        at: dir, withIntermediateDirectories: false, attributes: nil
+                    )
+                }
+                catch {
+                    print(error)
+                    fatalError()
+                }
+            }
+        }
+    }
+    
 }
