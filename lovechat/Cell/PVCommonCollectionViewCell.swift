@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import KDCircularProgress
 
 class PVCommonCollectionViewCell: MessageCollectionViewCell {
     
@@ -16,7 +17,7 @@ class PVCommonCollectionViewCell: MessageCollectionViewCell {
     // UIImageView is a custom view meant to display the UIImage.
     let pictureView = { () -> UIImageView in
         var imageView = UIImageView()
-//        imageView.contentMode = .scaleAspectFit
+        //        imageView.contentMode = .scaleAspectFit
         imageView.backgroundColor = UIColor.clear
         imageView.backgroundColor = babyBlueColor
         return imageView
@@ -31,17 +32,27 @@ class PVCommonCollectionViewCell: MessageCollectionViewCell {
         }
     }
     
-    let loadingView = { () -> UIActivityIndicatorView in
-        let view = UIActivityIndicatorView()
-        view.backgroundColor = UIColor.black
-        view.contentMode = .scaleToFill
-        view.activityIndicatorViewStyle = .whiteLarge
-        view.frame.size = CGSize(
+    let loadingView = { () -> KDCircularProgress in
+        let progress = KDCircularProgress()
+        progress.frame.size = CGSize(
             width: PVCommonCollectionViewCell.maxWidth / 3,
             height: PVCommonCollectionViewCell.maxWidth / 3
         )
-        return view
+        progress.startAngle = -90
+        progress.progressThickness = 0.2
+        progress.trackThickness = 0.6
+        progress.clockwise = true
+        progress.gradientRotateSpeed = 2
+        progress.roundedCorners = false
+        progress.glowMode = .forward
+        progress.glowAmount = 0.9
+        progress.set(colors: UIColor.cyan ,UIColor.white, UIColor.magenta, UIColor.white, UIColor.orange)
+        return progress
     }()
+    
+    func loadTo(precentage: Double) {
+        loadingView.animate(toAngle: precentage * 360, duration: 0, completion: nil)
+    }
     
     public func setHightlightColor() {
         if let image = pictureView.image {
@@ -92,6 +103,7 @@ class PVCommonCollectionViewCell: MessageCollectionViewCell {
     override func layoutSubviews() {
         super.layoutSubviews()
         addSubview(pictureView)
+        addSubview(loadingView)
     }
     
     override init(frame: CGRect) {
@@ -117,14 +129,10 @@ class PVCommonCollectionViewCell: MessageCollectionViewCell {
     func keepHelper(center: CGPoint) {
         if pictureView.image == nil {
             highlightLayer.fillColor = babyBlueColor.cgColor
-            addSubview(loadingView)
             loadingView.center = center
-            loadingView.isHidden = false
-            loadingView.startAnimating()
+            loadingView.animate(toAngle: 20, duration: 0, completion: nil)
         }
         else {
-            loadingView.stopAnimating()
-            loadingView.isHidden = true
         }
     }
     
