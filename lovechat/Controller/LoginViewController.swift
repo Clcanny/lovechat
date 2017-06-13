@@ -30,6 +30,8 @@ class LoginViewController: UIViewController {
 //            self.performSegue(withIdentifier: "toChatViewController", sender: nil)
 //            userField.text = "a837940593@gmail.com"
             userField.text = "837940593@qq.com"
+            userField.text = "4775677667@qq.com"
+//            userField.text = "12345678@qq.com"
             passField.text = "wyszjdx"
         }
     }
@@ -86,6 +88,42 @@ class LoginViewController: UIViewController {
                 self.view.isUserInteractionEnabled = true
             }
             else {
+                let uid = Auth.auth().currentUser?.uid
+                self.database.child("users/\(uid!)").observeSingleEvent(
+                    of: DataEventType.value, with: {
+                        (snapshot) -> Void in
+//                        let value = snapshot.value as! NSDictionary
+//                        let confirm = value.object(forKey: "confirm") as! Bool
+                        if let value = snapshot.value as? NSDictionary,
+                            let confirm = value.object(forKey: "confirm") as? Bool,
+                            let companionId = value.object(forKey: "companionId") {
+                            if confirm {
+                                self.performSegue(withIdentifier: "toChatViewController", sender: nil)
+                            }
+                            else {
+                                self.database.child("email2uid/\(companionId)").observeSingleEvent(of: .value, with: {
+                                    (snapshot) -> Void in
+                                    if let companionId = snapshot.value as? String {
+                                    let companionId = snapshot.value as! String
+                                    self.database.child("users/\(companionId)/companionId").observeSingleEvent(of: .value, with: {
+                                        (snapshot) -> Void in
+                                        if let value = snapshot.value as? String {
+                                            print("yes")
+                                        }
+                                        else {
+                                            print("false")
+                                        }
+//                                    }
+                                    })
+                                    }
+                                    else {
+                                        print("false2")
+                                    }
+                                })
+                            }
+                        }
+                })
+                
                 self.database.child("email2uid").observeSingleEvent(of: DataEventType.value, with: { (snapshot) -> Void in
                     var hasFound = false
                     let value = snapshot.value as? NSDictionary

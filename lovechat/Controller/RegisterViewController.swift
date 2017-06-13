@@ -12,6 +12,8 @@ import Firebase
 class RegisterViewController: UIViewController {
     
     var isFieldEditing: Bool = false
+    
+    let database = Database.database().reference()
 
     @IBOutlet weak var NameTextField: AnimatableTextField!
     @IBOutlet weak var EmailTextField: AnimatableTextField!
@@ -38,6 +40,12 @@ class RegisterViewController: UIViewController {
             name: Notification.Name.UIKeyboardWillHide,
             object: view.window
         )
+        
+        NameTextField.text = "12345678@qq.com"
+        NameTextField.text = "4775677667@qq.com"
+        EmailTextField.text = "4775677667@qq.com"
+        EmailTextField.text = "12345678@qq.com"
+        PasswordTextField.text = "wyszjdx"
     }
 
     override func didReceiveMemoryWarning() {
@@ -141,11 +149,30 @@ extension RegisterViewController {
                     self.present(alertController, animated: true)
                 }
                 else {
-                    self.registerComplete.stopAnimating()
-                    self.performSegue(withIdentifier: "segueToLoginViewController", sender: nil)
+                    self.addUserInfo()
                 }
             })
         }
+    }
+    
+    func addUserInfo() {
+        let email = EmailTextField.text!.replacingOccurrences(of: ".", with: "-")
+        let uid = Auth.auth().currentUser!.uid
+        let childUpdates = [
+            "email2uid/\(email)/": uid,
+            "uid2email/\(uid)": email,
+            "users/\(uid)/companionId": NameTextField.text!.replacingOccurrences(of: ".", with: "-"),
+            "users/\(uid)/confirm": false
+        ] as [String : Any]
+        
+        self.database.updateChildValues(childUpdates, withCompletionBlock: {
+            (error, reference) -> Void in
+            if let err = error {
+                print(err)
+            }
+            self.registerComplete.stopAnimating()
+            self.performSegue(withIdentifier: "segueToLoginViewController", sender: nil)
+        })
     }
     
 }
