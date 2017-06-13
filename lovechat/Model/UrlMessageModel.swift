@@ -40,6 +40,9 @@ class UrlMessageModel: MessageModel {
             }
             else {
                 let downloadTask = reference.write(toFile: localUrl) { (URL, error) -> Void in
+                    if error != nil {
+                        print(error)
+                    }
                     Async.background {
                         self.afterDownload(url: URL, localUrl: localUrl, error: error)
                         }.main {

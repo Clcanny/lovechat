@@ -28,6 +28,7 @@ class VideoMessageSctionController: PVCommonSectionController {
             ) as! VideoMessageCollectionViewCell
         
         // The order is important.
+        cell.isLeft = messageModel!.getLR()
         if psize != nil {
             cell.pictureSize = psize!
             cell.image = image!

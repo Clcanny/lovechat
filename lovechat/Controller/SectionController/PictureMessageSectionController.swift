@@ -28,6 +28,7 @@ class PictureMessageSectionController: PVCommonSectionController {
             ) as! PictureMessageCollectionViewCell
         
         // The order is important.
+        cell.isLeft = messageModel!.getLR()
         if psize != nil {
             cell.pictureSize = psize!
             cell.setPicture(url: messageModel!.localUrl)
@@ -39,13 +40,14 @@ class PictureMessageSectionController: PVCommonSectionController {
                 cell.loadTo(precentage: percentage)
             })
         }
-        
         if (messageModel!.getLR()) {
             cell.keepRight()
         }
         else {
             cell.keepLeft()
         }
+        
+
         
         cell.delegate = delegate
         return cell
