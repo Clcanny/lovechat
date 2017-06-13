@@ -38,12 +38,20 @@ class VoiceMessageSectionController: ListSectionController {
         
         cell.gesture?.isEnabled = false
         cell.isLeft = voiceMessageModel?.getLR()
+        
         voiceMessageModel?.loadData(completion: {
             (messageModel) -> Void in
             let voiceMessageModel = messageModel as! VoiceMessageModel
             cell.url = voiceMessageModel.localUrl
             cell.gesture?.isEnabled = true
-        }, observer: { (p) -> Void in return })
+        }, observer: {
+            (percentage) -> Void in
+//            if cell.processBar?.isHidden {
+//                cell.processBar?.isHidden = false
+//            }
+//            cell.processBar?.setProgress(Float(percentage), animated: false)
+            print(percentage)
+        })
         cell.addWidth = CGFloat(voiceMessageModel!.getTime()) * 2
         
         if (voiceMessageModel!.getLR()) {
