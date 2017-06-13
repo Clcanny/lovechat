@@ -227,52 +227,60 @@ extension ChatViewController {
         })
     }
     
-    func loadCompanionId() {
+    func loadCompanionId(completion: @escaping () -> ()) {
         if companionId == nil {
             database.child("users/\(uid)/companionId").observeSingleEvent(
                 of: DataEventType.value, with: { (snapshot) -> Void in
                     let value = snapshot.value
                     let companionId = value as! String
                     self.companionId = companionId
+                    completion()
             })
+        }
+        else {
+            completion()
         }
     }
     
     func pushMessage(_ sendMsg: [String : Any], _ receiveMsg: [String : Any]) {
-        loadCompanionId()
-        
-        let key = database.child("users/\(uid)").childByAutoId().key
-        let childUpdates = [
-            "users/\(uid)/\(key)": sendMsg,
-            "users/\(companionId!)/\(key)": receiveMsg
-        ]
-        database.updateChildValues(childUpdates)
+        loadCompanionId {
+            let key = self.database.child("users/\(self.uid)").childByAutoId().key
+            let childUpdates = [
+                "users/\(self.uid)/\(key)": sendMsg,
+                "users/\(self.companionId!)/\(key)": receiveMsg
+            ]
+            self.database.updateChildValues(childUpdates)
+        }
     }
     
     func pushMessage(_ sendMsg: [String : Any]) -> String {
-        loadCompanionId()
-        
         let key = database.child("users/\(uid)").childByAutoId().key
-        let childUpdates = [
-            "users/\(uid)/\(key)": sendMsg,
-            ]
-        database.updateChildValues(childUpdates)
+        loadCompanionId {
+            let childUpdates = [
+                "users/\(self.uid)/\(key)": sendMsg,
+                ]
+            self.database.updateChildValues(childUpdates)
+        }
         return key
     }
     
     func pushMessage(_ sendMsg: [String : Any], _ receiveMsg: [String : Any], key: String) {
-        let childUpdates = [
-            "users/\(uid)/\(key)": sendMsg,
-            "users/\(companionId!)/\(key)": receiveMsg
-        ]
-        database.updateChildValues(childUpdates)
+        loadCompanionId {
+            let childUpdates = [
+                "users/\(self.uid)/\(key)": sendMsg,
+                "users/\(self.companionId!)/\(key)": receiveMsg
+            ]
+            self.database.updateChildValues(childUpdates)
+        }
     }
     
     func uploadTextMessage(message: String) {
-        let sendMsg = ["message": message, "isReceive": false, "type": "text"] as [String : Any]
-        let receiveMsg = ["message": message, "isReceive": true, "type": "text"] as [String : Any]
-        Async.background {
-            self.pushMessage(sendMsg, receiveMsg)
+        loadCompanionId {
+            let sendMsg = ["message": message, "isReceive": false, "type": "text"] as [String : Any]
+            let receiveMsg = ["message": message, "isReceive": true, "type": "text"] as [String : Any]
+            Async.background {
+                self.pushMessage(sendMsg, receiveMsg)
+            }
         }
     }
     
