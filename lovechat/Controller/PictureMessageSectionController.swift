@@ -76,9 +76,10 @@ class PictureMessageSectionController: ListSectionController {
         // The order is important.
         if psize != nil {
             cell.pictureSize = psize!
-        }
-        if image != nil {
             cell.setPicture(url: pictureMessageModel!.localUrl)
+        }
+        else {
+            cell.drawByDefault()
         }
         if (pictureMessageModel!.getLR()) {
             cell.keepRight()

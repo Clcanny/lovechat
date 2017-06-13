@@ -59,6 +59,12 @@ class MessageCollectionViewCell: UICollectionViewCell {
     }
     
     // abstract method
+    // call thid method when data is not prepared
+    func drawByDefault() {
+        fatalError()
+    }
+    
+    // abstract method
     var contentSize: CGSize {
         get {
             fatalError()

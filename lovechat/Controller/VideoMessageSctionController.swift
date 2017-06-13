@@ -75,12 +75,12 @@ class VideoMessageSctionController: ListSectionController {
         // The order is important.
         if psize != nil {
             cell.pictureSize = psize!
-        }
-        if image != nil {
             cell.image = image!
         }
-//        cell.pictureSize = psize!
-//        cell.image = image
+        else {
+            cell.drawByDefault()
+        }
+        
         if (videoMessageModel!.getLR()) {
             cell.keepRight()
         }

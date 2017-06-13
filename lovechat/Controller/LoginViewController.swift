@@ -27,10 +27,10 @@ class LoginViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         if Auth.auth().currentUser?.uid != nil {
             print("User already logged in!")
-//            self.performSegue(withIdentifier: "toChatViewController", sender: nil)
-            userField.text = "a837940593@gmail.com"
-            userField.text = "837940593@qq.com"
-            passField.text = "wyszjdx"
+            self.performSegue(withIdentifier: "toChatViewController", sender: nil)
+//            userField.text = "a837940593@gmail.com"
+//            userField.text = "837940593@qq.com"
+//            passField.text = "wyszjdx"
         }
     }
     

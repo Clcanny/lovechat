@@ -17,7 +17,7 @@ class PVCommonCollectionViewCell: MessageCollectionViewCell {
     let pictureView = { () -> UIImageView in
         var imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
-        imageView.backgroundColor = UIColor.clear
+        imageView.backgroundColor = babyBlueColor
         return imageView
     }()
     public var pictureSize: CGSize {
