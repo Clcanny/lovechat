@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SnapKit
 
 class PVCommonCollectionViewCell: MessageCollectionViewCell {
     
@@ -30,6 +31,18 @@ class PVCommonCollectionViewCell: MessageCollectionViewCell {
             pictureView.frame.size = newSize
         }
     }
+    
+    let loadingView = { () -> UIActivityIndicatorView in
+        let view = UIActivityIndicatorView()
+        view.backgroundColor = UIColor.black
+        view.contentMode = .scaleToFill
+        view.activityIndicatorViewStyle = .whiteLarge
+        view.frame.size = CGSize(
+            width: PVCommonCollectionViewCell.maxWidth / 3,
+            height: PVCommonCollectionViewCell.maxWidth / 3
+        )
+        return view
+    }()
     
     public func setHightlightColor() {
         if let image = pictureView.image {
@@ -93,28 +106,39 @@ class PVCommonCollectionViewCell: MessageCollectionViewCell {
     override var contentSize: CGSize {
         get {
             if pictureSize.height < PVCommonCollectionViewCell.maxWidth {
-                return CGSize(width: PVCommonCollectionViewCell.maxWidth, height: PVCommonCollectionViewCell.maxWidth)
+                return CGSize(
+                    width: PVCommonCollectionViewCell.maxWidth,
+                    height: PVCommonCollectionViewCell.maxWidth
+                )
             }
             return pictureSize
+        }
+    }
+    
+    func keepHelper(center: CGPoint) {
+        if pictureView.image == nil {
+            highlightLayer.fillColor = babyBlueColor.cgColor
+            addSubview(loadingView)
+            loadingView.center = center
+            loadingView.isHidden = false
+            loadingView.startAnimating()
+        }
+        else {
+            loadingView.stopAnimating()
+            loadingView.isHidden = true
         }
     }
     
     override func keepLeft() {
         super.keepLeft()
         pictureView.frame.origin = CGPoint(x: MessageCollectionViewCell.radius * 3, y: 0)
-        
-        if pictureView.image == nil {
-            highlightLayer.fillColor = babyBlueColor.cgColor
-        }
+        keepHelper(center: CGPoint(x: MessageCollectionViewCell.radius * 3 + PVCommonCollectionViewCell.maxWidth / 2, y: PVCommonCollectionViewCell.maxWidth / 2))
     }
     
     override func keepRight() {
         super.keepRight()
         pictureView.frame.origin = CGPoint(x: bounds.size.width - pictureSize.width - MessageCollectionViewCell.radius * 3, y: 0)
-        
-        if pictureView.image == nil {
-            highlightLayer.fillColor = babyBlueColor.cgColor
-        }
+        keepHelper(center: CGPoint(x: bounds.width - MessageCollectionViewCell.radius * 3 - PVCommonCollectionViewCell.maxWidth / 2, y: PVCommonCollectionViewCell.maxWidth / 2))
     }
     
 }
