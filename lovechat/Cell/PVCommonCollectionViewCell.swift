@@ -52,9 +52,10 @@ class PVCommonCollectionViewCell: MessageCollectionViewCell {
     
     func loadTo(precentage: Double) {
         loadingView.animate(toAngle: precentage * 360 - 90, duration: 0, completion: nil)
-        if precentage > Double(1) {
-            loadingView.isHidden = true
-        }
+//        if precentage > Double(1) {
+//            loadingView.isHidden = true
+//        }
+//        loadingView.setProgress(precentage, animated: false)
     }
     
     public func setHightlightColor() {

@@ -58,10 +58,16 @@ class VoiceMessageCollectionViewCell: MessageCollectionViewCell {
         highlightLayer.strokeColor = babyBlueColor.cgColor
         highlightLayer.fillColor = babyBlueColor.cgColor
         
+        let width = VoiceMessageCollectionViewCell.baseWidth + addWidth! - 1
+        var x: CGFloat!
+        if isLeft! {
+            x = MessageCollectionViewCell.radius * 3
+        }
+        else {
+            x = bounds.size.width - width - MessageCollectionViewCell.radius * 3
+        }
         processBar = UIProgressView(frame: CGRect(
-            x: MessageCollectionViewCell.radius * 3,
-            y: 1  * MessageCollectionViewCell.radius - 1,
-            width: VoiceMessageCollectionViewCell.baseWidth + addWidth! - 1, height: 1
+            x: x, y: 1  * MessageCollectionViewCell.radius - 1, width: width, height: 1
         ))
         processBar?.trackTintColor = UIColor.white
         processBar?.progressTintColor = babyBlueColor
@@ -93,8 +99,7 @@ class VoiceMessageCollectionViewCell: MessageCollectionViewCell {
     // do nothing in keepLeft
     override func keepRight() {
         super.keepRight()
-        processBar?.frame.origin.x = bounds.size.width
-            - processBar!.frame.size.width - MessageCollectionViewCell.radius * 3
+        processBar?.frame.origin.x = bounds.size.width - MessageCollectionViewCell.radius * 3
     }
     
 }

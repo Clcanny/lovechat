@@ -35,7 +35,9 @@ class VoiceMessageSectionController: ListSectionController {
             of: VoiceMessageCollectionViewCell.self,
             for: self, at: index
             ) as! VoiceMessageCollectionViewCell
+        
         cell.gesture?.isEnabled = false
+        cell.isLeft = voiceMessageModel?.getLR()
         voiceMessageModel?.loadData(completion: {
             (messageModel) -> Void in
             let voiceMessageModel = messageModel as! VoiceMessageModel
@@ -43,6 +45,7 @@ class VoiceMessageSectionController: ListSectionController {
             cell.gesture?.isEnabled = true
         }, observer: { (p) -> Void in return })
         cell.addWidth = CGFloat(voiceMessageModel!.getTime()) * 2
+        
         if (voiceMessageModel!.getLR()) {
             cell.keepRight()
         }
