@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4015FC911EF00DAC00B029ED /* Register.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4015FC901EF00DAC00B029ED /* Register.storyboard */; };
+		4015FC931EF00E5700B029ED /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4015FC921EF00E5700B029ED /* RegisterViewController.swift */; };
 		401BBA811EEDEF1C0000587E /* Mutex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 401BBA801EEDEF1C0000587E /* Mutex.swift */; };
 		401BBA831EEE02420000587E /* Lock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 401BBA821EEE02420000587E /* Lock.swift */; };
 		40358A6C1EE928D200A8CEF4 /* ExtensionNSObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40358A6B1EE928D200A8CEF4 /* ExtensionNSObject.swift */; };
@@ -86,6 +88,8 @@
 
 /* Begin PBXFileReference section */
 		24CC1578EBBAC6566656A6D9 /* Pods-lovechat.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-lovechat.debug.xcconfig"; path = "Pods/Target Support Files/Pods-lovechat/Pods-lovechat.debug.xcconfig"; sourceTree = "<group>"; };
+		4015FC901EF00DAC00B029ED /* Register.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Register.storyboard; path = Storyboard/Register.storyboard; sourceTree = "<group>"; };
+		4015FC921EF00E5700B029ED /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RegisterViewController.swift; path = Controller/RegisterViewController.swift; sourceTree = "<group>"; };
 		401BBA801EEDEF1C0000587E /* Mutex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Mutex.swift; path = Util/Mutex.swift; sourceTree = "<group>"; };
 		401BBA821EEE02420000587E /* Lock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Lock.swift; path = Util/Lock.swift; sourceTree = "<group>"; };
 		40358A6B1EE928D200A8CEF4 /* ExtensionNSObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ExtensionNSObject.swift; path = Util/ExtensionNSObject.swift; sourceTree = "<group>"; };
@@ -201,6 +205,7 @@
 				40FB67DA1EE6DAEB00DD63F4 /* CameraViewController.swift */,
 				40888A6E1EED16DC008E5E12 /* LoginViewController.swift */,
 				40C391F71EEFB36900726097 /* TextKeyboardViewController.swift */,
+				4015FC921EF00E5700B029ED /* RegisterViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -313,6 +318,7 @@
 				408B48111EE276CC00EE9281 /* Chat.storyboard */,
 				40888A6C1EED13C3008E5E12 /* Login.storyboard */,
 				40C391F51EEFB32800726097 /* TestKeyboard.storyboard */,
+				4015FC901EF00DAC00B029ED /* Register.storyboard */,
 			);
 			name = Storyboard;
 			sourceTree = "<group>";
@@ -448,6 +454,7 @@
 			files = (
 				408B48181EE276CC00EE9281 /* LaunchScreen.storyboard in Resources */,
 				40888A681EED10E1008E5E12 /* GoogleService-Info.plist in Resources */,
+				4015FC911EF00DAC00B029ED /* Register.storyboard in Resources */,
 				408B48151EE276CC00EE9281 /* Assets.xcassets in Resources */,
 				40888A6D1EED13C3008E5E12 /* Login.storyboard in Resources */,
 				408B48131EE276CC00EE9281 /* Chat.storyboard in Resources */,
@@ -570,6 +577,7 @@
 				407193851EED65DC003C7E9C /* FillDesignable.swift in Sources */,
 				406511A01EEB180400EF6614 /* ExtensionFileManager.swift in Sources */,
 				407193971EED6951003C7E9C /* GradientType.swift in Sources */,
+				4015FC931EF00E5700B029ED /* RegisterViewController.swift in Sources */,
 				403E2BBB1EE4294A00EF961D /* RecordAnimationView.swift in Sources */,
 				40358A701EE92B0200A8CEF4 /* DismissToChatViewControllerProtocol.swift in Sources */,
 				407193761EED65C8003C7E9C /* AnimatableTextField.swift in Sources */,
