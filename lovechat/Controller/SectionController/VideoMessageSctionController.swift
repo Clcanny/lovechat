@@ -16,10 +16,6 @@ class VideoMessageSctionController: PVCommonSectionController {
         super.init(messageModel: videoMessageModel)
     }
     
-    override func numberOfItems() -> Int {
-        return 1
-    }
-    
     override func loadImage(model: UrlMessageModel) {
         let videoMessageModel = model as! VideoMessageModel
         self.image = videoMessageModel.getPreview()
