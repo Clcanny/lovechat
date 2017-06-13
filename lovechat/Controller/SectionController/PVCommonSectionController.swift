@@ -34,27 +34,29 @@ class PVCommonSectionController: ListSectionController {
         fatalError()
     }
     
+    func loadData(observer: @escaping (Double) -> ()) {
+        messageModel?.loadData(completion: {
+            (model) -> Void in
+            self.loadImage(model: model)
+            self.collectionContext?.performBatch(
+                animated: false,
+                updates: {
+                    (batchContext) -> Void in
+                    batchContext.reload(self) },
+                completion: nil
+            )
+        }, observer: observer)
+    }
+    
     override func sizeForItem(at index: Int) -> CGSize {
         guard let context = collectionContext else {
             return .zero
         }
         
         if image == nil {
-            let height = PVCommonCollectionViewCell.maxWidth
-            messageModel?.loadData(completion: {
-                (model) -> Void in
-                self.loadImage(model: model)
-                self.collectionContext?.performBatch(
-                    animated: false,
-                    updates: {
-                        (batchContext) -> Void in
-                        batchContext.reload(self) },
-                    completion: nil
-                )
-            })
             return CGSize(
                 width: context.containerSize.width,
-                height: height
+                height: PVCommonCollectionViewCell.maxWidth
             )
         }
         else {
@@ -68,5 +70,6 @@ class PVCommonSectionController: ListSectionController {
             )
         }
     }
+
     
 }

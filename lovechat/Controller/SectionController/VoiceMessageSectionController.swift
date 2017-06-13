@@ -41,7 +41,7 @@ class VoiceMessageSectionController: ListSectionController {
             let voiceMessageModel = messageModel as! VoiceMessageModel
             cell.url = voiceMessageModel.localUrl
             cell.gesture?.isEnabled = true
-        })
+        }, observer: { (p) -> Void in return })
         cell.addWidth = CGFloat(voiceMessageModel!.getTime()) * 2
         if (voiceMessageModel!.getLR()) {
             cell.keepRight()

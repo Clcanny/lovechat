@@ -32,6 +32,13 @@ class VideoMessageSctionController: PVCommonSectionController {
             cell.pictureSize = psize!
             cell.image = image!
         }
+        else {
+            loadData(observer: {
+                (percentage) -> Void in
+                cell.loadTo(precentage: percentage)
+            })
+        }
+        
         if (messageModel!.getLR()) {
             cell.keepRight()
         }

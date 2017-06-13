@@ -31,7 +31,15 @@ class PictureMessageSectionController: PVCommonSectionController {
         if psize != nil {
             cell.pictureSize = psize!
             cell.setPicture(url: messageModel!.localUrl)
+            cell.loadTo(precentage: 1.1)
         }
+        else {
+            loadData(observer: {
+                (percentage) -> Void in
+                cell.loadTo(precentage: percentage)
+            })
+        }
+        
         if (messageModel!.getLR()) {
             cell.keepRight()
         }

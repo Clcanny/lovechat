@@ -51,7 +51,10 @@ class PVCommonCollectionViewCell: MessageCollectionViewCell {
     }()
     
     func loadTo(precentage: Double) {
-        loadingView.animate(toAngle: precentage * 360, duration: 0, completion: nil)
+        loadingView.animate(toAngle: precentage * 360 - 90, duration: 0, completion: nil)
+        if precentage > Double(1) {
+            loadingView.isHidden = true
+        }
     }
     
     public func setHightlightColor() {
@@ -130,7 +133,6 @@ class PVCommonCollectionViewCell: MessageCollectionViewCell {
         if pictureView.image == nil {
             highlightLayer.fillColor = babyBlueColor.cgColor
             loadingView.center = center
-            loadingView.animate(toAngle: 20, duration: 0, completion: nil)
         }
         else {
         }

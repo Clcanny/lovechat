@@ -25,12 +25,12 @@ class UrlMessageModel: MessageModel {
         fatalError()
     }
     
-    func loadData(completion: @escaping (UrlMessageModel) -> ()) {
+    func loadData(completion: @escaping (UrlMessageModel) -> (), observer: @escaping (Double) -> ()) {
         Async.background {
             let reference = self.storage.reference(forURL: self.message.absoluteString)
             let filename = self.message.lastPathComponent
             let localUrl = FileManager.getUrl(filename: filename, self.isReceiver)
-//            self.message = localUrl
+            //            self.message = localUrl
             self.localUrl = localUrl
             if FileManager.isFileExist(filename: filename, self.isReceiver) {
                 self.afterDownload(url: nil, localUrl: localUrl, error: nil)
@@ -46,16 +46,20 @@ class UrlMessageModel: MessageModel {
                             completion(self)
                     }
                 }
-                let observer = downloadTask.observe(.progress) {
+                downloadTask.observe(.progress) {
                     (snapshot) -> Void in
                     if let progress = snapshot.progress {
                         let completed = progress.completedUnitCount
                         let total = progress.totalUnitCount
-                        if total == 0 {
-                            return
+                        if total != 0 {
+                            observer(Double(completed) / Double(total))
                         }
-                        print(Double(completed) / Double(total))
                     }
+                }
+                downloadTask.observe(.success) { (snapshot) -> Void in
+                    // Download completed successfully
+                    observer(1.1)
+                    downloadTask.removeAllObservers()
                 }
             }
         }
