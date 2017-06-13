@@ -39,11 +39,22 @@ class UrlMessageModel: MessageModel {
                 }
             }
             else {
-                _ = reference.write(toFile: localUrl) { (URL, error) -> Void in
+                let downloadTask = reference.write(toFile: localUrl) { (URL, error) -> Void in
                     Async.background {
                         self.afterDownload(url: URL, localUrl: localUrl, error: error)
                         }.main {
                             completion(self)
+                    }
+                }
+                let observer = downloadTask.observe(.progress) {
+                    (snapshot) -> Void in
+                    if let progress = snapshot.progress {
+                        let completed = progress.completedUnitCount
+                        let total = progress.totalUnitCount
+                        if total == 0 {
+                            return
+                        }
+                        print(Double(completed) / Double(total))
                     }
                 }
             }
