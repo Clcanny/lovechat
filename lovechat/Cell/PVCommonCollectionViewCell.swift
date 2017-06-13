@@ -16,7 +16,8 @@ class PVCommonCollectionViewCell: MessageCollectionViewCell {
     // UIImageView is a custom view meant to display the UIImage.
     let pictureView = { () -> UIImageView in
         var imageView = UIImageView()
-        imageView.contentMode = .scaleAspectFit
+//        imageView.contentMode = .scaleAspectFit
+        imageView.backgroundColor = UIColor.clear
         imageView.backgroundColor = babyBlueColor
         return imageView
     }()
@@ -31,37 +32,53 @@ class PVCommonCollectionViewCell: MessageCollectionViewCell {
     }
     
     public func setHightlightColor() {
-        var count = 0
-        var red: CGFloat = 0
-        var green: CGFloat = 0
-        var blue: CGFloat = 0
-        let image = pictureView.image!
-        let ys = Int(
-            PVCommonCollectionViewCell.radius
-                * 2.0 / bounds.height * image.size.height
-        )
-        for x in 0..<3 {
-            for y in 0..<ys {
-                count += 1
-                let rgb = image.getPixelColor(
-                    pos: CGPoint(x: CGFloat(x), y: CGFloat(y))
-                )
-                red += rgb.0
-                green += rgb.1
-                blue += rgb.2
+        if let image = pictureView.image {
+            let left = isLeft!
+            var count = 0
+            
+            var red: CGFloat = 0
+            var green: CGFloat = 0
+            var blue: CGFloat = 0
+            
+            let width = Int(image.size.width)
+            
+            let ys = Int(
+                PVCommonCollectionViewCell.radius
+                    * 2.0 / bounds.height * image.size.height
+            )
+            var xs: CountableRange<Int>!
+            if left {
+                xs = 0..<10
             }
+            else {
+                xs = (width - 10)..<width
+            }
+            
+            for x in xs {
+                for y in 0..<ys {
+                    count += 1
+                    let rgb = image.getPixelColor(
+                        pos: CGPoint(x: CGFloat(x), y: CGFloat(y))
+                    )
+                    red += rgb.0
+                    green += rgb.1
+                    blue += rgb.2
+                }
+            }
+            red = red / CGFloat(count * 255)
+            green = green / CGFloat(count * 255)
+            blue = blue / CGFloat(count * 255)
+            highlightLayer.fillColor = UIColor(
+                red: red, green: green,
+                blue: blue, alpha: 1).cgColor
         }
-        red = red / CGFloat(count * 255)
-        green = green / CGFloat(count * 255)
-        blue = blue / CGFloat(count * 255)
-        self.highlightLayer.fillColor = UIColor(
-            red: red, green: green,
-            blue: blue, alpha: 1).cgColor
+        else {
+            fatalError()
+        }
     }
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        highlightLayer.fillColor = babyBlueColor.cgColor
         addSubview(pictureView)
     }
     
@@ -75,6 +92,9 @@ class PVCommonCollectionViewCell: MessageCollectionViewCell {
     
     override var contentSize: CGSize {
         get {
+            if pictureSize.height < PVCommonCollectionViewCell.maxWidth {
+                return CGSize(width: PVCommonCollectionViewCell.maxWidth, height: PVCommonCollectionViewCell.maxWidth)
+            }
             return pictureSize
         }
     }
@@ -82,11 +102,19 @@ class PVCommonCollectionViewCell: MessageCollectionViewCell {
     override func keepLeft() {
         super.keepLeft()
         pictureView.frame.origin = CGPoint(x: MessageCollectionViewCell.radius * 3, y: 0)
+        
+        if pictureView.image == nil {
+            highlightLayer.fillColor = babyBlueColor.cgColor
+        }
     }
     
     override func keepRight() {
         super.keepRight()
         pictureView.frame.origin = CGPoint(x: bounds.size.width - pictureSize.width - MessageCollectionViewCell.radius * 3, y: 0)
+        
+        if pictureView.image == nil {
+            highlightLayer.fillColor = babyBlueColor.cgColor
+        }
     }
     
 }

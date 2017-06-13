@@ -65,7 +65,11 @@ class MessageCollectionViewCell: UICollectionViewCell {
         }
     }
     
+    var isLeft: Bool?
+    
     public func keepLeft() {
+        isLeft = true
+        
         let radius = MessageCollectionViewCell.radius
         let borderWidth = radius * 3 + contentSize.width
         
@@ -96,6 +100,8 @@ class MessageCollectionViewCell: UICollectionViewCell {
     }
     
     public func keepRight() {
+        isLeft = false
+        
         let radius = MessageCollectionViewCell.radius
         let borderX = bounds.width - (radius * 3 + contentSize.width)
         

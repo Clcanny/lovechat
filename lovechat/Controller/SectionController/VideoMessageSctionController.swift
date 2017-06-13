@@ -32,7 +32,6 @@ class VideoMessageSctionController: PVCommonSectionController {
             cell.pictureSize = psize!
             cell.image = image!
         }
-        
         if (messageModel!.getLR()) {
             cell.keepRight()
         }
