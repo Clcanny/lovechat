@@ -31,7 +31,7 @@ class LoginViewController: UIViewController {
 //            userField.text = "a837940593@gmail.com"
             userField.text = "837940593@qq.com"
             userField.text = "4775677667@qq.com"
-//            userField.text = "12345678@qq.com"
+            userField.text = "12345678@qq.com"
             passField.text = "wyszjdx"
         }
     }
@@ -99,6 +99,7 @@ class LoginViewController: UIViewController {
                             let companionId = value.object(forKey: "companionId") {
                             if confirm {
                                 self.performSegue(withIdentifier: "toChatViewController", sender: nil)
+                                print("yes2")
                             }
                             else {
                                 self.database.child("email2uid/\(companionId)").observeSingleEvent(of: .value, with: {
@@ -109,6 +110,13 @@ class LoginViewController: UIViewController {
                                         (snapshot) -> Void in
                                         if let value = snapshot.value as? String {
                                             print("yes")
+                                            let childUpdates = [
+                                                "users/\(uid!)/confirm": 1,
+                                                "users/\(uid!)/companionId": companionId,
+                                                "users/\(companionId)/confirm": 1,
+                                                "users/\(companionId)/companionId": uid!
+                                                ] as [String : Any]
+                                            self.database.updateChildValues(childUpdates)
                                         }
                                         else {
                                             print("false")
