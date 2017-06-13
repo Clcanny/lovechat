@@ -10,60 +10,19 @@ import UIKit
 import IGListKit
 import Async
 
-class VideoMessageSctionController: ListSectionController {
-    
-    private var videoMessageModel: VideoMessageModel?
-    
-    private var psize: CGSize?
-    
-    private var image: UIImage?
-    
-    public var delegate: SegueFromCellProtocol?
+class VideoMessageSctionController: PVCommonSectionController {
     
     init(videoMessageModel: VideoMessageModel) {
-        super.init()
-        self.videoMessageModel = videoMessageModel
-        inset = UIEdgeInsets(top: 0, left: 0, bottom: 5, right: 0)
+        super.init(messageModel: videoMessageModel)
     }
     
     override func numberOfItems() -> Int {
         return 1
     }
     
-    override func sizeForItem(at index: Int) -> CGSize {
-        guard let context = collectionContext else {
-            return .zero
-        }
-        
-        if image == nil {
-            let pictureHeight = VideoMessageCollectionViewCell.maxWidth
-            videoMessageModel?.loadData(completion: {
-                (model) -> Void in
-                let videoMessageModel = model as! VideoMessageModel
-                self.image = videoMessageModel.getPreview()
-                self.collectionContext?.performBatch(
-                    animated: false,
-                    updates: {
-                        (batchContext) -> Void in
-                        batchContext.reload(self) },
-                    completion: nil
-                )
-            })
-            return CGSize(
-                width: context.containerSize.width,
-                height: pictureHeight
-            )
-        }
-        else {
-            psize = pictureSize(
-                maxWidth: VideoMessageCollectionViewCell.maxWidth,
-                picture: self.image!
-            )
-            return CGSize(
-                width: context.containerSize.width,
-                height: psize!.height
-            )
-        }
+    override func loadImage(model: UrlMessageModel) {
+        let videoMessageModel = model as! VideoMessageModel
+        self.image = videoMessageModel.getPreview()
     }
     
     override func cellForItem(at index: Int) -> UICollectionViewCell {
@@ -76,17 +35,16 @@ class VideoMessageSctionController: ListSectionController {
         if psize != nil {
             cell.pictureSize = psize!
             cell.image = image!
-            print(cell.frame.size)
         }
         
-        if (videoMessageModel!.getLR()) {
+        if (messageModel!.getLR()) {
             cell.keepRight()
         }
         else {
             cell.keepLeft()
         }
         
-        cell.url = videoMessageModel?.localUrl
+        cell.url = messageModel?.localUrl
         cell.delegate = delegate
         return cell
     }

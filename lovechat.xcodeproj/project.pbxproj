@@ -17,6 +17,7 @@
 		403905131EEF8EF3001327FE /* TimeStampSectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4039050E1EEF8EF3001327FE /* TimeStampSectionController.swift */; };
 		403905141EEF8EF3001327FE /* VideoMessageSctionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4039050F1EEF8EF3001327FE /* VideoMessageSctionController.swift */; };
 		403905151EEF8EF3001327FE /* VoiceMessageSectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 403905101EEF8EF3001327FE /* VoiceMessageSectionController.swift */; };
+		403905171EEF8FA3001327FE /* PVCommonSectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 403905161EEF8FA3001327FE /* PVCommonSectionController.swift */; };
 		403B20501EE2B09700CBE09C /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 403B204F1EE2B09700CBE09C /* ChatViewController.swift */; };
 		403B20551EE2BC8D00CBE09C /* TextMessageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 403B20541EE2BC8D00CBE09C /* TextMessageCollectionViewCell.swift */; };
 		403B20601EE31E7600CBE09C /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 403B205F1EE31E7600CBE09C /* Colors.swift */; };
@@ -93,6 +94,7 @@
 		4039050E1EEF8EF3001327FE /* TimeStampSectionController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TimeStampSectionController.swift; path = Controller/SectionController/TimeStampSectionController.swift; sourceTree = "<group>"; };
 		4039050F1EEF8EF3001327FE /* VideoMessageSctionController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = VideoMessageSctionController.swift; path = Controller/SectionController/VideoMessageSctionController.swift; sourceTree = "<group>"; };
 		403905101EEF8EF3001327FE /* VoiceMessageSectionController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = VoiceMessageSectionController.swift; path = Controller/SectionController/VoiceMessageSectionController.swift; sourceTree = "<group>"; };
+		403905161EEF8FA3001327FE /* PVCommonSectionController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PVCommonSectionController.swift; path = Controller/SectionController/PVCommonSectionController.swift; sourceTree = "<group>"; };
 		403B204F1EE2B09700CBE09C /* ChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ChatViewController.swift; path = Controller/ChatViewController.swift; sourceTree = "<group>"; };
 		403B20541EE2BC8D00CBE09C /* TextMessageCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TextMessageCollectionViewCell.swift; path = Cell/TextMessageCollectionViewCell.swift; sourceTree = "<group>"; };
 		403B205F1EE31E7600CBE09C /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Colors.swift; path = Util/Colors.swift; sourceTree = "<group>"; };
@@ -180,6 +182,7 @@
 				4039050E1EEF8EF3001327FE /* TimeStampSectionController.swift */,
 				4039050F1EEF8EF3001327FE /* VideoMessageSctionController.swift */,
 				403905101EEF8EF3001327FE /* VoiceMessageSectionController.swift */,
+				403905161EEF8FA3001327FE /* PVCommonSectionController.swift */,
 			);
 			name = SectionController;
 			sourceTree = "<group>";
@@ -521,6 +524,7 @@
 				40D1CAE91EEC2A820030CBEF /* PVCommonCollectionViewCell.swift in Sources */,
 				403905111EEF8EF3001327FE /* PictureMessageSectionController.swift in Sources */,
 				403905151EEF8EF3001327FE /* VoiceMessageSectionController.swift in Sources */,
+				403905171EEF8FA3001327FE /* PVCommonSectionController.swift in Sources */,
 				409EC0D11EE3E50C00365F7E /* Fonts.swift in Sources */,
 				407193861EED65DC003C7E9C /* GradientDesignable.swift in Sources */,
 				40D1CAE31EEC0E500030CBEF /* VideoMessageModel.swift in Sources */,

@@ -10,60 +10,15 @@ import UIKit
 import IGListKit
 import Async
 
-class PictureMessageSectionController: ListSectionController {
-    
-    private var pictureMessageModel: PictureMessageModel?
-    
-    private var psize: CGSize?
-    
-    public var delegate: SegueFromCellProtocol?
-    
-    private var image: UIImage?
+class PictureMessageSectionController: PVCommonSectionController {
     
     init(pictureMessageModel: PictureMessageModel) {
-        super.init()
-        self.pictureMessageModel = pictureMessageModel
-        inset = UIEdgeInsets(top: 0, left: 0, bottom: 5, right: 0)
+        super.init(messageModel: pictureMessageModel)
     }
     
-    override func numberOfItems() -> Int {
-        return 1
-    }
-    
-    override func sizeForItem(at index: Int) -> CGSize {
-        guard let context = collectionContext else {
-            return .zero
-        }
-        
-        if image == nil {
-            let pictureHeight = PictureMessageCollectionViewCell.maxWidth
-            pictureMessageModel?.loadData(completion: {
-                (model) -> Void in
-                let pictureMessageModel = model as! PictureMessageModel
-                self.image = pictureMessageModel.getImage()
-                self.collectionContext?.performBatch(
-                    animated: false,
-                    updates: {
-                        (batchContext) -> Void in
-                        batchContext.reload(self) },
-                    completion: nil
-                )
-            })
-            return CGSize(
-                width: context.containerSize.width,
-                height: pictureHeight
-            )
-        }
-        else {
-            psize = pictureSize(
-                maxWidth: TextMessageCollectionViewCell.maxWidth,
-                picture: self.image!
-            )
-            return CGSize(
-                width: context.containerSize.width,
-                height: psize!.height
-            )
-        }
+    override func loadImage(model: UrlMessageModel) {
+        let pictureMessageModel = model as! PictureMessageModel
+        super.image = pictureMessageModel.getImage()
     }
     
     override func cellForItem(at index: Int) -> UICollectionViewCell {
@@ -75,9 +30,9 @@ class PictureMessageSectionController: ListSectionController {
         // The order is important.
         if psize != nil {
             cell.pictureSize = psize!
-            cell.setPicture(url: pictureMessageModel!.localUrl)
+            cell.setPicture(url: messageModel!.localUrl)
         }
-        if (pictureMessageModel!.getLR()) {
+        if (messageModel!.getLR()) {
             cell.keepRight()
         }
         else {
