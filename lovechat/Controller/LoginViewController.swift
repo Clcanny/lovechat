@@ -27,11 +27,11 @@ class LoginViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         if Auth.auth().currentUser?.uid != nil {
             print("User already logged in!")
-//            self.performSegue(withIdentifier: "toChatViewController", sender: nil)
-//            userField.text = "837940593@qq.com"
-//            userField.text = "837940593@qq.com"
+            //            self.performSegue(withIdentifier: "toChatViewController", sender: nil)
+            //            userField.text = "837940593@qq.com"
+            //            userField.text = "837940593@qq.com"
             userField.text = "1030518209@qq.com"
-//            userField.text = "12345678@qq.com"
+            //            userField.text = "12345678@qq.com"
             passField.text = "wyszjdx"
         }
     }
@@ -92,8 +92,6 @@ class LoginViewController: UIViewController {
                 self.database.child("users/\(uid!)").observeSingleEvent(
                     of: DataEventType.value, with: {
                         (snapshot) -> Void in
-//                        let value = snapshot.value as! NSDictionary
-//                        let confirm = value.object(forKey: "confirm") as! Bool
                         if let value = snapshot.value as? NSDictionary,
                             let confirm = value.object(forKey: "confirm") as? Bool,
                             let companionId = value.object(forKey: "companionId") {
@@ -105,30 +103,28 @@ class LoginViewController: UIViewController {
                                 self.database.child("email2uid/\(companionId)").observeSingleEvent(of: .value, with: {
                                     (snapshot) -> Void in
                                     if let companionId = snapshot.value as? String {
-                                    let companionId = snapshot.value as! String
-                                    self.database.child("users/\(companionId)/companionId").observeSingleEvent(of: .value, with: {
-                                        (snapshot) -> Void in
-                                        if let value = snapshot.value as? String , let user = Auth.auth().currentUser {
-                                            if value == user.email!.replacingOccurrences(of: ".", with: "-") {
-                                                print("yes") }
-                                            else {
-                                                print("no3")
-                                                print(value)
-                                                print(user.email!)
+                                        self.database.child("users/\(companionId)/companionId").observeSingleEvent(of: .value, with: {
+                                            (snapshot) -> Void in
+                                            if let value = snapshot.value as? String , let user = Auth.auth().currentUser {
+                                                if value == user.email!.replacingOccurrences(of: ".", with: "-") {
+                                                    print("yes") }
+                                                else {
+                                                    print("no3")
+                                                    print(value)
+                                                    print(user.email!)
+                                                }
+                                                let childUpdates = [
+                                                    "users/\(uid!)/confirm": 1,
+                                                    "users/\(uid!)/companionId": companionId,
+                                                    "users/\(companionId)/confirm": 1,
+                                                    "users/\(companionId)/companionId": uid!
+                                                    ] as [String : Any]
+                                                self.database.updateChildValues(childUpdates)
                                             }
-                                            let childUpdates = [
-                                                "users/\(uid!)/confirm": 1,
-                                                "users/\(uid!)/companionId": companionId,
-                                                "users/\(companionId)/confirm": 1,
-                                                "users/\(companionId)/companionId": uid!
-                                                ] as [String : Any]
-                                            self.database.updateChildValues(childUpdates)
-                                        }
-                                        else {
-                                            print("false")
-                                        }
-//                                    }
-                                    })
+                                            else {
+                                                print("false")
+                                            }
+                                        })
                                     }
                                     else {
                                         print("false2")
@@ -229,6 +225,112 @@ extension LoginViewController {
         if isFieldEditing {
             view.bounds.origin.y = 0
         }
+    }
+    
+}
+
+// firebase
+extension LoginViewController {
+    
+    func userInteractAgain() {
+        registerComplete.stopAnimating()
+        registerComplete.isHidden = true
+        view.isUserInteractionEnabled = true
+    }
+    
+    // callback devil
+    func checkUserStatus(uid: String, userEmail: String) {
+        database.child("users/\(uid)/confirm").observeSingleEvent(of: .value, with: {
+            (snapshot) -> Void in
+            if let confirm = snapshot.value as? Bool {
+                if confirm {
+                    self.performSegue(withIdentifier: "toChatViewController", sender: nil)
+                }
+                else {
+                    self.findCompanionId(uid: uid, userEmail: userEmail)
+                }
+            }
+            else {
+                fatalError()
+            }
+        })
+    }
+    
+    func findCompanionId(uid: String, userEmail: String) {
+        database.child("users/\(uid)/companionId").observeSingleEvent(of: .value, with: {
+            (snapshot) -> Void in
+            if let companionEmail = snapshot.value as? String {
+                self.checkUserCompanionExist(
+                    uid: uid, userEmail: userEmail, companionEmail: companionEmail
+                )
+            }
+            else {
+                fatalError()
+            }
+        })
+    }
+    
+    func checkUserCompanionExist(uid: String, userEmail: String, companionEmail: String) {
+        self.database.child("email2uid/\(companionEmail)").observeSingleEvent(of: .value, with: {
+            (snapshot) -> Void in
+            if let companionId = snapshot.value as? String {
+                self.checkCompanionCompanion(uid: uid, companionId: companionId, userEmail: userEmail)
+                self.checkCompanionCompanion(uid: uid, companionId: companionId, userEmail: userEmail)
+            }
+            else {
+                self.present(UIAlertController.defaultErrorController(
+                    title: "No user exists",
+                    error: "Please invite your lover.",
+                    completion: self.userInteractAgain
+                    ), animated: true, completion: nil
+                )
+            }
+        })
+    }
+    
+    func checkCompanionCompanion(uid: String, companionId: String, userEmail: String) {
+        database.child("users/\(companionId)/companionId").observeSingleEvent(of: .value, with: {
+            (snapshot) -> Void in
+            if let value = snapshot.value as? String {
+                if value == userEmail {
+                    self.updateUsersInfo(uid: uid, companionId: companionId)
+                }
+                else {
+                    self.present(UIAlertController.defaultErrorController(
+                        title: "Wrong companion-email",
+                        error: "Please check the companion-email settings of you and your lover.",
+                        completion: self.userInteractAgain
+                        ), animated: true, completion: nil
+                    )
+                }
+            }
+            else {
+                fatalError()
+            }
+        })
+    }
+    
+    func updateUsersInfo(uid: String, companionId: String) {
+        let childUpdates = [
+            "users/\(uid)/confirm": 1,
+            "users/\(uid)/companionId": companionId,
+            "users/\(companionId)/confirm": 1,
+            "users/\(companionId)/companionId": uid
+            ] as [String : Any]
+        self.database.updateChildValues(childUpdates, withCompletionBlock: {
+            (error, reference) -> Void in
+            if let err = error {
+                self.present(UIAlertController.defaultErrorController(
+                    title: "Update Users' info fialed, please try again.",
+                    error: err.localizedDescription,
+                    completion: self.userInteractAgain
+                    ), animated: true, completion: nil
+                )
+            }
+            else {
+                self.performSegue(withIdentifier: "toChatViewController", sender: nil)
+            }
+        })
     }
     
 }
