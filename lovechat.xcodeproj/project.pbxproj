@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		40128BC51EF10CBD008F80F5 /* Remember.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 40128BC41EF10CBD008F80F5 /* Remember.storyboard */; };
 		4015FC911EF00DAC00B029ED /* Register.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4015FC901EF00DAC00B029ED /* Register.storyboard */; };
 		4015FC931EF00E5700B029ED /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4015FC921EF00E5700B029ED /* RegisterViewController.swift */; };
 		401BBA811EEDEF1C0000587E /* Mutex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 401BBA801EEDEF1C0000587E /* Mutex.swift */; };
@@ -90,6 +91,7 @@
 
 /* Begin PBXFileReference section */
 		24CC1578EBBAC6566656A6D9 /* Pods-lovechat.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-lovechat.debug.xcconfig"; path = "Pods/Target Support Files/Pods-lovechat/Pods-lovechat.debug.xcconfig"; sourceTree = "<group>"; };
+		40128BC41EF10CBD008F80F5 /* Remember.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Remember.storyboard; path = Storyboard/Remember.storyboard; sourceTree = "<group>"; };
 		4015FC901EF00DAC00B029ED /* Register.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Register.storyboard; path = Storyboard/Register.storyboard; sourceTree = "<group>"; };
 		4015FC921EF00E5700B029ED /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RegisterViewController.swift; path = Controller/RegisterViewController.swift; sourceTree = "<group>"; };
 		401BBA801EEDEF1C0000587E /* Mutex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Mutex.swift; path = Util/Mutex.swift; sourceTree = "<group>"; };
@@ -325,6 +327,7 @@
 				40888A6C1EED13C3008E5E12 /* Login.storyboard */,
 				40C391F51EEFB32800726097 /* TestKeyboard.storyboard */,
 				4015FC901EF00DAC00B029ED /* Register.storyboard */,
+				40128BC41EF10CBD008F80F5 /* Remember.storyboard */,
 			);
 			name = Storyboard;
 			sourceTree = "<group>";
@@ -459,6 +462,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				408B48181EE276CC00EE9281 /* LaunchScreen.storyboard in Resources */,
+				40128BC51EF10CBD008F80F5 /* Remember.storyboard in Resources */,
 				40888A681EED10E1008E5E12 /* GoogleService-Info.plist in Resources */,
 				4015FC911EF00DAC00B029ED /* Register.storyboard in Resources */,
 				408B48151EE276CC00EE9281 /* Assets.xcassets in Resources */,

@@ -41,8 +41,8 @@ class RegisterViewController: UIViewController {
             object: view.window
         )
         
-        NameTextField.text = userB.companionEmail
-        EmailTextField.text = userB.userEmail
+        NameTextField.text = userA.companionEmail
+        EmailTextField.text = userA.userEmail
         PasswordTextField.text = userA.password
     }
     

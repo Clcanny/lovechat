@@ -26,8 +26,8 @@ class LoginViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         if Auth.auth().currentUser?.uid != nil {
-            userField.text = userB.userEmail
-            passField.text = userB.password
+            userField.text = userA.userEmail
+            passField.text = userA.password
         }
     }
     
