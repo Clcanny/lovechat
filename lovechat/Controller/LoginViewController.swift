@@ -26,13 +26,8 @@ class LoginViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         if Auth.auth().currentUser?.uid != nil {
-            print("User already logged in!")
-            //            self.performSegue(withIdentifier: "toChatViewController", sender: nil)
-            //            userField.text = "837940593@qq.com"
-            //            userField.text = "837940593@qq.com"
-            userField.text = "1030518209@qq.com"
-            //            userField.text = "12345678@qq.com"
-            passField.text = "wyszjdx"
+            userField.text = userA.userEmail
+            passField.text = userA.password
         }
     }
     
@@ -81,88 +76,18 @@ class LoginViewController: UIViewController {
         
         Auth.auth().signIn(withEmail: email, password: pass, completion: {
             (user, error) in
-            if error != nil {
-                print(error!)
-                self.registerComplete.stopAnimating()
-                self.registerComplete.isHidden = true
-                self.view.isUserInteractionEnabled = true
+            if let err = error {
+                self.present(UIAlertController.defaultErrorController(
+                    title: "Login in failed",
+                    error: err.localizedDescription,
+                    completion: self.userInteractAgain
+                    ), animated: true, completion: nil
+                )
             }
             else {
-                let uid = Auth.auth().currentUser?.uid
-                self.database.child("users/\(uid!)").observeSingleEvent(
-                    of: DataEventType.value, with: {
-                        (snapshot) -> Void in
-                        if let value = snapshot.value as? NSDictionary,
-                            let confirm = value.object(forKey: "confirm") as? Bool,
-                            let companionId = value.object(forKey: "companionId") {
-                            if confirm {
-                                self.performSegue(withIdentifier: "toChatViewController", sender: nil)
-                                print("yes2")
-                            }
-                            else {
-                                self.database.child("email2uid/\(companionId)").observeSingleEvent(of: .value, with: {
-                                    (snapshot) -> Void in
-                                    if let companionId = snapshot.value as? String {
-                                        self.database.child("users/\(companionId)/companionId").observeSingleEvent(of: .value, with: {
-                                            (snapshot) -> Void in
-                                            if let value = snapshot.value as? String , let user = Auth.auth().currentUser {
-                                                if value == user.email!.replacingOccurrences(of: ".", with: "-") {
-                                                    print("yes") }
-                                                else {
-                                                    print("no3")
-                                                    print(value)
-                                                    print(user.email!)
-                                                }
-                                                let childUpdates = [
-                                                    "users/\(uid!)/confirm": 1,
-                                                    "users/\(uid!)/companionId": companionId,
-                                                    "users/\(companionId)/confirm": 1,
-                                                    "users/\(companionId)/companionId": uid!
-                                                    ] as [String : Any]
-                                                self.database.updateChildValues(childUpdates)
-                                            }
-                                            else {
-                                                print("false")
-                                            }
-                                        })
-                                    }
-                                    else {
-                                        print("false2")
-                                    }
-                                })
-                            }
-                        }
-                })
-                
-                self.database.child("email2uid").observeSingleEvent(of: DataEventType.value, with: { (snapshot) -> Void in
-                    var hasFound = false
-                    let value = snapshot.value as? NSDictionary
-                    let email = user!.email!.replacingOccurrences(of: ".", with: "-")
-                    let uid = value?[email] as? String
-                    if (uid == user?.uid) {
-                        hasFound = true
-                        print("We found user's email in database.")
-                    }
-                    if (!hasFound) {
-                        print("We can't find user's email in database.")
-                        let email = user!.email!.replacingOccurrences(of: ".", with: "-")
-                        self.database.child("email2uid").updateChildValues([email : user!.uid])
-                    }
-                })
-                
-                self.database.child("uid2email").observeSingleEvent(of: DataEventType.value, with: { (snapshot) -> Void in
-                    let value = snapshot.value as? NSDictionary
-                    let uid = user!.uid
-                    let email = value?[uid] as? String
-                    if (email == user?.email) {
-                        print("We found user's id in database.")
-                    } else {
-                        print("We can't find user's id in database.")
-                        self.database.child("uid2email").updateChildValues([user!.uid : user!.email!])
-                    }
-                })
-                
-                self.performSegue(withIdentifier: "toChatViewController", sender: nil)
+                let uid = Auth.auth().currentUser!.uid
+                let userEmail = user!.email!.replacingOccurrences(of: ".", with: "-")
+                self.checkUserStatus(uid: uid, userEmail: userEmail)
             }
         })
     }

@@ -41,11 +41,9 @@ class RegisterViewController: UIViewController {
             object: view.window
         )
         
-        NameTextField.text = "837940593@qq.com"
-//        NameTextField.text = "837940593@qq.com"
-//        EmailTextField.text = "1030518209@qq.com"
-        EmailTextField.text = "837940593@qq.com"
-        PasswordTextField.text = "wyszjdx"
+        NameTextField.text = userA.companionEmail
+        EmailTextField.text = userA.userEmail
+        PasswordTextField.text = userA.password
     }
 
     override func didReceiveMemoryWarning() {
