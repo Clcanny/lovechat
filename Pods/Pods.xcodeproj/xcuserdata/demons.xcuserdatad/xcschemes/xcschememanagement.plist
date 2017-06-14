@@ -9,6 +9,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>FSCalendar.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>GTMSessionFetcher.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -62,17 +67,17 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>279DCBA3365778FA9464FA29D0030266</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>322428ECC8C5EC71F14C92233787C7AC</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>4A8B241CAC0F46E72AC316E4CB1B311B</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>73E075AC29187C065BDB711889D13CEC</key>
+		<key>3C79753B03E471C8156880DAD89964E7</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -82,17 +87,22 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>B058948BD081B37D45DAD6ABE7E20DB8</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>C052BEBFBD0AB5218CC64BA3450F6547</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>C0B6A34FD123A02100815A9E63B76B04</key>
+		<key>C5A2DB7A84B7B78E359870D2E1B24AA7</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>E49BCFD76B0BC54163252F9482CFDA88</key>
+		<key>CA9F75D9636EF840369F983C73BF3F84</key>
 		<dict>
 			<key>primary</key>
 			<true/>

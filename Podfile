@@ -12,6 +12,7 @@ target 'lovechat' do
   pod 'AsyncSwift'
   pod 'SDWebImage'
   pod "TextFieldEffects"
+  pod 'FSCalendar'
   pod 'Firebase/Core'
   pod 'Firebase/Auth'
   pod 'Firebase/Database'

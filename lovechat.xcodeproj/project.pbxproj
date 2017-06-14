@@ -7,7 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		40128BC51EF10CBD008F80F5 /* Remember.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 40128BC41EF10CBD008F80F5 /* Remember.storyboard */; };
+		40128BC71EF112EE008F80F5 /* RememberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40128BC61EF112EE008F80F5 /* RememberViewController.swift */; };
+		40128BC91EF114C9008F80F5 /* RememberDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40128BC81EF114C9008F80F5 /* RememberDetailViewController.swift */; };
 		4015FC911EF00DAC00B029ED /* Register.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4015FC901EF00DAC00B029ED /* Register.storyboard */; };
 		4015FC931EF00E5700B029ED /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4015FC921EF00E5700B029ED /* RegisterViewController.swift */; };
 		401BBA811EEDEF1C0000587E /* Mutex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 401BBA801EEDEF1C0000587E /* Mutex.swift */; };
@@ -91,7 +92,8 @@
 
 /* Begin PBXFileReference section */
 		24CC1578EBBAC6566656A6D9 /* Pods-lovechat.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-lovechat.debug.xcconfig"; path = "Pods/Target Support Files/Pods-lovechat/Pods-lovechat.debug.xcconfig"; sourceTree = "<group>"; };
-		40128BC41EF10CBD008F80F5 /* Remember.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Remember.storyboard; path = Storyboard/Remember.storyboard; sourceTree = "<group>"; };
+		40128BC61EF112EE008F80F5 /* RememberViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RememberViewController.swift; path = Controller/RememberViewController.swift; sourceTree = "<group>"; };
+		40128BC81EF114C9008F80F5 /* RememberDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RememberDetailViewController.swift; path = Controller/RememberDetailViewController.swift; sourceTree = "<group>"; };
 		4015FC901EF00DAC00B029ED /* Register.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Register.storyboard; path = Storyboard/Register.storyboard; sourceTree = "<group>"; };
 		4015FC921EF00E5700B029ED /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RegisterViewController.swift; path = Controller/RegisterViewController.swift; sourceTree = "<group>"; };
 		401BBA801EEDEF1C0000587E /* Mutex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Mutex.swift; path = Util/Mutex.swift; sourceTree = "<group>"; };
@@ -212,6 +214,8 @@
 				40888A6E1EED16DC008E5E12 /* LoginViewController.swift */,
 				40C391F71EEFB36900726097 /* TextKeyboardViewController.swift */,
 				4015FC921EF00E5700B029ED /* RegisterViewController.swift */,
+				40128BC61EF112EE008F80F5 /* RememberViewController.swift */,
+				40128BC81EF114C9008F80F5 /* RememberDetailViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -327,7 +331,6 @@
 				40888A6C1EED13C3008E5E12 /* Login.storyboard */,
 				40C391F51EEFB32800726097 /* TestKeyboard.storyboard */,
 				4015FC901EF00DAC00B029ED /* Register.storyboard */,
-				40128BC41EF10CBD008F80F5 /* Remember.storyboard */,
 			);
 			name = Storyboard;
 			sourceTree = "<group>";
@@ -462,7 +465,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				408B48181EE276CC00EE9281 /* LaunchScreen.storyboard in Resources */,
-				40128BC51EF10CBD008F80F5 /* Remember.storyboard in Resources */,
 				40888A681EED10E1008E5E12 /* GoogleService-Info.plist in Resources */,
 				4015FC911EF00DAC00B029ED /* Register.storyboard in Resources */,
 				408B48151EE276CC00EE9281 /* Assets.xcassets in Resources */,
@@ -548,8 +550,10 @@
 				4071939F1EED69FB003C7E9C /* AnimationType.swift in Sources */,
 				403905131EEF8EF3001327FE /* TimeStampSectionController.swift in Sources */,
 				40D6E0351EF0E4CB00946316 /* TestAccount.swift in Sources */,
+				40128BC71EF112EE008F80F5 /* RememberViewController.swift in Sources */,
 				40D1CAE91EEC2A820030CBEF /* PVCommonCollectionViewCell.swift in Sources */,
 				403905111EEF8EF3001327FE /* PictureMessageSectionController.swift in Sources */,
+				40128BC91EF114C9008F80F5 /* RememberDetailViewController.swift in Sources */,
 				403905151EEF8EF3001327FE /* VoiceMessageSectionController.swift in Sources */,
 				403905171EEF8FA3001327FE /* PVCommonSectionController.swift in Sources */,
 				409EC0D11EE3E50C00365F7E /* Fonts.swift in Sources */,
