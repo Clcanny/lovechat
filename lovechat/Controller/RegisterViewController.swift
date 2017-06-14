@@ -14,7 +14,7 @@ class RegisterViewController: UIViewController {
     var isFieldEditing: Bool = false
     
     let database = Database.database().reference()
-
+    
     @IBOutlet weak var NameTextField: AnimatableTextField!
     @IBOutlet weak var EmailTextField: AnimatableTextField!
     @IBOutlet weak var PasswordTextField: AnimatableTextField!
@@ -24,7 +24,7 @@ class RegisterViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
         NameTextField.delegate = self
         EmailTextField.delegate = self
@@ -41,11 +41,11 @@ class RegisterViewController: UIViewController {
             object: view.window
         )
         
-        NameTextField.text = userA.companionEmail
-        EmailTextField.text = userA.userEmail
+        NameTextField.text = userB.companionEmail
+        EmailTextField.text = userB.userEmail
         PasswordTextField.text = userA.password
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -54,7 +54,7 @@ class RegisterViewController: UIViewController {
     override func viewDidDisappear(_ animated: Bool) {
         NotificationCenter.default.removeObserver(self)
     }
-
+    
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
@@ -65,7 +65,7 @@ class RegisterViewController: UIViewController {
             fatalError()
         }
     }
-
+    
 }
 
 extension RegisterViewController: UITextFieldDelegate {
@@ -133,18 +133,13 @@ extension RegisterViewController {
             Auth.auth().createUser(withEmail: email, password: pwd, completion: {
                 (user: User?, error) in
                 if let err = error {
-                    print(err.localizedDescription)
-                    let alertController = UIAlertController(
+                    self.present(UIAlertController.defaultErrorController(
                         title: "Register failed",
-                        message: err.localizedDescription,
-                        preferredStyle: .alert
-                    )
-                    let okAction = UIAlertAction(title: "OK", style: .default) { action in
-                        self.view.isUserInteractionEnabled = true
-                        self.registerComplete.stopAnimating()
-                    }
-                    alertController.addAction(okAction)
-                    self.present(alertController, animated: true)
+                        error: err.localizedDescription,
+                        completion: {
+                            self.view.isUserInteractionEnabled = true
+                            self.registerComplete.stopAnimating()
+                    }), animated: true)
                 }
                 else {
                     self.addUserInfo()
@@ -161,9 +156,9 @@ extension RegisterViewController {
             "uid2email/\(uid)": email,
             "users/\(uid)/companionId": NameTextField.text!.replacingOccurrences(of: ".", with: "-"),
             "users/\(uid)/confirm": false
-        ] as [String : Any]
+            ] as [String : Any]
         
-        self.database.updateChildValues(childUpdates, withCompletionBlock: {
+        database.updateChildValues(childUpdates, withCompletionBlock: {
             (error, reference) -> Void in
             if let err = error {
                 print(err)

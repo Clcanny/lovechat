@@ -31,3 +31,19 @@ struct userC {
     static let password = "password"
     
 }
+
+struct userD {
+    
+    static let companionEmail = "837940593@qq.com"
+    static let userEmail = "1030518209@qq.com"
+    static let password = "wyszjdx"
+    
+}
+
+struct userE {
+    
+    static let companionEmail = "1030518209@qq.com"
+    static let userEmail = "837940593@qq.com"
+    static let password = "wyszjdx"
+    
+}

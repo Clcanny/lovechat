@@ -26,8 +26,8 @@ class LoginViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         if Auth.auth().currentUser?.uid != nil {
-            userField.text = userA.userEmail
-            passField.text = userA.password
+            userField.text = userB.userEmail
+            passField.text = userB.password
         }
     }
     
@@ -63,7 +63,6 @@ class LoginViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
     
     @IBAction func signInPressed(_ sender: UIButton) {
         registerComplete.isHidden = false
