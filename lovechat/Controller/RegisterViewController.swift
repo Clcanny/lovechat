@@ -41,10 +41,10 @@ class RegisterViewController: UIViewController {
             object: view.window
         )
         
-        NameTextField.text = "12345678@qq.com"
-        NameTextField.text = "4775677667@qq.com"
-        EmailTextField.text = "4775677667@qq.com"
-        EmailTextField.text = "12345678@qq.com"
+        NameTextField.text = "837940593@qq.com"
+//        NameTextField.text = "837940593@qq.com"
+//        EmailTextField.text = "1030518209@qq.com"
+        EmailTextField.text = "837940593@qq.com"
         PasswordTextField.text = "wyszjdx"
     }
 

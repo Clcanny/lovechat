@@ -28,10 +28,10 @@ class LoginViewController: UIViewController {
         if Auth.auth().currentUser?.uid != nil {
             print("User already logged in!")
 //            self.performSegue(withIdentifier: "toChatViewController", sender: nil)
-//            userField.text = "a837940593@gmail.com"
-            userField.text = "837940593@qq.com"
-            userField.text = "4775677667@qq.com"
-            userField.text = "12345678@qq.com"
+//            userField.text = "837940593@qq.com"
+//            userField.text = "837940593@qq.com"
+            userField.text = "1030518209@qq.com"
+//            userField.text = "12345678@qq.com"
             passField.text = "wyszjdx"
         }
     }
@@ -108,8 +108,14 @@ class LoginViewController: UIViewController {
                                     let companionId = snapshot.value as! String
                                     self.database.child("users/\(companionId)/companionId").observeSingleEvent(of: .value, with: {
                                         (snapshot) -> Void in
-                                        if let value = snapshot.value as? String {
-                                            print("yes")
+                                        if let value = snapshot.value as? String , let user = Auth.auth().currentUser {
+                                            if value == user.email!.replacingOccurrences(of: ".", with: "-") {
+                                                print("yes") }
+                                            else {
+                                                print("no3")
+                                                print(value)
+                                                print(user.email!)
+                                            }
                                             let childUpdates = [
                                                 "users/\(uid!)/confirm": 1,
                                                 "users/\(uid!)/companionId": companionId,
