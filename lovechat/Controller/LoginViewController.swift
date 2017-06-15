@@ -137,7 +137,8 @@ extension LoginViewController {
         if isFieldEditing {
             return
         }
-        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey]
+            as? NSValue)?.cgRectValue {
             view.bounds.origin.y = keyboardSize.height
         }
         else {
