@@ -7,10 +7,14 @@
 //
 
 import UIKit
+import Firebase
 
 class RememberViewController: UIViewController {
     
     var remembers: [RememberModel] = [RememberModel(), RememberModel()]
+    var database = Database.database().reference()
+    var companionId: String?
+    let uid = Auth.auth().currentUser!.uid
     
     @IBOutlet weak var backgroundImageView: UIImageView!
     @IBOutlet weak var tableView: UITableView!
@@ -112,6 +116,7 @@ extension RememberViewController: UITableViewDelegate {
                 let rememberModel = sourceViewController.rememberModel!
                 let newIndexPath = IndexPath(row: remembers.count, section: 0)
                 remembers.append(rememberModel)
+//                pushRememberModel(rememberModel)
                 tableView.insertRows(at: [newIndexPath], with: .automatic)
             }
         }
@@ -138,6 +143,58 @@ extension RememberViewController: UITableViewDataSource {
         cell.contentView.backgroundColor = UIColor(white: 1, alpha: 0.3)
         
         return cell
+    }
+    
+}
+
+extension RememberViewController {
+    
+    func observeDataChange() {
+        
+        database.child("users/\(uid)/remembers").observe(
+            DataEventType.childAdded, with: { (snapshot) -> Void in
+                if let value = snapshot.value as? NSDictionary {
+                    self.remembers.append(RememberModel(
+                        title: value.object(forKey: "title") as! String,
+                        year: value.object(forKey: "year") as! Int,
+                        month: value.object(forKey: "month") as! Int,
+                        day: value.object(forKey: "day") as! Int
+                    ))
+                }
+        })
+    }
+    
+    func loadCompanionId(completion: @escaping () -> ()) {
+        if companionId == nil {
+            database.child("users/\(uid)/companionId").observeSingleEvent(
+                of: DataEventType.value, with: { (snapshot) -> Void in
+                    let value = snapshot.value
+                    let companionId = value as! String
+                    self.companionId = companionId
+                    completion()
+            })
+        }
+        else {
+            completion()
+        }
+    }
+    
+    func pushRememberModel(_ rememberModel: RememberModel) {
+        loadCompanionId {
+            let key = self.database.child("users/\(self.uid)/remembers").childByAutoId().key
+            let msg = [
+                "key": key,
+                "title" : rememberModel.title,
+                "year": 2017,
+                "month": 1,
+                "day": 1
+            ] as [String : Any]
+            let childUpdates = [
+                "users/remembers/\(self.uid)/\(key)": msg,
+                "users/remembers/\(self.companionId!)/\(key)": msg
+            ]
+            self.database.updateChildValues(childUpdates)
+        }
     }
     
 }

@@ -13,7 +13,7 @@ class RememberDetailViewController: UIViewController {
     
     var comeFromAddItembutton: Bool!
     var rememberModel: RememberModel?
-
+    
     @IBOutlet weak var cancelButton: UIBarButtonItem!
     @IBOutlet weak var saveButton: UIBarButtonItem!
     
@@ -22,7 +22,7 @@ class RememberDetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
         calendar.delegate = self
         if rememberModel != nil {
@@ -33,7 +33,7 @@ class RememberDetailViewController: UIViewController {
             rememberModel = RememberModel()
         }
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -58,7 +58,7 @@ class RememberDetailViewController: UIViewController {
             fatalError()
         }
     }
-
+    
 }
 
 extension RememberDetailViewController: FSCalendarDelegate {

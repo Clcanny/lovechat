@@ -125,7 +125,6 @@ class ChatViewController: UIViewController {
                 print(self.uid)
                 let value = snapshot.value
                 self.companionId = value as! String
-//                self.companionId = "gQCOUY1uKlaDtD6U2VNaLW6NH1J3"
         })
         
         database.keepSynced(true)
