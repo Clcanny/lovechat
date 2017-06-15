@@ -194,7 +194,7 @@ extension ChatViewController {
     
     func observeDataChange() {
         let uid = Auth.auth().currentUser!.uid
-        self.database.child("users/\(uid)").observe(
+        self.database.child("users/\(uid)/messages").observe(
             DataEventType.childAdded, with: { (snapshot) -> Void in
                 if let value = snapshot.value as? NSDictionary {
                     let type = value.object(forKey: "type") as! String
@@ -245,20 +245,20 @@ extension ChatViewController {
     
     func pushMessage(_ sendMsg: [String : Any], _ receiveMsg: [String : Any]) {
         loadCompanionId {
-            let key = self.database.child("users/\(self.uid)").childByAutoId().key
+            let key = self.database.child("users/\(self.uid)/messages").childByAutoId().key
             let childUpdates = [
-                "users/\(self.uid)/\(key)": sendMsg,
-                "users/\(self.companionId!)/\(key)": receiveMsg
+                "users/\(self.uid)/messages/\(key)": sendMsg,
+                "users/\(self.companionId!)/messages/\(key)": receiveMsg
             ]
             self.database.updateChildValues(childUpdates)
         }
     }
     
     func pushMessage(_ sendMsg: [String : Any]) -> String {
-        let key = database.child("users/\(uid)").childByAutoId().key
+        let key = database.child("users/\(uid)/messages").childByAutoId().key
         loadCompanionId {
             let childUpdates = [
-                "users/\(self.uid)/\(key)": sendMsg,
+                "users/\(self.uid)/messages/\(key)": sendMsg,
                 ]
             self.database.updateChildValues(childUpdates)
         }
@@ -268,8 +268,8 @@ extension ChatViewController {
     func pushMessage(_ sendMsg: [String : Any], _ receiveMsg: [String : Any], key: String) {
         loadCompanionId {
             let childUpdates = [
-                "users/\(self.uid)/\(key)": sendMsg,
-                "users/\(self.companionId!)/\(key)": receiveMsg
+                "users/\(self.uid)/messages/\(key)": sendMsg,
+                "users/\(self.companionId!)/messages/\(key)": receiveMsg
             ]
             self.database.updateChildValues(childUpdates)
         }

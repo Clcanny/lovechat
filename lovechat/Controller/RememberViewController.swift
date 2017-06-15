@@ -116,7 +116,7 @@ extension RememberViewController: UITableViewDelegate {
                 let rememberModel = sourceViewController.rememberModel!
                 let newIndexPath = IndexPath(row: remembers.count, section: 0)
                 remembers.append(rememberModel)
-//                pushRememberModel(rememberModel)
+                pushRememberModel(rememberModel)
                 tableView.insertRows(at: [newIndexPath], with: .automatic)
             }
         }
@@ -190,8 +190,8 @@ extension RememberViewController {
                 "day": 1
             ] as [String : Any]
             let childUpdates = [
-                "users/remembers/\(self.uid)/\(key)": msg,
-                "users/remembers/\(self.companionId!)/\(key)": msg
+                "users/\(self.uid)/remembers/\(key)": msg,
+                "users/\(self.companionId!)/remembers/\(key)": msg
             ]
             self.database.updateChildValues(childUpdates)
         }
