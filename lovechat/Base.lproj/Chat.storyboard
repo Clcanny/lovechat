@@ -264,11 +264,11 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="countDayEntryCell" rowHeight="71" id="YGK-H4-2rk" customClass="CountDayEntryCell" customModule="lovechat" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="RememberTableViewCell" rowHeight="71" id="YGK-H4-2rk" customClass="RememberTableViewCell" customModule="lovechat" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="71"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="YGK-H4-2rk" id="m55-QT-Q9h">
-                                            <rect key="frame" x="0.0" y="0.0" width="342" height="71"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="342" height="70.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mg3-Ao-WSn" userLabel="title">
@@ -310,9 +310,10 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="beginDay" destination="Qlt-Ri-Gg2" id="4Q4-fv-88f"/>
-                                            <outlet property="label" destination="Mg3-Ao-WSn" id="ZG8-aa-yUV"/>
-                                            <outlet property="untilAfterDays" destination="VCz-Pe-4Ev" id="UEc-ed-3ml"/>
+                                            <outlet property="beginDayLabel" destination="Qlt-Ri-Gg2" id="a8J-mt-fo3"/>
+                                            <outlet property="titleLabel" destination="Mg3-Ao-WSn" id="epX-Dr-SAk"/>
+                                            <outlet property="untilAfterDaysLabel" destination="VCz-Pe-4Ev" id="mlq-E5-yvX"/>
+                                            <segue destination="Cok-KF-Ajw" kind="push" identifier="segueToRememberDetailView" id="woS-vU-F36"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -321,11 +322,14 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="Remember" id="I37-fm-lof">
-                        <barButtonItem key="rightBarButtonItem" title="+" id="zWu-iX-paj"/>
+                        <barButtonItem key="rightBarButtonItem" title="+" id="zWu-iX-paj">
+                            <connections>
+                                <segue destination="Fyo-uA-EWY" kind="show" identifier="segueToAddRemberItem" id="pgQ-MP-LYz"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <segue destination="Cok-KF-Ajw" kind="show" identifier="segueToRememberDetailView" id="AZk-FY-tKd"/>
-                        <segue destination="Fyo-uA-EWY" kind="show" identifier="segueToAddRemberItem" id="6tN-Sz-VLI"/>
+                        <outlet property="tableView" destination="mF7-I5-APX" id="t1m-74-sbv"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WgP-Ry-J9y" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -346,7 +350,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xDI-Dq-R9W" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1758" y="1837"/>
+            <point key="canvasLocation" x="1564" y="1941"/>
         </scene>
         <!--Detail-->
         <scene sceneID="bQb-RG-05E">
@@ -369,11 +373,25 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="Detail" id="NNh-n2-GUe">
-                        <barButtonItem key="leftBarButtonItem" title="cancel" id="JLk-7C-rKu"/>
-                        <barButtonItem key="rightBarButtonItem" title="save" id="FGq-dF-5yz"/>
+                        <barButtonItem key="leftBarButtonItem" title="cancel" id="JLk-7C-rKu">
+                            <connections>
+                                <action selector="cancelButtonPressed:" destination="Cok-KF-Ajw" id="0h0-uo-z4Z"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="save" id="FGq-dF-5yz">
+                            <connections>
+                                <segue destination="eIN-KC-xTl" kind="unwind" unwindAction="unwindToRemeberViewControllerWithSender:" id="ybl-Tu-d1W"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="calendar" destination="5xO-Gc-txs" id="Ya0-Rv-GYt"/>
+                        <outlet property="cancelButton" destination="JLk-7C-rKu" id="SH3-aX-SMq"/>
+                        <outlet property="saveButton" destination="FGq-dF-5yz" id="dG9-wQ-8FQ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Jzj-Y4-GLM" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="eIN-KC-xTl" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="2645.5999999999999" y="1835.5322338830586"/>
         </scene>

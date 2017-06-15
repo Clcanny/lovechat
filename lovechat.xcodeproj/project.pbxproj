@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		40128BC71EF112EE008F80F5 /* RememberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40128BC61EF112EE008F80F5 /* RememberViewController.swift */; };
 		40128BC91EF114C9008F80F5 /* RememberDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40128BC81EF114C9008F80F5 /* RememberDetailViewController.swift */; };
+		40128BCB1EF11914008F80F5 /* RememberModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40128BCA1EF11914008F80F5 /* RememberModel.swift */; };
+		40128BCD1EF11A30008F80F5 /* RememberTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40128BCC1EF11A30008F80F5 /* RememberTableViewCell.swift */; };
 		4015FC911EF00DAC00B029ED /* Register.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4015FC901EF00DAC00B029ED /* Register.storyboard */; };
 		4015FC931EF00E5700B029ED /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4015FC921EF00E5700B029ED /* RegisterViewController.swift */; };
 		401BBA811EEDEF1C0000587E /* Mutex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 401BBA801EEDEF1C0000587E /* Mutex.swift */; };
@@ -69,6 +71,7 @@
 		409EC0CC1EE3E1C700365F7E /* PictureMessageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 409EC0CB1EE3E1C700365F7E /* PictureMessageModel.swift */; };
 		409EC0D11EE3E50C00365F7E /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 409EC0CF1EE3E50C00365F7E /* Fonts.swift */; };
 		409EC0D21EE3E50C00365F7E /* TextSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 409EC0D01EE3E50C00365F7E /* TextSize.swift */; };
+		40A63D531EF27A110017D061 /* ExtensionDateComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A63D521EF27A110017D061 /* ExtensionDateComponents.swift */; };
 		40A8454C1EE5489600837060 /* TimeOutProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A8454B1EE5489600837060 /* TimeOutProtocol.swift */; };
 		40AF90241EE5A5E200F801A9 /* TextMessageDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40AF90231EE5A5E200F801A9 /* TextMessageDetailViewController.swift */; };
 		40AF90281EE5A8D400F801A9 /* SegueFromCellProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40AF90271EE5A8D400F801A9 /* SegueFromCellProtocol.swift */; };
@@ -94,6 +97,8 @@
 		24CC1578EBBAC6566656A6D9 /* Pods-lovechat.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-lovechat.debug.xcconfig"; path = "Pods/Target Support Files/Pods-lovechat/Pods-lovechat.debug.xcconfig"; sourceTree = "<group>"; };
 		40128BC61EF112EE008F80F5 /* RememberViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RememberViewController.swift; path = Controller/RememberViewController.swift; sourceTree = "<group>"; };
 		40128BC81EF114C9008F80F5 /* RememberDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RememberDetailViewController.swift; path = Controller/RememberDetailViewController.swift; sourceTree = "<group>"; };
+		40128BCA1EF11914008F80F5 /* RememberModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RememberModel.swift; path = Model/RememberModel.swift; sourceTree = "<group>"; };
+		40128BCC1EF11A30008F80F5 /* RememberTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RememberTableViewCell.swift; path = Cell/RememberTableViewCell.swift; sourceTree = "<group>"; };
 		4015FC901EF00DAC00B029ED /* Register.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Register.storyboard; path = Storyboard/Register.storyboard; sourceTree = "<group>"; };
 		4015FC921EF00E5700B029ED /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RegisterViewController.swift; path = Controller/RegisterViewController.swift; sourceTree = "<group>"; };
 		401BBA801EEDEF1C0000587E /* Mutex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Mutex.swift; path = Util/Mutex.swift; sourceTree = "<group>"; };
@@ -156,6 +161,7 @@
 		409EC0CB1EE3E1C700365F7E /* PictureMessageModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PictureMessageModel.swift; path = Model/PictureMessageModel.swift; sourceTree = "<group>"; };
 		409EC0CF1EE3E50C00365F7E /* Fonts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Fonts.swift; path = Util/Fonts.swift; sourceTree = "<group>"; };
 		409EC0D01EE3E50C00365F7E /* TextSize.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TextSize.swift; path = Util/TextSize.swift; sourceTree = "<group>"; };
+		40A63D521EF27A110017D061 /* ExtensionDateComponents.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ExtensionDateComponents.swift; path = Util/ExtensionDateComponents.swift; sourceTree = "<group>"; };
 		40A8454B1EE5489600837060 /* TimeOutProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TimeOutProtocol.swift; path = Protocol/TimeOutProtocol.swift; sourceTree = "<group>"; };
 		40AF90231EE5A5E200F801A9 /* TextMessageDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TextMessageDetailViewController.swift; path = Controller/TextMessageDetailViewController.swift; sourceTree = "<group>"; };
 		40AF90271EE5A8D400F801A9 /* SegueFromCellProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SegueFromCellProtocol.swift; path = Protocol/SegueFromCellProtocol.swift; sourceTree = "<group>"; };
@@ -230,6 +236,7 @@
 				40D1CAE41EEC10430030CBEF /* VideoMessageCollectionViewCell.swift */,
 				40D1CAE81EEC2A820030CBEF /* PVCommonCollectionViewCell.swift */,
 				40D1CAEA1EEC32410030CBEF /* MessageCollectionViewCell.swift */,
+				40128BCC1EF11A30008F80F5 /* RememberTableViewCell.swift */,
 			);
 			name = Cell;
 			sourceTree = "<group>";
@@ -251,6 +258,7 @@
 				401BBA821EEE02420000587E /* Lock.swift */,
 				40D6E0321EF0DE2B00946316 /* ExtensionAlertController.swift */,
 				40D6E0341EF0E4CB00946316 /* TestAccount.swift */,
+				40A63D521EF27A110017D061 /* ExtensionDateComponents.swift */,
 			);
 			name = Util;
 			sourceTree = "<group>";
@@ -264,6 +272,7 @@
 				40358A6D1EE9293400A8CEF4 /* MessageModel.swift */,
 				40D1CAE21EEC0E500030CBEF /* VideoMessageModel.swift */,
 				40D1CAEC1EEC51330030CBEF /* UrlMessageModel.swift */,
+				40128BCA1EF11914008F80F5 /* RememberModel.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -538,6 +547,7 @@
 				403B20501EE2B09700CBE09C /* ChatViewController.swift in Sources */,
 				407193841EED65DC003C7E9C /* CornerDesignable.swift in Sources */,
 				407193771EED65C8003C7E9C /* BlurDesignable.swift in Sources */,
+				40128BCD1EF11A30008F80F5 /* RememberTableViewCell.swift in Sources */,
 				40888A6F1EED16DC008E5E12 /* LoginViewController.swift in Sources */,
 				403905141EEF8EF3001327FE /* VideoMessageSctionController.swift in Sources */,
 				40AF902E1EE5BC1900F801A9 /* PictureMessageDetailViewController.swift in Sources */,
@@ -565,6 +575,7 @@
 				403B20601EE31E7600CBE09C /* Colors.swift in Sources */,
 				40530DA61EE53BFE00F33C76 /* ExtensionString.swift in Sources */,
 				40B1BF1B1EE3ED83000B335E /* ExtensionUIImage.swift in Sources */,
+				40128BCB1EF11914008F80F5 /* RememberModel.swift in Sources */,
 				409EC0C81EE3DA8600365F7E /* PictureMessageCollectionViewCell.swift in Sources */,
 				401BBA831EEE02420000587E /* Lock.swift in Sources */,
 				403B20631EE3383600CBE09C /* TextMessageModel.swift in Sources */,
@@ -580,6 +591,7 @@
 				40FB67DB1EE6DAEB00DD63F4 /* CameraViewController.swift in Sources */,
 				408B480E1EE276CC00EE9281 /* AppDelegate.swift in Sources */,
 				40A8454C1EE5489600837060 /* TimeOutProtocol.swift in Sources */,
+				40A63D531EF27A110017D061 /* ExtensionDateComponents.swift in Sources */,
 				4071938F1EED68B7003C7E9C /* RotationDesignable.swift in Sources */,
 				409EC0D21EE3E50C00365F7E /* TextSize.swift in Sources */,
 				4071938C1EED65DC003C7E9C /* TintDesignable.swift in Sources */,
