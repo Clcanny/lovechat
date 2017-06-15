@@ -11,9 +11,23 @@ import UIKit
 class RememberViewController: UIViewController {
     
     var remembers: [RememberModel] = [RememberModel(), RememberModel()]
-    let cellSpacingHeight: CGFloat = 5
     
+    @IBOutlet weak var backgroundImageView: UIImageView!
     @IBOutlet weak var tableView: UITableView!
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        // no lines where there aren't cells
+        tableView.tableFooterView = UIView(frame: .zero)
+        tableView.backgroundColor = .clear
+        tableView.separatorEffect = .none
+        tableView.separatorColor = .clear
+        
+        let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.light)
+        let blurView = UIVisualEffectView(effect: blurEffect)
+        blurView.frame = backgroundImageView.bounds
+        backgroundImageView.addSubview(blurView)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,6 +69,10 @@ class RememberViewController: UIViewController {
 
 extension RememberViewController: UITableViewDelegate {
     
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 0
+    }
+    
     // number of rows in table view
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.remembers.count
@@ -62,9 +80,6 @@ extension RememberViewController: UITableViewDelegate {
     
     // method to run when table view cell is tapped
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("You tapped cell number \(indexPath.row).")
-        //        print(self.remembers[indexPath.row].untilDays);
-        //        print(self.remembers[indexPath.row].afterDays);
     }
     
     func tableView(
@@ -86,11 +101,6 @@ extension RememberViewController: UITableViewDelegate {
         return [untilAfterAction, deleteAction]
     }
     
-    
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return cellSpacingHeight
-    }
-    
     @IBAction func unwindToRemeberViewController(sender: UIStoryboardSegue) {
         if let sourceViewController = sender.source as? RememberDetailViewController {
             if let selectedIndexPath = tableView.indexPathForSelectedRow {
@@ -110,6 +120,7 @@ extension RememberViewController: UITableViewDelegate {
 }
 
 extension RememberViewController: UITableViewDataSource {
+    
     // create a cell for each table view row
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
@@ -123,6 +134,10 @@ extension RememberViewController: UITableViewDataSource {
         cell.untilAfterDaysLabel.text = remembers[indexPath.row].dayDiff
         cell.untilAfterDaysLabel.sizeToFit()
         
+        cell.backgroundColor = UIColor.clear
+        cell.contentView.backgroundColor = UIColor(white: 1, alpha: 0.3)
+        
         return cell
     }
+    
 }

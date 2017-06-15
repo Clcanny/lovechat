@@ -11,17 +11,27 @@ import FSCalendar
 
 class RememberDetailViewController: UIViewController {
     
+    var comeFromAddItembutton: Bool!
     var rememberModel: RememberModel?
 
     @IBOutlet weak var cancelButton: UIBarButtonItem!
     @IBOutlet weak var saveButton: UIBarButtonItem!
     
     @IBOutlet weak var calendar: FSCalendar!
+    @IBOutlet weak var nameTextField: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        calendar.delegate = self
+        if rememberModel != nil {
+            comeFromAddItembutton = false
+        }
+        else {
+            comeFromAddItembutton = true
+            rememberModel = RememberModel()
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -35,16 +45,13 @@ class RememberDetailViewController: UIViewController {
         guard let button = sender as? UIBarButtonItem, button === saveButton else {
             return
         }
-        rememberModel = RememberModel()
     }
     
     @IBAction func cancelButtonPressed(_ sender: UIBarButtonItem) {
-        if rememberModel == nil{
-            print("dismiss")
+        if comeFromAddItembutton {
             dismiss(animated: true, completion: nil)
         }
         else if let owningNavigationController = navigationController {
-            print("navigation")
             owningNavigationController.popViewController(animated: true)
         }
         else {
@@ -56,10 +63,13 @@ class RememberDetailViewController: UIViewController {
 
 extension RememberDetailViewController: FSCalendarDelegate {
     
-    func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
+    func calendar(
+        _ calendar: FSCalendar,
+        didSelect date: Date,
+        at monthPosition: FSCalendarMonthPosition) {
         let calendar = Calendar.current
         let dateComponent = calendar.dateComponents([.year, .month, .day], from: date)
-        print(date)
+        rememberModel?.dateComponent = dateComponent
     }
     
 }
@@ -72,7 +82,7 @@ extension RememberDetailViewController: UITextFieldDelegate {
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
-//        titleTextField.text = textField.text
+        rememberModel?.title = nameTextField.text!
     }
     
 }
