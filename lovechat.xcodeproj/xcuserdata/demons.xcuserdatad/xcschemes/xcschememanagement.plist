@@ -4,6 +4,11 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>EmojiKeyboard.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>11</integer>
+		</dict>
 		<key>lovechat.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
@@ -12,6 +17,11 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>403301F71EF387A700DB5684</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>408B48091EE276CC00EE9281</key>
 		<dict>
 			<key>primary</key>
