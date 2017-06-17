@@ -11,7 +11,7 @@ import Firebase
 
 class RememberViewController: UIViewController {
     
-    var remembers: [RememberModel] = [RememberModel(), RememberModel()]
+    var remembers: [RememberModel] = []
     var database = Database.database().reference()
     var companionId: String?
     let uid = Auth.auth().currentUser!.uid
@@ -39,6 +39,8 @@ class RememberViewController: UIViewController {
         // Do any additional setup after loading the view.
         tableView.delegate = self
         tableView.dataSource = self
+        
+        observeDataChange()
     }
     
     override func didReceiveMemoryWarning() {
@@ -109,15 +111,12 @@ extension RememberViewController: UITableViewDelegate {
         if let sourceViewController = sender.source as? RememberDetailViewController {
             if let selectedIndexPath = tableView.indexPathForSelectedRow {
                 let rememberModel = sourceViewController.rememberModel!
-                remembers[selectedIndexPath.row] = rememberModel
+                updateRememberModel(rememberModel)
                 tableView.reloadRows(at: [selectedIndexPath], with: .none)
             }
             else {
                 let rememberModel = sourceViewController.rememberModel!
-                let newIndexPath = IndexPath(row: remembers.count, section: 0)
-                remembers.append(rememberModel)
                 pushRememberModel(rememberModel)
-                tableView.insertRows(at: [newIndexPath], with: .automatic)
             }
         }
     }
@@ -150,16 +149,18 @@ extension RememberViewController: UITableViewDataSource {
 extension RememberViewController {
     
     func observeDataChange() {
-        
         database.child("users/\(uid)/remembers").observe(
             DataEventType.childAdded, with: { (snapshot) -> Void in
                 if let value = snapshot.value as? NSDictionary {
-                    self.remembers.append(RememberModel(
+                    let model = RememberModel(
                         title: value.object(forKey: "title") as! String,
                         year: value.object(forKey: "year") as! Int,
                         month: value.object(forKey: "month") as! Int,
                         day: value.object(forKey: "day") as! Int
-                    ))
+                    )
+                    model.key = (value.object(forKey: "key") as! String)
+                    self.remembers.append(model)
+                    self.tableView.reloadData()
                 }
         })
     }
@@ -179,16 +180,34 @@ extension RememberViewController {
         }
     }
     
+    func updateRememberModel(_ rememberModel: RememberModel) {
+        loadCompanionId {
+            let key = rememberModel.key!
+            let msg = [
+                "key": key,
+                "title" : rememberModel.title,
+                "year": rememberModel.getYear(),
+                "month": rememberModel.getMonth(),
+                "day": rememberModel.getDay()
+                ] as [String : Any]
+            let childUpdates = [
+                "users/\(self.uid)/remembers/\(key)": msg,
+                "users/\(self.companionId!)/remembers/\(key)": msg
+            ]
+            self.database.updateChildValues(childUpdates)
+        }
+    }
+    
     func pushRememberModel(_ rememberModel: RememberModel) {
         loadCompanionId {
             let key = self.database.child("users/\(self.uid)/remembers").childByAutoId().key
             let msg = [
                 "key": key,
                 "title" : rememberModel.title,
-                "year": 2017,
-                "month": 1,
-                "day": 1
-            ] as [String : Any]
+                "year": rememberModel.getYear(),
+                "month": rememberModel.getMonth(),
+                "day": rememberModel.getDay()
+                ] as [String : Any]
             let childUpdates = [
                 "users/\(self.uid)/remembers/\(key)": msg,
                 "users/\(self.companionId!)/remembers/\(key)": msg

@@ -11,6 +11,7 @@ import Foundation
 class RememberModel {
     
     var title: String
+    var key: String?
     var dateComponent: DateComponents
     
     var showAfterDays = true
@@ -27,6 +28,18 @@ class RememberModel {
         day: Int = 15) {
         let dc: DateComponents = DateComponents(year: year, month: month, day: day);
         self.init(title: title, dateComponent: dc);
+    }
+    
+    func getYear() -> Int {
+        return dateComponent.year!
+    }
+    
+    func getMonth() -> Int {
+        return dateComponent.month!
+    }
+    
+    func getDay() -> Int {
+        return dateComponent.day!
     }
     
     private let userCalendar = Calendar.current
