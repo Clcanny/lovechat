@@ -30,6 +30,7 @@
 		403B20631EE3383600CBE09C /* TextMessageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 403B20621EE3383600CBE09C /* TextMessageModel.swift */; };
 		403E2BBB1EE4294A00EF961D /* RecordAnimationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 403E2BBA1EE4294A00EF961D /* RecordAnimationView.swift */; };
 		403F3BD91EF58AC300F46F0A /* ExtensionKDCircularProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 403F3BD81EF58AC300F46F0A /* ExtensionKDCircularProgress.swift */; };
+		403F3BDB1EF597AA00F46F0A /* TimeStampInserter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 403F3BDA1EF597AA00F46F0A /* TimeStampInserter.swift */; };
 		40530DA61EE53BFE00F33C76 /* ExtensionString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40530DA51EE53BFE00F33C76 /* ExtensionString.swift */; };
 		406511A01EEB180400EF6614 /* ExtensionFileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4065119F1EEB180400EF6614 /* ExtensionFileManager.swift */; };
 		407193731EED65C8003C7E9C /* AnimatabeImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4071936D1EED65C8003C7E9C /* AnimatabeImageView.swift */; };
@@ -132,6 +133,7 @@
 		403B20621EE3383600CBE09C /* TextMessageModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TextMessageModel.swift; path = Model/TextMessageModel.swift; sourceTree = "<group>"; };
 		403E2BBA1EE4294A00EF961D /* RecordAnimationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RecordAnimationView.swift; path = View/RecordAnimationView.swift; sourceTree = "<group>"; };
 		403F3BD81EF58AC300F46F0A /* ExtensionKDCircularProgress.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ExtensionKDCircularProgress.swift; path = Util/ExtensionKDCircularProgress.swift; sourceTree = "<group>"; };
+		403F3BDA1EF597AA00F46F0A /* TimeStampInserter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TimeStampInserter.swift; path = Util/TimeStampInserter.swift; sourceTree = "<group>"; };
 		40530DA51EE53BFE00F33C76 /* ExtensionString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ExtensionString.swift; path = Util/ExtensionString.swift; sourceTree = "<group>"; };
 		4065119F1EEB180400EF6614 /* ExtensionFileManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ExtensionFileManager.swift; path = Util/ExtensionFileManager.swift; sourceTree = "<group>"; };
 		4071936D1EED65C8003C7E9C /* AnimatabeImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AnimatabeImageView.swift; path = Animation/AnimatabeImageView.swift; sourceTree = "<group>"; };
@@ -275,6 +277,7 @@
 				40D6E0341EF0E4CB00946316 /* TestAccount.swift */,
 				40A63D521EF27A110017D061 /* ExtensionDateComponents.swift */,
 				403F3BD81EF58AC300F46F0A /* ExtensionKDCircularProgress.swift */,
+				403F3BDA1EF597AA00F46F0A /* TimeStampInserter.swift */,
 			);
 			name = Util;
 			sourceTree = "<group>";
@@ -623,6 +626,7 @@
 				407193851EED65DC003C7E9C /* FillDesignable.swift in Sources */,
 				406511A01EEB180400EF6614 /* ExtensionFileManager.swift in Sources */,
 				407193971EED6951003C7E9C /* GradientType.swift in Sources */,
+				403F3BDB1EF597AA00F46F0A /* TimeStampInserter.swift in Sources */,
 				4015FC931EF00E5700B029ED /* RegisterViewController.swift in Sources */,
 				403E2BBB1EE4294A00EF961D /* RecordAnimationView.swift in Sources */,
 				40358A701EE92B0200A8CEF4 /* DismissToChatViewControllerProtocol.swift in Sources */,

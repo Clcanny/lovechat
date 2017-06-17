@@ -46,10 +46,6 @@ class VoiceMessageSectionController: ListSectionController {
             cell.gesture?.isEnabled = true
         }, observer: {
             (percentage) -> Void in
-//            if cell.processBar?.isHidden {
-//                cell.processBar?.isHidden = false
-//            }
-//            cell.processBar?.setProgress(Float(percentage), animated: false)
             print(percentage)
         })
         cell.addWidth = CGFloat(voiceMessageModel!.getTime()) * 2

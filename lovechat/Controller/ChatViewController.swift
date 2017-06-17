@@ -36,6 +36,8 @@ class ChatViewController: UIViewController {
     let database = Database.database().reference()
     let storage = Storage.storage()
     
+    let timeStampInserter = TimeStampInserter()
+    
     let collectionView = { () -> UICollectionView in
         let layout = UICollectionViewFlowLayout()
         let view = UICollectionView(frame: .zero, collectionViewLayout: layout)
@@ -197,6 +199,10 @@ extension ChatViewController {
         self.database.child("users/\(uid)/messages").observe(
             DataEventType.childAdded, with: { (snapshot) -> Void in
                 if let value = snapshot.value as? NSDictionary {
+                    if let timeStamp = self.timeStampInserter.update() {
+                        self.objects.append(timeStamp as ListDiffable)
+                    }
+                    
                     let type = value.object(forKey: "type") as! String
                     switch type {
                     case "text":
@@ -223,6 +229,7 @@ extension ChatViewController {
                     default:
                         fatalError()
                     }
+
                     self.adapter.performUpdates(animated: false, completion: nil)
                 }
         })

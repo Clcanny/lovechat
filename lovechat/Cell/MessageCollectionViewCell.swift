@@ -49,7 +49,7 @@ class MessageCollectionViewCell: UICollectionViewCell {
         
         gesture = UITapGestureRecognizer(
             target: self,
-            action: #selector(PictureMessageCollectionViewCell.click(gestureRecognizer:))
+            action: #selector(self.click(gestureRecognizer:))
         )
         addGestureRecognizer(gesture!)
     }

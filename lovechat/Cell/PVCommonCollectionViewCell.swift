@@ -50,7 +50,7 @@ class PVCommonCollectionViewCell: MessageCollectionViewCell {
     
     public func setHightlightColor() {
         if let image = pictureView.image {
-            let left = isLeft!
+            let left = !(isLeft!)
             var count = 0
             
             var red: CGFloat = 0
