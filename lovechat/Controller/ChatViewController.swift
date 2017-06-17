@@ -607,5 +607,3 @@ extension ChatViewController: AVAudioRecorderDelegate {
 
 extension ChatViewController: UINavigationControllerDelegate {
 }
-
-
