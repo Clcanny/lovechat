@@ -16,7 +16,7 @@ class VoiceMessageSectionController: ListSectionController {
     init(voiceMessageModel: VoiceMessageModel) {
         super.init()
         self.voiceMessageModel = voiceMessageModel
-        inset = UIEdgeInsets(top: 0, left: 0, bottom: 5, right: 0)
+        inset = UIEdgeInsets(top: 0, left: 0, bottom: 10, right: 0)
     }
     
     override func numberOfItems() -> Int {

@@ -18,7 +18,7 @@ class TimeStampSectionController: ListSectionController {
     init(timeStamp: String?) {
         super.init()
         self.timeStamp = timeStamp
-        inset = UIEdgeInsets(top: 0, left: 0, bottom: 3, right: 0)
+        inset = UIEdgeInsets(top: 0, left: 0, bottom: 8, right: 0)
     }
     
     override func numberOfItems() -> Int {
