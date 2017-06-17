@@ -49,20 +49,8 @@ class CameraViewController: UIViewController {
     }()
     
     let progressBar = { () -> KDCircularProgress in
-        let progress = KDCircularProgress()
+        let progress = KDCircularProgress.defaultProcessBar()
         progress.frame.size = CGSize(width: 120, height: 120)
-        progress.startAngle = -90
-        progress.progressThickness = 0.2
-        progress.trackThickness = 0.2
-        progress.clockwise = true
-        progress.gradientRotateSpeed = 2
-        progress.roundedCorners = false
-        progress.glowMode = .forward
-        progress.glowAmount = 0.9
-        progress.set(
-            colors: UIColor.cyan, UIColor.white,
-            UIColor.magenta, UIColor.white, UIColor.orange
-        )
         return progress
     }()
     

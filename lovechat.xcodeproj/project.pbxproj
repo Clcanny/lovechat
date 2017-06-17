@@ -15,7 +15,6 @@
 		4015FC931EF00E5700B029ED /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4015FC921EF00E5700B029ED /* RegisterViewController.swift */; };
 		401BBA811EEDEF1C0000587E /* Mutex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 401BBA801EEDEF1C0000587E /* Mutex.swift */; };
 		401BBA831EEE02420000587E /* Lock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 401BBA821EEE02420000587E /* Lock.swift */; };
-		403301EF1EF2C70A00DB5684 /* EmojiKeyboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 403301EE1EF2C70A00DB5684 /* EmojiKeyboardView.swift */; };
 		40358A6C1EE928D200A8CEF4 /* ExtensionNSObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40358A6B1EE928D200A8CEF4 /* ExtensionNSObject.swift */; };
 		40358A6E1EE9293400A8CEF4 /* MessageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40358A6D1EE9293400A8CEF4 /* MessageModel.swift */; };
 		40358A701EE92B0200A8CEF4 /* DismissToChatViewControllerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40358A6F1EE92B0200A8CEF4 /* DismissToChatViewControllerProtocol.swift */; };
@@ -30,6 +29,7 @@
 		403B20601EE31E7600CBE09C /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 403B205F1EE31E7600CBE09C /* Colors.swift */; };
 		403B20631EE3383600CBE09C /* TextMessageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 403B20621EE3383600CBE09C /* TextMessageModel.swift */; };
 		403E2BBB1EE4294A00EF961D /* RecordAnimationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 403E2BBA1EE4294A00EF961D /* RecordAnimationView.swift */; };
+		403F3BD91EF58AC300F46F0A /* ExtensionKDCircularProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 403F3BD81EF58AC300F46F0A /* ExtensionKDCircularProgress.swift */; };
 		40530DA61EE53BFE00F33C76 /* ExtensionString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40530DA51EE53BFE00F33C76 /* ExtensionString.swift */; };
 		406511A01EEB180400EF6614 /* ExtensionFileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4065119F1EEB180400EF6614 /* ExtensionFileManager.swift */; };
 		407193731EED65C8003C7E9C /* AnimatabeImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4071936D1EED65C8003C7E9C /* AnimatabeImageView.swift */; };
@@ -117,7 +117,6 @@
 		4015FC921EF00E5700B029ED /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RegisterViewController.swift; path = Controller/RegisterViewController.swift; sourceTree = "<group>"; };
 		401BBA801EEDEF1C0000587E /* Mutex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Mutex.swift; path = Util/Mutex.swift; sourceTree = "<group>"; };
 		401BBA821EEE02420000587E /* Lock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Lock.swift; path = Util/Lock.swift; sourceTree = "<group>"; };
-		403301EE1EF2C70A00DB5684 /* EmojiKeyboardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EmojiKeyboardView.swift; path = View/EmojiKeyboardView.swift; sourceTree = "<group>"; };
 		40358A6B1EE928D200A8CEF4 /* ExtensionNSObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ExtensionNSObject.swift; path = Util/ExtensionNSObject.swift; sourceTree = "<group>"; };
 		40358A6D1EE9293400A8CEF4 /* MessageModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MessageModel.swift; path = Model/MessageModel.swift; sourceTree = "<group>"; };
 		40358A6F1EE92B0200A8CEF4 /* DismissToChatViewControllerProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DismissToChatViewControllerProtocol.swift; path = Protocol/DismissToChatViewControllerProtocol.swift; sourceTree = "<group>"; };
@@ -132,6 +131,7 @@
 		403B205F1EE31E7600CBE09C /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Colors.swift; path = Util/Colors.swift; sourceTree = "<group>"; };
 		403B20621EE3383600CBE09C /* TextMessageModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TextMessageModel.swift; path = Model/TextMessageModel.swift; sourceTree = "<group>"; };
 		403E2BBA1EE4294A00EF961D /* RecordAnimationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RecordAnimationView.swift; path = View/RecordAnimationView.swift; sourceTree = "<group>"; };
+		403F3BD81EF58AC300F46F0A /* ExtensionKDCircularProgress.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ExtensionKDCircularProgress.swift; path = Util/ExtensionKDCircularProgress.swift; sourceTree = "<group>"; };
 		40530DA51EE53BFE00F33C76 /* ExtensionString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ExtensionString.swift; path = Util/ExtensionString.swift; sourceTree = "<group>"; };
 		4065119F1EEB180400EF6614 /* ExtensionFileManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ExtensionFileManager.swift; path = Util/ExtensionFileManager.swift; sourceTree = "<group>"; };
 		4071936D1EED65C8003C7E9C /* AnimatabeImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AnimatabeImageView.swift; path = Animation/AnimatabeImageView.swift; sourceTree = "<group>"; };
@@ -274,6 +274,7 @@
 				40D6E0321EF0DE2B00946316 /* ExtensionAlertController.swift */,
 				40D6E0341EF0E4CB00946316 /* TestAccount.swift */,
 				40A63D521EF27A110017D061 /* ExtensionDateComponents.swift */,
+				403F3BD81EF58AC300F46F0A /* ExtensionKDCircularProgress.swift */,
 			);
 			name = Util;
 			sourceTree = "<group>";
@@ -298,7 +299,6 @@
 				403E2BBA1EE4294A00EF961D /* RecordAnimationView.swift */,
 				40AF90291EE5B4F300F801A9 /* VerticallyCenteredTextView.swift */,
 				40888A651EECFB15008E5E12 /* AutoHeightTextView.swift */,
-				403301EE1EF2C70A00DB5684 /* EmojiKeyboardView.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -579,6 +579,7 @@
 				40D6E0351EF0E4CB00946316 /* TestAccount.swift in Sources */,
 				40128BC71EF112EE008F80F5 /* RememberViewController.swift in Sources */,
 				40D1CAE91EEC2A820030CBEF /* PVCommonCollectionViewCell.swift in Sources */,
+				403F3BD91EF58AC300F46F0A /* ExtensionKDCircularProgress.swift in Sources */,
 				403905111EEF8EF3001327FE /* PictureMessageSectionController.swift in Sources */,
 				40128BC91EF114C9008F80F5 /* RememberDetailViewController.swift in Sources */,
 				403905151EEF8EF3001327FE /* VoiceMessageSectionController.swift in Sources */,
@@ -626,7 +627,6 @@
 				403E2BBB1EE4294A00EF961D /* RecordAnimationView.swift in Sources */,
 				40358A701EE92B0200A8CEF4 /* DismissToChatViewControllerProtocol.swift in Sources */,
 				407193761EED65C8003C7E9C /* AnimatableTextField.swift in Sources */,
-				403301EF1EF2C70A00DB5684 /* EmojiKeyboardView.swift in Sources */,
 				407193751EED65C8003C7E9C /* AnimatableButton.swift in Sources */,
 				407193891EED65DC003C7E9C /* PlaceholderDesignable.swift in Sources */,
 				403B20551EE2BC8D00CBE09C /* TextMessageCollectionViewCell.swift in Sources */,

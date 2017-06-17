@@ -17,7 +17,7 @@ class PVCommonCollectionViewCell: MessageCollectionViewCell {
     // UIImageView is a custom view meant to display the UIImage.
     let pictureView = { () -> UIImageView in
         var imageView = UIImageView()
-        //        imageView.contentMode = .scaleAspectFit
+        imageView.contentMode = .scaleAspectFit
         imageView.backgroundColor = UIColor.clear
         imageView.backgroundColor = babyBlueColor
         return imageView
@@ -33,29 +33,19 @@ class PVCommonCollectionViewCell: MessageCollectionViewCell {
     }
     
     let loadingView = { () -> KDCircularProgress in
-        let progress = KDCircularProgress()
+        let progress = KDCircularProgress.defaultProcessBar()
         progress.frame.size = CGSize(
             width: PVCommonCollectionViewCell.maxWidth / 3,
             height: PVCommonCollectionViewCell.maxWidth / 3
         )
-        progress.startAngle = -90
-        progress.progressThickness = 0.2
-        progress.trackThickness = 0.6
-        progress.clockwise = true
-        progress.gradientRotateSpeed = 2
-        progress.roundedCorners = false
-        progress.glowMode = .forward
-        progress.glowAmount = 0.9
-        progress.set(colors: UIColor.cyan ,UIColor.white, UIColor.magenta, UIColor.white, UIColor.orange)
         return progress
     }()
     
     func loadTo(precentage: Double) {
         loadingView.animate(toAngle: precentage * 360 - 90, duration: 0, completion: nil)
-//        if precentage > Double(1) {
-//            loadingView.isHidden = true
-//        }
-//        loadingView.setProgress(precentage, animated: false)
+        if precentage >= Double(1) && loadingView.isHidden == false {
+            loadingView.isHidden = true
+        }
     }
     
     public func setHightlightColor() {

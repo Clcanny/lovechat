@@ -30,7 +30,6 @@ class UrlMessageModel: MessageModel {
             let reference = self.storage.reference(forURL: self.message.absoluteString)
             let filename = self.message.lastPathComponent
             let localUrl = FileManager.getUrl(filename: filename, self.isReceiver)
-            //            self.message = localUrl
             self.localUrl = localUrl
             if FileManager.isFileExist(filename: filename, self.isReceiver) {
                 self.afterDownload(url: nil, localUrl: localUrl, error: nil)
