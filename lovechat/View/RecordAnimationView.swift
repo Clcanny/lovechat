@@ -85,7 +85,7 @@ class RecordAnimationView: UIView {
     
     var timer: Timer?
     var delegate: TimeOutProtocol?
-    public func beat() -> Void {
+    @objc public func beat() -> Void {
         leftTime = leftTime! - 1
         countDown = leftTime!
         if (leftTime == 0) {

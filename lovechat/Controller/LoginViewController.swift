@@ -133,7 +133,7 @@ extension LoginViewController: UITextFieldDelegate {
 // keyboard
 extension LoginViewController {
     
-    func keyboardWillShow(notification: Notification) {
+    @objc func keyboardWillShow(notification: Notification) {
         if isFieldEditing {
             return
         }
@@ -146,7 +146,7 @@ extension LoginViewController {
         }
     }
     
-    func keyboardWillHide(notification: Notification) {
+    @objc func keyboardWillHide(notification: Notification) {
         if isFieldEditing {
             view.bounds.origin.y = 0
         }

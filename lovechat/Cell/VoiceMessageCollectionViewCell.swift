@@ -20,7 +20,7 @@ class VoiceMessageCollectionViewCell: MessageCollectionViewCell {
     fileprivate var updater: CADisplayLink!
     
     var processBar: UIProgressView?
-    func trackAudio() {
+    @objc func trackAudio() {
         let normalizedTime = Float(audioPlayer.currentTime * 1.0 / audioPlayer.duration)
         processBar?.setProgress(normalizedTime, animated: false)
     }

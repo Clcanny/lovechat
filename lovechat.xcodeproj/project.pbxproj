@@ -466,6 +466,7 @@
 					408B48091EE276CC00EE9281 = {
 						CreatedOnToolsVersion = 8.3.2;
 						DevelopmentTeam = M5L6VZEAQ4;
+						LastSwiftMigration = 0920;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -769,7 +770,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = demons.lovechat;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
 		};
@@ -786,7 +788,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = demons.lovechat;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Release;
 		};

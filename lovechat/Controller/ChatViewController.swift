@@ -366,14 +366,14 @@ extension ChatViewController: UITextViewDelegate {
         }
     }
     
-    func sendTextMessage() {
+    @objc func sendTextMessage() {
         let message = textView.text!
         cancelTextMessage()
         
         uploadTextMessage(message: message)
     }
     
-    func cancelTextMessage() {
+    @objc func cancelTextMessage() {
         textView.resignFirstResponder()
         textView.isHidden = true
         textView.text = ""

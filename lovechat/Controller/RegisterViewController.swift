@@ -104,7 +104,7 @@ extension RegisterViewController: UITextFieldDelegate {
 // keyboard
 extension RegisterViewController {
     
-    func keyboardWillShow(notification: Notification) {
+    @objc func keyboardWillShow(notification: Notification) {
         if isFieldEditing {
             return
         }
@@ -116,7 +116,7 @@ extension RegisterViewController {
         }
     }
     
-    func keyboardWillHide(notification: Notification) {
+    @objc func keyboardWillHide(notification: Notification) {
         if isFieldEditing {
             view.bounds.origin.y = 0
         }

@@ -17,9 +17,9 @@ class CameraViewController: UIViewController {
     var movieOutput = AVCaptureMovieFileOutput()
     var previewLayer = AVCaptureVideoPreviewLayer()
     
-    let audioDevice = AVCaptureDevice.defaultDevice(withMediaType: AVMediaTypeAudio)
-    let videoDevices = AVCaptureDevice.devices(withMediaType: AVMediaTypeVideo)
-    var cameraPosition: AVCaptureDevicePosition!
+    let audioDevice = AVCaptureDevice.default(for: AVMediaType.audio)
+    let videoDevices = AVCaptureDevice.devices(for: AVMediaType.video)
+    var cameraPosition: AVCaptureDevice.Position!
     
     let promptLabelA = { () -> UILabel in
         let label = UILabel()
@@ -69,7 +69,7 @@ class CameraViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         cameraView = view
         
-        cameraPosition = AVCaptureDevicePosition.back
+        cameraPosition = AVCaptureDevice.Position.back
         setCamera()
         
         button.addGestureRecognizer(takePhotoGesture)
@@ -122,11 +122,11 @@ extension CameraViewController {
     }
     
     func setCamera() {
-        for device in videoDevices! {
+        for device in videoDevices {
             if (device as AnyObject).position == cameraPosition {
                 var input: AVCaptureDeviceInput!
                 do {
-                    input = try AVCaptureDeviceInput(device: device as! AVCaptureDevice)
+                    input = try AVCaptureDeviceInput(device: device )
                 }
                 catch {
                     fatalError()
@@ -139,8 +139,8 @@ extension CameraViewController {
                         captureSession.addOutput(sessionOutput)
                         
                         previewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
-                        previewLayer.videoGravity = AVLayerVideoGravityResizeAspectFill
-                        previewLayer.connection.videoOrientation = AVCaptureVideoOrientation.portrait
+                        previewLayer.videoGravity = AVLayerVideoGravity.resizeAspectFill
+                        previewLayer.connection?.videoOrientation = AVCaptureVideoOrientation.portrait
                         
                         previewLayer.position = CGPoint(
                             x: cameraView.frame.width / 2,
@@ -158,14 +158,14 @@ extension CameraViewController {
         }
     }
     
-    func changeCamera() {
-        let currentCameraInput = captureSession.inputs[0] as! AVCaptureInput
+    @objc func changeCamera() {
+        let currentCameraInput = captureSession.inputs[0] 
         captureSession.removeInput(currentCameraInput)
-        if cameraPosition == AVCaptureDevicePosition.back {
-            cameraPosition = AVCaptureDevicePosition.front
+        if cameraPosition == AVCaptureDevice.Position.back {
+            cameraPosition = AVCaptureDevice.Position.front
         }
         else {
-            cameraPosition = AVCaptureDevicePosition.back
+            cameraPosition = AVCaptureDevice.Position.back
         }
         setCamera()
     }
@@ -175,8 +175,8 @@ extension CameraViewController {
 // photo
 extension CameraViewController {
     
-    func takePhoto() {
-        if let videoConnection = sessionOutput.connection(withMediaType: AVMediaTypeVideo) {
+    @objc func takePhoto() {
+        if let videoConnection = sessionOutput.connection(with: AVMediaType.video) {
             sessionOutput.captureStillImageAsynchronously(from: videoConnection) {
                 (imageDataSampleBuffer, error) -> Void in
                 if error != nil {
@@ -191,7 +191,7 @@ extension CameraViewController {
                     ))
                     self.present(alert, animated: true, completion: nil)
                 }
-                else if let imageData = AVCaptureStillImageOutput.jpegStillImageNSDataRepresentation(imageDataSampleBuffer) {
+                else if let imageData = AVCaptureStillImageOutput.jpegStillImageNSDataRepresentation(imageDataSampleBuffer!) {
                     let fileUrl = FileManager.getUrlByCurrentTime(suffix: "jpeg", false)
                     do {
                         try imageData.write(to: fileUrl)
@@ -222,7 +222,7 @@ extension CameraViewController {
 // video
 extension CameraViewController {
     
-    func recordVideo(_ sender: UILongPressGestureRecognizer) {
+    @objc func recordVideo(_ sender: UILongPressGestureRecognizer) {
         if (sender.state == .began) {
             startRecordVideo()
         }
@@ -237,7 +237,7 @@ extension CameraViewController {
         let fileUrl = FileManager.getUrlByCurrentTime(suffix: "mov", false)
         url = fileUrl
         type = "video"
-        movieOutput.startRecording(toOutputFileURL: url, recordingDelegate: self)
+        movieOutput.startRecording(to: url!, recordingDelegate: self)
         progressBar.animate(toAngle: 360, duration: 5, completion: {
             (flag) -> Void in
             self.stopRecordVideo()
@@ -267,14 +267,14 @@ extension CameraViewController {
 // save or exit
 extension CameraViewController {
     
-    func save() {
+    @objc func save() {
         if url != nil {
             delegate.saveUrlMessage(url: url!, type: type!)
         }
         dismiss(animated: false, completion: nil)
     }
     
-    func exit() {
+    @objc func exit() {
         if let fileUrl = url {
             do {
                 try FileManager.default.removeItem(at: fileUrl)
@@ -290,17 +290,17 @@ extension CameraViewController {
 
 extension CameraViewController: AVCaptureFileOutputRecordingDelegate {
     
-    func capture(
-        _ captureOutput: AVCaptureFileOutput!,
-        didStartRecordingToOutputFileAt fileURL: URL!,
-        fromConnections connections: [Any]!) {
+    func fileOutput(
+        _ captureOutput: AVCaptureFileOutput,
+        didStartRecordingTo fileURL: URL,
+        from connections: [AVCaptureConnection]) {
     }
     
-    func capture(
-        _ captureOutput: AVCaptureFileOutput!,
-        didFinishRecordingToOutputFileAt outputFileURL: URL!,
-        fromConnections connections: [Any]!,
-        error: Error!) {
+    func fileOutput(
+        _ captureOutput: AVCaptureFileOutput,
+        didFinishRecordingTo outputFileURL: URL,
+        from connections: [AVCaptureConnection],
+        error: Error?) {
         if error == nil {
             // UISaveVideoAtPathToSavedPhotosAlbum(outputFileURL.path, nil, nil, nil)
         }

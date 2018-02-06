@@ -16,7 +16,7 @@ class MessageCollectionViewCell: UICollectionViewCell {
     
     var gesture: UITapGestureRecognizer?
     // abstract method
-    func click(gestureRecognizer: UIGestureRecognizer) {
+    @objc func click(gestureRecognizer: UIGestureRecognizer) {
         fatalError()
     }
     
