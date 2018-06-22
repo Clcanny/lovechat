@@ -8,6 +8,8 @@
 
 import UIKit
 import Firebase
+import FirebaseAuth
+import FirebaseDatabase
 
 class RegisterViewController: UIViewController {
     
@@ -131,7 +133,7 @@ extension RegisterViewController {
             view.isUserInteractionEnabled = false
             registerComplete.startAnimating()
             Auth.auth().createUser(withEmail: email, password: pwd, completion: {
-                (user: User?, error) in
+                (user: AuthDataResult?, error) in
                 if let err = error {
                     self.present(UIAlertController.defaultErrorController(
                         title: "Register failed",

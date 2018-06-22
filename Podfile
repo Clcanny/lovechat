@@ -7,8 +7,8 @@ target 'lovechat' do
 
   # Pods for lovechat
   pod 'IGListKit', '~> 3.0'
-  pod 'SnapKit', '~> 3.2.0'
-  pod 'KDCircularProgress'
+  pod 'SnapKit', '~> 4.0.0'
+  pod 'KDCircularProgress', :git => 'https://github.com/kaandedeoglu/KDCircularProgress'
   pod 'AsyncSwift'
   pod 'SDWebImage'
   pod "TextFieldEffects"

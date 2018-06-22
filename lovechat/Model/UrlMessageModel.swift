@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 import Async
 import Firebase
+import FirebaseStorage
 
 class UrlMessageModel: MessageModel {
     

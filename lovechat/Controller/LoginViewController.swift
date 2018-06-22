@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import FirebaseAuth
 import FirebaseDatabase
 
 class LoginViewController: UIViewController {
@@ -85,7 +86,7 @@ class LoginViewController: UIViewController {
             }
             else {
                 let uid = Auth.auth().currentUser!.uid
-                let userEmail = user!.email!.replacingOccurrences(of: ".", with: "-")
+                let userEmail = user!.user.email!.replacingOccurrences(of: ".", with: "-")
                 self.checkUserStatus(uid: uid, userEmail: userEmail)
             }
         })

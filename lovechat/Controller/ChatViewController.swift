@@ -15,6 +15,9 @@ import Async
 import AVKit
 import AVFoundation
 import Firebase
+import FirebaseAuth
+import FirebaseDatabase
+import FirebaseStorage
 
 class ChatViewController: UIViewController {
     
@@ -318,7 +321,11 @@ extension ChatViewController {
                 }
                 else {
                     // Metadata contains file metadata such as size, content-type, and download URL.
-                    if let downloadURL = metadata!.downloadURL() {
+                    reference.downloadURL { (url, error) in
+                        guard let downloadURL = url else {
+                            // Uh-oh, an error occurred!
+                            return
+                        }
                         var sendMsg: [String : Any]!
                         var receiveMsg: [String : Any]!
                         if type == "audio" {
@@ -343,6 +350,31 @@ extension ChatViewController {
                         }
                         self.pushMessage(sendMsg, receiveMsg, key: key)
                     }
+//                    if let downloadURL = metadata!.downloadURL() {
+//                        var sendMsg: [String : Any]!
+//                        var receiveMsg: [String : Any]!
+//                        if type == "audio" {
+//                            sendMsg = [
+//                                "url": downloadURL.absoluteString,
+//                                "time": recordTime!, "isReceive": false, "type": "audio"
+//                                ] as [String : Any]
+//                            receiveMsg = [
+//                                "url": downloadURL.absoluteString,
+//                                "time": recordTime!, "isReceive": true, "type": "audio"
+//                                ] as [String : Any]
+//                        }
+//                        else {
+//                            sendMsg = [
+//                                "url": downloadURL.absoluteString,
+//                                "isReceive": false, "type": type
+//                                ] as [String : Any]
+//                            receiveMsg = [
+//                                "url": downloadURL.absoluteString,
+//                                "isReceive": true, "type": type
+//                                ] as [String : Any]
+//                        }
+//                        self.pushMessage(sendMsg, receiveMsg, key: key)
+//                    }
                 }
             }
         }

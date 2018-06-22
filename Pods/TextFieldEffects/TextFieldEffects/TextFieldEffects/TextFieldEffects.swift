@@ -12,7 +12,7 @@ extension String {
     /**
     true if self contains characters.
     */
-    public var isNotEmpty: Bool {
+	var isNotEmpty: Bool {
         return !isEmpty
     }
 }
@@ -21,7 +21,6 @@ extension String {
 A TextFieldEffects object is a control that displays editable text and contains the boilerplates to setup unique animations for text entry and display. You typically use this class the same way you use UITextField.
 */
 open class TextFieldEffects : UITextField {
-    
     /**
      The type of animation a TextFieldEffect can perform.
      
@@ -78,7 +77,13 @@ open class TextFieldEffects : UITextField {
     // MARK: - Overrides
     
     override open func draw(_ rect: CGRect) {
-        drawViewsForRect(rect)
+		// FIXME: Short-circuit if the view is currently selected. iOS 11 introduced
+		// a setNeedsDisplay when you focus on a textfield, calling this method again
+		// and messing up some of the effects due to the logic contained inside these
+		// methods.
+		// This is just a "quick fix", something better needs to come along.
+		guard isFirstResponder == false else { return }
+		drawViewsForRect(rect)
     }
     
     override open func drawPlaceholder(in rect: CGRect) {
